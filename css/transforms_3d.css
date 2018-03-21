@@ -1,0 +1,26 @@
+.rotatex {     /* The rotateX() method rotates an element around its X-axis at a given degree */
+    width: fit-content;
+    height: fit-content;
+    background-color: yellow;
+    border: 1px solid black;
+
+    transform: rotateX(150deg); /* Standard syntax */
+}
+
+.rotatey {
+	width: fit-content;
+    height: fit-content;
+    background-color: yellow;
+    border: 1px solid black;
+
+    transform: rotateY(150deg); /* Standard syntax */
+}
+
+.rotatez {
+	width: fit-content;
+    height: fit-content;
+    background-color: yellow;
+    border: 1px solid black;
+
+    transform: rotateZ(90deg); /* Standard syntax */
+}

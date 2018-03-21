@@ -1,0 +1,20 @@
+/* 1. the CSS property you want to add an effect to
+   2. the duration of the effect 
+
+   The transition effect will start when the specified CSS property (eg:- width) changes value*/
+
+#hoverchange {
+	width: 100px;
+    height: 100px;
+    background: red;
+    /*-webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
+
+    transition: width 2s, height 2s, transform 2s;          /*prop to effect and duration*/
+    transition-timing-function: ease;    /*speed curve of transition func. ease (default), linear, ease-in, ease-out, ease-in-out*/
+	transition-delay : 1s ;               /*delay before transition starts*/
+}
+#hoverchange:hover {
+	width: 400px;
+	height: 200px;
+	transform: translate(200px,300px);    /* add 2D/3D transforms here */
+}
