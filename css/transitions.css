@@ -7,14 +7,15 @@
 	width: 100px;
     height: 100px;
     background: red;
-    /*-webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
+
+    -webkit-transition: width 2s, height 4s; /* For Safari 3.1 to 6.0 */
 
     transition: width 2s, height 2s, transform 2s;          /*prop to effect and duration*/
     transition-timing-function: ease;    /*speed curve of transition func. ease (default), linear, ease-in, ease-out, ease-in-out*/
-	transition-delay : 1s ;               /*delay before transition starts*/
+  	transition-delay : 0s ;               /*delay before transition starts*/
 }
 #hoverchange:hover {
-	width: 400px;
-	height: 200px;
-	transform: translate(200px,300px);    /* add 2D/3D transforms here */
+	width: 100px;
+	height: 100px;
+	transform: rotate(180deg);    /* add 2D/3D transforms here */
 }
