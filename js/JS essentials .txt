@@ -1,0 +1,51 @@
+Array methods
+	0.	.tostring()
+	0.	.valueof()
+	0.	.join(“ : “)
+	0.	val = .pop()
+	0.	.push(“mm”)
+	0.	.shift()      // removes elem from beginning 
+	0.	.unshift(“mm”)     // add to beginning 
+	0.	.sort()
+	0.	.reverse()
+	0.	delete arr[0]   // removes first elem from arr
+	0.	Newarr = arr1.concat(arr2)
+	0.	.slice(start-index , end-index)     // [start, end)
+	0.	.splice(insert-at-index, remove-at-index, “str1”, “str2”, “str3.”, .....)
+
+Date 
+	0.	var ndate = new Date();  ndate.toDateString();
+	0.	.getDate()
+	0.	.getFullYear()
+	0.	.getTime()
+
+Number
+	0.	if (number != parseInt(number))
+	0.	isNaN (nchk)
+
+Form
+	0.	document . name-of-form . name-of-widget . value   // set or get value.
+	0.	onsubmit=“return(validate())”.    // return false from func if error else true.
+
+Functions
+	0.	var f = function(a, b) { return a*b }.     // a nameless function stored in var
+f (45, 5).      // call to function stored in var
+
+	0.	Use of concept of nested functions.
+
+Math
+	0.	Math.abs()
+	0.	Math.ceil()
+	0.	     .floor()
+	0.	     .pow()
+	0.	     .sqrt()
+	0.	     .random().    // no Param passed...generate between 0 and 1.
+	0.	     .acos()
+	0.	     .PI
+	0.	     .log()
+
+Events
+	0.	oncontextmenu     // right click event handler 
+	0.	onClick = “func(this)”        // this provides a context to elem
+	0.	Onkeydown, keypress, keyup
+￼
