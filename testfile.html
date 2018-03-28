@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/animations.css">
+	<script type="text/javascript">
+		function keydown(e){                                      // first
+			if(e.keyCode) console.log("keydown : " + e.keyCode)
+		}
+
+		function keypress(e){
+			if(e.charCode) console.log("keypress charcode : " + e.charCode);  
+			                                                      // second  
+			                                                      // key press works only for alphanumeric and not special keys
+		}
+
+		function keyup(e){                                        // third
+			if(e.keyCode) console.log("keyup : " + e.keyCode)
+		}
+	</script>
 	<title>Testing</title>
 </head>
 <body>
 
-<div id="hoverchange">
-	
-</div>
+<input type="text" name="dummy" onkeydown="keydown(event)" onkeypress="keypress(event)" onkeyup="keyup(event)">
 
 </body>
 </html>

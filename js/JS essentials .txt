@@ -1,4 +1,4 @@
-Array methods
+﻿Array methods
 	0.	.tostring()
 	0.	.valueof()
 	0.	.join(“ : “)
@@ -25,11 +25,11 @@ Number
 
 Form
 	0.	document . name-of-form . name-of-widget . value   // set or get value.
-	0.	onsubmit=“return(validate())”.    // return false from func if error else true.
+	0.	onsubmit=“return(validate())”.             // return false from func if error else true.
 
 Functions
 	0.	var f = function(a, b) { return a*b }.     // a nameless function stored in var
-f (45, 5).      // call to function stored in var
+                f (45, 5).                                // call to function stored in var
 
 	0.	Use of concept of nested functions.
 
@@ -45,7 +45,25 @@ Math
 	0.	     .log()
 
 Events
-	0.	oncontextmenu     // right click event handler 
+	0.	oncontextmenu                  // right click event handler 
 	0.	onClick = “func(this)”        // this provides a context to elem
+
 	0.	Onkeydown, keypress, keyup
+
+               function keydown(e){                                           // first
+			if(e.keyCode) console.log("keydown : " + e.keyCode)
+		}
+
+		function keypress(e){
+			if(e.charCode) console.log("keypress charcode : " + e.charCode);  
+			                                                      // second  
+			                                                      // keypress works only for alphanumeric and not special keys
+		}
+
+		function keyup(e){                                            // third
+			if(e.keyCode) console.log("keyup : " + e.keyCode)
+		}
+
+                <input type="text" name="dummy" onkeydown="keydown(event)" onkeypress="keypress(event)" onkeyup="keyup(event)">
+
 ￼
