@@ -4,17 +4,18 @@
 	0.	.join(“ : “)
 	0.	val = .pop()
 	0.	.push(“mm”)
-	0.	.shift()      // removes elem from beginning 
+	0.	.shift()            // removes elem from beginning 
 	0.	.unshift(“mm”)     // add to beginning 
 	0.	.sort()
 	0.	.reverse()
-	0.	delete arr[0]   // removes first elem from arr
+	0.	delete arr[0]      // removes first elem from arr
 	0.	Newarr = arr1.concat(arr2)
 	0.	.slice(start-index , end-index)     // [start, end)
 	0.	.splice(insert-at-index, remove-at-index, “str1”, “str2”, “str3.”, .....)
 
 Date 
-	0.	var ndate = new Date();  ndate.toDateString();
+	0.	var ndate = new Date();  
+        0.       ndate.toDateString();
 	0.	.getDate()
 	0.	.getFullYear()
 	0.	.getTime()
@@ -43,6 +44,15 @@ Math
 	0.	     .acos()
 	0.	     .PI
 	0.	     .log()
+
+Alerts
+        0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
+
+	0.	alert(resp);                                 // a message alert
+
+	0.	var cnfstat = confirm("Do you want to exit ?");  // confirmation alert
+		if(cnfstat) alert("you said yes !");
+		else alert("you said no !"); 
 
 Events
 	0.	oncontextmenu                  // right click event handler 
