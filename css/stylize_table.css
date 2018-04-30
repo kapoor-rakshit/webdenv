@@ -1,3 +1,6 @@
+
+/* link CSS file with HTML file  : <head> <link rel="stylesheet" type="text/css" href="css/transitions.css"> </head> */
+
 table, th , td  {                                              /* NICE TABLE Style */
   border: 1px solid grey;
   border-collapse: collapse;
