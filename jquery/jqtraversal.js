@@ -3,13 +3,15 @@
 
 $(document).ready(function(){
 
-	 $("span").parent().css({"color": "red", "border": "2px solid red"});  // direct parent element of the selected element, a single level up the DOM tree
+	 $("span").parent().css({"color": "red", "border": "2px solid red"});  // direct parent element of EACH selected element, a single level up the DOM tree
 
-	 $("span").parents().css({"color": "red", "border": "2px solid red"}); // all ancestor elements of the selected element, all the way up to the document's root element (<html>).
+	 $("span").parents().css({"color": "red", "border": "2px solid red"}); // all ancestor elements of EACH selected element, all the way up to the document's root element (<html>).
 
 	 $("span").parents("ul").css({"color": "red", "border": "2px solid red"}); // all ancestors of all selected elements that are filtered elements ("ul" here)
 
 	 $("span").parentsUntil("div");                                           // all ancestors between given args (excluding both)
+
+	 $(".classnaam").offsetParent();                                         // closest parent that is positioned, works with absolute, relative positions
 
 
 // A descendant is a child, grandchild, great-grandchild, and so on.
@@ -23,6 +25,12 @@ $(document).ready(function(){
 
 	 $("div").find("*");           // "*" : all descendants of selected element (<div>)
 
+	 $("#idnaam").closest(".classnaam")  // traverses up hierarchy until find a match
+
+	 $("li").each(function(){
+            alert($(this).text())        // .each : specifies a function to run for each matched element
+        });
+
 
 // traverse sideways in the DOM tree to find siblings of an element (excluding element itself)
 // Siblings share the same parent.
@@ -31,17 +39,25 @@ $(document).ready(function(){
 
 	 $("h2").siblings("p");    // all sibling elements of <h2> that are <p> elements
 
-	 $("h2").next().css({"color": "red", "border": "2px solid red"});  // returns the one next sibling element of the selected element
+	 $("h2").next().css({"color": "red", "border": "2px solid red"});  // returns the one next sibling element of EACH of selected element
 
-	 $("h2").nextAll().css({"color": "red", "border": "2px solid red"}); // all next sibling elements of the selected element
+	 $(".classnaam").next("p");     // next sibling (of 'classnaam' class) if it matches the selector specified ("p")
 
-	 $("h2").nextUntil("h6");     // all next sibling elements between two given arguments
+	 $("h2").nextAll().css({"color": "red", "border": "2px solid red"}); // all next sibling elements of EACH of selected element
 
-	 $("h2").prev().css({"color": "red", "border": "2px solid red"});   // previous one sibling
+	 $("h2").nextUntil("h6");     // all next sibling elements between two given arguments of EACH selected elem
+
+	 $("h2").nextUntil("p", ".filterclass");  // filter used to get until p with classname='filtername'
+
+	 $("h2").prev().css({"color": "red", "border": "2px solid red"});   // previous one sibling of EACH matched elem
+
+	 $("h2").prev(".classname");
 
 	 $("h2").prevAll().css({"color": "red", "border": "2px solid red"}); // all previous sibling elements of the selected element
 
 	 $("h2").prevUntil("h6");     // all previous sibling elements between two given arguments
+
+	 $("h2").prevUntil("p", ".filterclass");
 
 
 // Filtering

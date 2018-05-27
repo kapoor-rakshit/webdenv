@@ -43,6 +43,8 @@ $(document).ready(function(){           // to prevent any jQuery code from runni
 
     $("tr:odd")	              // Selects all odd <tr> elements
 
+    $("form :input")         // <input> tag from <form>
+
 
 // Events
 

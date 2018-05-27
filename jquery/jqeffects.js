@@ -8,8 +8,9 @@
 
 $(document).ready(function(){
 
-	$("p").click(function(){        // effectmthd(speed,callback)
+	$("p").click(function(){        // effectmthd(speed, easing, callback)
 	    $(this).hide("slow");       // speed parameter can take the following values: "slow", "fast", or milliseconds.
+								    // easing : "linear" , "swing"
 	});                             // callback parameter is a function to be executed after 'effectmthd' completes.
 
 	$("p").click(function(){
@@ -22,25 +23,27 @@ $(document).ready(function(){
 
 
 
-	$("button").click(function(){   // (speed,callback)
-	    $("div").fadeIn("fast");
+	$("button").click(function(){                         // (speed,easing,callback)
+	    $("div").fadeIn("fast","swing",function(event){   // callback function
+	    	alert("completed!");
+	    });
 	});
 
 	$("button").click(function(){
 	    $("div").fadeOut("slow");
 	});
 
-	$("button").click(function(){
+	$("button").click(function(){          // (speed, easing, callback)
 	    $("div").fadeToggle();
 	});
 
 	$("button").click(function(){         // fadeTo : allows fading to a given opacity (value between 0 and 1).
-	    $("#div3").fadeTo("slow", 0.7);   // (speed,opacity,callback)
+	    $("#div3").fadeTo("slow", 0.7);   // (speed,opacity,easing,callback)
 	});
 
 
 
-    $("#flip").click(function(){  // (speed,callback)
+    $("#flip").click(function(){  // (speed, easing, callback)
 	    $("#panel").slideDown();
 	});
 
@@ -59,7 +62,7 @@ $(document).ready(function(){
 // NOTE: This way, browsers do not have to find the same element(s) more than once.
 
 	 $("#p1").css("color", "red").slideUp(2000).slideDown(2000);    
-																	 // OR more readable 
+																	 // OR a more readable format
 	 $("#p1").css("color", "red")
 			 .slideUp(2000)
 			 .slideDown(2000);

@@ -20,11 +20,16 @@
 // $(selector).animate({params},speed,callback);
 
 // we can manipulate ALL CSS properties with the animate() method.
-// mportant thing to remember: all property names must be camel-cased when used with the animate() method.
+// Important thing to remember: all property names must be camel-cased when used with the animate() method.
 // We will need to write paddingLeft instead of padding-left, marginRight instead of margin-right
 
 
 $(document).ready(function(){
+
+// Global Animation properties
+	jQuery.fx.off = true;              // to disable all animations on page.
+	jQuery.fx.interval = 100;          // rate at which animations run, defines no. of frames to run per second
+
 
 	 $("button").click(function(){
 
@@ -35,7 +40,9 @@ $(document).ready(function(){
 	        height: '+=150px',              // relative values specified to current value, using += or -=
 	        width: '-=150px'
 
-		 },5000);
+		 }, 5000, function(event){
+		 	alert("completed!!");
+		 });
 
 
 		 $("div").animate({               // animate() func added in queue
@@ -47,6 +54,10 @@ $(document).ready(function(){
 		 },3000);
 	 });
 
+
+	 $("div").slideUp("fast")
+			 .delay(400)               // delay() : delays between effects
+			 .slideDown("slow");       
 
 
 	 $("#stop").click(function(){      // stop(stopAll, goToEnd)
