@@ -1,0 +1,86 @@
+/* Reference : https://www.w3schools.com/howto/howto_css_parallax.asp */
+
+/* HTML file
+<html>
+<head>
+	<link rel="stylesheet" href="css/parallax.css">
+	<title>Testing</title>
+</head>
+<body>
+
+<div class="bgimg-1"></div>
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+    <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+  </div>
+</div>
+
+<div class="bgimg-2"></div>
+
+<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;">Parallax Demo</h3>
+  <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the foreground content while scrolling.</p>
+</div>
+
+
+<div class="bgimg-3"></div>
+
+<div style="position:relative;">
+  <div style="color:#ddd;background-color:#282E34;text-align:center;padding:50px 80px;text-align: justify;">
+    <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+  </div>
+</div>
+
+<div class="bgimg-1"></div>
+
+</body>
+</html>*/
+
+
+body, html {
+  height: 100%;                                             /* make the image fit the whole screen */
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;                            /* to create the actual parallax effect */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgimg-1 {
+  background-image: url("../static/img_parallax.jpg");     /* (../) file path to move one dir up */
+  min-height: 100%;                                        /* make the image fit the whole screen */
+}
+
+.bgimg-2 {
+  background-image: url("../static/img_parallax2.jpg");
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("../static/img_parallax3.jpg");
+  min-height: 400px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+
+                                                          /* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+

@@ -46,7 +46,7 @@ Math
 	0.	     .log()
 
 Alerts
-        0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
+    0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
 
 	0.	alert(resp);                                 // a message alert
 
@@ -75,5 +75,9 @@ Events
 		}
 
                 <input type="text" name="dummy" onkeydown="keydown(event)" onkeypress="keypress(event)" onkeyup="keyup(event)">
+
+    0.  setTimeout(func, duration)              // calls 'func' only once after 'duration' millisec
+
+    0.  setInterval(func, duration)             // calls 'func' after every 'duration' millisec
 
 ￼
