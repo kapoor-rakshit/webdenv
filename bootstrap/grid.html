@@ -1,0 +1,58 @@
+<!-- Reference : https://www.w3schools.com/bootstrap4/bootstrap_grid_basic.asp -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<!-- jQuery and Popper.js for JavaScript components (like modals, tooltips, popovers etc).  -->
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<title>grid</title>
+</head>
+<body>
+
+	<div class="container-fluid">
+  <h1>Hello World!</h1>
+  <p>Resize the browser window to see the effect.</p>
+  <p>The columns will automatically stack on top of each other when the screen is less than 576px wide.</p>
+
+<!-- Two Unequal width Responsive Columns -->
+<!-- Make sure that the sum adds up to 12 or fewer (it is not required that you use all 12 available columns). -->
+<div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+    <div class="col-sm-8" style="background-color:lavenderblush;">.col-sm-8</div>
+  </div>
+
+<!-- Equal width Responsive Columns -->
+<!-- .col-sm (small devices - screen width equal to or greater than 576px) -->
+<div class="row">
+    <div class="col-sm" style="background-color:lavender;">.col-sm-3</div>
+    <div class="col-sm" style="background-color:lavenderblush;">.col-sm-3</div>
+    <div class="col-sm" style="background-color:lavender;">.col-sm-3</div>
+    <div class="col-sm" style="background-color:lavenderblush;">.col-sm-3</div>
+  </div>
+
+<!-- Equal cols on all devices and screen widths , it will not stack up -->
+<!-- .col (extra small devices - screen width less than 576px) -->
+<div class="row">
+    <div class="col" style="background-color:lavender;">.col</div>
+    <div class="col" style="background-color:orange;">.col</div>
+    <div class="col" style="background-color:lavender;">.col</div>
+  </div>
+
+	</div>
+
+</body>
+</html>

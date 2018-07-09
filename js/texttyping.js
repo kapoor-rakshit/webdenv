@@ -6,6 +6,10 @@ var txt = "hi there. working with JS. Isn't it amazing. yeah it is.";
 l = txt.length
 var speed = 50;
 
+window.onload = function(){
+	typing();
+}
+
 function typing(){
 	if (i<l){
 		document.getElementById("content").innerHTML += txt.charAt(i);
