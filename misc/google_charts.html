@@ -1,0 +1,50 @@
+<!--Reference : https://google-developers.appspot.com/chart/interactive/docs/-->
+<!--Pie Chart , Bar Chart-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Google charts</title>
+
+                                                                                                                                                                 <!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+                                                                                                                                                       // Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+                                                                                                                                               // Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);                                                             // drawChart is a callback here
+
+                                                                                                                                            // Callback that creates and populates a data table,
+                                                                                                                                            // instantiates the chart, passes in the data and draws it.
+function drawChart() {
+  var data = new google.visualization.DataTable();                                                   // Chart data
+  data.addColumn('string', 'Semester');
+  data.addColumn('number', 'SGPA');
+  data.addRows([
+  	['One', 8.65],
+	['Two', 8.81],
+	['Three', 8.33],
+	['Four', 8.40],
+	['Five', 8.40],
+	['Six', 8.13],
+	['Seven', 8.20],
+	['Eight', 8.38],
+  ]);
+                                                                                                                                             // Optional; add a title, set the width and height of the chart etc....
+  var options = {title:'My BTech', width:600, height:600,curveType: 'function'};
+
+                                                                                                                                                             // Display the chart inside the <div> element with id="chart"
+  var chart = new google.visualization.PieChart(document.getElementById('chart'));        // change Type here (PIE/BAR/LINE) 
+  chart.draw(data, options);
+}
+</script>
+
+</head>
+<body>
+                                                                                                                                         <!--div that will hold chart-->
+<div id="chart"></div>
+
+</body>
+</html>
