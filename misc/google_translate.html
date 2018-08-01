@@ -1,0 +1,35 @@
+<!--Reference : https://www.w3schools.com/howto/howto_google_translate.asp-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Translate prac</title>
+    
+    <script type="text/javascript">
+	function googleTranslateElementInit()                                            // a javascript function
+	{
+	  new google.translate.TranslateElement(
+      {pageLanguage: 'en', 
+      includedLanguages: 'hi,pa,en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      }, 'google_translate_element');
+	}
+	</script>
+                   <!--included languages : choice to translate from-->
+                   <!--layout view : VERTICAL, HORIZONTAL, SIMPLE-->
+	                 <!--reference to the translate API at google.com-->
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+</head>
+<body>
+
+<h1>My Web Page</h1>
+
+<p>Hello everybody!</p>
+
+<p>Translate this page</p>
+
+<div id="google_translate_element"></div>                             <!--display gtranslate button-->
+
+</body>
+</html>
