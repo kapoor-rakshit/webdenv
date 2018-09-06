@@ -20,6 +20,12 @@
 		<input type="text" name="lastname" placeholder="Enter lastname" required>   <!-- size , maxlength attr-->
 		</div>
 		<br>
+		
+		<!-- pattern attribute specifies a regular expression that the <input> element's value is checked against.
+                The pattern attribute works with the input types: text, date, search, url, tel, email, and password. -->
+		
+		<input type="text" name="country_code" pattern="[A-Za-z]*" title="Alphabets only">
+		
 
 		Gender
 		<br><input type="radio" name="gender" value="male" required>Male
