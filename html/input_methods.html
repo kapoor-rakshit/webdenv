@@ -72,6 +72,28 @@
 		Date of Birth<br>
 		<input type="date" name="bday" min="1993-01-01" max="2000-12-31" required>
 		<br><br>
+		
+		<!-- To limit the dates past/future -->
+		<head>
+	          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                </head>
+		<body>
+	          <script>
+			  $(function() {
+                            var now = new Date();
+
+                            var day = ("0" + now.getDate()).slice(-2);
+                            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+                            $('#cal').val(today);
+                            $('#cal').attr('min', today); });
+                  </script>
+                  <input type="date" id="cal">
+                </body>
+		
+		
 
 		Time<br>
 		<input type="time" name="time" required>
