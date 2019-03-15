@@ -1,0 +1,64 @@
+
+# REFERENCE : https://www.w3schools.com/html/html5_webworkers.asp
+
+# A web worker is a JavaScript running in the background, without affecting the performance of the page.
+# When executing scripts in an HTML page, the page becomes unresponsive until the script is finished.
+# A web worker is a JavaScript that runs in the background, independently of other scripts, without affecting the performance of the page.
+# You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.
+
+
+<!-- SCRIPT FOR WEB WORKER "demo_workers.js"
+
+var i = 0;
+
+function timedCount() {
+  i = i + 1;
+  postMessage(i);                                   // postMessage() method - which is used to post a message back to the HTML page.
+  setTimeout("timedCount()",500);
+}
+
+timedCount();
+
+-->
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="startWorker()">Start Worker</button> 
+<button onclick="stopWorker()">Stop Worker</button>
+
+
+<script>
+var w;
+
+function startWorker() {
+  if(typeof(Worker) !== "undefined") {           // Before creating a web worker, check whether the user's browser supports it
+    if(typeof(w) == "undefined") {               // create our web worker in an external JavaScript. CHECK ABOVE in comments.
+      w = new Worker("demo_workers.js");         // check if worker already exists, if not - create a new web worker object and runs the code in "demo_workers.js
+    }
+    w.onmessage = function(event) {              // "onmessage" event listener to the web worker.
+      document.getElementById("result").innerHTML = event.data;
+    };                                           // When the web worker posts a message, the code within the event listener is executed. 
+                                                 // The data from the web worker is stored in event.data.
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker() { 
+  w.terminate();                                // When a web worker object is created, it will continue to listen for messages
+                                                // (even after the external script is finished) until it is terminated.
+                                                // To terminate a web worker, and free browser/computer resources, use the terminate() method
+  
+  w = undefined;                                // set the worker variable to undefined, after it has been terminated, to reuse the code
+}
+</script>
+
+</body>
+</html>
+
+
