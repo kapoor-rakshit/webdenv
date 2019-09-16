@@ -19,12 +19,14 @@ CSS3 is backward compatible and supported by major web browsers.
 
 
 LAYOUTS
+---------
 TABLE LAYOUT used for designing layout for page using rowspan and colspan.
 DIV LAYOUT also used for designing layout for page using float and position.
 MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap.
 
 
 LAYOUT ENGINE
+--------------
 used internally by browsers, but sometimes we need to specify explicitly for some declarations
 webkit          --> Safari, Chrome        eg: -webkit-column-count
 trident         --> IE                    eg: -ms-column-count
@@ -32,6 +34,7 @@ gecko           --> FireFox               eg: -moz-column-count
 
 
 MISC
+------
 eg: <div>
      <h2>My name is Donald</h2>
      <span>
@@ -45,6 +48,7 @@ eg: <div>
 
 
 SELECTORS
+-----------
 /* REFERENCE : https://www.w3schools.com/cssref/css_selectors.asp */
 
 tag1, tag2, tag3 {}                          /* tag selectors */
@@ -63,6 +67,7 @@ tag1:not(.CLASS) {}                          /* all tag1 except with class CLASS
 
 
 DECLARATIONS
+-------------
 {
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
 background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple images to be used as background */
@@ -72,6 +77,28 @@ color: magenta;                                            /* font color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
 border-radius: 25px;                                       /* border radius */
 box-shadow: 10px 10px 10px red;                            /* horizontl width, vertical width, blurred, color */
+text-shadow: 3px 8px 3px red;                              /* horizontl width, vertical width, blurred, color */
 }
+
+
+FONT RULES
+-----------
+.woff  (web open font format)
+.ttf   (true type font)
+
+@font-face{                                                /* Font Rule */
+ font-family: myFont;
+ src: url('path to font file downloaded ttf or woff file');
+}
+h1{
+ font-family: myFont;                                     /* Apply font rule */
+}
+
+
+MEDIA RULES
+------------
+These allow to tailor CSS according to media type on which and how webpage viewed.
+
+@media MEDIA-TYPE AND EXPRESSION { }
 
 
