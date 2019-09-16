@@ -1,0 +1,48 @@
+
+A CSS file has selectors and declarations
+SELECTOR, SELECTOR, SELECTOR {
+  DECLARATIONS;
+}
+
+
+#ID_SELECTOR {}                           /* starting with # is ID SELECTOR*/
+.CLASS_SELECTOR {}                        /* starting with . is CLASS SELECTOR */
+
+
+Three ways of including CSS:
+1. INLINE CSS          <p style="text-align: center;color: black;"></p>
+2. EXTERNAL CSS        <link href="path_to_css_file" rel="stylesheet" type="text/css" />
+3. INTERNAL CSS        <style></style>
+
+
+CSS3 is backward compatible and supported by major web browsers.
+
+
+LAYOUTS
+TABLE LAYOUT used for designing layout for page using rowspan and colspan.
+DIV LAYOUT also used for designing layout for page using float and position.
+MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap.
+
+
+LAYOUT ENGINE
+used internally by browsers, but sometimes we need to specify explicitly for some declarations
+webkit          --> Safari, Chrome        eg: -webkit-column-count
+trident         --> IE                    eg: -ms-column-count
+gecko           --> FireFox               eg: -moz-column-count
+
+
+SELECTORS
+tag1, tag2, tag3 {}                          /* tag selectors */
+#ID1, #ID2 {}                                /* id selectors */
+.CLASS1, .CLASS2 {}                          /* class selectors */
+tag1#ID, tag2.CLASS {}                       /* tag with id ID and tag with class CLASS */
+tag[id=""] {}                               /* tag with attribute id and value equals */
+tag[id^=""] {}                              /* tag with attribute id and value starts with */
+tag[id$=""] {}                              /* tag with attribute id and value ends with */
+tag[id*=""] {}                              /* tag with attribute id and value contains */
+#ID tag1 {}                                  /* tag that is INSIDE of id ID */ /* eg: table tr {}  also works same*/
+tag1:nth-child(5) {}                         /* 5th tag1 on page , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
+tag1 > tag2:last-child {}                    /* last tag2 whose PARENT is tag1 */
+tag:not(.CLASS) {}                           /* tag except tag with class CLASS */
+
+
