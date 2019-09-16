@@ -1,7 +1,50 @@
 
 /* link CSS file with HTML file  : <head> <link rel="stylesheet" type="text/css" href="css/transitions.css"> </head> */
 
-table, th , td  {                                              /* NICE TABLE Style */
+/* REFERENCE : https://www.w3schools.com/css/css_table.asp */
+
+/* 1 : border-collapse property sets whether the table borders should be collapsed into a single border */
+table {                                              /* collapse table border */
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid black;
+}
+
+
+/* 2 : text-align property sets the horizontal alignment (like left, right, or center) of the content in <th> or <td> */
+th {
+  text-align: left;
+}
+
+
+/* 3 : vertical-align property sets the vertical alignment (like top, bottom, or middle) of the content in <th> or <td>. */
+td {
+  vertical-align: bottom;
+}
+
+
+/* 4 : control the space between the border and the content in a table using padding property on <td> and <th> */
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+
+/* 5 : border-bottom property to <th> and <td> for horizontal dividers */
+th, td {
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* 6 : :hover selector on <tr> to highlight table rows on mouse over */
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+
+/* 7 : zebra-striped tables, use the nth-child() selector on <tr> and add a background-color to all even (or odd) table rows */
+table, th , td  {
   border: 1px solid grey;
   border-collapse: collapse;
   padding: 5px;
@@ -12,3 +55,23 @@ table tr:nth-child(odd) {                                       /*CSS Considers 
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+
+
+/* 8 : background color and text color of elements */
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+/* 9 : A responsive table will display a horizontal scroll bar if the screen is too small to display the full content
+       Add a container element (like <div>) with overflow-x:auto around the <table> element to make it responsive */
+<div style="overflow-x:auto;">
+
+<table>
+... table content ...
+</table>
+
+</div>
+
+
