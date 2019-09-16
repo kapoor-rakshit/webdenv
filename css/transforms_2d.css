@@ -21,7 +21,7 @@ div#rotate {
     transform: rotate(-50deg);
 }
 div#scale {
-	                      /* The scale() method increases or decreases the size of an element (width and height). */
+	                      /* The scale() method increases or decreases the size of an element (width and height) times */
 	width: fit-content;
     height: fit-content;
     background-color: yellow;
@@ -52,6 +52,14 @@ div#skew {           /* The skew() method skews an element along the X and Y-axi
     border: 1px solid black;
 
     transform: skew(10deg, 30deg);
+}
+div#multi {                          /* example of using multiple transforms */
+	width: fit-content;
+    height: fit-content;
+    background-color: yellow;
+    border: 1px solid black;
+
+    transform: skew(10deg, 30deg) scale(1,5) rotate(-50deg);
 }
 div.matrix {       /* The matrix() method combines all the 2D transform methods into one. */ /* On class = "matrix" */
                    /* The parameters are as follow: matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY()) */
