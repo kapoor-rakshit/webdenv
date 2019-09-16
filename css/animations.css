@@ -1,10 +1,10 @@
 /* Reference : https://www.w3schools.com/css/css3_animations.asp */
 
-/* To use CSS animation, specify some keyframes for the animation.
+/* To use CSS animation, specify some keyframes rules for the animation.
 Keyframes hold what styles the element will have at certain times. 
 
 In "@keyframes" rule, the animation will gradually change from the current style to the new style at certain times.
-To get an animation to work, bind the animation to an element.*/
+To get an animation to work on element, bind the animation-name or -webkit-animation-name to that element.*/
 
 div#hoverchange{
     width: 100px;
@@ -18,22 +18,27 @@ div#hoverchange{
     -webkit-animation-timing-function: linear;
     -webkit-animation-fill-mode: forwards;
 
-    animation-name: example;
     animation-duration: 4s;
     animation-delay: 0s;   /* using negative values, the animation will start as if it had already been playing for N seconds.*/
     animation-iteration-count: 1;  /*specifies the number of times an animation should run before it stops, can be "infinite" */
     animation-direction: normal; 
        /*specifies whether an animation should be played forwards, backwards or in alternate cycles.
          normal (forward), reverse, alternate, alternate-reverse*/
-	animation-timing-function: linear;  /*ease (default), linear, ease-in, ease-out, ease-in-out*/
-	animation-fill-mode: forwards;      /* retain effect of anim.  none (defalt), forwards, backwards, both */
+    animation-timing-function: linear;  /*ease (default), linear, ease-in, ease-out, ease-in-out*/
+    animation-fill-mode: forwards;      /* retain effect of anim.  none (defalt), forwards, backwards, both */
 
 }
 
 #hoverchange:hover{
-	-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+	-webkit-animation-name: example; 
+                                         /* this will select hoverchange id tag itself, on hover */
+	animation-name: example;        
+}
 
-	/* animation-name: example; */   /* will effect only on hover */
+#hoverchange:hover > #animateddiv {
+	-webkit-animation-name: example;
+                                           /* this will select animateddiv id tag whose parent is hoverchange id tag, on hover  */
+	animation-name: example;        
 }
 
 /* Safari 4.0 - 8.0 */
