@@ -31,18 +31,47 @@ trident         --> IE                    eg: -ms-column-count
 gecko           --> FireFox               eg: -moz-column-count
 
 
+MISC
+eg: <div>
+     <h2>My name is Donald</h2>
+     <span>
+      <p>I live in Duckburg.</p>
+     </span>
+   </div>
+1. element1 element2   -->  select element2 INSIDE element1                     -->  here <p> is inside <span>, <h2>, <div>
+2. element1 > element2  --> select element2 whose PARENT is element1            -->  here <p> parent is only <span>
+3. element1 + element2  --> select element2 PLACED IMMEDIATELY AFTER element1 (not inside) -->  here <span> placed immediately after <h2>
+4. element1 ~ element2  --> select element2 PRECEDED BY (not necessarily immediately preceded) element1 -->  here <span> preceded by <h2>
+
+
 SELECTORS
+/* REFERENCE : https://www.w3schools.com/cssref/css_selectors.asp */
+
 tag1, tag2, tag3 {}                          /* tag selectors */
 #ID1, #ID2 {}                                /* id selectors */
 .CLASS1, .CLASS2 {}                          /* class selectors */
 tag1#ID, tag2.CLASS {}                       /* tag with id ID and tag with class CLASS */
-tag[id=""] {}                               /* tag with attribute id and value equals */
-tag[id^=""] {}                              /* tag with attribute id and value starts with */
-tag[id$=""] {}                              /* tag with attribute id and value ends with */
-tag[id*=""] {}                              /* tag with attribute id and value contains */
-#ID tag1 {}                                  /* tag that is INSIDE of id ID */ /* eg: table tr {}  also works same*/
-tag1:nth-child(5) {}                         /* 5th tag1 on page , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
+tag1[attribute]                              /* select elements with the specified attribute */
+tag1[id=""] {}                               /* tag1 with attribute id and value equals */
+tag1[id^=""] {}                              /* tag1 with attribute id and value starts with */
+tag1[id$=""] {}                              /* tag1 with attribute id and value ends with */
+tag1[id*=""] {}                              /* tag1 with attribute id and value contains */
+#ID tag1 {}                                  /* tag1 that is INSIDE of tag with id ID */ /* eg: table tr {} */
+tag1:nth-child(5) {}                         /* 5th tag1 of each parent , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
 tag1 > tag2:last-child {}                    /* last tag2 whose PARENT is tag1 */
-tag:not(.CLASS) {}                           /* tag except tag with class CLASS */
+tag1:not(.CLASS) {}                          /* all tag1 except with class CLASS */
+
+
+DECLARATIONS
+{
+background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
+background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple images to be used as background */
+background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
+background-color: pink;                                    /* bg color */
+color: magenta;                                            /* font color */
+background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
+border-radius: 25px;                                       /* border radius */
+box-shadow: 10px 10px 10px red;                            /* horizontl width, vertical width, blurred, color */
+}
 
 
