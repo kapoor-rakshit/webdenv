@@ -1,0 +1,74 @@
+
+/* REFERENCE : https://www.w3schools.com/js/js_json_intro.asp */
+
+JSON : JavaScript Object Notation.
+JSON is a syntax for storing and exchanging data.
+JSON is TEXT.
+
+
+
+When exchanging data between a browser and a server, the data can only be TEXT.
+JSON is TEXT, and we can convert any JavaScript object into JSON, and send JSON to the server.
+We can also convert any JSON (TEXT) received from the server into JavaScript objects.
+
+Sending Data
+---------------
+If you have data stored in a JavaScript object, you can convert the object into JSON, and send it to a server.
+/* 1 */
+var myObj = {name: "John", age: 31, city: "New York"};
+var myJSON = JSON.stringify(myObj);
+
+Receiving Data
+----------------
+If you receive data in JSON format, you can convert it into a JavaScript object and traverse object.
+/* 1 */
+var myJSON = '{"name":"John", "age":31, "city":"New York"}';
+var myObj = JSON.parse(myJSON);
+console.log(myObj.city);
+
+
+
+SYNTAX
+--------
+In JSON, both KEY and STRING data type VALUES must be written with DOUBLE quotes only
+1.  { "name" : "John", "age" : 31, "working" : true, "student" : null}
+2.  {"employee":{ "name":"John", "age":30, "city":"New York" }, "comp" : "Wipro"}      /* Value of a key as JSON */
+3.  {"employees":[ "John", "Anna", "Peter" ], "comp" : "Wipro"}                        /* Value of a key as Array */
+4.  {"name": { "name" :["John", "macbook pro"]}, "age": 30, "city": "New York" }       /* Value of a key as JSON with Array */
+
+In JavaScript, key not necessary to be in quotes but STRING data type values with double or single quotes
+1.  { name : 'John', age : 31, "working" : true, student : null }
+
+READ Javascript Object
+-------------------------
+1.  person.name;                                          /* using . operator */
+2.  person["name"];                                       /* using [""] notation */
+3.  person['name'];
+4.  myObj.cars["car2"];                                   /* value inside value */
+5.  for (x in myObj) {                                    /* use of for loop */
+      console.log(myObj[x]);
+    }
+
+UPDATE Javascript Object
+--------------------------
+1.  person.name = "Gilbert";                                                                        /* using . operator */
+2.  person["name"] = "Gilbert";                                                                     /* using [""] notation */
+3.  The second parameter of the JSON.parse() function is called REVIVER.                            /* using REVIVER */
+    The reviver parameter is a function that checks each property (key), before returning the value.
+    Eg:
+    var text = '{ "name":"John", "birth":"1986-12-14", "city":"New York"}';
+    var obj = JSON.parse(text, function (key, value) {
+    if (key == "birth") {
+      return new Date(value);
+     } else {
+      return value;
+     }
+    });
+
+DELETE from JavaScript Object
+------------------------------
+delete myObj.cars.car1;                                 /* delete key-value using . operator */
+delete myObj.cars["car1"];                              /* delete key-value using [""] notation */
+delete myObj.cars.car1[1];                              /* delete array value using index */
+
+
