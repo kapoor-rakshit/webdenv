@@ -73,11 +73,39 @@ background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not
 background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple images to be used as background */
 background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
 background-color: pink;                                    /* bg color */
-color: magenta;                                            /* font color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
+
+
+color: magenta;                                            /* font color */
+text-shadow: 3px 8px 3px red;                              /* horizontl width, vertical width, blurred, color */
+text-decoration: underline overline wavy red;              /* underline, overline, line-through | solid, wavy, dotted, dashed, double | color */
+font-style: italic;
+font-weight: bold;
+font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
+
+
 border-radius: 25px;                                       /* border radius */
 box-shadow: 10px 10px 10px red;                            /* horizontl width, vertical width, blurred, color */
-text-shadow: 3px 8px 3px red;                              /* horizontl width, vertical width, blurred, color */
+
+
+overflow: auto;                                            /* when content of element is too big to fit in the specified area. (visible | hidden | scroll | auto) */
+overflow-x: scroll;                                        /* specifies what to do with the left/right edges of the content. */
+overflow-y: scroll;                                        /* specifies what to do with the top/bottom edges of the content. */
+
+
+position: sticky;                                          /* specifies type of positioning method used for element(static | absolute | fixed | relative | sticky) */
+
+
+position: absolute;                                        /* z-index only works on positioned elements */
+z-index: -1;                                               /* z-index property specifies the stack order of an element. */
+                                                           /* An element with greater stack order is always in front of an element with a lower stack order. */
+
+                                       /* REFERENCE : https://www.w3schools.com/css/css_float.asp */
+float: left;                           /* float property specifies how an element should float. ( left | right | none(default) ) */
+clear: left;                           /* clear the float to left. Means that no floating elements allowed on left side (left | right | both) */
+
+                                       /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
+display: inline-block;                 /* specifies the display behavior (the type of rendering box) of an element. */
 }
 
 
@@ -86,7 +114,7 @@ FONT RULES
 .woff  (web open font format)
 .ttf   (true type font)
 
-@font-face{                                                /* Font Rule */
+@font-face{                                                /* Use customised font using Font Rule */
  font-family: myFont;
  src: url('path to font file downloaded ttf or woff file');
 }
