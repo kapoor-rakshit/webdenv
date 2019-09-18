@@ -1,0 +1,18 @@
+
+/* REFERENCE : https://www.w3schools.com/js/js_ajax_intro.asp */
+
+AJAX : Asynchronous JavaScript And XML.
+It exchanges data with web server
+It updates a web page without reloading the page
+
+
+
+AJAX uses a combination of:
+ A browser built-in XMLHttpRequest object (to request data from a web server)
+ JavaScript and HTML DOM (to display or use the data)
+
+
+
+
+
+
