@@ -13,6 +13,31 @@ AJAX uses a combination of:
 
 
 
+For security reasons, modern browsers do not allow access across domains.
+A resource makes a cross-origin HTTP request when it requests a resource from a different domain, 
+or port than the one which the first resource itself serves.
+Example
+The browser sends the OPTIONS request with an Origin HTTP header.
+The value of this header is the domain that served the parent page. 
+When a page from http://www.example.com attempts to access a user's data in service.example.com, the request header would be sent to service.example.com 
+as                                          Origin : http://www.example.com
 
+The server at service.example.com may respond with:
+An Access-Control-Allow-Origin (ACAO) header in its response indicating which origin sites are allowed.
+as                                          Access-Control-Allow-Origin : http://www.example.com
+
+An error page if the server does not allow the cross-origin request
+
+An Access-Control-Allow-Origin (ACAO) header with a wildcard that allows all domains:
+as                                          Access-Control-Allow-Origin : *
+
+
+
+The onreadystatechange event is triggered four times (1-4), one time for each change in the readyState.
+0: request not initialized
+1: server connection established
+2: request received
+3: processing request
+4: request finished and response is ready
 
 
