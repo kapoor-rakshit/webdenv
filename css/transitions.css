@@ -1,7 +1,12 @@
-/* 1. the CSS property you want to add an effect to
+/* A transition is an animation, just one that is performed between two distinct states - i.e. a start state and an end state.
+   Animation does not specifically involve a start state and an end state, 
+   or if you need more fine grain control over the keyframes in a transition, then you've got to use an animation.
+
+   1. the CSS property you want to add an effect to
    2. the duration of the effect 
 
-   The transition effect will start when the specified CSS property (eg:- width) changes value*/
+   The transition effect will start when the specified CSS property (eg:- width) changes value
+*/
 
 #hoverchange {
 	width: 100px;
