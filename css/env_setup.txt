@@ -69,6 +69,16 @@ tag1:not(.CLASS) {}                          /* all tag1 except with class CLASS
 DECLARATIONS
 -------------
 {
+height: 100%;                                              /* In order for a percentage value to work, the parent's height/width must be determined. */ 
+                                                           /* The only exception is the root element <html>, which can be a percentage */
+                                                           /* The viewport-percentage lengths are relative to the size of the initial containing block. */
+                                                           /* When the height or width of the initial containing block is changed, they are scaled accordingly. */
+                                                           /* vw unit : Equal to 1% of the width of the initial containing block. eg: 100vw */
+                                                           /* vh unit : Equal to 1% of the height of the initial containing block. eg: 100vh */
+                                                           
+width: 100%;                                               /* a block element (such as a <div>, <p>, or <ul>) will, by default expand to fit the width of its containing element (minus any margins it has or padding its parent has) */
+
+
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
 background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple images to be used as background */
 background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
@@ -84,6 +94,19 @@ font-weight: bold;
 font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
 
 
+padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
+                                                           /* four values : top, right, bottom, left */
+                                                           /* REFERENCE : https://www.w3schools.com/css/css_padding.asp */
+                                                           
+margin: 25px 50px 75px 100px;                              /* create space around elements, outside of any defined borders */
+                                                           /* four values : top, right, bottom, left */
+                                                           /* REFERENCE : https://www.w3schools.com/css/css_margin.asp */
+                                                           
+left: 50px;                                                /* it is used for positioning and used with position property else it has no effect */
+                                                           /* position:absolute; left:20px; located 20px from the left of nearest relatively positioned parent (the top being the body tag) and is taken out of the document flow */
+                                                           /* position:relative; left:20px; The element still maintains the same space as it would when static positioned */
+                                                           /* Like it got up and got someone to save his space while it sat on his neighbors lap Or just mingle around the doc */
+
 border-radius: 25px;                                       /* border radius */
 box-shadow: 10px 10px 10px red;                            /* horizontl width, vertical width, blurred, color */
 
@@ -93,8 +116,9 @@ overflow-x: scroll;                                        /* specifies what to 
 overflow-y: scroll;                                        /* specifies what to do with the top/bottom edges of the content. */
 
 
-position: sticky;                                          /* specifies type of positioning method used for element(static | absolute | fixed | relative | sticky) */
-
+position: sticky;                                          /* specifies type of positioning method used for element(static (default)| absolute | fixed | relative | sticky) */
+                                                           /* relative (relative to parent element) , absolute (nearest positioned ( 'absolute', 'relative' or 'fixed') parent (the top being the body tag)) */
+                                                           /* Static (default) positioned elements are not affected by top, bottom, left, right properties. */
 
 position: absolute;                                        /* z-index only works on positioned elements */
 z-index: -1;                                               /* z-index property specifies the stack order of an element. */
