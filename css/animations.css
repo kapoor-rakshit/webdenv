@@ -1,5 +1,11 @@
 /* Reference : https://www.w3schools.com/css/css3_animations.asp */
 
+/* A transition is an animation, just one that is performed between two distinct states - i.e. a start state and an end state.
+   Transitions define a default animation that should be performed every time the specified property has changed.
+   Animation does not specifically involve a start state and an end state, 
+   or if you need more fine grain control over the keyframes in a transition, then you've got to use an animation.
+*/
+
 /* To use CSS animation, specify some keyframes rules for the animation.
 Keyframes hold what styles the element will have at certain times. 
 
