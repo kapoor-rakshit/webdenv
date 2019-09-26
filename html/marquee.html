@@ -1,0 +1,100 @@
+
+<!-- This example includes <marquee> tag example
+	                       DOM screen usage
+                           DOM window usage
+                           javascript's  this.style.CSS_PROPERTY usage
+                           viewport (vw/vh) width/height usage -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Updates</title>
+
+	<style type="text/css">
+
+		div#updateDIV {
+			width: 400px;
+			height: 90vh;
+			background-image: -moz-gradient(linear, left bottom, right top, color-stop(10%, #fff), color-stop(40%, #aaa), color-stop(70%, #fff), color-stop(100%, #aaa));
+			background-image: -ms-gradient(linear, left bottom, right top, color-stop(10%, #fff), color-stop(40%, #aaa), color-stop(70%, #fff), color-stop(100%, #aaa));
+			background-image: -webkit-gradient(linear, left bottom, right top, color-stop(10%, #fff), color-stop(40%, #aaa), color-stop(70%, #fff), color-stop(100%, #aaa));
+			border-radius: 20px;
+			border: 2px solid black;
+			opacity: 0.4;
+			position: relative;
+			float: right;
+			z-index: 900;
+		}
+
+		.marqueeTAG {
+			width: 100%;
+			height:100%;
+			border-radius: 20px;
+		}
+
+		.marqueeTEXT{
+			font-weight: bold;
+			color: white;
+			font-family: cursive;
+			background: #003E7C;
+			text-align: center;
+			border-radius: 15px;
+			border: 1px solid black;
+			padding: 5px;
+			margin-left: 5px;
+			margin-right: 5px;
+			opacity: 0.8;
+		}
+
+		div#updateDIV a {
+			color: white;
+			text-decoration: underline solid white;
+		}
+
+		div#updateDIV a:hover{
+			color: black;
+			text-decoration: none;
+		}
+
+		div.overlay{
+			position: fixed;
+			z-index: 100;
+			background-color: #aaa;
+			width: 100vw;
+			height: 100vh;
+			z-index: 900;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		function getFullText(obj){
+
+		var width = 600;
+	    var height = 600;
+	    var top = parseInt((screen.availHeight/2) - (height/2));
+	    var left = parseInt((screen.availWidth/2) - (width/2));
+		var msgWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
+		msgWindow.document.write("<p>" + obj.textContent +"</p>")
+	
+		}
+	</script>
+
+</head>
+<body>
+
+	<div class="overlay"></div>
+
+<div id="updateDIV" onmouseout="this.style.opacity=0.4" onmouseover="this.style.opacity=1.0">
+	<marquee class="marqueeTAG" direction=up scrollamount=4 onmouseover="this.stop();" onmouseout="this.start();">
+		<p onclick="getFullText(this)" class="marqueeTEXT">Am an Electronics and Communications Engineering graduate. Am a smart worker, energetic Punjabi or more specifically over energetic Amritsari, fast learner willing to learn new things in encoded world that demands best of my skills and knowledge and yes to learn anything life wants to teach. <br>@<a href="https://github.com/kapoor-rakshit">Github</a></p>
+		<p onclick="getFullText(this)" class="marqueeTEXT">Programmer and Geek | Project engineer @ Wipro | ECE @ NIT Jalandhar 2014-18. <br>@<a href="https://www.linkedin.com/in/kapoor-rakshit/">LinkedIn</a></p>
+		<p onclick="getFullText(this)" class="marqueeTEXT">Also connect with me <br>@<a href="https://www.facebook.com/kapoorrakshit1">Facebook</a></p>
+		<p onclick="getFullText(this)" class="marqueeTEXT">Update 4</p>
+		<p onclick="getFullText(this)" class="marqueeTEXT">Update 5</p>
+	</marquee>
+</div>
+
+</body>
+</html>
