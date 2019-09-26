@@ -61,9 +61,43 @@ tag1[id^=""] {}                              /* tag1 with attribute id and value
 tag1[id$=""] {}                              /* tag1 with attribute id and value ends with */
 tag1[id*=""] {}                              /* tag1 with attribute id and value contains */
 #ID tag1 {}                                  /* tag1 that is INSIDE of tag with id ID */ /* eg: table tr {} */
+
+/* pseudo classes (:) , REFERENCE : https://www.w3schools.com/css/css_pseudo_classes.asp */
+/* Pseudo-class names are not case-sensitive */
+/* these can be used without any tag prefix ie applied globally to all tags */
+a:link {}                                    /* unvisited link */      /* these must come in order for links to have effect */
+a:visited {}                                 /* visited link */
+a:hover {}                                   /* mouseover */
+a:active {}                                  /* selected link */
+div:hover + p {}                             /* p tag immediately followed by div tag when div tag is hovered  */
 tag1:nth-child(5) {}                         /* 5th tag1 of each parent , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
 tag1 > tag2:last-child {}                    /* last tag2 whose PARENT is tag1 */
 tag1:not(.CLASS) {}                          /* all tag1 except with class CLASS */
+q:lang(pb) { quotes: "~" "~"; }              /* q tag with attrib lang having val "pb"  , eg: <q lang="pb">A quote in a paragraph</q> */
+input:checked {}                             /* for radio buttons and checkboxes of <input> , option:checked of <option> in <select> */
+input:invalid {}                             /* input fields with values not according to their type attribute */
+input[type="text"]:focus {}                  /* input tag with type attrib value as text and are focused */
+.tab div:target {}                           /* target element (eg: with id ID1 when href="#ID1" is clicked) of div inside class tab */
+
+/* pseudo elements (::) , REFERENCE : https://www.w3schools.com/css/css_pseudo_elements.asp */
+/* Pseudo-element names are not case-sensitive */
+/* these can be used without any tag prefix ie applied globally to all tags */
+p::first-line {}                             /* first line of <p> visible on screen */
+p::first-letter {}                           /* first letter of <p> */
+p::selection {}                              /* portion of an element selected , properties that can be modified are color, background, cursor, outline. */
+p::before {                                  /* Insert content before <p> */
+  content: "Read this -";
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+}
+p::after {                                   /* Insert content after <p> */
+  content: " - Remember this";
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+}                                 /* content property can have values "TEXT", url(URL_IMAGE), " "attr(ATTRIBUTE_NAME)" " */
+                                  /* REFERENCE : https://www.w3schools.com/cssref/pr_gen_content.asp */
 
 
 DECLARATIONS
