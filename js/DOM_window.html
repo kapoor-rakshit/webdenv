@@ -1,0 +1,37 @@
+
+<!-- REFERENCE : https://www.w3schools.com/jsref/met_win_open.asp -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Window</title>
+
+	<script type="text/javascript">
+		function func(obj){
+
+		var width = 600;
+	    var height = 600;
+	    var top = parseInt((screen.availHeight/2) - (height/2));              // to centralize window according to user screen
+	    var left = parseInt((screen.availWidth/2) - (width/2));
+
+		var myWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
+		    // window.open(URL, name, specs, replace)
+			// URL : optional , Specifies the URL of the page to open
+			// name : values "_blank, _self, NAME"... , if a definite NAME is given, multiple windows of NAME opened will replace each other
+			// specs : A comma-separated list of items, no whitespaces
+
+  		myWindow.document.write("<p>This is 'myWindow'</p>");                 // document reference to new window opened
+
+  		myWindow.opener.document.write("<p>This is the source window!</p>");  // .opener returns reference to parent window which opened new window
+
+  		myWindow.opener.close();                                              // .close() , close window
+		}
+	</script>
+
+</head>
+<body>
+
+	<button onclick="func(this)">click to open</button>
+
+</body>
+</html>
