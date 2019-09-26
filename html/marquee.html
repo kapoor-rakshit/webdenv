@@ -1,6 +1,6 @@
 
 <!-- This example includes <marquee> tag example
-	                       DOM screen usage
+	                   DOM screen usage
                            DOM window usage
                            javascript's  this.style.CSS_PROPERTY usage
                            viewport (vw/vh) width/height usage -->
@@ -71,12 +71,12 @@
 	<script type="text/javascript">
 		function getFullText(obj){
 
-		var width = 600;
+	    var width = 600;
 	    var height = 600;
 	    var top = parseInt((screen.availHeight/2) - (height/2));
 	    var left = parseInt((screen.availWidth/2) - (width/2));
-		var msgWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
-		msgWindow.document.write("<p>" + obj.textContent +"</p>")
+	    var msgWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
+	    msgWindow.document.write("<p>" + obj.textContent +"</p>")
 	
 		}
 	</script>
