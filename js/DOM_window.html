@@ -7,24 +7,34 @@
 	<title>DOM Window</title>
 
 	<script type="text/javascript">
-		function func(obj){
+	function func(obj){
 
-		var width = 600;
+	    var width = 600;
 	    var height = 600;
 	    var top = parseInt((screen.availHeight/2) - (height/2));              // to centralize window according to user screen
 	    var left = parseInt((screen.availWidth/2) - (width/2));
 
-		var myWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
-		    // window.open(URL, name, specs, replace)
+	    var myWindow = window.open("", "_blank", "width="+width+",height="+height+",left="+left+",top="+top+",scrollbars=yes,menubar=yes");
+		        // window.open(URL, name, specs, replace)
 			// URL : optional , Specifies the URL of the page to open
 			// name : values "_blank, _self, NAME"... , if a definite NAME is given, multiple windows of NAME opened will replace each other
 			// specs : A comma-separated list of items, no whitespaces
 
-  		myWindow.document.write("<p>This is 'myWindow'</p>");                 // document reference to new window opened
+  	    myWindow.document.write("<p>This is 'myWindow'</p>");                 // document reference to new window opened
+	    myWindow.document.getElementById("myId");
 
-  		myWindow.opener.document.write("<p>This is the source window!</p>");  // .opener returns reference to parent window which opened new window
+  	    myWindow.opener.document.write("<p>This is the source window!</p>");  // .opener returns reference to parent window which opened new window
 
-  		myWindow.opener.close();                                              // .close() , close window
+            myWindow.opener.close();                                              // .close() , close window
+			
+	    window.location.href                                                  // returns the href (URL) of the current page
+            window.location.hostname                                              // returns the domain name of the web host
+            window.location.pathname                                              // returns the path and filename of the current page
+            window.location.protocol                                              // returns the web protocol used ( http: or https: )
+	    window.location.port                                                  // Most browsers will not display default port numbers (80 for http and 443 for https)
+            
+	    window.history.back();                                                // same as clicking back in the browser
+	    window.history.forward();                                             // same as clicking forward in the browser
 		}
 	</script>
 
