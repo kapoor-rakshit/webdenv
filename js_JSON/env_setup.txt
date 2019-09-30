@@ -37,7 +37,8 @@ In JSON, both KEY and STRING data type VALUES must be written with DOUBLE quotes
 4.  {"name": { "name" :["John", "macbook pro"]}, "age": 30, "city": "New York" }       /* Value of a key as JSON with Array */
 
 In JavaScript, key not necessary to be in quotes but STRING data type values with double or single quotes
-1.  { name : 'John', age : 31, "working" : true, student : null }
+1.  obj = { name : 'John', age : 31, "working" : true, student : null };
+2.  obj["newKey"] = ["newval1", "balle"];                                             /* new key-val pair can be added to existing */
 
 READ Javascript Object
 -------------------------
