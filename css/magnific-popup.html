@@ -1,0 +1,61 @@
+
+<!-- REFERENCE : https://dimsemenov.com/plugins/magnific-popup/ -->
+
+<!-- Magnific Popup is a responsive lightbox & dialog script (for jQuery or Zepto.js) -->
+
+<!-- You can get Magnific Popup JS and CSS file from the dist/ folder at https://github.com/dimsemenov/Magnific-Popup -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Magnific Popup</title>
+  
+  <!-- Magnific Popup core CSS file -->
+  <link rel="stylesheet" href="magnific-popup/magnific-popup.css">
+
+  <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <!-- Magnific Popup core JS file -->
+  <script src="magnific-popup/jquery.magnific-popup.js"></script>
+  
+  <style>
+    .white-popup {
+      position: relative;
+      background: #FFF;
+      padding: 20px;
+      width: auto;
+      max-width: 500px;
+      margin: 20px auto;
+    }
+  </style>
+  
+  <script>
+    $('.open-popup-link').magnificPopup({
+    
+      type:'inline',
+      
+      removalDelay: 0,                                         // Delay before popup is removed from DOM
+      
+      alignTop: false,                                         // if set to true, popup is aligned to top instead of to center
+      
+      closeOnBgClick: true,                                    // Close the popup when user clicks on the dark overlay
+      
+      closeBtnInside: true,                                    // If set to false, close button is visible on top-right
+      
+      midClick: true                                           // Allow opening popup on middle mouse click
+                                                               // Always set it to true if you don't provide alternative source in href.
+    });
+  </script>
+  
+</head>
+<body>
+
+  <a href="#test-popup" class="open-popup-link">Show inline popup</a>    <!-- href is ID of HTML element to be shown in popup, class is used to initialize script -->
+  
+  <div id="test-popup" class="white-popup mfp-hide">                     <!-- Class mfp-hide is required to hide the popup from the page -->
+    Popup content
+  </div>
+
+</body>
+</html>
