@@ -22,7 +22,7 @@ LAYOUTS
 ---------
 TABLE LAYOUT used for designing layout for page using rowspan and colspan.
 DIV LAYOUT also used for designing layout for page using float and position.
-MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap.
+MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap, column-rule
 
 
 LAYOUT ENGINE
@@ -183,8 +183,36 @@ h1{
 
 MEDIA RULES
 ------------
-These allow to tailor CSS according to media type on which and how webpage viewed.
+/* REFERENCE : https://www.w3schools.com/cssref/css3_pr_mediaquery.asp */
 
-@media MEDIA-TYPE AND EXPRESSION { }
+/* These allow to tailor CSS according to media type on which and how webpage viewed.
+   Media queries can be used to check:
+      width and height of the viewport
+      width and height of the device
+      orientation (is the tablet/phone in landscape or portrait mode?)
+      resolution */
+     
+/* SYNTAX : @media [not|only] mediatype and (mediafeature) [and|or|not] (mediafeature) {   CSS-Code;  } */
+          /* The only keyword prevents older browsers that do not support media queries with media features from applying the specified styles. */
+          /* comma (,) is same as or */
+
+/* mediafeatures */
+/* height	| width            :     The viewport height | width
+   max-height | min-height   :     The maximum | minimum height of the display area, such as a browser window 
+   max-width  | min-width  	 :     The maximum | minimum width of the display area, such as a browser window
+   orientation	             :     The orientation of the viewport (landscape or portrait mode)
+*/
+
+/* 1 */
+/* When the browser's width is between 600 and 900px (inclusive) OR above 1100px, change the appearance of DIV. */
+@media screen and (max-width: 900px) and (min-width: 600px), (min-width: 1100px) {
+  div.example {
+    font-size: 50px;
+    padding: 50px;
+    border: 8px solid black;
+    background: yellow;
+  }
+}
+
 
 
