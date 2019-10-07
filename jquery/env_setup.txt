@@ -1,0 +1,40 @@
+
+// REFERENCE : https://www.w3schools.com/jquery/jquery_intro.asp
+
+// jQuery is a lightweight, "write less, do more", JavaScript library.
+// The purpose of jQuery is to make it much easier to use JavaScript on your website.
+
+
+/* There are several ways to start using jQuery on your web site.
+       Download the jQuery library from         http://jquery.com/download/
+               There are two versions of jQuery available for downloading:
+                     Production version - this is for your live website because it has been minified and compressed
+                     Development version - this is for testing and development (uncompressed and readable code)
+       Include jQuery from a CDN, like Google
+               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+*/
+
+
+// Basic syntax is: $(selector).action();
+//                  jQuery uses CSS selector syntax to select elements.
+//                  actions can be  Mouse Events	| Keyboard Events | Form Events | Document/Window Events
+/*                  REFERENCE : https://www.w3schools.com/jquery/jquery_events.asp */
+
+
+/* 1 */
+/* to prevent any jQuery code from running before the document is finished loading (is ready) */
+$(document).ready(function(){                         
+  // jQuery methods go here...
+});
+
+
+/* 2 */
+/* to define what should happen when the event fires. You must pass a function to the event. */
+$("p").click(function(){
+  // action goes here...
+});
+
+
+
+
+
