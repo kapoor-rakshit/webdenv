@@ -46,17 +46,22 @@ Math
 	0.	     .log()
 
 Alerts
-    0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
+        0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
 
 	0.	alert(resp);                                 // a message alert
 
 	0.	var cnfstat = confirm("Do you want to exit ?");  // confirmation alert
 		if(cnfstat) alert("you said yes !");
-		else alert("you said no !"); 
+		else alert("you said no !");
+		
+CSS
+        0.      onclick = this.style.opacity="0.4";
+	0.      onclick = this.style.left="+=250px";            // += , -=  specifies CSS properties from current values
 
 Events
+        0.      onclick, onfocus, onblur, onchange
 	0.	oncontextmenu                  // right click event handler 
-	0.	onClick = “func(this)”        // this provides a context to elem
+	0.	onClick = “func(this)”        //  "this" provides a context to element itself
 
 	0.	Onkeydown, keypress, keyup
 
