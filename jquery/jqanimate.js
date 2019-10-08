@@ -35,10 +35,10 @@ $(document).ready(function(){
 
 		 $("div").animate({
 
-		 	left:'250px',
-		 	opacity: '0.5',
-	        height: '+=150px',              // relative values specified to current value, using += or -=
-	        width: '-=150px'
+		 left:'250px',
+		 opacity: '0.5',
+	         height: '+=150px',              // relative values specified to current value, using += or -=
+	         width: '-=150px'
 
 		 }, 5000, function(event){
 		 	alert("completed!!");
@@ -60,10 +60,10 @@ $(document).ready(function(){
 			 .slideDown("slow");       
 
 
-	 $("#stop").click(function(){      // stop(stopAll, goToEnd)
-	 	$("div").stop(true,true);      // stop(false,false) (default) : only the active animation will be stopped, allowing any queued animations to be performed afterwards.
-									  //  stop(true) : 'stopAll' specifies whether also the animation queue should be cleared or not, current anim will be stopped.
-									  //  stop(true,true) : 'goToEnd' specifies whether or not to complete the current animation immediately with stopAll set to true.
+	 $("#stop").click(function(){          // stop(stopAll, goToEnd)
+	 	$("div").stop(true,true);      // stop(false,false) or stop() (default) : only the active animation will be stopped, without making current animation to it's end state, allowing any queued animations to be performed afterwards
+					      //  stop(true)      : 'stopAll' specifies whether also the animation queue should be cleared or not, current anim will be stopped.
+					      //  stop(true,true) : 'goToEnd' specifies whether or not to complete the current animation immediately.
 	 });
 
 });
