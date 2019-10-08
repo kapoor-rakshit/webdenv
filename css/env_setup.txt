@@ -112,12 +112,16 @@ height: 100%;                                              /* In order for a per
                                                            
 width: 100%;                                               /* a block element (such as a <div>, <p>, or <ul>) will, by default expand to fit the width of its containing element (minus any margins it has or padding its parent has) */
 
+height:fit-content;
+width:fit-content;
+
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
 background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple images to be used as background */
 background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
 background-color: pink;                                    /* bg color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
+background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));                                        /* last param of rgba() define opacity */
 
 
 color: magenta;                                            /* font color */
@@ -126,6 +130,8 @@ text-decoration: underline overline wavy red;              /* underline, overlin
 font-style: italic;
 font-weight: bold;
 font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
+text-transform: capitalize;                                /* none | capitalize | uppercase | lowercase | initial */
+font-size: 25px;                                           /* medium | xx-small | x-small | small | large | x-large | xx-large | smaller | larger | length (px, cm) | initial */
 
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
