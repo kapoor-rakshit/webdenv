@@ -11,12 +11,21 @@ $(document).ready(function(){
 
 // css() method sets or returns one or more style properties for the selected elements.
 
-	$("p").css("background-color");             // return value of the FIRST matched element (<p>)
+	$("p").css("background-color");                // return value of the FIRST matched element (<p>)
+	
+	$("#updateDIV").css("display", "initial");                       // set single CSS property
 
-	$("p").css({"background-color": "yellow", "font-size": "200%"}); // set multiple CSS properties
+	$("p").css({"background-color": "yellow", "font-size": "200%"}); // set multiple CSS properties , note : use of "" over property and values
 
 
 // dimensions of elements and browser window
+	
+	var x = $("p").position();                   // returns position relative to the offset parent of top and left
+	alert("Top: " + x.top + " Left: " + x.left); // NOTE : positon value cannot be set
+	
+	var x = $("p").offset();                    // returns position relative to the document of top and left
+	alert("Top: " + x.top + " Left: " + x.left);
+	$("p").offset({top:value,left:value});     // set offset values
 
 	$("#div1").width()
 
