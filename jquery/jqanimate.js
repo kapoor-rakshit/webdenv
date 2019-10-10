@@ -35,10 +35,10 @@ $(document).ready(function(){
 
 		 $("div").animate({
 
-		 left:'250px',
-		 opacity: '0.5',
-	         height: '+=150px',              // relative values specified to current value, using += or -=
-	         width: '-=150px'
+		 "left":'250px',                   // properties can be with or without "" , still better to have within ""
+		 "opacity": '0.5',
+	         "height": '+=150px',              // relative values specified to current value, using += or -=
+	         "width": '-=150px'
 
 		 }, 5000, function(event){
 		 	alert("completed!!");
@@ -47,9 +47,9 @@ $(document).ready(function(){
 
 		 $("div").animate({               // animate() func added in queue
 
-		 height : 'toggle',
-		 width : 'hide',
-		 opacity : 'toggle'              // using predefined values of "show" , "hide" , "toggle" with props
+		 "height" : 'toggle',
+		 "width" : 'hide',
+		 "opacity" : 'toggle'              // using predefined values of "show" , "hide" , "toggle" with props
 
 		 },3000);
 	 });
