@@ -1,0 +1,51 @@
+
+<!-- 1 -->
+<!-- REFERENCE : https://www.w3schools.com/tags/att_data-.asp -->
+<!-- 
+The data-* attribute is used to store custom data private to the page or application.
+
+The data-* attribute gives us the ability to embed custom data attributes on all HTML elements.
+
+The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
+
+The data-* attribute consist of two parts:
+    The attribute name should not contain any uppercase letters, and must be at least one character long after the prefix "data-"
+    The attribute value can be any string
+    
+NOTE : Custom attributes prefixed with "data-" will be completely ignored by the user agent.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function showDetails(obj) {                                              // Using JS
+  var animalType = obj.getAttribute("data-animal-type");
+  alert("The " + obj.innerHTML + " is a " + animalType + ".");
+}
+
+var animalType = $(this).attr("data-animal-type");                       // Using jQuery
+
+var animalType = $(this).data("animal-type");                            // Using jQuery
+
+</script>
+</head>
+<body>
+
+<h1>Species</h1>
+
+<ul>
+  <li onclick="showDetails(this)" id="owl" data-animal-type="bird">Owl</li>
+  <li onclick="showDetails(this)" id="salmon" data-animal-type="fish">Salmon</li>  
+  <li onclick="showDetails(this)" id="tarantula" data-animal-type="spider">Tarantula</li>  
+</ul>
+
+</body>
+</html>
+
+
+<!-- 2 -->
+
+
+
