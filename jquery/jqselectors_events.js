@@ -25,15 +25,15 @@ $(document).ready(function(){           // to prevent any jQuery code from runni
 
     $("p.intro")            // <p> elem with class = "intro"
 
-    $("p:first")           // first <p> elem , similarly for 'last'
+    $("p:first")            // first <p> elem on page, similarly for 'last'
 
-    $("ul li:first")	  // Selects the first <li> element of the first <ul>
+    $("ul li:first")	    // Selects the first <li> element on page that is inside <ul>
 
-    $("ul li:first-child")	// Selects the first <li> element of every <ul>
+    $("ul li:first-child")	// Selects <li> element that is first child of <ul> meaning only that <li> which ocuurs immediately first inside <ul>
 
-    $("[href]")	           // [] : Selects all elements with an attribute , 'href' here
+    $("[href]")	            // [] : Selects all elements with an attribute , 'href' here
 
-    $("p[background]")	  // Selects all '<p>' elements with 'background' attribute
+    $("p[background]")	    // Selects all '<p>' elements with 'background' attribute
 
     $("a[target='_blank']")	// Selects all '<a>' elements with a 'target attribute' value equal to "_blank"
 
