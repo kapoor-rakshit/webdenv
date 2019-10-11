@@ -25,6 +25,7 @@ $(document).ready(function(){
 
 	         $("ol").append("<li>Appended item</li>");     // inserts content AT THE END of the selected HTML elements , making it a child of selected elem
 		 $("<li>Appended item</li>").appendTo("ol");
+		 $(".class1").append($(".class2"));            // the element (".class2") is appended by being moved from its old location, not by being cloned.
 		
 		
 	         $("ol").prepend("<li>Prepended item</li>");   // inserts content AT THE BEGINNING of the selected HTML elements , making it a child of selected elem
@@ -72,9 +73,11 @@ $(document).ready(function(){
 		 $("p, #tag1").removeAttr("id class");    // Remove several attributes from the selected elements
 
 
-		 $("<b>New Content</b>").replaceAll("p");   // Replace occurrence of "p" tag and it's content with "<b>New Content</b>"
-		 $(".newclass").replaceAll(".oldclass");
-		 $(".oldclass").replaceWith(".newclass");
+		 $("<b>New Content</b>").replaceAll("p");   // Replace occurrence of "p" tag and it's content with content "<b>New Content</b>"
+		                                            // The .replaceAll() or .replaceWith() method removes all data and event handlers associated with the removed nodes
+		 $(".newclass").replaceAll(".oldclass");    // select an element to use as the replacement  
+		 $(".oldclass").replaceWith(".newclass");   // the selected element replaces the target by being moved from its old location, not by being cloned.
+		
 		 
 		
 		 $(".classnaam").clone().appendTo("p");   // clone(withDataAndEvents, deepWithDataAndEvents)
