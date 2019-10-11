@@ -39,38 +39,21 @@ $(document).ready(function(){
 
 	 $("h2").siblings("p");    // all sibling elements of <h2> that are <p> elements
 
-	 $("h2").next().css({"color": "red", "border": "2px solid red"});  // returns the one next sibling element of EACH of selected element
-
-	 $(".classnaam").next("p");     // next sibling (of 'classnaam' class) if it matches the selector specified ("p")
+	 $("h2").next().css({"color": "red", "border": "2px solid red"});  // returns the just one down DOM , sibling element of EACH of selected element
 
 	 $("h2").nextAll().css({"color": "red", "border": "2px solid red"}); // all next sibling elements of EACH of selected element
+	
+	 $("p").nextAll("span").css({"color": "red", "border": "2px solid red"});  // all next sibling elements of EACH of selected element which is <span>
 
-	 $("h2").nextUntil("h6");     // all next sibling elements between two given arguments of EACH selected elem
+	 $("h2").nextUntil("h6");     // all next sibling elements between two given arguments of EACH selected elem (excluding both)
 
-	 $("h2").nextUntil("p", ".filterclass");  // filter used to get until p with classname='filtername'
-
-	 $("h2").prev().css({"color": "red", "border": "2px solid red"});   // previous one sibling of EACH matched elem
-
-	 $("h2").prev(".classname");
+	 $("h2").prev().css({"color": "red", "border": "2px solid red"});   // previous just one up DOM , sibling of EACH matched elem
 
 	 $("h2").prevAll().css({"color": "red", "border": "2px solid red"}); // all previous sibling elements of the selected element
+	
+	 $("h3").prevAll(".cdiv").css({"color": "red", "border": "2px solid red"});  // all previous sibling elements of EACH of selected element which is class "cdiv"
 
-	 $("h2").prevUntil("h6");     // all previous sibling elements between two given arguments
+	 $("h2").prevUntil("h6");     // all previous sibling elements between two given arguments (excluding both)
 
-	 $("h2").prevUntil("p", ".filterclass");
-
-
-// Filtering
-
-	 $("div").first();         // first element of the specified elements
-
-	 $("div").last();         // last element of the specified elements
-
-	 $("p").eq(1);            // returns an element with a specific index number of the selected elements
-	                          // index numbers start at 0, so the first element will have the index number 0, (this example returns second <p>)
-
-	 $("p").filter(".intro");  //  filter() method specify a criteria.  (here class=intro)
-
-	 $("p").not(".intro");     // not() method returns all elements that do not match the criteria   (here class not equal to intro)
 
 });
