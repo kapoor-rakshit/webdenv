@@ -1,4 +1,4 @@
-﻿Array methods
+Array methods
 	0.	.tostring()
 	0.	.valueof()
 	0.	.join(“ : “)
@@ -59,13 +59,11 @@ CSS
 	0.      onclick = this.style.left="+=250px";            // += , -=  specifies CSS properties from current values
 
 Events
-        0.      onclick, onfocus, onblur, onchange
-	0.	oncontextmenu                  // right click event handler 
-	0.	onClick = “func(this)”        //  "this" provides a context to element itself
-
-	0.	Onkeydown, keypress, keyup
-
-               function keydown(e){                                           // first
+        0.      onclick, onfocus, onblur, onchange, onmouseover, onmouseout, onmousemove
+	0.	oncontextmenu                   // right click event handler 
+	0.	onClick = “func(this)”          // "this" provides a context object to element itself
+	0.	onkeydown, onkeypress, onkeyup  // "event" provides a context object to event which triggered the function
+                function keydown(e){                                           // first
 			if(e.keyCode) console.log("keydown : " + e.keyCode)
 		}
 
@@ -80,9 +78,29 @@ Events
 		}
 
                 <input type="text" name="dummy" onkeydown="keydown(event)" onkeypress="keypress(event)" onkeyup="keyup(event)">
+		
+        0.      stopPropagation()
+	        <div onclick="func2()">DIV 2
+	             <div onclick="func1(event)">DIV 1</div>            // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
+	        </div>                                                  // stopPropagation() method prevents propagation of the same event from being called.
+                                                                        // Propagation means bubbling up to parent elements or capturing down to child elements.
+	       function func1(obj) { alert("DIV 1"); obj.stopPropagation(); }
+	       
+        0.     preventDefault()
+	       $("a").click(function(event){
+	          event.preventDefault();  });                           // preventDefault() method stops the default action of an element from happening.
+		  
+        0.     addEventListener()                                        // addEventListener() method attaches an event handler to the specified element.
+	       document.getElementById("myBtn").addEventListener("mouseover", myFunction);
+	       document.getElementById("myBtn").addEventListener("click", someOtherFunction);   // same/different event attached with same/different function
+	       document.getElementById("myBtn").addEventListener("mouseout", OtherFunction);
+	       document.getElementById("myBtn").addEventListener("click", function() { myFunction(p1, p2); });
+	       document.getElementById("myDIV").removeEventListener("mousemove", myFunction);   // name of the event to remove,function to remove.
+	       document.addEventListener("click", myFunction);          // attaches an event handler to the document , here myFunction gets called , anywhere user clicks on document.
 
-    0.  setTimeout(func, duration)              // calls 'func' only once after 'duration' millisec
+        0.     setTimeout(func, duration)                                // calls 'func' only once after 'duration' millisec
 
-    0.  setInterval(func, duration)             // calls 'func' after every 'duration' millisec
+        0.     var intervalVar = setInterval(func, duration)             // calls 'func' after every 'duration' millisec
+        0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
 
 ￼
