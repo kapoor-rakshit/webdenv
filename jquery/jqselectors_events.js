@@ -45,6 +45,17 @@ $(document).ready(function(){           // to prevent any jQuery code from runni
 
     $("form :input")         // <input> tag from <form>
 
+	 $("div, p, .classnaam").first().css("background-color", "yellow");       // first element on page amongst the specified elements (div | p | .classnaam)
+
+	 $("div, p, .classnaam").last().css("background-color", "yellow");        // last element on page amongst the specified elements (div | p | .classnaam)
+
+	 $("p").eq(1).css("background-color", "yellow");;            // returns an element with a specific index number of the selected elements
+	                                                             // index numbers start at 0, so the first element will have the index number 0, (this example returns second <p>)
+
+	 $("p, h1").filter(".intro, #rt").css("background-color", "yellow");;  //  filter() method specify a criteria.  (here all p and h1 with class=intro or id=rt)
+
+	 $("p, h1").not(".intro, #rt").css("background-color", "yellow");;   // not() method returns all elements that do not match the criteria   (here class not equal to intro or id not equal to rt)
+
 
 // Events
 
