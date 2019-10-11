@@ -21,11 +21,13 @@
 /*                  REFERENCE : https://www.w3schools.com/jquery/jquery_events.asp */
 
 
+
 /* 1 */
 /* to prevent any jQuery code from running before the document is finished loading (is ready) */
 $(document).ready(function(){                         
   // jQuery methods go here...
 });
+
 
 
 /* 2 */
@@ -34,6 +36,18 @@ $("p").click(function(){
   // action goes here...
 });
 
+
+
+/* 3 */
+/* The prop() method sets or returns properties and values of the selected elements. */
+/* NOTE : prop() and attr() might return different values. */
+/* 3a : Get property | $(selector).prop(property) */
+$("input[type='checkbox']").change(function(){
+    alert($(this).prop("checked"));
+  });
+  
+/* 3b : Set property | $(selector).prop({property:value, property:value,...}) */
+$("select").prop("selectedIndex", "-1");
 
 
 
