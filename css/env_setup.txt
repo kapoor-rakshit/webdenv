@@ -98,6 +98,32 @@ p::after {                                   /* Insert content after <p> */
   font-weight: bold;
 }                                 /* content property can have values "TEXT", url(URL_IMAGE), " "attr(ATTRIBUTE_NAME)" " */
                                   /* REFERENCE : https://www.w3schools.com/cssref/pr_gen_content.asp */
+                                  
+                                  
+/* SASS : Syntactically Awesome Style Sheets */
+/* Instead of brackets and semicolons, it uses indentation of lines to specify blocks. Files in indented syntax use extension .sass */
+
+/* SCSS : Sassy CSS */
+/* every valid CSS3 stylesheet is valid SCSS as well. SCSS files use the extension .scss */
+/* 1 : Basic Nesting, adds a space by default */
+.parent {
+  .child {}                    /* this compiles to    -->    .parent .child {}  */
+}
+
+/* 2 : "&" specifies an element that has both classes, no space added */
+.some-class {
+  &.another-class {}          /* this compiles to     -->    .some-class.another-class {}  */
+}
+
+/* 3 : "&" followed by space */
+.parent {
+  & .child {}                 /* this compiles to    -->    .parent .child {}  */
+}
+
+/* 4 : repositioning "&" */
+.button {
+  body.page-about & {}       /* this compiles to     -->     body.page-about .button {} */
+}
 
 
 DECLARATIONS
