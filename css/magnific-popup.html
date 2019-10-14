@@ -28,6 +28,40 @@
       max-width: 500px;
       margin: 20px auto;
     }
+	  
+/*====== Zoom effect ======*/
+.mfp-zoom-in {
+/* start state */
+  .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.2s ease-in-out; 
+    transform: scale(0.8); 
+  }
+  &.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+/* animate in */
+  &.mfp-ready {
+    .mfp-with-anim {
+      opacity: 1;
+      transform: scale(1); 
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+/* animate out */
+  &.mfp-removing {
+    .mfp-with-anim {
+      transform: scale(0.8); 
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+  }
+}
   </style>
   
   <script>
@@ -35,25 +69,33 @@
     
       type:'inline',
       
-      removalDelay: 0,                                         // Delay before popup is removed from DOM
+      removalDelay: 500,                                       // Delay before popup is removed from DOM
       
       alignTop: false,                                         // if set to true, popup is aligned to top instead of to center
       
       closeOnBgClick: true,                                    // Close the popup when user clicks on the dark overlay
+	    
+      showCloseBtn: true,                                      // whether the close button will be displayed or not.
       
       closeBtnInside: true,                                    // If set to false, close button is visible on top-right
       
-      midClick: true                                           // Allow opening popup on middle mouse click
+      midClick: true,                                          // Allow opening popup on middle mouse click
                                                                // Always set it to true if you don't provide alternative source in href.
+      callbacks: {
+       beforeOpen: function() {
+       this.st.mainClass = this.st.el.attr('data-effect');     // classes that will be added to root element of popup wrapper and to dark overlay.
+       }
+      }
     });
   </script>
   
 </head>
 <body>
 
-  <a href="#test-popup" class="open-popup-link">Show inline popup</a>    <!-- href is ID of HTML element to be shown in popup, class is used to initialize script -->
-  
-  <div id="test-popup" class="white-popup mfp-hide">                     <!-- Class mfp-hide is required to hide the popup from the page -->
+  <a href="#test-popup" class="open-popup-link" data-effect="mfp-zoom-in">Show inline popup</a>    <!-- href is ID of HTML element to be shown in popup, class is used to initialize script -->
+                                                                                                   <!-- data- attribute is used to set class for animation in CSS -->
+  <div id="test-popup" class="white-popup mfp-with-anim mfp-hide">       <!-- Class mfp-hide is required to hide the popup from the page -->
+	                                                                 <!-- Class white-popup and mfp-with-anim are user defined classes for CSS -->
     Popup content
   </div>
 
