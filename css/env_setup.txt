@@ -129,6 +129,9 @@ p::after {                                   /* Insert content after <p> */
 DECLARATIONS
 -------------
 {
+/* The height and width properties do not include padding, borders, or margins. */
+/* Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin */
+/* Total element width = width + left padding + right padding + left border + right border + left margin + right margin */
 height: 100%;                                              /* In order for a percentage value to work, the parent's height/width must be determined. */ 
                                                            /* The only exception is the root element <html>, which can be a percentage */
                                                            /* The viewport-percentage lengths are relative to the size of the initial containing block. */
@@ -140,6 +143,11 @@ width: 100%;                                               /* a block element (s
 
 height:fit-content;
 width:fit-content;
+
+min-height: 50%;                                          /* If content is smaller than min-height, the min-height will be applied. */ /* If content is larger than min-height, the min-height property has no effect. */
+max-height: 50%;                                          /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect. */
+min-width: 500px;                                         /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect. */
+max-width: 150px;                                         /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect. */
 
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
@@ -196,6 +204,11 @@ clear: left;                           /* clear the float to left. Means that no
 
                                        /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
 display: inline-block;                 /* specifies the display behavior (the type of rendering box) of an element. */
+
+visibility: hidden;
+visibility: visible;
+
+opacity: 0.4;
 }
 
 
