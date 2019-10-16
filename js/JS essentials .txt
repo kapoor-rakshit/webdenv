@@ -1,4 +1,6 @@
 Array methods
+        0.      var cars = ["Saab", "Volvo", "BMW"];
+	0.      var Array4 = Array1.concat(Array2,Array3);                                   // just like "extend" in Python , new array with values of all.
 	0.	.tostring()
 	0.	.valueof()
 	0.	.join(“ : “)
