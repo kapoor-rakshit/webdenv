@@ -6,42 +6,52 @@
 </head>
 <body>
 <form action="http://localhost:5000/info" method="post" target="_blank">
-	<fieldset>
-		<legend>INFORMATION</legend>
-
+	<fieldset>                              <!-- Border to form -->
+		<legend>INFORMATION</legend>    <!-- Title to form -->
+		
+		<!-- A hidden field let web developers include data that cannot be seen or modified by users when a form is submitted. -->
+		Hidden
+		<input type="hidden" id="custId" name="custId" value="3487">
+		
+		
+		<!-- Search -->
 		Search
 		<input type="search" name="find">
 		<br><br>
 
+		
+		<!-- Text | required , autofocus -->
 		<div><br>First Name&ensp;   	
-		<input type="text" name="firstname" placeholder="Enter firstname" required>
+		<input type="text" name="firstname" placeholder="Enter firstname" required autofocus>
 		&emsp;
 		   Last Name&nbsp;
 		<input type="text" name="lastname" placeholder="Enter lastname" required>   <!-- size , maxlength attr-->
 		</div>
 		<br>
 		
+		
 		<!-- pattern attribute specifies a regular expression that the <input> element's value is checked against.
                 The pattern attribute works with the input types: text, date, search, url, tel, email, and password. -->
-		
 		<input type="text" name="country_code" pattern="[A-Za-z]*" title="Alphabets only">
 		
 
+		<!-- Radio -->
 		Gender
 		<br><input type="radio" name="gender" value="male" required>Male
 		<br><input type="radio" name="gender" value="female" required>Female
 		<br><br>
 
-		<!--Multiple values are separated by commas-->
+		<!-- Checkbox , Multiple values are separated by commas -->
 		Interests<br>
 		<input type="checkbox" name="interests" value="Data Structures and Algorithms">Data Structures and Algorithms
 		<br><input type="checkbox" name="interests" value="Distributed Systems">Distributed Systems<br>
 		<input type="checkbox" name="interests" value="Cloud Computing">Cloud Computing<br>
 		<input type="checkbox" name="interests" value="Programming Languages">Programming Languages
-        <br><br>
-
-        Options<br>
-        <select>
+		
+		
+		<!-- Select | optgroup , option | using JS selectedIndex = -1 to prevent first option auto selected -->
+		Options<br>
+		<select>
         	<optgroup label="Science"></optgroup>
         	<option>Medical</option>
         	<option>Non-Medical</option>
@@ -53,25 +63,27 @@
         	<optgroup label="Arts"></optgroup>
         	<option>Humanities</option>
         	<option>History</option>
-        </select>
-        <br><br>
+		</select>
+		
 
-        About me:<br>
-        <TEXTAREA rows="5" cols="50" placeholder="Enter your data"></TEXTAREA>
-        <br><br>
+		<!-- Textarea -->
+		About me:<br>
+		<TEXTAREA rows="5" cols="50" placeholder="Enter your data"></TEXTAREA>
+		
 
-        Choose:<br>
-        <datalist id = "dt">
-        	<option>Great</option>
-        	<option>Good</option>
-        	<option>Okay</option>
-        </datalist>
-        <input list="dt">
-        <br><br>
+		<!-- Datalist , filter/choose text from predefined list while typing -->
+		Choose:<br>
+		<datalist id = "dt">
+        	  <option>Great</option>
+        	  <option>Good</option>
+        	  <option>Okay</option>
+		</datalist>
+		<input list="dt">
+		
 
+		<!-- Date -->
 		Date of Birth<br>
 		<input type="date" name="bday" min="1993-01-01" max="2000-12-31" required>
-		<br><br>
 		
 		<!-- To limit the dates past/future -->
 		<head>
@@ -94,42 +106,53 @@
                 </body>
 		
 		
-
+		<!-- Time -->
 		Time<br>
 		<input type="time" name="time" required>
 		<br><br>
+		
+		
+		<!-- Email -->
+		email<br>
+		<input type="email" name="email" required>
 
-        email<br>
-        <input type="email" name="email" required>
-        <br><br>
-
-        Telephone<br>
+		
+		<!-- Tel -->
+		Telephone<br>
 		<input type="tel" name="phone" required>
-		<br><br>
+		
 
+		<!-- URL -->
 		URL<br>
 		<input type="url" name="web" value="url is here" disabled required>  <!-- disabled , readonly attr-->
-		<br><br>
-
+		
+		
+		<!-- Color -->
 		Color<br>
 		<input type="color" name="rang" required>
-		<br><br>
 
-        B.Tech year<br>
-        <input type="number" name="year" min="1" max="4" style="width: 50;text-align: center;">
-        <br><br>
-
-        Range<br>
+		
+		<!-- Number -->
+		B.Tech year<br>
+		<input type="number" name="year" min="1" max="4" style="width: 50;text-align: center;">
+		
+		
+		<!-- Range | Output -->
+		Range<br>
 		<input type="range" name="rng" id = "rngid" min="0" max="10" value="0" onchange="val.value = rng.valueAsNumber">
 		<output for="rngid" name="val">0</output>/10
-		<br><br>
 
-        Upload resume<br>
-        <input type="file">
-        <br><br>
+		
+		<!-- File -->
+		Upload resume<br>
+		<input type="file">
+		
+		
+		<!-- Reset -->
+		<input type="reset" value="Reset form" style="height: 30;">
+		
 
-        <input type="reset" value="Reset form" style="height: 30;">
-
+		<!-- Submit -->
 		<input type="submit" value="SUBMIT" style="height: 30;">
 	</fieldset>
 </form>
