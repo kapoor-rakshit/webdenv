@@ -17,7 +17,7 @@
 	 </style> */
 
 // Basic syntax
-// $(selector).animate({params},speed,callback);
+// $(selector).animate({cssParams},speed,easing,callback);
 
 // we can manipulate ALL CSS properties with the animate() method.
 // Important thing to remember: all property names must be camel-cased when used with the animate() method.
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	         "height": '+=150px',              // relative values specified to current value, using += or -=
 	         "width": '-=150px'
 
-		 }, 5000, function(event){
+		 }, 5000, "linear", function(event){
 		 	alert("completed!!");
 		 });
 
