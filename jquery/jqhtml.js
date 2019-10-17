@@ -21,6 +21,8 @@ $(document).ready(function(){
                     "title" : "W3Schools jQuery Tutorial"});
 		$("#w3s").attr("href", function(i, origValue)      // Callback Function for attr() , the index of current element in list of elements selected and original (old) attribute value.
                      { return origValue + "/jquery/"; });
+		$("form :input").removeAttr("title");             // Remove Attribute
+		$("p, #tag1").removeAttr("id class");             // Remove several attributes from the selected elements
 
 
 	         $("ol").append("<li>Appended item</li>");     // inserts content AT THE END of the selected HTML elements , making it a child of selected elem
@@ -54,12 +56,12 @@ $(document).ready(function(){
 		 $("img").after(txt1, txt2, txt3);          // Insert new elements after <img>
 
 
-		 $("#div1").detach();                      // removes matched elem, but retains JQuery data and events associated with removed elem.
+		 $("#div1").detach();                      // removes matched elem plus child elems, but retains JQuery data, events, CSS props associated with removed elem.
 		 var x;
 		    $("#btn1").click(function(){
-			 x = $("p").detach(); });          // keeps all events of detached element 
+			 x = $("p").detach(); });          // keeps all data + events + CSS of detached element 
 		    $("#btn2").click(function(){
-			    $("body").prepend(x); });
+			    $("body").prepend(x); });      // prepended just once (x) even if clicked multiple times on #btn2
 		
 		
 		 $("#div1").remove();                      // removes the selected element(s) and its child elements, along with associated events
@@ -67,19 +69,13 @@ $(document).ready(function(){
 		
 		
 		 $("#div1").empty();                       // removes the child elements of the selected element(s)
-		
-		
-		 $("form :input").removeAttr("title");    // remove Attribute
-		 $("p, #tag1").removeAttr("id class");    // Remove several attributes from the selected elements
 
-
+                                                            // The .replaceAll() or .replaceWith() method removes all data and event handlers associated with the removed nodes
 		 $("<b>New Content</b>").replaceAll("p");   // Replace occurrence of "p" tag and it's content with content "<b>New Content</b>"
-		                                            // The .replaceAll() or .replaceWith() method removes all data and event handlers associated with the removed nodes
 		 $(".newclass").replaceAll(".oldclass");    // select an element to use as the replacement  
 		 $(".oldclass").replaceWith(".newclass");   // the selected element replaces the target by being moved from its old location, not by being cloned.
 		
 		 
-		
 		 $(".classnaam").clone().appendTo("p");   // clone(withDataAndEvents, deepWithDataAndEvents)
 		                                          // withDataAndEvents : events handlers should be copied. default is false
 		                                          // deepWithDataAndEvents : events handlers should be copied for all child elements. default is false
