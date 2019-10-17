@@ -9,6 +9,13 @@ $(document).ready(function(){
 		
 		alert($("#chk").html());                  // get html code, with tags (if written within selected elem).
 		$("#disp").html("<b>Hello in bold</b>");  // set html code
+		
+		                                          // get text nodes, comment nodes, HTML elements which are immediate children in the resulting jQuery object
+		                                          // whereas .children() gets only HTML elements which are immediate children in the resulting jQuery object
+		                                          // .contents() returns the elements, thus moving them if used inside  eg: append
+		                                          // .html() returns a string, thus copying the elements if used inside eg: append
+		$("#frameDemo").contents().find("a").css("background-color", "#BADA55");
+		$("#frameDemo").contents().wrap("<b></b>");
 
 		
 	        $("#test3").val();                       // get value of form elems
