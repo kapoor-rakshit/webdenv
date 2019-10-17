@@ -23,16 +23,21 @@ div#hoverchange{
     -webkit-animation-direction: alternate-reverse;
     -webkit-animation-timing-function: linear;
     -webkit-animation-fill-mode: forwards;
+    -webkit-animation-play-state: paused;
 
     animation-duration: 4s;
     animation-delay: 0s;   /* using negative values, the animation will start as if it had already been playing for N seconds.*/
     animation-iteration-count: 1;  /*specifies the number of times an animation should run before it stops, can be "infinite" */
     animation-direction: normal; 
-       /*specifies whether an animation should be played forwards, backwards or in alternate cycles.
-         normal (forward), reverse, alternate, alternate-reverse*/
+      /* specifies whether an animation should be played forwards, backwards or in alternate cycles.
+                                normal (forward), reverse, alternate, alternate-reverse */
     animation-timing-function: linear;  /*ease (default), linear, ease-in, ease-out, ease-in-out*/
-    animation-fill-mode: forwards;      /* retain effect of anim.  none (defalt), forwards, backwards, both */
-
+    animation-fill-mode: forwards;
+      /* retain effect of anim. none (defalt), Animation will not apply any styles to the element before or after it is executing
+	                        forwards, retain the style values that is set by the last keyframe (depends on animation-direction and animation-iteration-count)
+	                        backwards, get the style values that is set by the first keyframe (depends on animation-direction), and retain this during the animation-delay period
+	                        both, follow the rules for both forwards and backwards, extending the animation properties in both directions */
+    animation-play-state: paused;       /* specifies whether the animation is    paused | running | initial */
 }
 
 #hoverchange:hover{
