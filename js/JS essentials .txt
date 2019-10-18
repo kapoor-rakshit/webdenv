@@ -1,19 +1,33 @@
 Array methods
-        0.      var cars = ["Saab", "Volvo", "BMW"];
-	0.      var Array4 = Array1.concat(Array2,Array3);                                   // just like "extend" in Python , new array with values of all.
-	0.	.tostring()
-	0.	.valueof()
-	0.	.join(“ : “)
-	0.	val = .pop()
-	0.	.push(“mm”)
-	0.	.shift()            // removes elem from beginning 
-	0.	.unshift(“mm”)     // add to beginning 
-	0.	.sort()
-	0.	.reverse()
-	0.	delete arr[0]      // removes first elem from arr
-	0.	Newarr = arr1.concat(arr2)
-	0.	.slice(start-index , end-index)     // [start, end)
-	0.	.splice(insert-at-index, remove-at-index, “str1”, “str2”, “str3.”, .....)
+        0.      var arr = ["Saab", " Volvo", "BMW"];
+	0.      document.getElementById("#pid").innerHTML = arr;                              // returns comma separated values eg : Saab, Volvo,BMW
+	0.      var arr4 = arr1.concat(arr2,arr3);                                            // just like "extend" in Python , new array returned with values of all.
+	0.      arr.fill("Balle", 2, 4);                                                      // fill array with value at index [start,end) // modifies original array
+	0.      arr.filter(func_that_returns_true_false);                                     // just like "filter" in Python
+	0.      arr.forEach(funcName);                                                        // calls function once for each element in order. // does not return
+	0.      arr.map(funcName);                                                            // calls function once for each element in order. // returns new array with results of calling function
+	0.      Array.from("90254085RKTA");                                                   // just like "list()" in Python
+	0.      arr.includes("chk",index_to_start_search);                                    // returns true/false if array contains the element.
+	0.      arr.indexOf("chk", index_to_start_search);                                    // returns position, -1 if not found, -ve value index will search from that position from end till end
+	0.      arr.lastIndexOf("chk", index_to_start_search);                                // returns position starting from end/index till beginning, -ve value index will search from that position from end till beginning
+	0.      Array.isArray(arr);                                                           // returns true/false if object is array
+	0.      arr.join("separator");                                                        // returns the array as a string with separator specified, else default (comma)
+	0.      var newstr = arr.toString();                                                  //  returns a string with all the array values, separated by commas.
+	0.      arr.length;                                                                   // returns number of elements in an array.
+	0.      arr.pop();                                                                    // removes and return last element
+	0.      arr.push("newelem");                                                          // adds new items to end of array, and returns new length.
+	0.      arr.shift();                                                                  // removes and return first element
+	0.      arr.unshift("val0", "val1");                                                  // adds new items to beginning of array, and returns new length.
+	0.      arr.reduce(myFunc, initialVal);                                               // similar to "reduce" in Python // myfunc(accumVar, curVar) {return accumVar * curvar} , accumVar contains previous result or initialVal as applicable.
+	0.      arr.reduceRight(myFunc, initialVal);                                          // similar to "reduce" but starts from right
+	0.      arr.reverse();                                                                // modifies original array as reverse
+	0.      var newarr = arr.slice(start,end);                                            // get all elem at index [start,end) as new array
+	0.      arr.splice(start_adding_index, no_elem_to_remove, "Lemon", "Kiwi");           // adds/removes items to/from an array, and returns the removed item(s) if any.
+	0.      var arr = arr.valueOf();                                                      // return the same array, the default method of the array object.
+	0.      arr.sort();                                                                   // we can pass comparator function to it.
+	0.	delete arr[index];                                                            // elem at index does not exist in arr and donot change indexes of other elements.
+	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
+	
 
 Date 
 	0.	var ndate = new Date();  
@@ -21,6 +35,7 @@ Date
 	0.	.getDate()
 	0.	.getFullYear()
 	0.	.getTime()
+
 
 Number
 	0.	if (number != parseInt(number))
