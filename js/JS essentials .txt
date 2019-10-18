@@ -29,12 +29,79 @@ Array methods
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
 	
 
+Boolean
+        0.      Boolean(10 > 9) | (10 > 9) | 10 > 9                                           // returns true
+	0.      var x = true;     x = x.toString();                                           // converts Boolean to String
+
+
 Date 
-	0.	var ndate = new Date();  
-        0.       ndate.toDateString();
-	0.	.getDate()
-	0.	.getFullYear()
-	0.	.getTime()
+	0.	var dt = new Date();                                                          // Date Object    Fri Oct 18 2019 15:08:10 GMT+0530 (India Standard Time)
+	0.      var d = new Date("July 21, 1983 01:15:00");                                   // Date Object    Thu Jul 21 1983 01:15:00 GMT+0530 (India Standard Time)
+	0.      dt.getDay();                                                                  // DAY_OF_WEEK  , (0 [Sunday] to 6)
+	0.      dt.getMonth();                                                                // MONTH        , (0 [January] to 11)
+	0.      dt.getDate();                                                                 // DAY_OF_MONTH , (1 to 31)
+	0.      dt.getFullYear();                                                             // YEAR (four digits for dates between year 1000 and 9999)
+	0.      dt.getHours();                                                                // HOURS        , (0 to 23)
+	0.      dt.getMinutes();                                                              // MINUTES      , (0 to 59)
+	0.      dt.getSeconds();                                                              // SECONDS      , (0 to 59)
+	0.      dt.getMilliseconds();                                                         // MILLISECONDS , (0 to 999)
+	0.      dt.toDateString();                                                            // date (not the time) of Date object into readable string. eg: Fri Oct 18 2019
+	0.      dt.toTimeString();                                                            // time portion of a Date object to a string. eg: 16:06:10 GMT+0530 (India Standard Time)
+	0.      dt.toLocaleTimeString();                                                      // time portion of a Date object as a string, using locale conventions. eg: 4:01:43 PM
+	0.      dt.getTime();                                                                 // milliseconds between midnight of January 1, 1970 and the specified date object.
+	0.      var n = Date.now();                                                           // milliseconds between midnight of January 1, 1970 and the specified date object.
+	0.      dt.getUTCDay();                                                               // UTC DAY_OF_WEEK  (0 [Sunday] to 6)
+	0.      dt.getUTCMonth();                                                             // UTC MONTH        (0 [January] to 11)
+	0.      dt.getUTCDate();                                                              // UTC DAY_OF_MONTH (1 to 31)
+	0.      dt.getUTCFullYear();                                                          // UTC YEAR
+	0.      dt.getUTCHours();                                                             // UTC HOURS
+	0.      dt.getUTCMinutes();                                                           // UTC MINUTES
+	0.      dt.getUTCSeconds();                                                           // UTC SECONDS
+	0.      dt.getUTCMilliseconds();                                                      // UTC MILLISECONDS
+	0.      dt.toUTCString();                                                             // date object to a string, according to universal time. eg: Fri, 18 Oct 2019 10:38:48 GMT
+	
+
+Exception Handling
+        0.      try {
+	          adddlert("Welcome guest!");                                                 // this will generate builtin error object
+		 
+		  if(x == "")  throw "empty";                                                 // throw error explicitly
+		  if(isNaN(x)) throw "not a number";
+		  x = Number(x);
+		  if(x < 5)  throw "too low";
+		  if(x > 10)   throw "too high";
+		}
+		catch(errobj) {
+		  if(errobj.message == undefined) {                                          // check if errorobj is builtin or explicit
+		   document.getElementById("demo").innerHTML = errobj;
+		  }
+		  else {
+		   document.getElementById("demo").innerHTML = errobj.name + " " + errobj.message;       // name/message of builtin obj
+		  }
+		}
+		finally {
+		 
+		}
+		
+		
+Misc.
+        0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
+	0.      var dec = decodeURI(enc);
+	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes the following characters: , / ? : @ & = + $ #
+	0.      var uri_dec = decodeURIComponent(uri_enc);
+	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
+	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
+	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
+	0.      isNaN("9025");                                                                          // converts arg to a Number, then tests it.  "9025" and 9025 both give false as ther are Number
+	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
+	0.      var c = parseFloat("10.33");                                                            // 10.33
+	0.      var c = parseInt("10.33");                                                              // 10
+	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
+		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
+	0.      String(x)  ==  x.toString();                                                            // typecast to string
+	0.      if (typeof y === "undefined") {                                                         // typeof  |  undefined
+	          txt = "y is undefined";
+		} 
 
 
 Number
