@@ -25,7 +25,7 @@ Array methods
 	0.      arr.splice(start_adding_index, no_elem_to_remove, "Lemon", "Kiwi");           // adds/removes items to/from an array, and returns the removed item(s) if any.
 	0.      var arr = arr.valueOf();                                                      // return the same array, the default method of the array object.
 	0.      arr.sort();                                                                   // we can pass comparator function to it.
-	0.	delete arr[index];                                                            // elem at index does not exist in arr and donot change indexes of other elements.
+	0.	delete arr[index];                                                            // elem at index does not exist in arr (undefined) and donot change indexes of other elements.
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
 	
 
@@ -92,55 +92,116 @@ Misc.
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
 	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
-	0.      isNaN("9025");                                                                          // converts arg to a Number, then tests it.  "9025" and 9025 both give false as ther are Number
+	0.      isNaN("9025");                                                                          // converts arg to a Number, then tests it.  "9025" and 9025 both give false as ther are Number   // this is different from Number.isNaN();
 	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
 	0.      var c = parseFloat("10.33");                                                            // 10.33
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
 		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
 	0.      String(x)  ==  x.toString();                                                            // typecast to string
-	0.      if (typeof y === "undefined") {                                                         // typeof  |  undefined
+	0.      if (typeof y === "undefined") {                                                         // typeof  |  undefined  // returns type of variable, object, function or expression
 	          txt = "y is undefined";
-		} 
+		}
+	0.      <a href="javascript:void(0);">Useless link</a>               // The void operator evaluates an expression and returns undefined.
+	                                                                     // This operator is often used to obtain the undefined primitive value, using "void(0)".
+	        <a href="javascript:void(document.body.style.backgroundColor='red');">Click to change background color of body to red</a>
+		                                                             // (this is useful when evaluating an expression without using the return value).
+
+Debugging
+        0.     // activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
+	0.     // use console.log() to display JavaScript values in the debugger window
+	0.     // The debugger keyword stops the execution of JavaScript, and calls (if available) the debugging function.
+	          // This has the same function as setting a breakpoint in the debugger.
+	0.     var x = 15 * 5;    debugger;     document.getElementById("demo").innerHTML = x;
 
 
 Number
-	0.	if (number != parseInt(number))
-	0.	isNaN (nchk)
+	0.	Number.MAX_VALUE;
+	0.      Number.MIN_VALUE;
+	0.      Number.NEGATIVE_INFINITY;
+	0.      Number.POSITIVE_INFINITY;
+	0.      var n = num.toExponential(3);      // number into an exponential notation 23.4568  -->  2.346e+1 coz after decimal 3 reqd
+	0.      var n = num.toFixed(2);            // Convert number into string, keeping specified decimals or 0 if reqd after decimal
+	0.      var n = num.toPrecision(5);        // Format a number to a specified length   13.67890  -->  13.679
+	0.	Number.isNaN(NaN)                  // true (here) only on "NaN" arg else false ('NaN' as string is also false)
+	                                           // This is different from global isNaN() function converts the tested value to a Number, then tests it.
+						   
+Regex
+        0.      // Syntax   :   /pattern/modifiers               eg:  var patt = /w3schools/i;
+	0.      // MODIFIERS
+	           g    Perform a global match (find all matches rather than stopping after the first match)
+	           i    Perform case-insensitive matching
+		   m	Perform multiline matching               eg:  var str = "\nIs th\nis it?";   var patt1 = /^is/m;
+	0.      // The exec() method tests for a match in a string, returns matched text if finds match, otherwise returns null.
+	           var patt2 = /W3Schools/g;     var result2 = patt2.exec(str);
+	0.      // test() method tests for a match in a string, returns true if it finds a match, otherwise it returns false.
+	           var patt = /Hello/g;          var result = patt.test(str);
+	0.      var res = str.match(/ain/g);                      // returns the matches, as an Array object  or  null
+	0.      var res = str.replace(/blue/g, "red");            // values are replaced
+	0.      var n = str.search(/blue/i);                      // returns the position of the m
+	
+	
+Strings
+        0.      var res = str.length                       // length of string
+	0.      var res = str.charAt(index)                // character at the specified index (position)
+	0.      var res = str1.concat(str2, str3);         // concatenate multiple strings
+	0.      str.endsWith();                            // Checks whether string ends with specified string/characters
+	0.      str.startsWith();                          // Checks whether string starts with specified string/characters
+	0.      str.includes("chk", start);                // Checks whether string contains the specified string/characters
+	0.      var res = str.indexOf("chk", start);       // Returns position of first found occurrence of specified value in string
+	0.      var res = str.repeat(2);                   // conacatenate str specified number of times to itself
+	0.      var res = str.slice(start, end);           // get array elems [start,end) index
+	0.      var res = str.substring(start, end);       // get array elems [start,end) index
+	0.      var res = str.substr(start, chars_reqd);   // get array elems [start,start + chars_reqd) index
+	0.      var res = str.split(" ", limit);           // Splits a string into an array of substrings , with limit specified , not included in res after limit
+	0.      var res = str.toLowerCase();
+	0.      var res = str.toUpperCase();
+	0.      var res = str.trim();
+
 
 Form
-	0.	document . name-of-form . name-of-widget . value   // set or get value.
-	0.	onsubmit=“return(validate())”.             // return false from func if error else true.
+	0.	document . name-of-form . name-of-widget . value        // set or get value.
+	0.	onsubmit=“return(validate())”.                          // return false from func if error else true.
+
 
 Functions
-	0.	var f = function(a, b) { return a*b }.     // a nameless function stored in var
-                f (45, 5).                                // call to function stored in var
-
+	0.	var f = function(a, b) { return a*b };              // a nameless function stored in var
+                f (45, 5);                                          // call to function stored in var
 	0.	Use of concept of nested functions.
+	
 
 Math
-	0.	Math.abs()
-	0.	Math.ceil()
-	0.	     .floor()
-	0.	     .pow()
-	0.	     .sqrt()
-	0.	     .random().    // no Param passed...generate between 0 and 1.
-	0.	     .acos()
-	0.	     .PI
-	0.	     .log()
+	0.	Math.abs();                                         // absolute value
+	0.	Math.ceil();                                        // ceil
+	0.	Math.floor();                                       // floor
+	0.      Math.round();                                       // round to nearest integer
+	0.      Math.E;                                             // Euler's Number (approximately 2.718)
+	0.      Math.exp(1);                                        // Return E^x     (Euler's number raised to x (here 1) )
+	0.	Math.pow(a,b);                                      // a^b
+	0.	Math.sqrt()                                         // square root
+	0.      Math.cbrt();                                        // cube root
+	0.	Math.random();                                      // generate number [0,1)  // No arg passed
+	0.	Math.trunc(879.76);                                 // integer part only , removes decimal
+	0.	Math.PI;                                            // PI = 22/7 = 3.14
+	0.      Math.max(val1, val2, val3, ...);                    // Maximum of given arguments
+	0.      Math.min(val1, val2, val3, ...);                    // Minimum of given args
+	0.	Math.log(arg);                                      // natural logarithm of arg
+	0.      Math.LN10;                                          // natural logarithm of 10
+	0.      Math.log(arg)/Math.LN10;                            // log(arg)/log(10)
+	
 
 Alerts
-        0.      var resp = prompt("Enter your name","naam"); // returns value entered, first arg is message, second arg is placeholder
-
-	0.	alert(resp);                                 // a message alert
-
+        0.      var resp = prompt("Enter your name","naam");     // returns value entered, first arg is message, second arg is placeholder
+	0.	alert(resp);                                     // a message alert
 	0.	var cnfstat = confirm("Do you want to exit ?");  // confirmation alert
 		if(cnfstat) alert("you said yes !");
 		else alert("you said no !");
 		
+		
 CSS
         0.      onclick = this.style.opacity="0.4";
-	0.      onclick = this.style.left="+=250px";            // += , -=  specifies CSS properties from current values
+	0.      onclick = this.style.left="+=250px";             // += , -=  specifies CSS properties from current values
+
 
 Events
         0.      onclick, onfocus, onblur, onchange, onmouseover, onmouseout, onmousemove
