@@ -85,6 +85,8 @@ Exception Handling
 		
 		
 Misc.
+        0.      // In JavaScript, "this" is the object that "owns" the code.
+	        // The value of "this" , when used in an object, is the object itself.
         0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
 	0.      var dec = decodeURI(enc);
 	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes the following characters: , / ? : @ & = + $ #
@@ -110,7 +112,7 @@ Misc.
 Debugging
         0.     // activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
 	0.     // use console.log() to display JavaScript values in the debugger window
-	0.     // The debugger keyword stops the execution of JavaScript, and calls (if available) the debugging function.
+	0.     // The "debugger" keyword stops the execution of JavaScript, and calls (if available) the debugging function.
 	          // This has the same function as setting a breakpoint in the debugger.
 	0.     var x = 15 * 5;    debugger;     document.getElementById("demo").innerHTML = x;
 
@@ -165,11 +167,61 @@ Form
 
 
 Functions
-	0.	var f = function(a, b) { return a*b };              // a nameless function stored in var
-                f (45, 5);                                          // call to function stored in var
-	0.	Use of concept of nested functions.
-	
+	0.	var f = function(a, b) { return a*b; }              // anonymous function stored in variable f | args passed without var keyword before them
+                    f (45, 5);                                      // invoke function stored in variable f
+	0.      var f = function(a=1, b=0) { return a*b; }          // default values passed to function incase not passed on invoke
+	0.      (function () {
+	            var x = "Hello!!";                              // anonymous self-invoking function , NOTE : () around and after function
+		})();
+	0.      const x = (x, y) => { return x * y };               // Arrow Functions in ES6
+	0.      function findMax() {                                // findMax(4, 5, 6) is called without using args in definition  // uses built-in "arguments" object.
+	            var i;
+		    var max = -Infinity;
+		    for(i = 0; i < arguments.length; i++) {
+		        if (arguments[i] > max) {
+			    max = arguments[i];
+			    }
+			 }
+		     return max;
+		 }
+	0.      var add = (function () {                          // JS Closures , a function having access to parent scope, even after parent function has closed.
+	             var counter = 0;
+		     return function () {counter += 1; return counter}   
+		})();                                             // self-invoking function only runs once. It sets counter to zero (0)
+		                                                  // and returns a function expression to variable add whuich can be invoked
+                add();
+	0.      var obj = {"first" : "kapoor" ,                     // function() as a value to key in object  /* call function as obj.full("-") , NOTE : use of () in obj.full() (not obj.full) */
+                          "second" : "rakshit" ,
+                          "full" : function(sep){
+                            return this.first + sep + this.second;
+                          }};                                       
+	0.      var obj = {firstName: "John",                       // getter inside object using "get" keyword   /* call getter as obj.lang , NOTE : no use of () in getter */
+                           lastName : "Doe",
+                           language : "en",
+                           get lang() {
+                              return this.language.toUpperCase();
+                            }};                                    
+        0.      var obj = {firstName: "John",                       // setter inside object using "set" keyword  /* call setter as obj.lang = "en"; */
+                           lastName : "Doe",
+                           language : "",
+                           set lang(lang) {
+                              this.language = lang.toUpperCase();
+                            }};                                     
+	0.      function Person(first, last, age, eye) {            // Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
+	          this.firstName = first;
+		  this.lastName = last;
+		  this.age = age;
+		  this.eyeColor = eye;
+		  this.nationality = "Amritsari";                   // default property to all objects of this constructor
+		  this.changeFirstName = function(arg){
+		      this.firstName = arg;                         // function to return/change inside constructor
+		      };
+		 }                                /* object created as , var myFatherObj = new Person("Anil", "Kapoor", 50, "black"); */
+		                                  /* object used as    , myFatherObj.nationality, myFatherObj.age, .... */
+	0.     Person.prototype.gender = "Male";                    // All JS objects inherit properties and methods from a prototype.
+	                                                            // We can add new properties using prototype.
 
+	
 Math
 	0.	Math.abs();                                         // absolute value
 	0.	Math.ceil();                                        // ceil
