@@ -42,6 +42,8 @@ In JavaScript, key not necessary to be in quotes but STRING data type values wit
        var newKey = "nayi_key";
        obj[newKey] = ["newval1", "balle"];                                            /* using var instead of hardcoded string */
 3.  obj.newKey = ["newval1", "balle"];                                                /* using . notation */
+4.  var obj = {"first" : "kapoor" , "second" : "rakshit" , "full" : function(){return this.first + "-" + this.second;}};   /* function() as a value */
+
 
 READ Javascript Object
 -------------------------
@@ -52,6 +54,7 @@ READ Javascript Object
 5.  for (x in myObj) {                                    /* use of for loop */
       console.log(myObj[x]);
     }
+
 
 UPDATE Javascript Object
 --------------------------                                /* Update if exists else new key created */
@@ -69,10 +72,10 @@ UPDATE Javascript Object
      }
     });
 
+
 DELETE from JavaScript Object
 ------------------------------
 delete myObj.cars.car1;                                 /* delete key-value using . operator */
 delete myObj.cars["car1"];                              /* delete key-value using [""] notation */
-delete myObj.cars.car1[1];                              /* delete array value using index */
 
 
