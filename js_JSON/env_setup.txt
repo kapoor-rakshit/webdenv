@@ -42,7 +42,23 @@ In JavaScript, key not necessary to be in quotes but STRING data type values wit
        var newKey = "nayi_key";
        obj[newKey] = ["newval1", "balle"];                                            /* using var instead of hardcoded string */
 3.  obj.newKey = ["newval1", "balle"];                                                /* using . notation */
-4.  var obj = {"first" : "kapoor" , "second" : "rakshit" , "full" : function(){return this.first + "-" + this.second;}};   /* function() as a value */
+4.  var obj = {"first" : "kapoor" ,                                                   /* function() as a value to key */
+              "second" : "rakshit" ,
+              "full" : function(sep){
+                         return this.first + sep + this.second;
+                       }};                                       /* call function as obj.full("-") , NOTE : use of () in obj.full() (not obj.full) */
+5.  var obj = {firstName: "John",                                                     /* getter inside object using "get" keyword */
+               lastName : "Doe",
+               language : "en",
+               get lang() {
+                  return this.language.toUpperCase();
+                }};                                             /* call getter as obj.lang , NOTE : no use of () in getter */
+6.  var obj = {firstName: "John",                                                    /* setter inside object using "set" keyword */
+               lastName : "Doe",
+               language : "",
+               set lang(lang) {
+                  this.language = lang.toUpperCase();
+                }};                                             /* call setter as obj.lang = "en"; */
 
 
 READ Javascript Object
