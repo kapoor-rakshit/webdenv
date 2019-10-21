@@ -1,0 +1,108 @@
+
+<!-- REFERENCE : https://jqueryui.com/dialog/
+               : https://api.jqueryui.com/dialog/ -->
+<!-- The basic dialog window is an overlay positioned within the viewport.
+	 It has a title bar and a content area, and can be moved, resized and closed with the 'x' icon by default. -->
+
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>jQueryUI Dialog</title>
+      <!-- CDNs -->
+      <link rel = "stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      
+      <script>
+        $(document).ready(function(){
+
+			$("#dialogFirstID").dialog({                            // dialog initialization | options setup
+				dialogClass: "dialogFirst",                         // class for identifying dialog
+				autoOpen: false,                                    // open upon initialization. If false, dialog will open when open() method is called.
+				closeOnEscape: false,                               // close when it has focus and user presses the escape (ESC) key.
+				draggable: true,                                    // draggable by the title bar
+				resizable: true,                                    // dialog will be resizable
+				height: 500,                                        // height of dialog
+				maxHeight: 600,                                     // maximum height to which the dialog can be resized, in pixels.
+				minHeight: 200,                                     // minimum height to which the dialog can be resized, in pixels.
+				width: 470,                                         // width of dialog
+				maxWidth: 600,                                      // maximum width to which the dialog can be resized, in pixels.
+				minWidth: 200,                                      // minimum width to which the dialog can be resized, in pixels.
+				modal: false,                                        // other items on page cannot be interacted with. Modal dialogs create an overlay below the dialog but above other page elements.
+				title: "This is dialog title",                      // title of dialog , else title attr of dialog selector used
+				show: {                                             // how to animate show of dialog | built-in jQuery animation  OR  https://api.jqueryui.com/category/effects/
+					effect: "slideDown",
+					duration: 1000,
+					delay: 0,
+					easing: "linear"
+				},
+				hide: {                                             // how to animate hiding of dialog
+					effect: "explode",
+					duration: 1000,
+					delay: 0,
+					easing: "swing"
+				},
+				                                           // EVENTS
+				create: function( event, ui ) {},                   // Triggered when the dialog is created.
+				focus: function(event, ui) {},                      // Triggered when the dialog gains focus.
+				open: function( event, ui ) {},                     // Triggered when the dialog is opened.
+				beforeClose: function( event, ui ) {},              // Triggered when a dialog is about to close.
+				close: function( event, ui ) {},                    // Triggered when the dialog is closed.
+				dragStart: function( event, ui ) {},                // Triggered when the user starts dragging the dialog.
+				drag: function( event, ui ) {},                     // Triggered while the dialog is being dragged.
+				dragStop: function( event, ui ) {},                 // Triggered after the dialog has been dragged.
+				resizeStart: function( event, ui ) {},              // Triggered when the user starts resizing the dialog.
+				resize: function( event, ui ) {},                   // Triggered while the dialog is being resized.
+				resizeStop: function( event, ui ) {}                // Triggered after the dialog has been resized.
+			});
+                                                            // METHODS
+			$("#dialog-opener").click(function(){
+				$("#dialogFirstID").dialog("open");                      // Opens the dialog
+				$("#dialogFirstID").dialog("option", "modal", true);     // options can also be set after initialization
+				var chkopen = $("#dialogFirstID").dialog("isOpen");      // Whether the dialog is currently open.
+				if(chkopen) {
+					$("#dialogchk").prop("innerHTML", "Dialog khula hai");
+				}
+			});
+
+			$("#dialog-closer").click(function(){
+				$("#dialogFirstID").dialog("close");                      // Closes the dialog
+				$("#dialogchk").prop("innerHTML", "Dialog band ho gya");
+			});
+
+		});
+      </script>
+
+      <style type="text/css">
+      	.dialogFirst.ui-dialog {                                     /* The outer container of the dialog with calss dialogFirst*/
+      		border: 2px solid black;
+      	}
+      	.dialogFirst .ui-dialog-titlebar {                           /* title bar containing dialog's title and close button inside class dialogFirst*/
+      		border: 2px solid black;
+      		cursor: initial;
+      	}
+      	.dialogFirst .ui-dialog-titlebar .ui-dialog-title{           /* container around textual title of dialog */
+      		font-family: cursive;
+      		font-style: italic;
+      	}
+      	.dialogFirst .ui-dialog-titlebar .ui-dialog-titlebar-close{  /* dialog's close button */
+      		display: initial;
+      	}
+      	.dialogFirst .ui-dialog-content{                             /* container around the dialog's content */
+      		margin-top: 2%;
+      		border: 2px solid black;
+      	}
+      </style>
+   </head>
+   
+   <body>
+    <div id="dialogFirstID" title="Dialog's Default Title">
+		<p>Contents of dialog</p>
+	</div>
+	<button id="dialog-opener">Click to Open Dialog</button>
+	<button id="dialog-closer">Click to Close Dialog</button>
+	<p id="dialogchk">Dialog band hai</p>
+   </body>
+</html>
