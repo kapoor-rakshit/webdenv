@@ -3,18 +3,14 @@
 <!-- REFERENCE : https://www.w3schools.com/tags/att_data-.asp -->
 <!-- 
 The data-* attribute is used to store custom data private to the page or application.
-
 The data-* attribute gives us the ability to embed custom data attributes on all HTML elements.
-
 The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
-
 The data-* attribute consist of two parts:
     The attribute name should not contain any uppercase letters, and must be at least one character long after the prefix "data-"
     The attribute value can be any string
     
 NOTE : Custom attributes prefixed with "data-" will be completely ignored by the user agent.
 -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +42,32 @@ var animalType = $(this).data("animal-type");                            // Usin
 
 
 <!-- 2 -->
+<!-- REFERENCE : https://www.w3schools.com/tags/tag_meta.asp -->
+<!-- 
+Metadata is data (information) about data.
+Metadata is always passed as name/value pairs.
+<meta> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable.
+<meta> tag always go inside the <head> element.
+-->
+<!--
+A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling.
+The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).
+The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 
+The charset attribute specifies the character encoding for the HTML document.
+-->
+<meta charset="UTF-8">
+<!--
+The http-equiv attribute provides an HTTP header for the information/value of the content attribute.
+The http-equiv attribute can be used to simulate an HTTP response header.
+Below example will refresh document every 30 seconds:
+-->
+<meta http-equiv="refresh" content="30">
+
+
+<!-- 3 -->
 
 
 
