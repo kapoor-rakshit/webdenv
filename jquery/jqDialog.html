@@ -2,7 +2,7 @@
 <!-- REFERENCE : https://jqueryui.com/dialog/
                : https://api.jqueryui.com/dialog/ -->
 <!-- The basic dialog window is an overlay positioned within the viewport.
-	 It has a title bar and a content area, and can be moved, resized and closed with the 'x' icon by default. -->
+     It has a title bar and a content area, and can be moved, resized and closed with the 'x' icon by default. -->
 
 <!doctype html>
 <html>
@@ -17,8 +17,8 @@
       
       <script>
         $(document).ready(function(){
-
-			$("#dialogFirstID").dialog({                            // dialog initialization | options setup
+                                                                          // OPTIONS
+			$("#dialogFirstID").dialog({                                // dialog initialization | options setup
 				dialogClass: "dialogFirst",                         // class for identifying dialog
 				autoOpen: false,                                    // open upon initialization. If false, dialog will open when open() method is called.
 				closeOnEscape: false,                               // close when it has focus and user presses the escape (ESC) key.
@@ -30,7 +30,7 @@
 				width: 470,                                         // width of dialog
 				maxWidth: 600,                                      // maximum width to which the dialog can be resized, in pixels.
 				minWidth: 200,                                      // minimum width to which the dialog can be resized, in pixels.
-				modal: false,                                        // other items on page cannot be interacted with. Modal dialogs create an overlay below the dialog but above other page elements.
+				modal: true,                                        // other items on page cannot be interacted with. Modal dialogs create an overlay below the dialog but above other page elements.
 				title: "This is dialog title",                      // title of dialog , else title attr of dialog selector used
 				show: {                                             // how to animate show of dialog | built-in jQuery animation  OR  https://api.jqueryui.com/category/effects/
 					effect: "slideDown",
@@ -57,7 +57,7 @@
 				resize: function( event, ui ) {},                   // Triggered while the dialog is being resized.
 				resizeStop: function( event, ui ) {}                // Triggered after the dialog has been resized.
 			});
-                                                            // METHODS
+                                                                           // METHODS
 			$("#dialog-opener").click(function(){
 				$("#dialogFirstID").dialog("open");                      // Opens the dialog
 				$("#dialogFirstID").dialog("option", "modal", true);     // options can also be set after initialization
