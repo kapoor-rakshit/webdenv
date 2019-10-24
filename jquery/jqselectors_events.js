@@ -67,12 +67,20 @@ $(document).ready(function(){           // to prevent any jQuery code from runni
 
     });
 
-    $("#p1").mouseenter(function(){
+    $("#p1").mouseenter(function(){     // mouseenter event only triggers when the mouse pointer enters the selected element
     alert("You entered p1!");
     });
+	
+    $("div.over").mouseover(function(){  // mouseover event is triggered if mouse pointer enters any descendants (inside) as well the selected element.
+    $(".over p").text(x += 1);
+    });
 
-    $("#p1").mouseleave(function(){
+    $("#p1").mouseleave(function(){     // mouseleave event is only triggered when the mouse pointer leaves the selected element
     alert("Bye! You now leave p1!");
+    });
+	
+    $("div.over").mouseout(function(){  // mouseout event triggers when mouse pointer leaves any descendants (inside) as well the selected element.
+    $(".over span").text(x += 1);
     });
 
     $("#p1").mousedown(function(){     // executed, when the left, middle or right mouse button is pressed down, while the mouse is over the HTML element
@@ -86,7 +94,11 @@ $(document).ready(function(){           // to prevent any jQuery code from runni
     $("#p1").hover(function(){        // takes two functions and is a combination of the mouseenter() (first func) and
     alert("You entered p1!");
     },function(){                     // mouseleave() (second func) methods.
-    alert("Bye! You now leave p1!");
+    alert("Bye! You now leave p1!");  // NOTE : it's not mouseover() | mouseout()
+    });                               // NOTE : If only one function is specified, it will run for both mouseenter and mouseleave events.
+	
+    $("div.move").mousemove(function(){  // mousemove event triggers every time mouse pointer is moved over it or it's descendants (inside)
+    $(".move p").text(z += 1);
     });
 
     $("input").focus(function(){      // similar to 'onfocus'
