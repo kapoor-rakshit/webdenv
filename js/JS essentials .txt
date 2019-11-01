@@ -1,3 +1,15 @@
+
+Ways of including JS
+        0.     INTERNAL JS                                         // <script></script>
+	0.     EXTERNAL JS                                         // <script src="path_to_js_file"></script>
+	
+	
+Async/Defer attribute of SCRIPT tag
+        0.     <script src="demo_async.js" async></script>         // If async is present: The script is executed asynchronously with the rest of the page (the script will be executed while the page continues the parsing)
+	                                                           // If defer is present: The script is executed when the page has finished parsing
+								   // If neither async or defer is present: The script is fetched and executed immediately, before the browser continues parsing the page
+
+
 Array methods
         0.      var arr = ["Saab", " Volvo", "BMW"];
 	0.      document.getElementById("#pid").innerHTML = arr;                              // returns comma separated values eg : Saab, Volvo,BMW
