@@ -55,7 +55,8 @@ tag1, tag2, tag3 {}                          /* tag selectors */
 #ID1, #ID2 {}                                /* id selectors */
 .CLASS1, .CLASS2 {}                          /* class selectors */
 tag1#ID, tag2.CLASS {}                       /* tag with id ID and tag with class CLASS */
-tag1[attribute]                              /* select elements with the specified attribute */
+tag1[id] {}                                  /* select tag1 elements with the specified attribute (id here) */
+[id] {}                                      /* select elements with id attribute */
 tag1[id=""] {}                               /* tag1 with attribute id and value equals */
 tag1[id^=""] {}                              /* tag1 with attribute id and value starts with */
 tag1[class~=""] {}                           /* tag1 with attribute class and value contains as a whole word ie "flower" or "main flower" */
@@ -173,6 +174,8 @@ font-weight: bold;
 font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
 text-transform: capitalize;                                /* none | capitalize | uppercase | lowercase | initial */
 font-size: 25px;                                           /* medium | xx-small | x-small | small | large | x-large | xx-large | smaller | larger | length (px, cm) | initial */
+text-align: center;
+align-content: center;
 
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
@@ -211,6 +214,21 @@ clear: left;                           /* clear the float to left. Means that no
 
                                        /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
 display: inline-block;                 /* specifies the display behavior (the type of rendering box) of an element. */
+
+/* CSS Grid Layout */
+/* An HTML element becomes a grid container when its display property is set to grid or inline-grid. eg: <div class="grid-container"><div class="grid-item">1</div></div> */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;     /* number of columns in your grid layout, and define the width of each column */
+  grid-template-rows: auto auto;             /* height of each row */
+  grid-column-gap: 50px;                     /* gap between columns */
+  grid-row-gap: 50px;                        /* gap between rows */
+  grid-column-start: 1;                      /* just like colspan in <table> or Merge cells in excel */
+  grid-column-end: 3;
+  grid-row-start: 1;                         /* similar to colspan but merge row wise */
+  grid-row-end: 3;
+}
+
 
 visibility: hidden;
 visibility: visible;
