@@ -46,7 +46,7 @@
 	                         <!-- all other elements are contained in the <amp-story> -->
 
                              <!-- standalone [required] : Identifies that the AMP document is a story. -->
-                             <!-- title [required]	    : The title of the story. -->
+                             <!-- title [required]      : The title of the story. -->
                              <!-- publisher [required]	: The name of the story's publisher. -->
                              <!-- publisher-logo-src [required] : path to story publisher's logo in square format (ie 1x1 aspect ratio) eg: 96X96px  -->
                              <!-- poster-portrait-src [required]  : path to story poster in portrait format (3x4 aspect ratio). -->
@@ -60,16 +60,16 @@
 	poster-portrait-src="pics/familypic.jpg"
 	poster-square-src="assets/cover_square.jpg"
 	poster-landscape-src="assets/cover_landscape.jpg">
-	                         <!-- <amp-story-page id=""> components, containing each of the individual screens of story. Each page needs a unique "id" attribute-->
-	                         <!-- auto-advance-after : Specifies when to auto-advance to next page. If omitted page will not automatically advance. -->
-	                         	  <!-- DONOT USE "LOOP" in VIDEO if USING AUTO-ADVANCE-AFTER in VIDEO -->
-	                              <!-- It can take time or ID of media element whose completion will trigger next page -->
-	                         <!-- Layers are stacked on top of one another, so, the first layer is the bottom layer and the next layer is on top of that, and so on. -->
+	                     <!-- <amp-story-page id=""> components, containing each of the individual screens of story. Each page needs a unique "id" attribute-->
+	                     <!-- auto-advance-after : Specifies when to auto-advance to next page. If omitted page will not automatically advance. -->
+	                          <!-- DONOT USE "LOOP" in VIDEO if USING AUTO-ADVANCE-AFTER in VIDEO -->
+	                          <!-- It can take time or ID of media element whose completion will trigger next page -->
+	                     <!-- Layers are stacked on top of one another, so, the first layer is the bottom layer and the next layer is on top of that, and so on. -->
                              <!-- template = "fill" | "vertical" | "horizontal" | "thirds" -->
-	                         <!-- <amp-img> | <amp-video> require width/height for aspect ratio. Actual layout behavior is determined by layout attribute. -->
+	                     <!-- <amp-img> | <amp-video> require width/height for aspect ratio. Actual layout behavior is determined by layout attribute. -->
                              <!-- <amp-video> requires mandatory attribute "autoplay" in story plus "controls","poster" will not work in story -->
                              <!-- layout = "responsive" (width/height attributes required for aspect ratio) | "nodisplay" (width/height attributes not required) -->
-        <!-- 1. Fill + Vertical -->
+                <!-- 1. Fill + Vertical -->
 		<amp-story-page id="page1" auto-advance-after="3s">    
 			<amp-story-grid-layer template="fill">
 				<amp-img src="pics/asr.jpg" layout="responsive" width="720" height="1280"></amp-img>
