@@ -1,0 +1,57 @@
+{
+  "bookendVersion": "v1.0",
+  "shareProviders": [
+    "facebook",
+    "twitter",
+    "pinterest",
+    "tumblr",
+    "linkedin",
+    "whatsapp",
+    "sms",
+    "email"
+  ],
+  "components": [
+    {
+      "type": "heading",
+      "text": "More to read"
+    },
+    {
+      "type": "small",
+      "category": "Facebook",
+      "title": "Learn from Facebook",
+      "url": "https://www.facebook.com/kapoorrakshit1",
+      "image": "pics/rakshit.jpg"
+    },
+    {
+      "type": "landscape",
+      "category": "LinkedIn",
+      "title": "Learn from LinkedIn",
+      "url": "https://www.linkedin.com/in/kapoor-rakshit/",
+      "image": "pics/rakshit2.jpg"
+    },
+    {
+      "type": "portrait",
+      "category" : "Github",
+      "title": "Learn from Github",
+      "url": "https://github.com/kapoor-rakshit",
+      "image": "pics/rakshit_photo.jpg"
+    },
+    {
+      "type": "cta-link",
+      "links": [
+        {
+          "text": "Learn more",
+          "url": "https://www.ampproject.org/stories/"
+        },
+        {
+          "text": "Subscribe",
+          "url" : "https://www.example.com"
+        },
+        {
+          "text": "Donate",
+          "url" : "https://www.example.com"
+        }
+      ]
+    }
+  ]
+}

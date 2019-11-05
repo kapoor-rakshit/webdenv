@@ -1,0 +1,131 @@
+
+<!-- REFERENCE : https://amp.dev/documentation/components/amp-story/
+	           : https://amp.dev/documentation/guides-and-tutorials/start/visual_story/parts_of_story/?format=stories -->
+
+<!-- An AMP (Accelerated Mobile Pages) story is full-screen visual storytelling experience that conveys information with images, videos, graphics, audio, and more. -->
+
+<!-- we need to access AMP files from a web server eg: “Web Server for Chrome” Google Chrome app | Apache | Nginx | A local HTTP Python server. -->
+<!-- Make sure the URL serves from "https://" or "//" or be relative and served from either https or from localhost. otherwise the AMP story might not load correctly  -->
+
+<!DOCTYPE html>
+<html amp>
+<head>
+	<title>Google AMP story</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+	<script async src="https://cdn.ampproject.org/v0.js"></script>
+	<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+	<script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
+
+	<style type="text/css">
+		h2, p{
+			color: #fff;
+			text-align: left;
+		}
+		amp-story-page{
+			background-color: #000;
+		}
+		.gridDIV{
+			display: grid;
+			grid-template-columns: auto auto;
+			grid-template-rows: auto auto;
+		}
+		amp-story-grid-layer.captionGRIDLAYER{
+			align-content: center;
+		}
+		.caption{
+			color: #fff;
+			border-radius: 5px;
+			background-color: #000;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>                       <!-- to have valid AMP story, the <body> element must have only one child <amp-story> component -->
+	                         <!-- all other elements are contained in the <amp-story> -->
+
+                             <!-- standalone [required] : Identifies that the AMP document is a story. -->
+                             <!-- title [required]	    : The title of the story. -->
+                             <!-- publisher [required]	: The name of the story's publisher. -->
+                             <!-- publisher-logo-src [required] : path to story publisher's logo in square format (ie 1x1 aspect ratio) eg: 96X96px  -->
+                             <!-- poster-portrait-src [required]  : path to story poster in portrait format (3x4 aspect ratio). -->
+                             <!-- poster-square-src [required]    : path to story poster in square format (1x1 aspect ratio). -->
+                             <!-- poster-landscape-src [required] : path to story poster in landscape format (4x3 aspect ratio). -->
+                             <!-- background-audio [optional]	: path to an audio file that plays throughout the story or page as specified -->
+	<amp-story standalone
+	title="Google AMP" 
+	publisher="AMP Project"
+	publisher-logo-src="assets/AMP-Brand-White-Icon.png"
+	poster-portrait-src="pics/familypic.jpg"
+	poster-square-src="assets/cover_square.jpg"
+	poster-landscape-src="assets/cover_landscape.jpg">
+	                         <!-- <amp-story-page id=""> components, containing each of the individual screens of story. Each page needs a unique "id" attribute-->
+	                         <!-- auto-advance-after : Specifies when to auto-advance to next page. If omitted page will not automatically advance. -->
+	                         	  <!-- DONOT USE "LOOP" in VIDEO if USING AUTO-ADVANCE-AFTER in VIDEO -->
+	                              <!-- It can take time or ID of media element whose completion will trigger next page -->
+	                         <!-- Layers are stacked on top of one another, so, the first layer is the bottom layer and the next layer is on top of that, and so on. -->
+                             <!-- template = "fill" | "vertical" | "horizontal" | "thirds" -->
+	                         <!-- <amp-img> | <amp-video> require width/height for aspect ratio. Actual layout behavior is determined by layout attribute. -->
+                             <!-- <amp-video> requires mandatory attribute "autoplay" in story plus "controls","poster" will not work in story -->
+                             <!-- layout = "responsive" (width/height attributes required for aspect ratio) | "nodisplay" (width/height attributes not required) -->
+        <!-- 1. Fill + Vertical -->
+		<amp-story-page id="page1" auto-advance-after="3s">    
+			<amp-story-grid-layer template="fill">
+				<amp-img src="pics/asr.jpg" layout="responsive" width="720" height="1280"></amp-img>
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="vertical">
+				<h2>Amritsar</h2>
+				<p>Maruti 800, our first car</p>
+			</amp-story-grid-layer>
+		</amp-story-page>
+
+		<!-- 2. Fill + Thirds -->
+		<amp-story-page id="page2" auto-advance-after="3s">
+			<amp-story-grid-layer template="fill">
+				<amp-img src="pics/asr1.jpg" layout="responsive" width="720" height="1280"></amp-img>
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="thirds">
+				<h2 grid-area="upper-third">Dada</h2>
+				<p grid-area="lower-third">@Amritsar</p>
+			</amp-story-grid-layer>
+		</amp-story-page>
+
+		<!-- 3. Audio + Thirds -->
+		<amp-story-page id="page3" background-audio="assets/bird-singing.mp3" auto-advance-after="3s">
+			<amp-story-grid-layer template="thirds">
+				<amp-img grid-area="upper-third" src="pics/image_list1.png" layout="responsive" width="720" height="1280"></amp-img>
+				<amp-img grid-area="middle-third" src="pics/image_list2.png" layout="responsive" width="720" height="1280"></amp-img>
+				<amp-img grid-area="lower-third" src="pics/image_list3.png" layout="responsive" width="720" height="1280"></amp-img>
+			</amp-story-grid-layer>
+		</amp-story-page>
+
+		<!-- 4. Video -->
+		<amp-story-page id="page4" auto-advance-after="ampVIDEO">
+			<amp-story-grid-layer template="fill">
+				<amp-video id="ampVIDEO" autoplay loop controls layout="responsive" poster="pics/silver_jubilee.jpg" width="720" height="1280">
+					<source src="pics/myvideo.mp4" type="video/mp4">
+				</amp-video>
+			</amp-story-grid-layer>
+		</amp-story-page>
+
+		<!-- 5. Grid + Animations --> <!-- https://amp.dev/documentation/guides-and-tutorials/start/visual_story/animating_elements/?format=stories -->
+		<amp-story-page id="page5" auto-advance-after="3s">
+			<amp-story-grid-layer template="fill">
+				<div class="gridDIV">
+					<amp-img src="pics/dav asr.jpg" layout="responsive" animate-in="fade-in" animate-in-delay="0.4s" width="720" height="1280"></amp-img>
+					<amp-img src="pics/familypic.jpg" layout="responsive" animate-in="fade-in" animate-in-delay="0.6s" width="720" height="1280"></amp-img>
+					<amp-img src="pics/silver_jubilee.jpg" layout="responsive" animate-in="fade-in" animate-in-delay="0.8s" width="720" height="1280"></amp-img>
+					<amp-img src="pics/goldentemple.jpg" layout="responsive" animate-in="fade-in" animate-in-delay="1.0s" width="720" height="1280"></amp-img>
+				</div>
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="vertical" class="captionGRIDLAYER">
+				<h1 class="caption" animate-in="whoosh-in-right" animate-in-duration="1.0s">Best of Life</h1>
+			</amp-story-grid-layer>
+		</amp-story-page>
+
+		<!-- Bookend -->
+		<amp-story-bookend src="bookend.json" layout="nodisplay"></amp-story-bookend>
+	</amp-story>
+</body>
+</html>
