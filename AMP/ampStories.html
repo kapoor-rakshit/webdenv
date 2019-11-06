@@ -4,21 +4,38 @@
 
 <!-- An AMP (Accelerated Mobile Pages) story is full-screen visual storytelling experience that conveys information with images, videos, graphics, audio, and more. -->
 
-<!-- we need to access AMP files from a web server eg: “Web Server for Chrome” Google Chrome app | Apache | Nginx | A local HTTP Python server. -->
-<!-- Make sure the URL serves from "https://" or "//" or be relative and served from either https or from localhost. otherwise the AMP story might not load correctly  -->
+<!-- we need to access AMP files from a web server eg: “Web Server for Chrome” Google Chrome app | Apache | Nginx | A local HTTP Python server.
+	Make sure the URL serves from "https://" or "//" or be relative and served from either https or from localhost. otherwise the AMP story might not load correctly  -->
+
+<!-- Every AMP document needs to have link referencing "canonical" version of that document. You can create standalone canonical AMP page but should point to itself -->
+
+<!-- AMP HTML documents must contain the boilerplate in their head tag.
+	It initially hides the content of the body until the AMP JavaScript library is loaded, then the content is rendered.
+	AMP does this to prevent unstyled content from rendering, also known as Flash Of Unstyled Content (FOUC). -->
+
+<!-- The tag 'script' is disallowed except in specific forms. -->
+
+<!-- In AMP, to keep load times of documents as fast as possible, you cannot include external stylesheets. 
+	Instead, all stylesheet rules must be embedded in the AMP document using <style amp-custom></style> tags, or as inline styles. 
+    You can only have one style tag in your entire AMP document. -->
 
 <!DOCTYPE html>
 <html amp>
 <head>
-	<title>Google AMP story</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+	<link rel="canonical" href="ampStories.html">
+
+	<title>Google AMP story</title>
 
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
 	<script async custom-element="amp-video" src="https://cdn.ampproject.org/v0/amp-video-0.1.js"></script>
 
-	<style type="text/css">
+	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+	<style type="text/css" amp-custom>
 		h2, p{
 			color: #fff;
 			text-align: left;
@@ -46,7 +63,7 @@
 	                         <!-- all other elements are contained in the <amp-story> -->
 
                              <!-- standalone [required] : Identifies that the AMP document is a story. -->
-                             <!-- title [required]      : The title of the story. -->
+                             <!-- title [required]	    : The title of the story. -->
                              <!-- publisher [required]	: The name of the story's publisher. -->
                              <!-- publisher-logo-src [required] : path to story publisher's logo in square format (ie 1x1 aspect ratio) eg: 96X96px  -->
                              <!-- poster-portrait-src [required]  : path to story poster in portrait format (3x4 aspect ratio). -->
@@ -60,16 +77,16 @@
 	poster-portrait-src="pics/familypic.jpg"
 	poster-square-src="assets/cover_square.jpg"
 	poster-landscape-src="assets/cover_landscape.jpg">
-	                     <!-- <amp-story-page id=""> components, containing each of the individual screens of story. Each page needs a unique "id" attribute-->
-	                     <!-- auto-advance-after : Specifies when to auto-advance to next page. If omitted page will not automatically advance. -->
-	                          <!-- DONOT USE "LOOP" in VIDEO if USING AUTO-ADVANCE-AFTER in VIDEO -->
-	                          <!-- It can take time or ID of media element whose completion will trigger next page -->
-	                     <!-- Layers are stacked on top of one another, so, the first layer is the bottom layer and the next layer is on top of that, and so on. -->
+	                         <!-- <amp-story-page id=""> components, containing each of the individual screens of story. Each page needs a unique "id" attribute-->
+	                         <!-- auto-advance-after : Specifies when to auto-advance to next page. If omitted page will not automatically advance. -->
+	                         	  <!-- DONOT USE "LOOP" in VIDEO if USING AUTO-ADVANCE-AFTER in VIDEO -->
+	                              <!-- It can take time or ID of media element whose completion will trigger next page -->
+	                         <!-- Layers are stacked on top of one another, so, the first layer is the bottom layer and the next layer is on top of that, and so on. -->
                              <!-- template = "fill" | "vertical" | "horizontal" | "thirds" -->
-	                     <!-- <amp-img> | <amp-video> require width/height for aspect ratio. Actual layout behavior is determined by layout attribute. -->
+	                         <!-- <amp-img> | <amp-video> require width/height for aspect ratio. Actual layout behavior is determined by layout attribute. -->
                              <!-- <amp-video> requires mandatory attribute "autoplay" in story plus "controls","poster" will not work in story -->
                              <!-- layout = "responsive" (width/height attributes required for aspect ratio) | "nodisplay" (width/height attributes not required) -->
-                <!-- 1. Fill + Vertical -->
+        <!-- 1. Fill + Vertical -->
 		<amp-story-page id="page1" auto-advance-after="3s">    
 			<amp-story-grid-layer template="fill">
 				<amp-img src="pics/asr.jpg" layout="responsive" width="720" height="1280"></amp-img>

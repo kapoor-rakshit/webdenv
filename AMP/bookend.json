@@ -50,6 +50,10 @@
         {
           "text": "Donate",
           "url" : "https://www.example.com"
+        },
+        {
+          "text" : "Participate",
+          "url" : "https://www.example.com"
         }
       ]
     }
