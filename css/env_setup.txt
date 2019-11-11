@@ -93,13 +93,13 @@ input:out-of-range                           /* works for input elements with mi
 p::first-line {}                             /* first line of <p> visible on screen */
 p::first-letter {}                           /* first letter of <p> */
 p::selection {}                              /* portion of an element selected , properties that can be modified are color, background, cursor, outline. */
-p::before {                                  /* Insert content before <p> */
+p::before {                                  /* Insert content at start of <p> , just like "prepend" in jQuery */
   content: "Read this -";
   background-color: yellow;
   color: red;
   font-weight: bold;
 }
-p::after {                                   /* Insert content after <p> */
+p::after {                                   /* Insert content at end of <p> , just like "append" in jQuery */
   content: " - Remember this";
   background-color: yellow;
   color: red;
