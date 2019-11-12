@@ -187,12 +187,18 @@ margin: 25px 50px 75px 100px;                              /* create space aroun
                                                            /* REFERENCE : https://www.w3schools.com/css/css_margin.asp */
                                                            
 left: 50px;                                                /* it is used for positioning and used with position property else it has no effect */
-                                                           /* position:absolute; left:20px; located 20px from the left of nearest relatively positioned parent (the top being the body tag) and is taken out of the document flow */
+                                                           /* position:absolute; left:20px; located 20px from the left of nearest relatively positioned ancestor (the top being the body tag) and is taken out of the document flow */
                                                            /* position:relative; left:20px; The element still maintains the same space as it would when static positioned */
                                                            /* Like it got up and got someone to save his space while it sat on his neighbors lap Or just mingle around the doc */
 
 border-radius: 25px;                                       /* border radius */
-box-shadow: 10px 10px 10px red;                            /* horizontl width, vertical width, blurred, color */
+box-shadow: 10px -10px 10px 10px red inset;                /* horizontal width (right (+ve value) | left(-ve value)) */
+                                                           /* vertical width  (bottom (+ve value) | top (-ve value)) */
+                                                           /* blurred (higher number, more blurred the shadow will be) */
+                                                           /* spread (positive value increases size of shadow, negative value decreases  size of shadow) */
+                                                           /* color */
+                                                           /* inset changes shadow from an outer shadow (outset) to an inner shadow */
+box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;  /* multiple shadows comma (,) separated */
 
 
 overflow: auto;                                            /* when content of element is too big to fit in the specified area. (visible | hidden | scroll | auto) */
@@ -201,7 +207,9 @@ overflow-y: scroll;                                        /* specifies what to 
 
 
 position: sticky;                                          /* specifies type of positioning method used for element(static (default)| absolute | fixed | relative | sticky) */
-                                                           /* relative (relative to parent element) , absolute (nearest positioned ( 'absolute', 'relative' or 'fixed') parent (the top being the body tag)) */
+                                                           /* relative element is positioned relative to its normal position */
+                                                           /* absolute element is positioned according to (nearest positioned ( 'absolute', 'relative' or 'fixed') ancestor (the top being the body tag)) */
+                                                           /* fixed element is positioned relative to the browser window */
                                                            /* Static (default) positioned elements are not affected by top, bottom, left, right properties. */
 
 position: absolute;                                        /* z-index only works on positioned elements */
@@ -216,17 +224,20 @@ clear: left;                           /* clear the float to left. Means that no
 display: inline-block;                 /* specifies the display behavior (the type of rendering box) of an element. */
 
 /* CSS Grid Layout */
-/* An HTML element becomes a grid container when its display property is set to grid or inline-grid. eg: <div class="grid-container"><div class="grid-item">1</div></div> */
+/* An HTML element becomes a grid container when its display property is set to grid or inline-grid. */
+/* All direct children of the grid container automatically become grid items. eg: <div class="grid-container"><div class="grid-item">1</div></div> */
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;     /* number of columns in your grid layout, and define the width of each column */
   grid-template-rows: auto auto;             /* height of each row */
   grid-column-gap: 50px;                     /* gap between columns */
   grid-row-gap: 50px;                        /* gap between rows */
-  grid-column-start: 1;                      /* just like colspan in <table> or Merge cells in excel */
-  grid-column-end: 3;
-  grid-row-start: 1;                         /* similar to colspan but merge row wise */
-  grid-row-end: 3;
+}
+.grid-item {
+  grid-column-start: 1;                      /* just like colspan in <table> or Merge cells in excel , start at column line number 1 */
+  grid-column-end: 3;                        /* end at column line number 3 */ /* NOTE : It is column line number not column number */
+  grid-row-start: 1;                         /* similar to colspan but merge row wise , start at row line number 1 */
+  grid-row-end: 3;                           /* end at row line number 3 */ /* NOTE : It is row line number not row number */
 }
 
 
