@@ -152,10 +152,10 @@ width: 100%;                                               /* a block element (s
 height:fit-content;
 width:fit-content;
 
-min-height: 50%;                                          /* If content is smaller than min-height, the min-height will be applied. */ /* If content is larger than min-height, the min-height property has no effect. */
-max-height: 50%;                                          /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect. */
-min-width: 500px;                                         /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect. */
-max-width: 150px;                                         /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect. */
+min-height: 50%;                                          /* If content is smaller than min-height, the min-height will be applied. */ /* If content is larger than min-height, the min-height property has no effect ie width wraps around content */
+max-height: 50%;                                          /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect ie wraps around content */
+min-width: 500px;                                         /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect ie wraps around content */
+max-width: 150px;                                         /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect ie wraps around content */
 
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
