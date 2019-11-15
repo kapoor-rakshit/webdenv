@@ -109,6 +109,7 @@ p::after {                                   /* Insert content at end of <p> , j
                                   
                                   
 /* SASS : Syntactically Awesome Style Sheets */
+/* It is a CSS preprocessor tool which makes CSS cross browser compatible. */ /* other tools are LESS , STYLUS */
 /* Instead of brackets and semicolons, it uses indentation of lines to specify blocks. Files in indented syntax use extension .sass */
 
 /* SCSS : Sassy CSS */
@@ -137,25 +138,26 @@ p::after {                                   /* Insert content at end of <p> , j
 DECLARATIONS
 -------------
 {
-/* The height and width properties do not include padding, borders, or margins. */
+/* The height and width properties do not include padding, borders, or margins */
+/* They set the height/width of the area inside the padding, border, and margin of the element */
 /* Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin */
 /* Total element width = width + left padding + right padding + left border + right border + left margin + right margin */
-height: 100%;                                              /* In order for a percentage value to work, the parent's height/width must be determined. */ 
-                                                           /* The only exception is the root element <html>, which can be a percentage */
-                                                           /* The viewport-percentage lengths are relative to the size of the initial containing block. */
-                                                           /* When the height or width of the initial containing block is changed, they are scaled accordingly. */
-                                                           /* vw unit : Equal to 1% of the width of the initial containing block. eg: 100vw */
-                                                           /* vh unit : Equal to 1% of the height of the initial containing block. eg: 100vh */
+height: 100%;                 /* In order for a percentage value to work, the parent's height/width must be determined. */ 
+                              /* The only exception is the root element <html>, which can be a percentage */ /* Always define CSS  html, body { height: 100%; width: 100%; } */
+                              /* The viewport is area where browser renders site. This is screen minus reserved space of browser.  */
+                              /* When the height or width of the browser window is changed, they are scaled accordingly. */
+                              /* vw unit : Equal to 1% of the width of the VIEWPORT. eg: 100vw */
+                              /* vh unit : Equal to 1% of the height of the VIEWPORT. eg: 100vh */
                                                            
-width: 100%;                                               /* a block element (such as a <div>, <p>, or <ul>) will, by default expand to fit the width of its containing element (minus any margins it has or padding its parent has) */
+width: 100%;                  /* a block element (such as a <div>, <p>, or <ul>) will, by default expand to fit the width of its containing element (minus any margins it has or padding its parent has) */
 
 height:fit-content;
 width:fit-content;
 
-min-height: 50%;                                          /* If content is smaller than min-height, the min-height will be applied. */ /* If content is larger than min-height, the min-height property has no effect ie width wraps around content */
-max-height: 50%;                                          /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect ie wraps around content */
-min-width: 500px;                                         /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect ie wraps around content */
-max-width: 150px;                                         /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect ie wraps around content */
+min-height: 50%;              /* If content is smaller than min-height, the min-height will be applied. */ /* If content is larger than min-height, the min-height property has no effect ie width wraps around content */
+max-height: 50%;              /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect ie wraps around content */
+min-width: 500px;             /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect ie wraps around content */
+max-width: 150px;             /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect ie wraps around content */
 
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
@@ -163,7 +165,7 @@ background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple i
 background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
 background-color: pink;                                    /* bg color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
-background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));                                        /* last param of rgba() define opacity */
+background-image: linear-gradient(to top right, rgba(255,0,0,0), rgba(255,0,0,1), rgba(0,255,0,1));                    /* last param of rgba() define opacity */
 
 
 color: magenta;                                            /* font color */
@@ -200,10 +202,18 @@ box-shadow: 10px -10px 10px 10px red inset;                /* horizontal width (
                                                            /* inset changes shadow from an outer shadow (outset) to an inner shadow */
 box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;  /* multiple shadows comma (,) separated */
 
-
+/* The clearfix, is a CSS hack that solves a persistent bug that occurs when two floated elements are stacked next to each other. */
+/* When elements are aligned this way, the parent container ends up with a height of 0, and it can easily wreak havoc on a layout */
 overflow: auto;                                            /* when content of element is too big to fit in the specified area. (visible | hidden | scroll | auto) */
 overflow-x: scroll;                                        /* specifies what to do with the left/right edges of the content. */
 overflow-y: scroll;                                        /* specifies what to do with the top/bottom edges of the content. */
+
+/* The overflow:auto clearfix works well as long as you are able to keep control of your margins and padding (else you might see scrollbars) */ /* use modern clearfix hack */
+.parentDIV::after {
+  content: "";
+  clear: both;
+  display: table;                                          /* element behaves like <table> element */
+}
 
 
 position: sticky;                                          /* specifies type of positioning method used for element(static (default)| absolute | fixed | relative | sticky) */
