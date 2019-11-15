@@ -58,7 +58,7 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";        /* set the element's new position */
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";      /* top/left are CSS to set , offsetTop/offsetLeft are JS to get */
   }
 
   function closeDragElement() {                              /* stop moving when mouse button is released */
