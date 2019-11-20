@@ -94,13 +94,13 @@ p::first-line {}                             /* first line of <p> visible on scr
 p::first-letter {}                           /* first letter of <p> */
 p::selection {}                              /* portion of an element selected , properties that can be modified are color, background, cursor, outline. */
 p::before {                                  /* Insert content at start of <p> , just like "prepend" in jQuery */
-  content: "Read this -";
+  content: "Read this -";                    /* but it is not child of TAG (p here) , rather it acts as sibling identified by TAG */
   background-color: yellow;
   color: red;
   font-weight: bold;
 }
 p::after {                                   /* Insert content at end of <p> , just like "append" in jQuery */
-  content: " - Remember this";
+  content: " - Remember this";               /* but it is not child of TAG (p here) , rather it acts as sibling identified by TAG */
   background-color: yellow;
   color: red;
   font-weight: bold;
@@ -158,6 +158,20 @@ min-height: 50%;              /* If content is smaller than min-height, the min-
 max-height: 50%;              /* If content is larger than max-height, it will overflow. How the container will handle the overflowing content is defined by overflow CSS property. */ /* If content is smaller than max-height, the max-height property has no effect ie wraps around content */
 min-width: 500px;             /* If content is smaller than min-width, the min-width will be applied. */ /* If content is larger than min-width, the min-width property has no effect ie wraps around content */
 max-width: 150px;             /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect ie wraps around content */
+
+
+/* !IMPORTANT property */
+/* Order of preference of CSS is INLINE --> INTERNAL --> EXTERNAL */
+/* apart from this value written at end overrides previous value , eg: margin: auto; margin: 30%;    margin: 30%   will be applied */
+/* When !important keyword is used on specific property/value pair, it will cause that value the most important value for that property, overriding any others. */
+/* any !important declaration can override another !important declaration. depending on order of declaration. */
+background-color: #0f0 !important;
+padding: 20px 10px 20px 10px !important;                   /* this will make all padding-top, padding-right, padding-bottom, padding-left as !IMPORTANT */
+
+
+/* pointer-events property defines whether or not an element reacts to pointer events */
+/* like mouse/touch events – including CSS hover/active states, click/tap events in Javascript, and whether or not cursor is visible. */
+pointer-events: none;
 
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
