@@ -164,7 +164,7 @@ max-width: 150px;             /* If content is larger than max-width, it will au
 /* Order of preference of CSS is INLINE --> INTERNAL --> EXTERNAL */
 /* apart from this value written at end overrides previous value , eg: margin: auto; margin: 30%;    margin: 30%   will be applied */
 /* When !important keyword is used on specific property/value pair, it will cause that value the most important value for that property, overriding any others. */
-/* any !important declaration can override another !important declaration. depending on order of declaration. */
+/* any !important declaration can override another !important declaration. depending on order of declaration ie first one is given preference */
 background-color: #0f0 !important;
 padding: 20px 10px 20px 10px !important;                   /* this will make all padding-top, padding-right, padding-bottom, padding-left as !IMPORTANT */
 
