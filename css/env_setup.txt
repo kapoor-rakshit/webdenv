@@ -199,7 +199,8 @@ padding: 25px 50px 75px 100px;                             /* generate space aro
                                                            /* REFERENCE : https://www.w3schools.com/css/css_padding.asp */
                                                            
 margin: 25px 50px 75px 100px;                              /* create space around elements, outside of any defined borders */
-                                                           /* four values : top, right, bottom, left */
+margin: auto;                                              /* four values : top, right, bottom, left */
+                                                           /* "auto" will make any block elements (div, p, ul) to centralize if width is set to other than default (100%) */
                                                            /* REFERENCE : https://www.w3schools.com/css/css_margin.asp */
                                                            
 left: 50px;                                                /* it is used for positioning and used with position property else it has no effect */
