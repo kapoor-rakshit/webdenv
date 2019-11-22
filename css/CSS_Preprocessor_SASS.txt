@@ -1,0 +1,230 @@
+
+/* REFERENCE : https://sass-lang.com/install */
+/*           : https://sass-lang.com/guide */
+
+/* DEFINITION */
+CSS are getting larger, more complex, and harder to maintain. This is where a preprocessor can help.
+SASS tool lets you use features that don't exist in CSS yet like variables, nesting, mixins, inheritance and other nifty goodies that make writing CSS fun again.
+SASS tool will take your preprocessed .SASS/.SCSS file and save it as a normal .CSS file that you can use in your website.
+
+
+
+/* INSTALLATION */
+You can install Sass on Windows, Mac, or Linux by downloading the package for your operating system from https://github.com/sass/dart-sass/releases/tag/1.23.7 and adding it to your PATH. 
+That’s all—there are no external dependencies and nothing else you need to install.
+
+If you use Node.js, you can also install Sass using npm by running
+> npm install -g sass
+
+Once installed run > "sass --version" or > "sass --help" to be sure it installed correctly.
+
+
+
+/* TOOL SYNTAX on TERMINAL */
+eg: > "sass input.scss output.css" from your terminal would take a single Scss file, input.scss, and compile that file to output.css.
+
+The --watch flag tells Sass to watch your source files for changes, and re-compile CSS each time you save your Sass/Scss.
+You can watch and output to directories by using folder paths as your input and output, and separating them with a colon.
+Sass would watch all files in the app/sass folder for changes, and compile CSS to the public/stylesheets folder.
+    > "sass --watch input.scss output.css"
+    > "sass --watch app/sass:public/stylesheets"
+    
+    
+   
+/* .SASS/.SCSS syntax */ 
+/* VARIABLES */
+Sass uses the $ symbol to make something a variable.
+Variables are used to store information that you want to reuse throughout your stylesheet like colors, font stacks, or any CSS value.
+eg:
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+-------------- compiles to -----------------
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+
+
+
+/* NESTING */
+Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML.
+eg:
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
+------------------ compiles to ---------------
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+
+
+/* PARTIALS + MODULES */
+Partials contain little snippets of CSS that you can include in other Sass files. 
+A partial is a Sass file named with a leading underscore. You might name it something like _partial.scss. 
+The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @use rule.
+eg:
+// _base.scss FILE
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+// styles.scss FILE
+@use 'base';
+
+.inverse {
+  background-color: base.$primary-color;
+  color: white;
+}
+--------------- compiles to ------------------
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+
+.inverse {
+  background-color: #333;
+  color: white;
+}
+
+
+
+/* MIXINS */
+A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. 
+You can even pass in values to make your mixin more flexible. A good use of a mixin is for vendor prefixes.
+Use the @mixin directive and give it a name "transform" here. The variable $property inside the parentheses acts as parameter to MIXIN.
+Use it as a CSS declaration starting with @include followed by the name of the mixin.
+eg:
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+.box { 
+  @include transform(rotate(30deg)); 
+}
+--------------- compiles to -----------------------
+.box {
+  -webkit-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+
+
+/* INHERITANCE */
+Using @extend lets you share a set of CSS properties from one selector to another.
+A placeholder class (decorated with %NAME_OF_PLACEHOLDER) is a special type of class that only prints when it is extended.
+eg:
+/* This CSS will print because %message-shared is extended. */
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+// This CSS won't print because %equal-heights is never extended.
+%equal-heights {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.message {
+  @extend %message-shared;
+}
+
+.success {
+  @extend %message-shared;
+  border-color: green;
+}
+
+.error {
+  @extend %message-shared;
+  border-color: red;
+}
+
+.warning {
+  @extend %message-shared;
+  border-color: yellow;
+}
+---------------compiles to ------------------
+.message, .success, .error, .warning {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  border-color: green;
+}
+
+.error {
+  border-color: red;
+}
+
+.warning {
+  border-color: yellow;
+}
+
+
+
+/* OPERATORS */
+Sass has a handful of standard math operators like +, -, *, /, and %
+eg:
+.container {
+  width: 100%;
+}
+
+article[role="main"] {
+  float: left;
+  width: 600px / 960px * 100%;
+}
+
+aside[role="complementary"] {
+  float: right;
+  width: 300px / 960px * 100%;
+}
+-------------- compiles to ------------------
+.container {
+  width: 100%;
+}
+
+article[role="main"] {
+  float: left;
+  width: 62.5%;
+}
+
+aside[role="complementary"] {
+  float: right;
+  width: 31.25%;
+}
+
+
