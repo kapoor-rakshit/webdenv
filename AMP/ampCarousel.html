@@ -23,18 +23,21 @@
 	<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   
 	<style type="text/css" amp-custom>
-	  #custom-button .amp-carousel-button-prev {
-      		left: 5%;
-      		background-image: url('https://amp.dev/static/samples/img/carousel-arrow-left.png');
-          }
-          #custom-button .amp-carousel-button-next {
-      		right: 5%;
-      		background-image: url('https://amp.dev/static/samples/img/carousel-arrow-right.png');
-          }
-          div.carouselCONTAINER{
-    		border: 2px solid black;
-    		margin: 5px;
-          }
+	#custom-button .amp-carousel-button-prev {
+      left: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-left.png');
+    }
+    #custom-button .amp-carousel-button-next {
+      right: 5%;
+      background-image: url('https://amp.dev/static/samples/img/carousel-arrow-right.png');
+    }
+    div.carouselCONTAINER{
+    	border: 2px solid black;
+    	max-height: 500px;
+    	max-width: 500px;
+    	margin: auto;
+    	margin-top: 5px;
+    }
 	</style>
 </head>
 <body>
@@ -44,8 +47,8 @@
 	<!-- "data-prev-button-aria-label" : aria-label for the amp-carousel-button-prev -->
 	<!-- "data-button-count-format" : A format string that looks like (%s of %s) used as a suffix to aria-label for amp-carousel-button-next/amp-carousel-button-prev -->
 	<!-- "autoplay" : attribute (type=slides only) advances slide to next slide without user interaction. autoplay has "loop" by default -->
-        <!-- "delay" : by default "autoplay" will advance slide in 5000ms and can be overridden by the "delay" attribute.  -->
-        <!-- "loop" : advance past the first item or the final item. There must be at least 3 slides for looping to occur. -->
+    <!-- "delay" : by default "autoplay" will advance slide in 5000ms and can be overridden by the "delay" attribute.  -->
+    <!-- "loop" : advance past the first item or the final item. There must be at least 3 slides for looping to occur. -->
 
 
 	<!-- 1. Use `type="carousel"` to display a list of images as a continuous strip. 
@@ -57,52 +60,52 @@
 		<amp-img src="pics/asr2.jpg" width="300" height="300" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr3.jpg" width="300" height="300" alt="a sample image"></amp-img>
 	</amp-carousel>
-	     </div>
+		</div>
 
 	<!-- 2. Use `type="slides"` to display a list of images as slides. 
 	        arrows moves one item at a time -->
-	    <div class="carouselCONTAINER">
+		<div class="carouselCONTAINER">
 	<amp-carousel height="300" width="400" layout="responsive" autoplay delay="3000" type="slides" data-next-button-aria-label="Next" data-prev-button-aria-label="Previous" data-button-count-format=" %s/%s">
 		<amp-img src="pics/asr.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr1.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr2.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr3.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 	</amp-carousel>
-             </div>
+		</div>
 
 	<!-- 3. By default, carousel buttons use inlined SVGs as background-images.
 		    These can be overridden own SVGs or images by using `.amp-carousel-button-prev` and `.amp-carousel-button-next` classes. -->
-	    <div class="carouselCONTAINER">
-        <amp-carousel id="custom-button" width="400" height="300" layout="responsive" type="slides" loop>
-    		<amp-img src="pics/asr.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
+		<div class="carouselCONTAINER">
+    <amp-carousel id="custom-button" width="400" height="300" layout="responsive" type="slides" loop>
+    	<amp-img src="pics/asr.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr1.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr2.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr3.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
   	</amp-carousel>
-  	     </div>
+  	    </div>
 
     <!-- 4. Carousel with preview -->
-    	    <div class="carouselCONTAINER">
-        <amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides">
-    		<amp-img src="pics/asr.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
+    	<div class="carouselCONTAINER">
+    <amp-carousel id="carousel-with-preview" width="400" height="300" layout="responsive" type="slides" loop>
+    	<amp-img src="pics/asr.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr1.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr2.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
 		<amp-img src="pics/asr3.jpg" width="400" height="300" layout="responsive" alt="a sample image"></amp-img>
   	</amp-carousel>
   	<div class="carousel-preview">
   		<button on="tap:carousel-with-preview.goToSlide(index=0)">
-  			<amp-img src="pics/asr.jpg" width="30" height="30" alt="a sample image"></amp-img>
-    		</button>
+  			<amp-img src="pics/asr.jpg" width="40" height="50" alt="a sample image"></amp-img>
+    	</button>
   		<button on="tap:carousel-with-preview.goToSlide(index=1)">
-  			<amp-img src="pics/asr1.jpg" width="30" height="30" alt="a sample image"></amp-img>
-    		</button>
-    		<button on="tap:carousel-with-preview.goToSlide(index=2)">
-  			<amp-img src="pics/asr2.jpg" width="30" height="30" alt="a sample image"></amp-img>
-    		</button>
-    		<button on="tap:carousel-with-preview.goToSlide(index=3)">
-  			<amp-img src="pics/asr3.jpg" width="30" height="30" alt="a sample image"></amp-img>
-    		</button>
+  			<amp-img src="pics/asr1.jpg" width="40" height="50" alt="a sample image"></amp-img>
+    	</button>
+    	<button on="tap:carousel-with-preview.goToSlide(index=2)">
+  			<amp-img src="pics/asr2.jpg" width="40" height="50" alt="a sample image"></amp-img>
+    	</button>
+    	<button on="tap:carousel-with-preview.goToSlide(index=3)">
+  			<amp-img src="pics/asr3.jpg" width="40" height="50" alt="a sample image"></amp-img>
+    	</button>
 	</div>
-	   </div>
+		</div>
 </body>
 </html>
