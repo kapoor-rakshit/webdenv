@@ -1,0 +1,120 @@
+
+// REFERENCE : https://developers.google.com/web/fundamentals/primers/service-workers
+
+
+webWorker v/s serviceWorker
+======================
+A worker is a script that runs in a thread separate from the main thread in the browser. This means you can run code without blocking. 
+Workers are not meant for UI updates and do not have access to the DOM.
+
+Web Workers don't have all the fancy capabilities of Service Workers, but when you need to offload heavy work to a separate thread on client they are the way to go.
+
+Service Workers offer a lot more functionality for creating Progressive Web Apps which give a great experience for offline users or users with slow internet connections. 
+
+
+INTRO
+========
+A service worker is a script that your browser runs in the background, separate from a web page, opening the door to features that don't need a web page or user interaction.
+It includes features like Rich offline experiences , Push notifications and Background sync.
+
+It's a JavaScript Worker, so it can't access the DOM directly. 
+Instead, a service worker can communicate with the pages it controls by responding to messages sent via the postMessage interface, and those pages can manipulate the DOM if needed.
+
+Service worker is a programmable proxy betweeen BROWSER and NETWORK allowing you to control how network requests from your page are handled.
+
+
+
+LIFE CYCLE
+============
+A service worker has a lifecycle that is completely separate from your web page.
+    REGISTER
+---------------------
+    To install a service worker for your site, you need to register it, which you do in your page's JavaScript. (index.html)
+    Registering a service worker will cause the browser to start the service worker install step in the background.
+    You can call register() every time a page loads without concern; the browser will figure out if the service worker is already registered or not and handle it accordingly.
+    The service worker file is at the root of the domain. This means that the service worker's scope will be the entire origin. 
+         In other words, this service worker will receive fetch events for everything on this domain. 
+         If we register the service worker file at /example/sw.js, then the service worker would only see fetch events for pages whose URL starts with /example/ (i.e. /example/page1/, /example/page2/).
+    // Code
+ 		if ('serviceWorker' in navigator) {
+		    window.addEventListener('load', () => {
+                                          navigator.serviceWorker.register('/service-worker.js').then((reg) => {
+          			// Registration was successful
+          			console.log('Service worker registered.', reg);
+        			}, (err) => {
+          			// Registration failed
+          			console.log('ServiceWorker registration failed: ', err);
+        		       });
+    		   });
+		}
+
+    INSTALL
+---------------------
+     The install event is the first event a service worker gets, and it only happens once.
+     During the install step, you'll want to cache some static assets. 
+     If all the files are cached successfully, then the service worker becomes installed. 
+     If any of the files fail to download and cache, then the install step will fail and the service worker won't activate (i.e. won't be installed). 
+     If that happens, don't worry, it'll try again next time. 
+     But that means if it does install, you know you've got those static assets in the cache.
+     Inside of our install callback, we need to take the following steps:
+               Open a cache.
+               Cache our files.
+               Confirm whether all the required assets are cached or not.
+
+     ACTIVATE
+---------------------
+     When installed, the activation step will follow and this is a great opportunity for handling any management of old caches.
+     The reason you'll want to do this in the activate callback is because if you were to wipe out any old caches in the install step, any old service worker, 
+     which keeps control of all the current pages, will suddenly stop being able to serve files from that cache.
+     When a service worker is initially registered, pages won't use it until they next load. The claim() method causes those pages to be controlled immediately.
+
+     FETCH
+---------------------
+     After the activation step, the service worker will control all pages that fall under its scope, though the page that registered the service worker for the first time won't be controlled until it's loaded again.
+     When user navigates to a different page or refreshes, the service worker will begin to receive fetch events
+     Once a service worker is in control, it will be in one of two states: either the service worker will be terminated to save memory, or it will handle fetch and message events that occur when a network request or message is made from your page.
+
+
+
+PREREQUISITES
+===============
+    Browser Support
+    
+    HTTPS
+    Using service worker you can hijack connections, fabricate, and filter responses.
+    To avoid this, you can only register service workers on pages served over HTTPS, so we know the service worker the browser receives hasn't been tampered with during its journey through the network.
+
+
+
+UPDATING SERVICE WORKER
+=========================
+    Update your service worker JavaScript file. NOTE : Update name of cache(s) when change made to cache files so that old key of cache stored on client browser can be deleted in ACTIVATE step.
+    When the user navigates to your site, the browser tries to redownload the script file that defined the service worker in the background. 
+    If there is even a byte's difference in the service worker file compared to what it currently has, it considers it new.
+
+    Your new service worker will be registered and the install event will be fired.
+
+    At this point the old service worker is still controlling the current pages so the new service worker will enter a waiting state for being activated.
+    This is because clients ( pages, workers, and shared workers ) overlap during a refresh, it's how the browser ensures that only one version of your service worker is running at a time.
+    When the currently open pages of your site are CLOSED the old service worker will be killed and the new service worker will take control.
+    Once your new service worker takes control, its activate event will be fired.
+
+    We can use    self.skipWaiting();    in INSTALL step and    self.clients.claim();   in ACTIVATE step to have immediate effect of new SERVICE WORKER.
+    skipWaiting() avoids need to CLOSE page for new service worker to come to effect.
+    clients.claim() inside service worker's "activate" event listener so that clients loaded in the same scope do not need to be RELOADED before their fetches will go through this service worker.
+
+
+
+DEBUGGING
+============
+    go to chrome://serviceworker-internals and check "Open DevTools window and pause JavaScript execution on service worker startup for debugging", 
+    and put a debugger statement at the start of your install event.
+
+    Fetch third party resources
+    fetching a resource from a third party URL will fail if it doesn't support CORS. You can add a no-CORS option to the Request to overcome this,
+    // Code
+    		cache.addAll(urlsToPrefetch.map(function(urlToPrefetch) {
+  			return new Request(urlToPrefetch, { mode: 'no-cors' });
+		})).then(function() {
+  			console.log('All resources have been fetched and cached.');
+		});
