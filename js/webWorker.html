@@ -1,24 +1,40 @@
 
-# REFERENCE : https://www.w3schools.com/html/html5_webworkers.asp
+<!-- REFERENCE : https://www.w3schools.com/html/html5_webworkers.asp -->
 
-# A web worker is a JavaScript running in the background, without affecting the performance of the page.
-# When executing scripts in an HTML page, the page becomes unresponsive until the script is finished.
-# A web worker is a JavaScript that runs in the background, independently of other scripts, without affecting the performance of the page.
-# You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.
+<!-- A web worker is a JavaScript running in the background, without affecting the performance of the page.
+     When executing scripts in an HTML page, the page becomes unresponsive until the script is finished.
+     A web worker is a JavaScript that runs in the background, independently of other scripts, without affecting the performance of the page.
+     You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.
+-->
+<!-- There are two kinds of Web Workers ie Dedicated Workers and Shared Workers.    
+-->
+<!-- Messages passed between the main page and workers are copied, not shared.
+     To stop a worker: by calling worker.terminate() from the main page or by calling self.close() inside of the worker itself.
+-->
+<!-- webWorker v/s serviceWorker
+     ============================
+A worker is a script that runs in a thread separate from the main thread in the browser. This means you can run code without blocking. 
+Workers are not meant for UI updates and do not have access to the DOM.
+Web Workers don't have all the fancy capabilities of Service Workers, but when you need to offload heavy work to a separate thread on client they are the way to go.
+Service Workers offer a lot more functionality for creating Progressive Web Apps which give a great experience for offline users or users with slow internet connections. 
+-->
 
 
-<!-- SCRIPT FOR WEB WORKER "demo_workers.js"
-
+<!-- 1. Example  SCRIPT FOR WEB WORKER "demo_workers.js"
 var i = 0;
-
 function timedCount() {
   i = i + 1;
   postMessage(i);                                   // postMessage() method - which is used to post a message back to the HTML page.
   setTimeout("timedCount()",500);
 }
-
 timedCount();
+-->
 
+
+<!-- 2. Example  SCRIPT FOR WEB WORKER "doWork.js"
+self.addEventListener('message', function(e) {
+  self.postMessage(e.data);
+}, false);
 -->
 
 
@@ -31,7 +47,7 @@ timedCount();
 <button onclick="startWorker()">Start Worker</button> 
 <button onclick="stopWorker()">Stop Worker</button>
 
-
+<!-- 1. Example -->
 <script>
 var w;
 
@@ -56,6 +72,19 @@ function stopWorker() {
   
   w = undefined;                                // set the worker variable to undefined, after it has been terminated, to reuse the code
 }
+</script>
+  
+ 
+<!-- 2. Example -->
+<script>
+  var worker = new Worker('doWork.js');
+  
+  worker.addEventListener('message', function(e) {
+  console.log('Worker said: ', e.data);
+}, false);
+
+worker.postMessage();                           // Start the worker, if no arg (String or JSON object) is required to pass
+worker.postMessage('Hello World');              // Send data (arg) to our worker.
 </script>
 
 </body>
