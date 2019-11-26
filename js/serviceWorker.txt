@@ -36,9 +36,11 @@ A service worker has a lifecycle that is completely separate from your web page.
          In other words, this service worker will receive fetch events for everything on this domain. 
          If we register the service worker file at /example/sw.js, then the service worker would only see fetch events for pages whose URL starts with /example/ (i.e. /example/page1/, /example/page2/).
     // Code
+    	<script>
+    	// CODELAB: Register service worker.
  		if ('serviceWorker' in navigator) {
 		    window.addEventListener('load', () => {
-                                          navigator.serviceWorker.register('/service-worker.js').then((reg) => {
+                                navigator.serviceWorker.register('/service-worker.js').then((reg) => {
           			// Registration was successful
           			console.log('Service worker registered.', reg);
         			}, (err) => {
@@ -47,6 +49,7 @@ A service worker has a lifecycle that is completely separate from your web page.
         		       });
     		   });
 		}
+	 </script>
 
     INSTALL
 ---------------------
