@@ -1,0 +1,137 @@
+
+// REFERENCE : https://codelabs.developers.google.com/codelabs/your-first-pwapp/#0
+
+
+Intro
+=====
+Progressive Web Apps provide an installable, app-like experience on desktop and mobile that are built and delivered directly via the web.
+PWAs are websites that can be installed to a device’s homescreen without an app store.
+PWAs can be downloaded in advance and can work offline, as well as use regular Web APIs.
+They're web apps that are fast and reliable. And most importantly, they're web apps that work in any browser.
+Progressive Web Apps can run in a browser tab, but are also installable.
+An installed Progressive Web App (PWA) looks and behaves like all of the other installed apps. It launches from the same place as other apps launch. 
+You can control the launch experience, including a customized splash screen, icons, and more. It runs as an app, in an app window without an address bar or other browser UI.
+Like all other installed apps, it's a top level app in the task switcher.
+ - Use responsive design, so it works on desktop or mobile.
+ - Be fast, using a service worker to precache the app resources (HTML, CSS, JavaScript, images) needed to run and to cache data at runtime to improve performance.
+ - Be installable, using a web app manifest and the beforeinstallprompt event to notify the user it's installable.
+
+
+
+Audit with Lighthouse
+================
+Lighthouse is an easy to use tool to help improve the quality of your sites and pages. Lighthouse runs audits for performance, accessibility, progressive web apps, and more. 
+Each audit has a reference doc explaining why the audit is important and how to fix problems.
+
+
+
+Web app manifest
+==============
+The web app manifest is a simple JSON file that gives you, the developer, the ability to control how your app appears to the user.
+Open up the Manifest pane on the Application panel in DevTools on browser. 
+If you've added the manifest information correctly, you'll be able to see it parsed and displayed in a human-friendly format on this pane.
+ - Reference : https://developer.mozilla.org/en-US/docs/Web/Manifest#Members
+ - Create a file named      public/manifest.json       in your project.
+ - Add       <link rel="manifest" href="/manifest.json">       to <head> element in index.html file to tell browser about our manifest.
+
+Safari on iOS doesn't support the web app manifest (yet), so you'll need to add the traditional meta tags to the <head> of your index.html file.
+ - <meta name="apple-mobile-web-app-capable" content="yes">
+ - <meta name="apple-mobile-web-app-status-bar-style" content="black">
+ - <meta name="apple-mobile-web-app-title" content="Weather PWA">
+ - <link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
+
+Descriptions can be displayed in Google Search results. High-quality, unique descriptions can make your results more relevant to search users and can increase your search traffic.
+To add a description, add the following meta tag to the <head> of your document
+ - <meta name="description" content="A sample weather app">
+
+Theming the browser's address bar to match your brand's colors provides a more immersive user experience.
+To set the theme color on mobile, add the following meta tag to the <head> of your document
+ - <meta name="theme-color" content="#2F3BA2" />
+
+
+
+Provide a basic offline experience
+========================
+There is an expectation from users that installed apps will always have a baseline experience if they're offline. 
+That's why it's critical for installable web apps to never show Chrome's offline dinosaur game.
+The offline experience can range from a simple offline page, to a read-only experience with previously cached data, to a fully functional offline experience that automatically syncs when the network connection is restored.
+
+Service workers to the rescue
+--------------------------------------
+NOTE :  Service worker functionality is only available on pages that are accessed via HTTPS. (http://localhost and equivalents also work to facilitate testing.)
+Open DevTools and go to the Service Workers pane on the Application panel.
+We can also check to see what's been cached. Go to the Cache Storage pane on the Application panel of DevTools.
+To clear all saved data (localStorage, indexedDB data, cached files) and remove any service workers, use the Clear storage pane in the Application panel.
+ - Register the service worker in    index.html   file.
+ - We need to tell the service worker what to cache.
+ - We need to install the service worker to pre-cache the offline page.
+ -  Activate event of service worker to clean up any old data in our browser cache.
+ - We need to handle fetch events. The service worker first tries to fetch the resource from the network. If that fails, the service worker returns the offline page from the cache.
+NOTE : Don't forget to update the CACHE_NAME in your service-worker.js file when you've made changes to files that are already cached.
+
+Caching Strategies
+--------------------------
+ -  cache-first strategy :  instead of going to the network to get the resources, they're pulled from the local cache; only if it's not available there will we try to get it from the network.
+ -  stale-while-revalidate strategy : gets data on screen as quickly as possible, then updates once network has returned latest data. This means we need to kick off two asynchronous requests, one to cache and one to network.
+
+App Shell
+---------------
+An application shell (or app shell) architecture is one way to build a Progressive Web App that reliably and instantly loads on your users' screens.
+The app "shell" is the minimal HTML, CSS and JavaScript required to power the user interface.
+This means the application shell is not loaded from the network every time the user visits. Only the necessary content is needed from the network.
+It is the skeleton of your UI and the core components necessary to get your app off the ground, but likely does not contain the data.
+
+
+ 
+Add install experience
+=================
+add the install.js to our index.html file
+ - <script src="/scripts/install.js"></script>
+
+In 'install.js'
+ - Listen for the beforeinstallprompt event
+ - Notify the user your app can be installed with a button or other element that will generate a user gesture event.
+ - Show the prompt by calling prompt() on the saved beforeinstallprompt event.
+ - To determine if the app was successfully added to the user's home screen after they accepted the prompt, you can listen for the appinstalled event.
+
+If the add to home screen criteria are met, 
+Chrome will fire a beforeinstallprompt event that you can use to indicate your app can be 'installed' and then prompt the user to install it.
+NOTE :  the beforeinstallevent doesn't fire if the app is already installed.
+ - window.addEventListener('beforeinstallprompt', saveBeforeInstallPromptEvent);
+
+Save a reference to the beforeinstallprompt event so that we can call prompt() on it later and update our UI to show the install button.
+ - deferredInstallPrompt = evt;
+ - installButton.removeAttribute('hidden');
+
+When the user clicks the install button, we need to call .prompt() on the saved beforeinstallprompt event. 
+We also need to hide the install button, because .prompt() can only be called once on each saved event.
+Calling .prompt() will show a modal dialog to the user, asking them to add your app to their home screen.
+ - deferredInstallPrompt.prompt();
+   // Hide the install button, it can't be called twice.
+ - evt.srcElement.setAttribute('hidden', true);
+
+Check to see how the user responded to the install dialog by listening for the promise returned by the userChoice property of the saved beforeinstallprompt event. 
+The promise returns an object with an outcome property after the prompt has shown and the user has responded to it.
+ - 	deferredInstallPrompt.userChoice
+	.then((choice) => {
+		if (choice.outcome === 'accepted') {
+			console.log('User accepted the A2HS prompt', choice);
+		} else {
+			console.log('User dismissed the A2HS prompt', choice);
+		}
+	deferredInstallPrompt = null;
+	});
+
+In addition to any UI that you add to install your app, users can also install your PWA through other methods, for example Chrome's three-dot menu. 
+To track these events, listen for the appinstalled event.
+ - window.addEventListener('appinstalled', logAppInstalled);
+
+we'll need to update the logAppInstalled function. For this codelab, we'll just use console.log, 
+but in a production app you probably want to log this as an event with your analytics software.
+ - console.log('Weather App was installed.', evt);
+ - installButton.setAttribute('hidden', true);                // hide UI button when installed using other method,  for example Chrome's three-dot menu. 
+
+
+
+
+
