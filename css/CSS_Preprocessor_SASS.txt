@@ -51,17 +51,34 @@ body {
 
 
 /* NESTING */
-Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML.
-eg:
+/* 1 : Basic Nesting, adds a space by default */
+.parent {
+  .child {}                    /* this compiles to    -->    .parent .child {}  */
+}
+
+/* 2 : "&" specifies an element that has both classes, no space added */
+.some-class {
+  &.another-class {}          /* this compiles to     -->    .some-class.another-class {}  */
+}
+
+/* 3 : "&" followed by space */
+.parent {
+  & .child {}                 /* this compiles to    -->    .parent .child {}  */
+}
+
+/* 4 : repositioning "&" */
+.button {
+  body.page-about & {}       /* this compiles to     -->     body.page-about .button {} */
+}
+
+/* 5 */
 nav {
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-
   li { display: inline-block; }
-
   a {
     display: block;
     padding: 6px 12px;
