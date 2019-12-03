@@ -1,0 +1,79 @@
+
+/* REFERENCE : https://codelabs.developers.google.com/codelabs/push-notifications/index.html#0 */
+
+
+INTRO
+=======
+Push messaging provides a simple and effective way to re-engage with your users.
+
+ - How to subscribe and unsubscribe a user for push messaging
+ - How to handle incoming push messages
+ - How to display a notification
+ - How to respond to notification clicks
+
+
+
+STEPS
+=======
+ - Register a service worker
+--------------------------------------
+   checks whether service workers and push messaging are supported by your browser. If they are supported, the code registers your service-worker.js file.
+
+ - Get application server keys
+---------------------------------------
+   Application server keys are used to idenitfy your application server with a push service.
+   To send push messages from your own server, use one of the libraries available at        https://github.com/web-push-libs/
+
+ - Initialize state
+---------------------------------------
+   create two functions
+    - initializeUI()       , to check if the user is currently subscribed
+                                 pushManager property of Service Worker 
+                                 pushManager. getSubscription() returns a promise that resolves with the current subscription if there is one. 
+                                 Otherwise, it returns null. With this, you can check whether the user is already subscribed, set the value of isSubscribed, and then call updateBtn() to update the button.
+    - updateBtn()       , to enable your button and change the text depending on whether the user is subscribed or not
+
+ - Subscribe / Unsubscribe the user
+--------------------------------------------------
+   - In the initializeUI() function, add a click listener for your button. call subscribeUser() if the user isn't currently subscribed or unsubscribeUser() if user is subscribed.
+   - subscribeUser()
+     take the application server's public key, which is Base64 URL-safe encoded, and convert it to a UInt8Array, because this is the expected input of the subscribe() call of pushManager property.
+     call the subscribe() method on your service worker's pushManager, passing in your application server's public key and the value userVisibleOnly: true.
+     userVisibleOnly parameter is an assurance that you will show a notification every time a push message is sent. Currently, this value is required and must be true.
+     Calling subscribe() returns a promise that will resolve after the user has granted permission to display notifications and browser has sent a network request to a push service to get the data required to generate a PushSubscription.
+     The subscribe() promise will resolve with a PushSubscription.
+   - unsubscribeUser()
+     get the current subscription by calling getSubscription() of pushManager.
+     This returns a promise that resolves with a PushSubscription if one exists; otherwise, it returns null.
+     If there is a subscription, you call unsubscribe() on it, which makes the PushSubscription invalid.
+     Calling unsubscribe() returns a promise, since it can take some time to complete. You return that promise so the next then() in the chain waits for unsubscribe() to finish.
+   - updateSubscriptionOnServer()
+     This function is where you would send your subscription data to a backend as JSON data.
+
+ - Handle permission denied
+---------------------------------------
+   if the user blocks the permission, your web app will not be able to re-show the permission prompt and will not be able to subscribe the user. 
+   You need to at least disable the push button so the user knows it can't be used.
+   check the Notification.permission value.
+   if the permission is denied, then the user can't be subscribed and there is nothing more you can do, so permanently disabling the button is the best approach.
+
+ - Handle a push event
+--------------------------------------
+   When you trigger a push message, the browser receives the push message, figures out what service worker the push is for, wakes up that service worker, and dispatches a push event. 
+   You need to listen for this event and show a notification as a result in SERVICE WORKER.
+   - listening for push events in your service worker by adding an event listener
+   - When a push message is received, the event listener will be called, and you create a notification by calling showNotification() on the registration property of the service worker.
+     showNotification() requires a title , you can also give it an options object to set a body message, icon, and badge. (The badge is only used on Android at the time of writing.)
+   - event.waitUntil(). This method takes a promise to enable the browser to keep your service worker alive and running until the promise passed in has been resolved.
+
+ - Handle a Notification click
+----------------------------------------
+   You can handle notification clicks by listening for notificationclick events in your service worker.
+   event.notification.close()     closes the notification that was clicked.
+   clients.openWindow('https://developers.google.com/web')   a new window or tab is opened.
+   event.waitUntil() ensures that the browser doesn't terminate the service worker before the new window or tab has been displayed.
+
+ - Send push messages
+----------------------------------------
+   This would require sending a subscription from a web page to a backend. 
+   The backend would then trigger a push message by making an API call to the endpoint in the subscription.
