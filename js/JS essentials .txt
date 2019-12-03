@@ -120,6 +120,7 @@ Misc.
 	                                                                     // This operator is often used to obtain the undefined primitive value, using "void(0)".
 	        <a href="javascript:void(document.body.style.backgroundColor='red');">Click to change background color of body to red</a>
 		                                                             // (this is useful when evaluating an expression without using the return value).
+	  0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
 
 Debugging
         0.     // activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
@@ -311,5 +312,53 @@ Events
 
         0.     var intervalVar = setInterval(func, duration)             // calls 'func' after every 'duration' millisec
         0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
+	
 
+Console
+	0.	console.assert(expression, message);                     // writes message to console, only if expression evaluates to false or null.
+	0.	console.error(message);                                  // writes an error message to the console (highlighted in RED)
+	0.	console.info(message);                                   // writes a message to the console.
+	0.	console.log(message);                                    // writes a message to the console.
+	0.	console.table(tabledata, tablecolumns);                  // first parameter must be JSON object or array ,containing data to fill the table. 
+	                                                                   // An array containing names of columns to be displayed in table ie act as filter. eg : console.table([car1, car2, car3]);  where car1, car2, car3 are JSON objects.
+	0.	console.warn(message);                                   // writes a warning to the console.
+	0.	console.clear();                                         // clears console plus write message in console: "Console was cleared".
+	0.	console.count(label);                                    // number of times particular console.count() with defined label is called
+	0.	console.group(label);                                    // indicates the start of a not-collapsed message group. All messages will from now on be written inside this group.
+	0.	console.groupCollapsed(label);                           // indicates the start of a collapsed message group. Click the expand button to open the message group.
+	0.	console.groupEnd();                                      // indicates the end of a message group.
+	0.	console.time(label);                                     // starts a timer with particular LABEL in console view.
+	0.	console.timeEnd(label);                                  // ends a timer with particular LABEL, and write result in console view.
+	
+	
+DOM Document
+	0.	document.activeElement.tagName;                          // returns the currently focused element in the document.
+	0.	document.documentURI;                                    // returns the location of a document.
+	0.	document.getElementById("idval")	                 // Returns the element that has the specified ID attribute
+ 	0.	document.getElementsByClassName("classval");             // Returns NodeList containing all elements with the specified CLASS attribute
+	0.	document.getElementsByName("nameval");                   // Returns NodeList containing all elements with a specified NAME attribute
+	0.	document.getElementsByTagName("tagval");                 // Returns NodeList containing all elements with the specified tag name
+	0.	document.hasFocus();                                     // Returns Boolean value indicating whether the document has focus
+	0.	document.querySelector("#IDVAL");                        // Returns first element that matches specified CSS selector(s) in document
+	0.	document.querySelectorAll("#IDVAL");                     // Returns NodeList containing all elements that matches specified CSS selector(s) in document
+	0.	document.title;                                          // Sets or returns the title of the document
+	0.	document.write();                                        // Writes HTML expressions or JavaScript code to a document
+	0.	document.writeln();                                      // Same as write(), but adds a newline character after each statement
+	
+	
+DOM Element
+	0.	elem.appendChild();                                      // Adds a new child node, to an element, as the last child node
+	0.	elem.blur();                                             // Removes focus from an element
+	0.	elem.focus();                                            // Gives focus to an element
+	0.	elem.classList;                                          // Returns the class name(s) of an element
+	0.	elem.classList.remove("classval");                       // just like removeClass("classval") in jQuery
+	0.	elem.classList.add("classval");                          // just like addClass("classval") in jQuery
+	0.	elem.className;                                          // Sets or returns value of CLASS attribute of an element
+	0.	elem.getAttribute("attrname");                           // just like attr("attrname") in jQuery
+	0.	elem.setAttribute("attrname", "attrval");                // just like attr({"attrname" : "attrval"}) in jQuery
+	0.	elem.innerHTML;                                          // Sets or returns the content of an element
+	0.	elem.innerText;                                          // Sets or returns text content of a node and its descendants
+	0.	elem.style.PROP="PROPVAL";                               // just like css({"PROP" : "PROPVAL"}) in jQuery
+	
+	
 ￼
