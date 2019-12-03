@@ -120,7 +120,7 @@ Misc.
 	                                                                     // This operator is often used to obtain the undefined primitive value, using "void(0)".
 	        <a href="javascript:void(document.body.style.backgroundColor='red');">Click to change background color of body to red</a>
 		                                                             // (this is useful when evaluating an expression without using the return value).
-	  0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
+	0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
 
 Debugging
         0.     // activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
