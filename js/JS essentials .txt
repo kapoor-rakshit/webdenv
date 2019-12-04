@@ -172,6 +172,8 @@ Strings
 	0.      var res = str.toLowerCase();
 	0.      var res = str.toUpperCase();
 	0.      var res = str.trim();
+	0.	var res = String.fromCharCode(65,67);      // returns AC , just like chr() in python  |  NOTE : String object
+	0.	var res = str.charCodeAt(index);           // returns 65 if char at index is A of string str , just like ord() in python
 
 
 Form
@@ -269,25 +271,34 @@ CSS
 
 
 Events
-        0.      onclick, onfocus, onblur, onchange, onmouseover, onmouseout, onmousemove
-	0.	oncontextmenu                   // right click event handler 
-	0.	onClick = “func(this)”          // "this" provides a context object to element itself
-	0.	onkeydown, onkeypress, onkeyup  // "event" provides a context object to event which triggered the function
-                function keydown(e){                                           // first
-			if(e.keyCode) console.log("keydown : " + e.keyCode)
+        0.      onclick, ondblclick, onfocus, onblur, onchange, onmouseover, onmouseout, onmouseenter, onmouseleave, onmousedown, onmousemove, onmouseup
+	0.	oncontextmenu                                                   // right click event handler
+	0.	oncopy, oncut, onpaste                                          // copy | cut | paste events
+	0.	onselect                                                        // works for <input type="file">, <input type="password">, <input type="text">, and <textarea> when text is selcted in them
+	0.	onclick = “func(this)”                                          // "this" provides a context object to element itself
+	0.	onkeydown="keydown(event)", onkeypress="keypress(event)", onkeyup="keyup(event)"  
+	        // "event" provides a context object to event which triggered the function
+		// keyCode  : A number which represents an actual key on the keyboard ( 'w' code is same as 'W' ) (keydown | keyup) OR 
+		              A number which represents an ASCII character ( 'w' code is different from 'W' )     (keypress)
+	        // which    : similar to keyCode , suitable for CROSS BROWSER SUPPORT
+		// charCode : charCode with onkeydown or onkeyup events, the returned value is always "0".
+		              Returns the Unicode character code (a=97 ... ) of the key that triggered the onkeypress event
+	        // keydown or keyup is used to find out if the user is pressing a function key (e.g. "F1", "CAPS LOCK" or "Home")
+		// keypress works only for alphanumeric and not special keys like ALT, CTRL, SHIFT, ESC or To find out if user is pressing a printable key (e.g. "a" or "5")
+		
+                function keydown(event){                                           // first
+			var x = event.which || event.charCode || event.keyCode;
+			console.log("keydown : " + x)
 		}
-
-		function keypress(e){
-			if(e.charCode) console.log("keypress charcode : " + e.charCode);  
-			                                                      // second  
-			                                                      // keypress works only for alphanumeric and not special keys
+		function keypress(event){                                         // second
+			var x = event.which || event.charCode || event.keyCode;
+			console.log("keypress : " + x);  
+			                                                      
 		}
-
-		function keyup(e){                                            // third
-			if(e.keyCode) console.log("keyup : " + e.keyCode)
+		function keyup(event){                                            // third
+			var x = event.which || event.charCode || event.keyCode;
+			console.log("keyup : " + x)
 		}
-
-                <input type="text" name="dummy" onkeydown="keydown(event)" onkeypress="keypress(event)" onkeyup="keyup(event)">
 		
         0.      stopPropagation()
 	        <div onclick="func2()">DIV 2
@@ -334,6 +345,7 @@ Console
 DOM Document
 	0.	document.activeElement.tagName;                          // returns the currently focused element in the document.
 	0.	document.documentURI;                                    // returns the location of a document.
+	0.	document.body;                                           // BODY of document as selector
 	0.	document.getElementById("idval")	                 // Returns the element that has the specified ID attribute
  	0.	document.getElementsByClassName("classval");             // Returns NodeList containing all elements with the specified CLASS attribute
 	0.	document.getElementsByName("nameval");                   // Returns NodeList containing all elements with a specified NAME attribute
@@ -353,11 +365,12 @@ DOM Element
 	0.	elem.classList;                                          // Returns the class name(s) of an element
 	0.	elem.classList.remove("classval");                       // just like removeClass("classval") in jQuery
 	0.	elem.classList.add("classval");                          // just like addClass("classval") in jQuery
+	0.	elem.classList.toggle("classval");                       // just like toggleClass("classval") in jQuery
 	0.	elem.className;                                          // Sets or returns value of CLASS attribute of an element
 	0.	elem.getAttribute("attrname");                           // just like attr("attrname") in jQuery
 	0.	elem.setAttribute("attrname", "attrval");                // just like attr({"attrname" : "attrval"}) in jQuery
-	0.	elem.innerHTML;                                          // Sets or returns the content of an element
-	0.	elem.innerText;                                          // Sets or returns text content of a node and its descendants
+	0.	elem.innerHTML;                                          // Sets/returns content of element, just like html() in jQuery
+	0.	elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
 	0.	elem.style.PROP="PROPVAL";                               // just like css({"PROP" : "PROPVAL"}) in jQuery
 	
 	
