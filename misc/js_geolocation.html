@@ -1,0 +1,72 @@
+
+<!-- REFERENCE : https://www.w3schools.com/html/html5_geolocation.asp -->
+
+<!-- The Geolocation object allows the user to provide their location to web applications. 
+	 For privacy reasons, the user is asked for permission to report location information.
+
+	 Note: This feature is available only in secure contexts (HTTPS).
+
+	 The geolocation object's getCurrentPosition() is used to return the user's position.
+	 The first parameter of the getCurrentPosition() method is a function that receives coordinates object.
+	 The second parameter of the getCurrentPosition() method is a function used to handle errors if it fails to get user's location
+
+	 The geolocation object also has other interesting methods:
+	 watchPosition() - Returns current position of user and continues to return updated position as user moves (like GPS in a car).
+	 clearWatch()    - Stops the watchPosition() method.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Location prac</title>
+</head>
+<body>
+	<p class="result"></p>
+
+	<div id="mapholder"></div>
+
+	<script type="text/javascript">
+
+		window.onload = getLocation();
+
+		var res = document.getElementsByClassName("result")[0];
+
+		function getLocation() {
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+			}else{
+				res.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+
+		function showPosition(position){
+			res.innerHTML = "Latitude: " + position.coords.latitude + 
+			"<br>Longitude: " + position.coords.longitude;
+
+			var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+			var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_API_KEY";
+
+			document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+		}
+
+		function showError(err) {
+			switch(err.code) {
+    			case err.PERMISSION_DENIED:
+      				res.innerHTML = "User denied the request for Geolocation."
+      				break;
+    			case err.POSITION_UNAVAILABLE:
+      				res.innerHTML = "Location information is unavailable."
+      				break;
+    			case err.TIMEOUT:
+      				res.innerHTML = "The request to get user location timed out."
+      				break;
+    			case err.UNKNOWN_ERROR:
+      				res.innerHTML = "An unknown error occurred."
+      				break;
+      			}
+		}
+	</script>
+
+</body>
+</html>
