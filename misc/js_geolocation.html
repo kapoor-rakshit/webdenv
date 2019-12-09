@@ -2,7 +2,7 @@
 <!-- REFERENCE : https://www.w3schools.com/html/html5_geolocation.asp -->
 
 <!-- The Geolocation object allows the user to provide their location to web applications. 
-	 For privacy reasons, the user is asked for permission to report location information.
+     For privacy reasons, the user is asked for permission to report location information.
 
 	 Note: This feature is available only in secure contexts (HTTPS).
 
@@ -13,6 +13,23 @@
 	 The geolocation object also has other interesting methods:
 	 watchPosition() - Returns current position of user and continues to return updated position as user moves (like GPS in a car).
 	 clearWatch()    - Stops the watchPosition() method.
+-->
+
+<!--
+	The Maps Static API returns an image (either GIF, PNG or JPEG) in response to request via a URL.
+	A Maps Static API image is embedded within an <img> tag's src attribute.
+	  center  : defines the center of the map, equidistant from all edges of the map. This can be either a comma-separated {latitude,longitude} pair or string address (e.g. "city hall, new york, ny") identifying unique location on face of earth.
+	  zoom    : defines the zoom level of the map, which determines the magnification level of the map.
+	  size    : defines the rectangular dimensions of the map image.
+	  key     : allows you to monitor your application's API usage in the Google Cloud Platform Console.
+	  maptype : defines the type of map to construct including roadmap, satellite, hybrid, and terrain.
+	  language: defines the language to use for display of labels on map tiles.
+	  markers : defines a set of one or more markers (map pins) at a set of locations.
+	  	    syntax : markers = markerStyles | markerLocation1 | markerLocation2
+                    The set of marker style descriptors is a series of value assignments separated by the pipe (|) character.
+	            	eg: size : {tiny, mid, small} | color : a 24-bit color (example: color=0xFFFFCC) or predefined {black,yellow,...} | label: a single uppercase alphanumeric character from set {A-Z, 0-9}.
+		    Each marker descriptor must contain one or more locations defining where to place the marker on the map as latitude/longitude
+		    	eg: 62.107733,-145.541936
 -->
 
 <!DOCTYPE html>
@@ -45,7 +62,7 @@
 
 			var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-			var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_API_KEY";
+			var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&key=YOUR_API_KEY";
 
 			document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
 		}
