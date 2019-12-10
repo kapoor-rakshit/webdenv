@@ -1,5 +1,6 @@
 <!-- REFERENCE : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_draggable -->
-<!-- Make an element draggable in document -->
+<!-- Make an element draggable in document. This will be dragged infinitely unless restricted with some JS. -->
+<!-- A better option is jQuery .draggable({}) widget -->
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,6 @@
   text-align: center;
   border: 1px solid #d3d3d3;
 }
-
 #mydivheader {
   padding: 10px;
   cursor: move;
@@ -32,7 +32,6 @@
 <script>
                                                                  /* Make the DIV element draggagle */
 dragElement(document.getElementById("mydiv"));
-
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById("mydivheader")) {             /* if present, the header is where you move the DIV from */
@@ -40,7 +39,6 @@ function dragElement(elmnt) {
   } else {                                                  /* otherwise, move the DIV from anywhere inside the DIV */
     elmnt.onmousedown = dragMouseDown;
   }
-
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
@@ -49,7 +47,6 @@ function dragElement(elmnt) {
     document.onmousemove = elementDrag;                        /* call a function whenever the cursor moves */
     document.onmouseup = closeDragElement;                     /* call a function when the mouse released */
   }
-
   function elementDrag(e) {
     e = e || window.event;
     e.preventDefault();
@@ -60,7 +57,6 @@ function dragElement(elmnt) {
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";        /* set the element's new position */
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";      /* top/left are CSS to set , offsetTop/offsetLeft are JS to get */
   }
-
   function closeDragElement() {                              /* stop moving when mouse button is released */
     document.onmouseup = null;
     document.onmousemove = null;
