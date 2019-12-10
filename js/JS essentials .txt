@@ -299,6 +299,13 @@ Events
 			var x = event.which || event.charCode || event.keyCode;
 			console.log("keyup : " + x)
 		}
+	
+	0.	event.clientX                                           // horizontal/vertical coordinate (according to client area) of mouse pointer in pixels
+		event.clientY                                              // client area is the current window.
+	0.	event.pageX                                             // horizontal/vertical coordinate (according to document) of mouse pointer in pixels
+		event.pageY                                                // document is the web page.
+	0.	event.screenX                                           // horizontal/vertical coordinate (according to users computer screen) of mouse pointer in pixels
+		event.screenY
 		
         0.      stopPropagation()
 	        <div onclick="func2()">DIV 2
