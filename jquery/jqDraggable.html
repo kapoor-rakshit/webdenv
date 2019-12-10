@@ -38,17 +38,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#mydiv").draggable({
-			axis: false,				/* Constrains dragging to either horizontal (x) or vertical (y) axis. */
-										/* Possible values: "x", "y","false" */
+			axis: false,			/* Constrains dragging to either horizontal (x) or vertical (y) axis. */
+						           /* Possible values: "x", "y","false" */
 			containment: "window",		/* Constrains dragging to within the bounds of the specified element or region. */
-										/* Possible values: Selector, "parent", "document", "window", "[ x1, y1, x2, y2 ]" */
+							   /* Possible values: Selector, "parent", "document", "window", "[ x1, y1, x2, y2 ]" */
 			cursor: "crosshair",		/* CSS cursor during the drag operation. */
-			disabled: false,			/* Disables the draggable if set to true. */
-			grid: [50,20],				/* Snaps the dragging helper to a grid, every x and y pixels */
+			disabled: false,		/* Disables the draggable if set to true. */
+			grid: [50,20],			/* Snaps the dragging helper to a grid, every x and y pixels */
 			handle: "#mydivheader",		/* enables dragging from only selector specified */
-			opacity: 0.5,				/* opacity of draggable while being dragged */
-			zIndex: 100,				/* z-index of draggable while being dragged */
-			helper: "original"			/* "clone" or "original" that will be dragged */
+			opacity: 0.5,			/* opacity of draggable while being dragged */
+			zIndex: 100,			/* z-index of draggable while being dragged */
+			helper: "original"		/* "clone" or "original" that will be dragged */
 		});
 	});
 </script>
