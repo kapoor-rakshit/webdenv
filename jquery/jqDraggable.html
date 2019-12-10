@@ -1,0 +1,57 @@
+
+<!-- REFERENCE : https://api.jqueryui.com/draggable/ -->
+<!-- Make the selected element draggable by mouse. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery draggable</title>
+	<style type="text/css">
+		#mydiv {
+			position: absolute;
+  			z-index: 9;
+  			background-color: #f1f1f1;
+  			text-align: center;
+  			border: 1px solid #d3d3d3;
+		}
+		#mydivheader {
+  			padding: 10px;
+  			z-index: 10;
+  			background-color: #2196F3;
+  			color: #fff;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body>
+
+<div id="mydiv">
+  <div id="mydivheader">Click here to move</div>
+  <p>Move</p>
+  <p>this</p>
+  <p>DIV</p>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#mydiv").draggable({
+			axis: false,				/* Constrains dragging to either horizontal (x) or vertical (y) axis. */
+										/* Possible values: "x", "y","false" */
+			containment: "window",		/* Constrains dragging to within the bounds of the specified element or region. */
+										/* Possible values: Selector, "parent", "document", "window", "[ x1, y1, x2, y2 ]" */
+			cursor: "crosshair",		/* CSS cursor during the drag operation. */
+			disabled: false,			/* Disables the draggable if set to true. */
+			grid: [50,20],				/* Snaps the dragging helper to a grid, every x and y pixels */
+			handle: "#mydivheader",		/* enables dragging from only selector specified */
+			opacity: 0.5,				/* opacity of draggable while being dragged */
+			zIndex: 100,				/* z-index of draggable while being dragged */
+			helper: "original"			/* "clone" or "original" that will be dragged */
+		});
+	});
+</script>
+
+</body>
+</html>
