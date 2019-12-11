@@ -40,7 +40,9 @@ $("p").click(function(){
 
 /* 3 */
 /* The prop() method sets or returns properties and values of the selected elements. */
-/* NOTE : prop() and attr() might return different values. */
+/* NOTE : prop() and attr() might return different values. 
+          prop() returns current state of element 
+          attr() returns default state of element ie it's attribute value */
 /* 3a : Get property | $(selector).prop(property) */
 $("input[type='checkbox']").change(function(){
     alert($(this).prop("checked"));
