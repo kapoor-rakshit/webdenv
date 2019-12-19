@@ -1,0 +1,62 @@
+
+<!-- REFERENCE : https://api.jqueryui.com/resizable/ -->
+<!-- Change the size of an element using the mouse. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Resizable</title>
+	<style type="text/css">
+		#mydiv {
+			position: absolute;
+  			z-index: 9;
+  			background-color: #f1f1f1;
+  			text-align: center;
+  			border: 1px solid black;
+		}
+		#mydivheader {
+  			padding: 10px;
+  			z-index: 10;
+  			background-color: #2196F3;
+  			color: #fff;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+
+<div id="mydiv">
+  <div id="mydivheader">Click here to move</div>
+  <p>Move</p>
+  <p>this</p>
+  <p>DIV</p>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#mydiv").resizable({
+			alsoResize: false,                   /* "#elem1", ".elem" One or more elements to resize synchronously with resizable element */
+   			animate: false,                      /* Animates to the final size after resizing. */
+   			animateDuration: "slow",             /* in millisec or "slow" or "fast" */
+   			animateEasing: "easeOutBounce",      /* easing to apply when using the animate option. */
+   			aspectRatio: false,                  /* Whether the element should be constrained to a specific aspect ratio. */
+   			autoHide: true,                      /* Whether handles should hide when the user is not hovering over element. */
+   			containment: "document",             /* Constrains resizing to within bounds of specified region. "document" or "parent" or Selector */
+   			disabled: false,                     /* Disables the resizable if set to true. */
+   			ghost: true,                         /* a semi-transparent helper element is shown for resizing. */
+   			handles: "all",                      /* A comma delimited list of any of these : n, e, s, w, ne, se, sw, nw, all */
+   			maxHeight: 500,                      /* The maximum/minimum height the resizable should be allowed to resize to. */
+   			minHeight: 300,
+   			maxWidth: 500,                       /* The maximum/minimum width the resizable should be allowed to resize to. */
+   			minWidth: 300,
+		});
+	});
+</script>
+
+</body>
+</html>
