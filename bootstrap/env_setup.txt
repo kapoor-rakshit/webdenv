@@ -1,1 +1,75 @@
 
+1. Include the HTML5 doctype at the beginning of the page, along with the lang attribute and the correct meta attributes.
+   width=device-width sets the width of the page to follow the screen-width of the device (which will vary depending on the device).
+   initial-scale=1 sets the initial zoom level when the page is first loaded by the browser.
+   
+   
+   
+   
+2. CDN links required for bootstrap.css , jQuery , popper.js , bootstrap.js   (JS CDNs must be included in order)
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+   
+   
+   
+3. Bootstrap Spacing and Grid
+   Bootstrap Grid
+   Bootstrap's grid system is built with flexbox and allows up to 12 columns across the page.
+   Make sure that the sum adds up to 12 or fewer (it is not required that you use all 12 available columns).
+        .col-    (extra small devices - screen width less than 576px)
+        .col-sm- (small devices - screen width equal to or greater than 576px)
+        .col-md- (medium devices - screen width equal to or greater than 768px)
+        .col-lg- (large devices - screen width equal to or greater than 992px)
+        .col-xl- (xlarge devices - screen width equal to or greater than 1200px)
+   NOTE : Each class scales up, so if you wish to set the same widths for sm and md, you only need to specify sm.
+        <!-- first star (*) represents responsiveness: sm, md, lg or xl, while second star represents number, which should add up to 12  -->
+        <div class="row">
+           <div class="col-*-*"></div>
+           <div class="col-*-*"></div>
+           <div class="col-*-*"></div>
+        </div>
+        
+        <!-- Or let Bootstrap automatically handle the layout -->
+        <div class="row">
+           <div class="col"></div>
+           <div class="col"></div>
+           <div class="col"></div>
+        </div>
+        
+   Bootstrap Spacing
+   The classes are named using the format {property}{sides}-{size} for xs and 
+                                          {property}{sides}-{breakpoint}-{size} for sm, md, lg, and xl.
+   where property is:
+                                          m - for classes that set margin
+                                          p - for classes that set padding
+   where sides are:
+                                          t - for classes that set margin-top or padding-top
+                                          b - for classes that set margin-bottom or padding-bottom
+                                          l - for classes that set margin-left or padding-left
+                                          r - for classes that set margin-right or padding-right
+                                          x - for classes that set both *-left and *-right
+                                          y - for classes that set both *-top and *-bottom
+                                          blank - for classes that set a margin or padding on all 4 sides of the element
+   where breakpoint are:
+   (slightly artificial) screen sizes you can use to define different layouts. 
+                                          sm | md | lg | xl
+   where size is:
+                                          0 - for classes that eliminate the margin or padding by setting it to 0
+                                          1 - (by default) for classes that set the margin or padding to $spacer * .25
+                                          2 - (by default) for classes that set the margin or padding to $spacer * .5
+                                          3 - (by default) for classes that set the margin or padding to $spacer
+                                          4 - (by default) for classes that set the margin or padding to $spacer * 1.5
+                                          5 - (by default) for classes that set the margin or padding to $spacer * 3
+                                          auto - for classes that set the margin to auto
+   Example
+   <!-- Similar to margin: auto; -->
+   <div class="mx-auto" style="width: 200px;">
+      Centered element
+   </div>
+   
+   
+   
