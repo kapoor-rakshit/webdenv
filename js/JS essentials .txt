@@ -97,36 +97,173 @@ Exception Handling
 		
 		
 Misc.
-        0.      // In JavaScript, "this" is the object that "owns" the code.
-	        // The value of "this" , when used in an object, is the object itself.
+        0.      In regular functions the 'this' keyword represented the object that called the function, which could be the window, the document, an element.
+		With arrow functions the 'this' keyword always represents the object that defined (owns) the arrow function.
+		Example
+		0. // Regular Function
+		   hello = function() {
+		             document.getElementById("demo").innerHTML += this;      // two different objects (window and button)
+			   }
+	           // The window object calls the function
+		   window.addEventListener("load", hello);
+		   
+		   // A button object calls the function
+		   document.getElementById("btn").addEventListener("click", hello);
+		   
+		0. // Arrow Function
+		   hello = () => {
+		            document.getElementById("demo").innerHTML += this;       // window object twice, because window object is  "owner" of function.
+			   }
+		   // The window object calls the function
+		   window.addEventListener("load", hello);
+		   
+		   // A button object calls the function
+		   document.getElementById("btn").addEventListener("click", hello);
+		
         0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
 	0.      var dec = decodeURI(enc);
 	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes the following characters: , / ? : @ & = + $ #
 	0.      var uri_dec = decodeURIComponent(uri_enc);
+	
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
+	
 	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
+	       
 	0.      isNaN("9025");                                                                          // converts arg to a Number, then tests it.  "9025" and 9025 both give false as ther are Number   // this is different from Number.isNaN();
 	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
+	
 	0.      var c = parseFloat("10.33");                                                            // 10.33
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
 		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
 	0.      String(x)  ==  x.toString();                                                            // typecast to string
-	0.      if (typeof y === "undefined") {                                                         // typeof  |  undefined  // returns type of variable, object, function or expression
-	          txt = "y is undefined";
-		}
+	
+	0.      if (typeof y === "undefined") {                  // typeof , "undefined"|"string"|"number"|"boolean"|"object"|"function"
+	          txt = "y is undefined";                        // NaN is           "number"
+		}                                                // Array , Date are "object"
+		                                                 // null is          "object"
+								 // undefined is     "undefined"
+								 // NOTE : null == undefined         // true ,  as same in value
+								         : null === undefined        // false , different in type
+		
 	0.      <a href="javascript:void(0);">Useless link</a>               // The void operator evaluates an expression and returns undefined.
 	                                                                     // This operator is often used to obtain the undefined primitive value, using "void(0)".
 	        <a href="javascript:void(document.body.style.backgroundColor='red');">Click to change background color of body to red</a>
 		                                                             // (this is useful when evaluating an expression without using the return value).
+									     
 	0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
+	
+	
+JavaScript Hoisting
+	0.	// Hoisting is JavaScript's default behavior of moving DECLARATIONS to the top of the current scope i.e. 
+	           (to the top of the current SCRIPT|GLOBAL SCOPE or the current FUNCTION SCOPE.
+		// a variable can be initialized and used (x = 5) before it has been declared (var x).
+		// JavaScript only hoists DECLARATIONS, not INITIALIZATIONS.
+		// To avoid bugs, always declare all variables at the beginning of every scope.
+		   JavaScript in strict mode ("use strict") does not allow variables to be used if they are not declared.
+		// Example
+		0. var x = 5;
+		   console.log(`${x} ${y}`);      // x = 5 , y = undefined
+		   var y = 7;
+		                                  ------ same as above because of HOISTING --------
+		0. var x = 5;
+		   var y;                         // DECLARATIONS (not INITIALIZATIONS) move to top of a scope because of HOISTING
+		   console.log(`${x} ${y}`);      // x = 5 , y = undefined
+		   y = 7;
+		                                  ------ scope is only for function and script , not for if|else|loop scope ------
+		0. y = 5;
+		   function f(){
+		     if(<CONDITION>){
+		       var y;                     // declaration within if block scope , but it is HOISTED to function scope
+		       console.log(`${y}`);       // y = undefined because y is HOISTED within scope of function , not using global scope
+		     }
+		       console.log(`${y}`);       // y = undefined because y is HOISTED within scope of function , not using global scope
+		   }
+		   var y;
+		   
+		0. y = 5;
+		   function f(){
+		     var y = 9025;
+		     if(<CONDITION>){
+		       var y = 4084;             // This declaration will be HOISTED to FUNCTION SCOPE
+		       console.log(`${y}`);      // y = 4084
+		     }
+		       console.log(`${y}`);      // y = 4084 , not 9025 because var y = 4084 | var y = 9025 get merged as var y = 9025 to top of FUNCTION
+		   }
+		   
+		0. var i = 5;
+		   for (var i = 0; i < 10; i++) {        // this variable gets merged with above scope for declaration but inited as 0
+		     // some statements
+		   }
+                     // Here i is 10              
+		   
+	0.	// A variable declared without any keyword becomes global even if initialized inside a function|loop|if|else block
+		// Example
+		0. function f(){
+		     if(<CONDITION>){
+		       z = 15;
+		     }
+		   }
+		   console.log(`${z}`);             // z = 15 , as it is global because initialized without keyword 'var'
+		   
+	0.	// Keywords 'let' and 'const' provide BLOCK SCOPE (and constants) instead of GLOBAL SCOPE | FUNCTION SCOPE with 'var'
+	           i.e. they are not HOISTED
+	        // 'let' keyword do not belong to the window object i.e. we cannot use window.VARIABLE which is declared with 'let'
+		// Redeclaring 'var' variable with 'let' or vice-versa | 'let' variable with 'let' | global variable (without any keyword) with 'let' is not allowed
+		// Example
+		0. function f(){
+		     var y = 9025;
+		     if(<CONDITION>){
+		       let y = 4084;                // provides a BLOCK SCOPE because of 'let'
+		       console.log(`${y}`);         // y = 4084
+		     }
+		       console.log(`${y}`);         // y = 9025
+		   }
+		   
+	0.	// Variables defined with 'const' behave like 'let' variables, except they cannot be reassigned.
+		// 'const' variables must be assigned a value when they are declared else will give an error.
+		// It does NOT define a constant value. It defines a constant reference to a value.
+		   Because of this, we cannot change constant primitive values, but we can change the properties of constant objects.
+		   Example
+		   0. const car = {type:"Fiat", model:"500", color:"white"};
+		      const cars = ["Saab", "Volvo", "BMW"];
+
+		      car.color = "red";                                         // MODIFY
+		      cars[0] = "Toyota";
+
+		      car.owner = "Johnson";                                     // ADD NEW PROPERTY | VALUE
+		      cars.push("Audi");
+		      
+		      car = {type:"Volvo", model:"EX60", color:"red"};           // ERROR
+		      cars = ["Toyota", "Volvo", "Audi"];                        // ERROR
+		      
+		      
+JavaScript Use Strict
+	0.	// "use strict";     Defines that JavaScript code should be executed in "strict mode".
+		// Strict mode makes it easier to write "secure" JavaScript.
+		   Strict mode changes previously accepted "bad syntax" into real errors.
+		// NOTE : The "use strict"; directive is only recognized at the beginning of a script or a function.
+		   Example
+		   0. "use strict";
+		      myFunction();
+		      function myFunction() {
+		         y = 3.14;                       // This will also cause an error because y is not declared
+		      }                                  // if strict not used , it will create a new global variable for y
+		      
+		   0. x = 3.14;                          // This will not cause an error.
+		      myFunction();
+		      function myFunction() {
+		         "use strict";
+			 y = 3.14;                       // This will cause an error
+		       }
+	
 
 Debugging
         0.     // activate debugging in your browser with the F12 key, and select "Console" in the debugger menu.
 	0.     // use console.log() to display JavaScript values in the debugger window
 	0.     // The "debugger" keyword stops the execution of JavaScript, and calls (if available) the debugging function.
-	          // This has the same function as setting a breakpoint in the debugger.
+	          // This has the same function as setting a breakpoint in the debugger on sources tab window on browser
 	0.     var x = 15 * 5;    debugger;     document.getElementById("demo").innerHTML = x;
 
 
@@ -153,7 +290,7 @@ Regex
 	           var patt = /Hello/g;          var result = patt.test(str);
 	0.      var res = str.match(/ain/g);                      // returns the matches, as an Array object  or  null
 	0.      var res = str.replace(/blue/g, "red");            // values are replaced
-	0.      var n = str.search(/blue/i);                      // returns the position of the m
+	0.      var n = str.search(/blue/i);                      // returns the position of the pattern
 	
 	
 Strings
@@ -347,6 +484,7 @@ Console
 	0.	console.groupEnd();                                      // indicates the end of a message group.
 	0.	console.time(label);                                     // starts a timer with particular LABEL in console view.
 	0.	console.timeEnd(label);                                  // ends a timer with particular LABEL, and write result in console view.
+	0.      console.log(`${VARIABLE} value`);                        // value of variable using backticks and ${}
 	
 	
 DOM Document
