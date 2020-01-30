@@ -14,6 +14,15 @@ Array methods
         0.      var arr = ["Saab", " Volvo", "BMW"];
 	0.      document.getElementById("#pid").innerHTML = arr;                              // returns comma separated values eg : Saab, Volvo,BMW
 	0.      var arr4 = arr1.concat(arr2,arr3);                                            // just like "extend" in Python , new array returned with values of all.
+	0.	a) var arr4 = [...arr1, ...arr2, ...arr3];                                    // similar to concat , use of ... (spread operator) 
+	
+		b) var arr = ['a', 'b', 'c'];
+		   var arr2 = arr;                                                            // copyig arr using = will cause change to original arr as well as it pass by reference
+		   
+		   var arr2 = [...arr];                                                       // instead , we use spread operator which returns new array
+		   
+		c) var mx = Math.max([1,3,4]);                                                // using array in Math functions , return NaN
+		   var mx = Math.max(...[1,3,4]);                                             // instead , we use spread operator
 	0.      arr.fill("Balle", 2, 4);                                                      // fill array with value at index [start,end) // modifies original array
 	0.      arr.filter(func_that_returns_true_false);                                     // just like "filter" in Python
 	0.      arr.forEach(funcName);                                                        // calls function once for each element in order. // does not return
@@ -321,11 +330,15 @@ Form
 Functions
 	0.	var f = function(a, b) { return a*b; }              // anonymous function stored in variable f | args passed without var keyword before them
                     f (45, 5);                                      // invoke function stored in variable f
+		    
 	0.      var f = function(a=1, b=0) { return a*b; }          // default values passed to function incase not passed on invoke
+	
 	0.      (function () {
 	            var x = "Hello!!";                              // anonymous self-invoking function , NOTE : () around and after function
 		})();
+		
 	0.      const x = (x, y) => { return x * y };               // Arrow Functions in ES6
+	
 	0.      function findMax() {                                // findMax(4, 5, 6) is called without using args in definition  // uses built-in "arguments" object.
 	            var i;
 		    var max = -Infinity;
@@ -336,30 +349,46 @@ Functions
 			 }
 		     return max;
 		 }
+		 
+	0.	function f(a,b,...c){                            // Rest parameter
+	          // statements                                  // a="kapoor" , b="rakshit" , ...c catches remaining arguments as an array
+	        }                                                // without rest parameter c="Kolkata" , remaining args are ignored
+		f("kapoor","rakshit","Kolkata","Hyderabad","Pune","Bangalore","Delhi","Greater Noida");
+		
+	0.	function f(a,b,c){                                // Spread Operator
+		  // statements                                   // a=arr[0] , b=arr[1] , c=arr[2]
+		}                                                 // if arr has more vals than args required , they are ignored
+		f(...arr);
+		
 	0.      var add = (function () {                          // JS Closures , a function having access to parent scope, even after parent function has closed.
 	             var counter = 0;
 		     return function () {counter += 1; return counter}   
 		})();                                             // self-invoking function only runs once. It sets counter to zero (0)
 		                                                  // and returns a function expression to variable add whuich can be invoked
                 add();
+		
 	0.      var obj = {"first" : "kapoor" ,                     // function() as a value to key in object  /* call function as obj.full("-") , NOTE : use of () in obj.full() (not obj.full) */
                           "second" : "rakshit" ,
                           "full" : function(sep){
                             return this.first + sep + this.second;
-                          }};                                       
+                          }};                   
+			  
 	0.      var obj = {firstName: "John",                       // getter inside object using "get" keyword   /* call getter as obj.lang , NOTE : no use of () in getter */
                            lastName : "Doe",
                            language : "en",
                            get lang() {
                               return this.language.toUpperCase();
-                            }};                                    
+                            }};                       
+			    
         0.      var obj = {firstName: "John",                       // setter inside object using "set" keyword  /* call setter as obj.lang = "en"; */
                            lastName : "Doe",
                            language : "",
                            set lang(lang) {
                               this.language = lang.toUpperCase();
-                            }};                                     
-	0.      function Person(first, last, age, eye) {            // Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
+                            }};                                   
+			    
+	0.      // ES5
+		function Person(first, last, age, eye) {            // Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
 	          this.firstName = first;
 		  this.lastName = last;
 		  this.age = age;
@@ -372,6 +401,8 @@ Functions
 		                                  /* object used as    , myFatherObj.nationality, myFatherObj.age, .... */
 	0.     Person.prototype.gender = "Male";                    // All JS objects inherit properties and methods from a prototype.
 	                                                            // We can add new properties using prototype.
+	0.	// ES2015 or ES6 , make use of CLASS
+		
 
 	
 Math
@@ -463,9 +494,12 @@ Events
 	       document.getElementById("myDIV").removeEventListener("mousemove", myFunction);   // name of the event to remove,function to remove.
 	       document.addEventListener("click", myFunction);          // attaches an event handler to the document , here myFunction gets called , anywhere user clicks on document.
 
-        0.     setTimeout(func, duration)                                // calls 'func' only once after 'duration' millisec
+        0.     let timeoutVar = setTimeout(func, duration)                         // calls 'func' only once after 'duration' millisec
+	0.     let timeoutVar = setTimeout(function(){ func("First param", "Second param"); }, 2000);        // pass parameters to func
+	0.     clearTimeout(timeoutVar);                                  // pass in name of variable defined during setTimeout
 
-        0.     var intervalVar = setInterval(func, duration)             // calls 'func' after every 'duration' millisec
+        0.     let intervalVar = setInterval(func, duration)                       // calls 'func' after every 'duration' millisec
+	0.     let intervalVar = setInterval(function(){ func("First param", "Second param"); }, 2000);      // pass parameters to func
         0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
 	
 
