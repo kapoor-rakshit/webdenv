@@ -136,6 +136,10 @@ Misc.
 	
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
 	
+	0.	[x,y] = [y,x]                                                                            // swap values , similar to as in python
+	0.	function f() { return [9025, 67, 56, 4021]; }                                            // return multiple vals using []
+	        [a,,b] = f();                                       // capture multiple vals using [] | NOTE : a=9025 , b=56 (not 67) | extra vals ignored
+	
 	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
 	       
@@ -146,6 +150,7 @@ Misc.
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
 		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
+		
 	0.      String(x)  ==  x.toString();                                                            // typecast to string
 	
 	0.      if (typeof y === "undefined") {                  // typeof , "undefined"|"string"|"number"|"boolean"|"object"|"function"
@@ -246,6 +251,24 @@ JavaScript Hoisting
 		      
 		      car = {type:"Volvo", model:"EX60", color:"red"};           // ERROR
 		      cars = ["Toyota", "Volvo", "Audi"];                        // ERROR
+		      
+	0.	// Function Hoisting
+		// Unlike variables, a function declaration doesn't just hoist the function's name. 
+		   It also hoists the actual function definition.
+		// However, function definition hoisting only occurs for function declarations, not function expressions.
+		   because VARIABLES only have their DECLARATIONS hoisted , not INITIALIZATIONS.
+		// Example
+		0. definitionHoisted();                                           // Outputs: "Definition hoisted!"
+		   definitionNotHoisted();                                        // TypeError: undefined is not a function
+		   funcname();                                                    // ReferenceError: funcName is not defined
+		   
+		   function definitionHoisted() {                                // function declaration plus definition
+		     console.log("Definition hoisted!");
+		   }
+		   
+		   var definitionNotHoisted = function funcname() {              // function expression in a VARIABLE
+		     console.log("Definition not hoisted!");
+		   };
 		      
 		      
 JavaScript Use Strict
@@ -360,6 +383,9 @@ Functions
 		}                                                 // if arr has more vals than args required , they are ignored
 		f(...arr);
 		
+	0.	function f() { return [9025, 67, 56, 4021]; }     // return multiple vals using []
+	        [a,,b] = f();                                     // capture multiple vals using [] | NOTE : a=9025 , b=56 (not 67) | extra vals ignored
+		
 	0.      var add = (function () {                          // JS Closures , a function having access to parent scope, even after parent function has closed.
 	             var counter = 0;
 		     return function () {counter += 1; return counter}   
@@ -388,7 +414,8 @@ Functions
                             }};                                   
 			    
 	0.      // ES5
-		function Person(first, last, age, eye) {            // Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
+		// Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
+		function Person(first, last, age, eye) {
 	          this.firstName = first;
 		  this.lastName = last;
 		  this.age = age;
@@ -402,7 +429,83 @@ Functions
 	0.     Person.prototype.gender = "Male";                    // All JS objects inherit properties and methods from a prototype.
 	                                                            // We can add new properties using prototype.
 	0.	// ES2015 or ES6 , make use of CLASS
-		
+		// A class is a type of function, but instead of using the keyword function to initiate it, we use the keyword class,
+		   and the properties are assigned inside a constructor() method.
+		   if you do not have a constructor() method, JavaScript will add an invisible and empty constructor method.
+		// Example
+		0. class Car {
+		     constructor(brand) {                              // constructor initialized when class initiated
+		        this.carname = brand;                          // variables are declared using "this" keyword
+		     }
+                     present(x) {                                      // another method , NOTE : donot use "function" keyword
+		        return `${x} I have a ${this.carname}`;
+		     }
+		   }
+		    mycar = new Car("baleno");                         // initialize object for class
+		    mycar.present("Namaste");
+		    
+		 0. // Static methods
+		    // Static methods are defined on the class itself, and not on the prototype.
+		       That means you cannot call a static method on the object (mycar), but on the class (Car)
+		    // Being called on class , it does not access values for properties initialized in constructor , so we pass object to this static method
+		    // Example
+		    class Car {
+		      constructor(brand) {
+		         this.carname = brand;
+		      }
+		      static hello(obj){
+		         return `${obj.carname} is my car`;
+		      }
+		    }
+		      mycar = new Car("swift");
+		      console.log(Car.hello(mycar));                    // we can also send class's object as parameter to static method
+		      
+		  0. // Inheritance
+		     // To create a class inheritance, use the extends keyword.
+		     // call to constructor of Parent|Base class using 'super()' keyword which is to be called before accessing 'this' statement.
+		     // call to parent method using 'super.METHOD()' that have same names , else use 'this.METHOD()'.
+		     // NOTE : we CANNOT use 'super.VARIABLE' for accessing parent variable values that have same names.
+		               to access variables use 'this.VARIABLE'  or  parent method call that returns parent variable
+		     // Example
+		     class Car {
+		       constructor(brand) {
+		          this.carname = brand;
+		       }
+		       show () {
+		          return `${this.carname} is my car`;
+		       }
+		     }
+		     class Model extends Car {
+		       constructor(brand, model) {
+		          super(brand);
+			  this.model = model;
+		          this.carname = brand;                            // this will Override value of VARIABLE as same name used , 
+			                                                   // it will also override value for parent class variable 
+							 // to check , call the method from Child|Derived class of parent class that use VARIABLE (carname)
+		       }
+		       show () {                                           // this will Override the parent method , as expected
+		          return `my car is ${this.carname} , ${this.model}`; 
+		       }
+		     }
+		       mycar = new Model("baleno", "delta BS VI");
+		       mycar.show();
+		       
+		 0. // Getter | Setter
+		    // Example
+		    class Car {
+		      constructor(carVal) {
+		        this.carname = carVal;
+		      }
+		      get getCarName() {
+		        return `${this.carname}`;
+		      }
+		      set setCarName(carParam) {
+		        this.carname = carParam;
+		      }
+		    }
+		      mycar = new Car("Baleno");
+		      mycar.setCarName = "Swift";
+		      mycar.getCarName;
 
 	
 Math
