@@ -444,10 +444,12 @@ Functions
 		    mycar = new Car("baleno");                         // initialize object for class
 		    mycar.present("Namaste");
 		    
-		 0. // Static methods
+		 0. // Static methods and variables
 		    // Static methods are defined on the class itself, and not on the prototype.
-		       That means you cannot call a static method on the object (mycar), but on the class (Car)
+		       That means you cannot call a static method on the object (mycar), but on the class (Car.STATIC_METHOD)
 		    // Being called on class , it does not access values for properties initialized in constructor , so we pass object to this static method
+		    // we cannot access STATIC_METHOD from NON_STATIC_METHOD plus vice-versa.
+		    // a STATIC_VARIABLE is accessed using class (Car.STATIC_VARIABLE) not object or from only inside a STATIC_METHOD (this.STATIC_VARIABLE)
 		    // Example
 		    class Car {
 		      constructor(brand) {
