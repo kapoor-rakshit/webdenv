@@ -508,8 +508,75 @@ Functions
 		      mycar = new Car("Baleno");
 		      mycar.setCarName = "Swift";
 		      mycar.getCarName;
+		      
+		      
+Export | Import functions
+	0. ES6 or ES2015 is the first time that JavaScript has built-in modules.
+	   ES6 modules are stored in files. There is exactly one module per file and one file per module.
+	   
+	   
+	0. /* In index.html */
+	   /* define a <script> tag with type="module" and src="<MODULE_js_file>" (js file that has imports) attribute */
+	      <script type="module" src="./main.js"></script>
+	      
+	   /* Prior to ES2015 or ES6 , we need to use webpack to bundle all .js in one /dist/bundle.js */
+	      > webpack --mode=development                         // creates a file 'bundle.js' inside directory /dist
+	      <script src="/dist/bundle.js"></script>           
+	      
 
-	
+	0. NOTE : Imports are hoisted
+	          Module imports are hoisted (internally moved to the beginning of the current scope). 
+		  Therefore, it doesn’t matter where you mention them in a module.
+		  
+		  /* 1. import default export function in module js file */
+		     import <ANY_ARBITRARY_NAME> from './math.js';
+		     <ANY_ARBITRARY_NAME>();                       // call to default export
+
+		  /* 2. import named export functions in module js file */
+	          /*    we can also provide alias to named export function */
+   	             import { subtract as <ALIAS>, multiply, divide, square } from './math.js';
+   		     <ALIAS>();     multiply();    square();       // call to named export
+
+		  /* 3. import all exports (default plus named) in module js file */
+   		     import * as <ALIAS_NAME> from './math.js';
+      		     <ALIAS_NAME>.default();                       // call to default export
+      		     <ALIAS_NAME>.<FUNCTION_NAME>();               // call to named export
+
+
+	0. DEFAULT EXPORT
+ 	   - There can be a single default export in a .js file (but can be multiple for a module) , others will be named
+ 	   - Syntax
+   	   /* 1. use of default keyword */
+   	      export default function (x, y) {
+      		return x + y;
+   	      }
+
+	0. NAMED EXPORTS
+ 	   - There can be multiple named exports in a .js file.
+ 	   - Syntax
+   	  /* 1. function , will be exported at end of file */
+   	     function subtract (x, y) {
+      	        return x - y;
+             }
+
+   	  /* 2. function expression , will be exported at end of file */
+   	     const multiply = function (x, y) {
+                return x * y;
+             }
+
+          /* 3. use of 'export' keyword with function */
+   	     export const divide = (x, y) => { return x / y};
+
+   	  /* 4. function , will be exported as an alias */
+             function sq (x) {
+                return x * x;
+             }
+
+          /* export functions */
+             export { subtract, multiply, sq as square };
+
+
+
 Math
 	0.	Math.abs();                                         // absolute value
 	0.	Math.ceil();                                        // ceil
