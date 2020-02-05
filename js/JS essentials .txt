@@ -49,6 +49,25 @@ Array methods
 	0.	delete arr[index];                                                            // elem at index does not exist in arr (undefined) and donot change indexes of other elements.
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
 	
+	
+Loops
+	0.	For/In                                           // loops through the PROPERTIES (key) of an object
+		// example
+		var person = {fname:"John", lname:"Doe", age:25};
+		for (let x in person) {
+		    text += x;                                    // keys   - fname lname age
+		    text += person[x];                            // values - John Doe 25   
+		}
+		
+	0.	For/Of                                            // loops through the VALUES of an iterable objects
+		// example                                        // such as Arrays, Strings, Maps, NodeLists, and more
+		let map = new Map();
+		map.set(1, "8.65");    map.set("key2", "val2");
+		for (let i of map) {
+		  document.getElementById("demo").innerHTML += i[0] + " " + i[1] + '<br/>';        // map = [[key1, val1], [key2, val2]] 
+		}
+		
+	
 
 Boolean
         0.      Boolean(10 > 9) | (10 > 9) | 10 > 9                                           // returns true
@@ -513,8 +532,9 @@ Map
 	0. In ES6 or ES2015 , Map object is provided which is a collection of elements where each element is stored as a Key, value pair. 
 	   When we iterate over the map object it returns the key,value pair in the same order as inserted.
 	   // Example
+	   // myMap = [["Ram", "Chennai"], [9025, "Pune"], ["Vinay", "Bangalore"]];
 	   let myMap1 = new Map();
-	   myMap1.set("Ram", "Chennai");                // (key, value)
+	   myMap1.set("Ram", "Chennai");                // [key, value]
 	   myMap1.set(9025, "Pune");
 	   myMap1.set("Vinay", "Bangalore");
 	   
@@ -538,7 +558,7 @@ Map
 	   function functionName(value, key) { }        // functionName definition , first param is value, second is key for each pair
 	   
 		      
-Export | Import functions
+Export | Import   functions/classes
 	0. ES6 or ES2015 is the first time that JavaScript has built-in modules.
 	   ES6 modules are stored in files. There is exactly one module per file and one file per module.
 	   
@@ -602,7 +622,21 @@ Export | Import functions
 
           /* export functions */
              export { subtract, multiply, sq as square };
-
+	     
+	     
+Promises
+	0.	Consider a code below:
+		let ans = f();                 // suppose if f() returns value after a delay of few seconds.
+		console.log(ans);              // ans = undefined as code moves to next line and execute it while f() was returning value
+		// To avoid this we can use either Callbacks or Promises (preferred)
+		// Promises are a way to implement async programming in JavaScript(ES6).
+		   A Promise will become a container for future value.
+		   A Promise is always in one of the following states:
+		      fulfilled: Action related to the promise succeeded.
+		      rejected: Action related to the promise failed.
+		      pending: Promise is still pending i.e not fulfilled or rejected yet.
+		      settled: Promise has fulfilled or rejected
+		   
 
 
 Math
