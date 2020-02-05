@@ -632,11 +632,68 @@ Promises
 		// Promises are a way to implement async programming in JavaScript(ES6).
 		   A Promise will become a container for future value.
 		   A Promise is always in one of the following states:
-		      fulfilled: Action related to the promise succeeded.
-		      rejected: Action related to the promise failed.
-		      pending: Promise is still pending i.e not fulfilled or rejected yet.
-		      settled: Promise has fulfilled or rejected
+		      fulfilled : Action related to the promise succeeded.
+		      rejected  : Action related to the promise failed.
+		      pending   : Promise is still pending i.e not fulfilled or rejected yet.
+		      settled   : Promise has fulfilled or rejected
+		// Emits a single value.
+		   Emits its value asynchronously (“push”).
+		   Emits the value to the calling code, which then handles the value (the value is pushed to the calling code).
 		   
+		// .then()  : Invoked when a promise is kept or broken. It takes in two functions as parameters (success , error(optional))
+		   .catch() : can be used for handling the errors(if any).  It takes only one function.
+		// Example
+		function getEmployeeName(id) {
+		   return new Promise((resolve, reject) => {
+                      if (id <= 3) {
+                         resolve(myMap1.get(id));
+		      }
+                      else {
+                         reject("Invalid employee id");
+		      }
+		   });
+		}
+		function getEmployeeCity(name) {
+		   return new Promise((resolve, reject) => {
+      			resolve(myMap2.get(name));
+  		   });
+		}
+		function getEmployeeState(city) {
+                   return new Promise((resolve, reject) => {
+                        resolve(myMap3.get(city));
+		   });
+		}
+		getEmployeeName(empid).then((name) => { getEmployeeCity(name) })
+		                      .then((city) => { getEmployeeState(city) })
+                                      .then((state) => { console.log(state) })
+                                      .catch((error) => { console.log(error) });
+				      
+	0.	Promise.all
+		// Promise.all() method is actually a promise that takes an array of promises(an iterable) as an input. 
+		   It returns a single Promise that resolves when all of the promises passed as an iterable, which have resolved or when the iterable contains no promises. 
+		   In simple way, if any of the passed-in promises reject, the Promise.all() method asynchronously rejects the value of the promise , whether or not the other promises have resolved.
+		   // Example
+		   let promises = [];
+		   for (let i=0; i<empids.length; i++) {
+		       promises.push(getEmployeeName(empids[i]));
+		   }
+		   Promise.all(promises).then((names) => { console.log(names) })
+		                        .catch((error) => { console.log(error) });
+					
+	0.	Promise.race
+	        // returns the first promise that is settled. A settled promise can either be resolved or rejected.
+		// Example
+		Promise.race(promises).then((name) => { console.log(name) })
+  		                      .catch((error) => { console.log(error) });
+				      
+Observables
+	0.	// An observable takes the iterable to the asynchronous world. Like an iterable, an observable computes and emits a stream of values. 
+	           However, unlike an iterable, with an observable the calling code does not synchronously pull each value, 
+		   but the observable asynchronously pushes each value to the calling code, as soon as it is available.
+		   The iterable typically has a next method, which returns the next unread value from the collection. 
+		   The calling code can then repeatedly call next in order to read all the values of the collection.
+		   It Emits multiples values
+		   It Emits its values asynchronously (“push”)
 
 
 Math
