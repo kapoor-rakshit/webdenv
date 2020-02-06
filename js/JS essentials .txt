@@ -182,7 +182,8 @@ Misc.
 		
 	0.      <a href="javascript:void(0);">Useless link</a>               // The void operator evaluates an expression and returns undefined.
 	                                                                     // This operator is often used to obtain the undefined primitive value, using "void(0)".
-	        <a href="javascript:void(document.body.style.backgroundColor='red');">Click to change background color of body to red</a>
+		<a href="javascript:functionName(arg)">FunctionCall link</a>  // call to a function "functionName"
+	        <a href="javascript:void(document.body.style.backgroundColor='red');">Change background color of body to red</a>
 		                                                             // (this is useful when evaluating an expression without using the return value).
 									     
 	0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
@@ -792,6 +793,61 @@ Events
         0.     let intervalVar = setInterval(func, duration)                       // calls 'func' after every 'duration' millisec
 	0.     let intervalVar = setInterval(function(){ func("First param", "Second param"); }, 2000);      // pass parameters to func
         0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
+	
+Page events
+	0.	Lifecycle of an HTML page has four important events:
+		- DOMContentLoaded – the browser fully loaded HTML, and the DOM tree is built, 
+		                     but external resources like pictures <img> and stylesheets may be not yet loaded.
+		- load             – not only HTML is loaded, but also all the external resources: images, styles etc.
+		- beforeunload     – the user is leaving the page, check if user saved changes and ask whether really want to leave.
+		- unload           - the user almost left, but we still can initiate some operations, such as sending out statistics.
+	       // Example
+	          // 1. NOTE : The DOMContentLoaded event happens on the document object.
+		            When the browser processes an HTML-document and comes across a <script> tag, it needs to execute before continuing building the DOM.
+		            DOMContentLoaded has to wait except for <script> with the async/defer attribute and 
+			    <script> that is generated dynamically with 'document.createElement('script')'
+			    Images and other resources may also still continue loading.
+		  > document.addEventListener("DOMContentLoaded", functionName);
+		  
+		  // 2. NOTE : The load event happens on the window object , also on a TAG
+	          > window.onload = function() {
+		     alert('Page loaded');
+		     // image is loaded at this time
+		   };
+		   
+		   > img.onload = () => log('img onload');
+		   
+		   // 3. NOTE : the beforeunload/unload event happens triggers on window object.
+		             a special 'navigator.sendBeacon(url, data)' method for saving the data (mouse clicks, scrolls, viewed page areas, and so on.) on our server.
+		   > window.onbeforeunload = function() {
+  			return "There are unsaved changes. Leave now?";
+		   };
+			     
+		   > let analyticsData = { /* object with gathered data */ };
+		   window.addEventListener("unload", function() {
+  			navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+	           };
+		
+		- Page reload
+		  > document.location.reload(true)  : force the reloaded page to come from the server (instead of cache). 
+		  > document.location.reload(false) : reload the page from the cache. (default, when no true/false given).
+		  
+	0.	document.readyState
+	        // The document.readyState property tells us about the current loading state.
+		   There are 3 possible values:
+		        "loading"     – the document is loading.
+			"interactive" – the document was fully read, happens at about the same time as DOMContentLoaded, but before it.
+			"complete"    – the document was fully read and all resources (like images) are loaded too,  same time as window.onload, but before it.
+		> if (document.readyState == 'loading') {
+		    // loading yet, wait for the event
+  		    document.addEventListener('DOMContentLoaded', work);
+		} else {
+  		    // DOM is ready!
+		}
+		
+	0.	readystatechange() event
+	        // readystatechange event that triggers when the state changes
+		> document.addEventListener('readystatechange', () => console.log(document.readyState));
 	
 
 Console
