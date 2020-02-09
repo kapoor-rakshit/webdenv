@@ -454,6 +454,7 @@ Functions
 		   if you do not have a constructor() method, JavaScript will add an invisible and empty constructor method.
 		// Example
 		0. class Car {
+		        naam = "kapoor-rakshit";                       // this is similar to initialize inside a constructor , this.naam
 		     constructor(brand) {                              // constructor initialized when class initiated
 		        this.carname = brand;                          // variables are declared using "this" keyword
 		     }
