@@ -366,8 +366,15 @@ Strings
 
 
 Form
-	0.	document . name-of-form . name-of-widget . value        // set or get value.
-	0.	onsubmit=“return(validate())”.                          // return false from func if error else true.
+	0.	document.<NAME_ATTRIB_OF_FORM>.<NAME_ATTRIB_OF_WIDGET>.value;                       // set or get value.
+	        document.forms.namedItem("<ID_ATTRIB_OF_FORM>").<NAME_ATTRIB_OF_WIDGET>.value;
+		document.getElementById("<ID_ATTRIB_OF_FORM>").<NAME_ATTRIB_OF_WIDGET>.value;
+		
+	0.	onsubmit=“return validate()”.                       // return false from func if error else true     OR
+	                                                            // when it return false - form will not submit and will not redirect too
+								       It means Do nothing. Return the control flow. Stops submission of form
+								    // when it return true - form will submit and will redirect as  mentioned in action
+
 
 
 Functions
