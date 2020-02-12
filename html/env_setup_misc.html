@@ -95,5 +95,14 @@ Eg:  &euro; (entity name)  |  &#8364; (decimal entity number)  |  &#x20AC; (Hex 
 -->
 
 
+<!-- 5 -->
+<!--
+A form is not allowed to be a child element of a <table>, <tbody> or <tr>.
+Attempting to put one there will tend to cause the browser to move the form to it appears after the table (while leaving its contents — table rows, table cells, inputs, etc — behind).
+NOTE:
+    You can have an entire table inside a form. 
+    You can have a form inside a table cell  i.e.: <td><form>  ...   </form></td>
+    You CANNOT have part of a table inside a form.
+-->
 
 
