@@ -697,12 +697,19 @@ Promises
 				      
 Observables
 	0.	// An observable takes the iterable to the asynchronous world. Like an iterable, an observable computes and emits a stream of values. 
-	           However, unlike an iterable, with an observable the calling code does not synchronously pull each value, 
+	           It is not part of core JS , but provided by thied party library - 'rxjs'
+	           However, unlike an iterable, in an observable the calling code does not synchronously pull each value, 
 		   but the observable asynchronously pushes each value to the calling code, as soon as it is available.
 		   The iterable typically has a next method, which returns the next unread value from the collection. 
 		   The calling code can then repeatedly call next in order to read all the values of the collection.
-		   It Emits multiples values
-		   It Emits its values asynchronously (“push”)
+		   eg: On a facebook page it follows infinite scrolling , content gets populated as and when required.
+		    - It Emits multiples values
+		    - It streams data in multiple pipelines
+		    - It Emits its values asynchronously (“push”)
+		    - It is cancellable
+                    - It is retriable by nature such as retry and retryWhen
+                    - It is having array-like operations like map, filter, forEach.. etc
+
 
 
 Math
