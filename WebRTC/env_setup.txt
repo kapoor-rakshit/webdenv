@@ -1,0 +1,123 @@
+WebRTC (Web Real-Time Communication)
+With Web Real-Time Communication (WebRTC), modern web applications can easily stream audio and video content to millions of people.
+It can also be used for building multiplayer games, e-learning, text-based chat, screen and file sharing, video chat.
+
+To build such an application from scratch, you would need a wealth of frameworks and libraries dealing with typical issues like data loss, connection dropping, and NAT traversal.
+With WebRTC, all of this comes built-in into the browser out-of-the-box. This technology doesn't need any plugins or third-party software.
+It is open-sourced and its source code is freely available at      -     http://www.webrtc.org/.
+The WebRTC API includes 
+ - media capture
+ - encoding and decoding audio and video
+ - transportation layer
+ - session management.
+
+Media Capture
+----------------------
+The first step is to get access to the camera and microphone of the user's device. 
+We detect the type of devices available, get user permission to access these devices and manage the stream.
+
+Encoding and Decoding Audio and Video
+------------------------------------------------------
+It is not an easy task to send a stream of audio and video data over the Internet. 
+This is where encoding and decoding are used. This is the process of splitting up video frames and audio waves into smaller chunks and compressing them. This algorithm is called codec. 
+There is an enormous amount of different codecs, which are maintained by different companies with different business goals. 
+There are also many codecs inside WebRTC like H.264, iSAC, Opus and VP8. When two browsers connect together, they choose the most optimal supported codec between two users. 
+Fortunately, WebRTC does most of the encoding behind the scenes.
+
+Transportation Layer
+-----------------------------
+The transportation layer manages the order of packets, deal with packet loss and connecting to other users. 
+Again the WebRTC API gives us an easy access to events that tell us when there are issues with the connection.
+
+Session Management
+------------------------------
+The session management deals with managing, opening and organizing connections. This is commonly called signaling. 
+If you transfer audio and video streams to the user it also makes sense to transfer collateral data. This is done by the RTCDataChannel API.
+
+
+
+The WebRTC API  - ARCHITECTURE has following javascript objects
+======================================================
+ - RTCPeerConnection
+ - MediaStream
+ - RTCDataChannel
+
+The RTCPeerConnection object
+-------------------------------------------
+This object is the main entry point to the WebRTC API. It helps us connect to peers, initialize connections and attach media streams.
+The main task of the RTCPeerConnection object is to setup and create a peer connection. We can easily hook keys points of the connection because this object fires a set of events when they appear. 
+These events give you access to the configuration of our connection.
+The RTCPeerConnection object accepts a conf parameter. The onaddstream event is fired when the remote user adds a video or audio stream to their peer connection.
+Example:
+	var conn = new RTCPeerConnection(conf); 
+	conn.onaddstream = function(stream) { 
+   		// use stream here 
+	}; 
+
+MediaStream API
+-------------------------
+Modern browsers give a developer access to the getUserMedia API, also known as the MediaStream API. There are three key points of functionality:
+ - It gives a developer access to a stream object that represent video and audio streams
+ - It manages the selection of input user devices in case a user has multiple cameras or microphones on his device
+ - It provides a security level asking user all the time he wants to fetch stream
+Example:
+1. Index.html
+	<html>
+	<head> 
+      		<meta charset = "utf-8"> 
+   	</head>
+	
+   	<body> 
+      		<video autoplay></video> 
+      		<script src = "./client.js"></script> 
+   	</body>  
+	</html>
+2. client,js
+	//checks if the browser supports WebRTC 
+	function hasUserMedia() { 
+   		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia; 
+   		return !!navigator.getUserMedia; 
+	}
+ 
+	if (hasUserMedia()) { 
+   		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+		
+   		//get both video and audio streams from user's camera 
+   		navigator.getUserMedia({ video: true, audio: true }, function (stream) { 
+      			var video = document.querySelector('video'); 
+			video.srcObject = stream;
+   		}, function (err) {}); 
+	
+	}else {
+   		alert("Error. WebRTC is not supported!"); 
+	}
+
+RTCDataChannel
+--------------------------
+It does sending media streams between peers, you may also send additional data using DataChannel API. 
+This API is as simple as MediaStream API. The main job is to create a channel coming from an existing RTCPeerConnection object.
+Everything else is done on the browser's internal layer. You can create a channel at any peer connection until the RTCPeerConnectionobject is closed.
+Example:
+	var peerConn = new RTCPeerConnection(); 
+
+	//establishing peer connection 
+	//... 
+	//end of establishing peer connection 
+
+	var dataChannel = peerConnection.createDataChannel("myChannel", dataChannelOptions); 
+
+	// here we can start sending direct messages to another peer
+
+
+
+STUN  -  TURN  -  ICE
+=====================
+A host uses Session Traversal Utilities for NAT (STUN) to discover its public IP address when it is located behind a NAT (Network Address Translator) / Firewall. 
+When this host wants to receive an incoming connection from another party, it provides this public IP address as a possible location where it can receive a connection.
+In most cases, a STUN server is only used during the connection setup and once that session has been established, media will flow directly between the peer and the Video Gateway (WebRTC).
+
+If the NAT/Firewall still won't allow the two hosts to connect directly, they make a connection to a server implementing Traversal Using Relay around NAT (TURN), 
+which will relay media between the two parties.
+
+Interactive Connectivity Establishment (ICE) is a blanket standard that describes how to coordinate STUN and TURN to make a connection between hosts.
+

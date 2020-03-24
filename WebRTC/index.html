@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WebRTC application</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<script type="text/javascript" src="./client.js" async></script>
+</head>
+<body style="text-align: center;">
+
+	<video id="localvideo" autoplay="true"></video>
+	<br/>
+	<button id="getAudioTracks" class="btn btn-primary">Get Audio Tracks</button>
+	<button id="getVideoTracks" class="btn btn-primary">Get Video Tracks</button>
+	<button id="getTracks" class="btn btn-primary">Get Tracks</button>
+	<button id="removeTrack" class="btn btn-danger">Remove Track</button>
+	<br/>
+
+	<video id="remotevideo" autoplay="true"></video>
+	<br/>
+	<button id="removeRemoteTrack" class="btn btn-danger">Remove Track</button>
+	<br/>
+
+	<textarea id="chatarea"></textarea>
+	<br/>
+
+	<input type="text" name="loginUser" id="loginUserInput"/> <button class="btn btn-primary" id="loginUserBtn">Login</button><br/>
+	<input type="text" name="connectUser" id="connectUserInput"/> <button class="btn btn-success" id="connectUserBtn">Connect to user</button><br/>
+	<input type="text" name="message" id="messageInput"/> <button class="btn btn-success" id="messageBtn">Send</button><br/>
+
+</body>
+</html>
