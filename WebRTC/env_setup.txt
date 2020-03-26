@@ -1,4 +1,7 @@
+REFERENCE : https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+
 WebRTC (Web Real-Time Communication)
+==================================
 With Web Real-Time Communication (WebRTC), modern web applications can easily stream audio and video content to millions of people.
 It can also be used for building multiplayer games, e-learning, text-based chat, screen and file sharing, video chat.
 
@@ -112,12 +115,74 @@ Example:
 
 STUN  -  TURN  -  ICE
 =====================
-A host uses Session Traversal Utilities for NAT (STUN) to discover its public IP address when it is located behind a NAT (Network Address Translator) / Firewall. 
+WebRTC needs servers:
+ - For clients to exchange metadata to coordinate communication: this is called signaling.
+ - To cope with network address translators (NATs) and firewalls.
+A setback to IP and Video connectivity has been the restriction NATs (Network Address Translation) and firewalls pose to reliable call completion.
+It is process used by routers to modify IP information by translating local IP addresses on a private subnet to public IP addresses typically assigned by an Internet service provider (ISP).
+NATs and firewalls play a very important role in securing and enhancing the usability of internal networks, however impose significant problems in setting up IP endpoints i.e.
+attempting to establish direct connections between clients on a network.
+Four types of NATs present in today’s routers, presented in order from least RESTRICTIVE to most RESTRICTIVE :
+   1. Full cone
+      -----------------
+       Once an internal address (iAddr:iPort) is mapped to an external address (eAddr:ePort), any packets from iAddr:iPort will be sent through eAddr:ePort. 
+       Any external host can send packets to iAddr:iPort by sending packets to eAddr:ePort.
+   2. Address-restricted cone
+      ----------------------------------
+       Once an internal address (iAddr:iPort) is mapped to an external address (eAddr:ePort), any packets from iAddr:iPort will be sent through eAddr:ePort. 
+       An external host (hAddr:any) can send packets to iAddr:iPort by sending packets to eAddr:ePort only if iAddr:iPort has previously sent a packet to hAddr:any. 
+       “Any” means the port number doesn’t matter.
+   3. Port-restricted cone
+      -----------------------------
+       It is just like address-restricted cone, but the restriction includes port numbers for external host (hAddr:hPort).
+   4. Symmetric
+      ------------------
+       Each request from the same internal IP address and port to a specific destination IP address and port is mapped to a unique external source IP address and port, 
+       if the same internal host sends a packet even with the same source address and port but to a different destination, a different mapping is used. 
+       Only an external host that receives a packet from an internal host can send a packet back.
+IETF (Internet Engineering Task Force) standards STUN, TURN and ICE were developed to address the NAT traversal problem.
+
+
+A host uses Session Traversal Utilities for NAT (STUN) to discover its public IP address when it is located behind a NAT / Firewall. 
 When this host wants to receive an incoming connection from another party, it provides this public IP address as a possible location where it can receive a connection.
 In most cases, a STUN server is only used during the connection setup and once that session has been established, media will flow directly between the peer and the Video Gateway (WebRTC).
+ - If the routers between peers use full cone, address-restricted, or port-restricted NAT, then a direct link can be discovered with STUN alone. 
+ - If either one of the routers use symmetric NAT, then a link can be discovered with STUN packets only if the other router does not use symmetric or port-restricted NAT. 
+ - Else messenger will automatically discover a relayed path through the use of TURN.
 
-If the NAT/Firewall still won't allow the two hosts to connect directly, they make a connection to a server implementing Traversal Using Relay around NAT (TURN), 
-which will relay media between the two parties.
+While STUN is effective in addressing the NAT issue with most consumer NAT devices (routers), it doesn’t work effectively for many corporate networks. 
+TURN, which stands for Traversal Using Relay NAT, addresses this by providing a fallback NAT traversal technique using a media relay server to facilitate media transport between end-points.
+
+
+They make a connection to a server implementing Traversal Using Relay around NAT (TURN), which will relay media between the two parties.
+It differs from STUN in that it uses a public intermediary relay to relay packets between peers. Messenger uses TURN to exchange media stream packets when no other option is available,
+since it consumes server resources and has an increased latency due to the extra step.
+The only time when TURN is necessary is when one of the peers is behind a symmetric NAT and the other peer is behind either a symmetric NAT or port-restricted NAT. 
+
 
 Interactive Connectivity Establishment (ICE) is a blanket standard that describes how to coordinate STUN and TURN to make a connection between hosts.
+ICE is a framework that leverages both STUN and TURN to provide reliable IP  set-up and media transport, through a SIP offer/answer model for end-points 
+to exchange multiple candidate IP addresses and ports (such as private addresses and TURN server addresses). In other words:
+ - A STUN server is used to get an external network address.
+ - TURN servers are used to relay traffic if direct (peer to peer) connection fails.
+For testing, Google runs a public STUN server, stun.l.google.com:19302. 
+For a production STUN/TURN service, we recommend using the rfc5766-turn-server; source code for STUN and TURN servers is available from : https://code.google.com/p/rfc5766-turn-server/
+example:
+{
+  'iceServers': [
+    {
+      'urls': 'stun:stun.l.google.com:19302'
+    },
+    {
+      'urls': 'turn:192.158.29.39:3478?transport=udp',
+      'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+      'username': '28224511:1379330808'
+    },
+    {
+      'urls': 'turn:192.158.29.39:3478?transport=tcp',
+      'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+      'username': '28224511:1379330808'
+    }
+  ]
+}
 
