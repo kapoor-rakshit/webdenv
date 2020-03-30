@@ -608,7 +608,7 @@ Export | Import   functions/classes
 		     import <ANY_ARBITRARY_NAME> from './math.js';
 		     <ANY_ARBITRARY_NAME>();                       // call to default export
 
-		  /* 2. import named export functions in module js file */
+		  /* 2. import named export functions in module js file , NOTE : use of { } in import statement */
 	          /*    we can also provide alias to named export function */
    	             import { subtract as <ALIAS>, multiply, divide, square } from './math.js';
    		     <ALIAS>();     multiply();    square();       // call to named export
