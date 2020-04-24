@@ -940,7 +940,8 @@ DOM Element
 	0.	elem.blur();                                             // Removes focus from an element
 	0.	elem.focus();                                            // Gives focus to an element
 	0.	elem.click();						 // Simulates a mouse-click on an element
-	0. 	elem.contentEditable;                                    // sets or returns whether content of element is editable or not, similar to "contentEditable" attribute
+	0.	elem.select();						 // Simulates select all (`ctrl+A`) on text field 
+	0. 	elem.contentEditable;                                    // sets/returns whether content of element is editable or not, similar to "contentEditable" attribute in HTML
 	0.	elem.classList;                                          // Returns the class name(s) of an element
 	0.	elem.classList.remove("classval");                       // just like removeClass("classval") in jQuery
 	0.	elem.classList.add("classval");                          // just like addClass("classval") in jQuery
