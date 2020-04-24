@@ -762,6 +762,23 @@ Alerts
 CSS
         0.      onclick = this.style.opacity="0.4";
 	0.      onclick = this.style.left="+=250px";             // += , -=  specifies CSS properties from current values
+	
+	
+Height/Width of element/screen/window
+	0.	elmnt.clientHeight;
+		elmnt.clientWidth;				// returns VIEWABLE height/width including padding, but not border, scrollbar or margin.
+	0.	elmnt.offsetHeight;
+		elmnt.offsetWidth;				// returns VIEWABLE height/width including padding, border, scrollbar, but not margin.
+	0.	elmnt.scrollHeight;
+		elmnt.scrollWidth;				// returns ENTIRE (including not visible coz of overflow) height/width including padding, but not border, scrollbar or margin.
+	0.	screen.availHeight;
+		screen.availWidth;				// returns height/width of user screen, minus interface features like Windows Taskbar.
+	0.	screen.height;
+		screen.width;					// returns total height/width of user screen
+	0.	window.innerWidth;
+		window.innerHeight;				// returns width/height of window's content area (viewport) including scrollbars
+	0.	window.outerWidth;
+		window.outerHeight;				// returns width/height of browser window, including all interface elements (like toolbars/scrollbars).
 
 
 Events
@@ -922,6 +939,8 @@ DOM Element
 	0.	elem.appendChild();                                      // Adds a new child node, to an element, as the last child node
 	0.	elem.blur();                                             // Removes focus from an element
 	0.	elem.focus();                                            // Gives focus to an element
+	0.	elem.click();						 // Simulates a mouse-click on an element
+	0. 	elem.contentEditable;                                    // sets or returns whether content of element is editable or not, similar to "contentEditable" attribute
 	0.	elem.classList;                                          // Returns the class name(s) of an element
 	0.	elem.classList.remove("classval");                       // just like removeClass("classval") in jQuery
 	0.	elem.classList.add("classval");                          // just like addClass("classval") in jQuery
@@ -929,8 +948,11 @@ DOM Element
 	0.	elem.className;                                          // Sets or returns value of CLASS attribute of an element
 	0.	elem.getAttribute("attrname");                           // just like attr("attrname") in jQuery
 	0.	elem.setAttribute("attrname", "attrval");                // just like attr({"attrname" : "attrval"}) in jQuery
+	0.	elem.removeAttribute("attrname");			 // removes the specified attribute from an element.
 	0.	elem.innerHTML;                                          // Sets/returns content of element, just like html() in jQuery
 	0.	elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
+	0.	elem.scrollTop;
+		elem.scrollLeft;					 // Sets or returns px element's content is scrolled vertically/horizontally
 	0.	elem.style.PROP="PROPVAL";                               // just like css({"PROP" : "PROPVAL"}) in jQuery
 	
 	
