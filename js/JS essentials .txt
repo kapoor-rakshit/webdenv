@@ -842,6 +842,7 @@ Events
 		  Example : the <div> element's click event will be handled first, then the <p> element's click event.
 		  
 		With addEventListener() specify propagation type by using boolean "useCapture" as third parameter. true  : Capturing mode , false : Bubbling mode
+		The default value is false, which will use the bubbling propagation
 		NOTE : Propagation to/from child/parent depends on "useCapture" defined on respective child's PARENT element.
 		Example : Three divs HTML   <div id="div1"><div id="div2"><div id="div3">INNER</div></div></div>
 		document.getElementById("div1").addEventListener("click", function() {
@@ -849,7 +850,7 @@ Events
 		});
 		document.getElementById("div2").addEventListener("click", function() {
   			alert("You clicked the orange element!");
-		});
+		}, false);
 		document.getElementById("div3").addEventListener("click", function() {
   			alert("You clicked the outer element!");
 		}, true);
