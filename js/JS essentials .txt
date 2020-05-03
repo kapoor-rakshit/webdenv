@@ -817,13 +817,6 @@ Events
 		event.pageY                                                // document is the web page.
 	0.	event.screenX                                           // horizontal/vertical coordinate (according to users computer screen) of mouse pointer in pixels
 		event.screenY
-		
-        0.      stopPropagation()
-	        <div onclick="func2()">DIV 2
-	             <div onclick="func1(event)">DIV 1</div>            // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
-	        </div>                                                  // stopPropagation() method prevents propagation of the same event from being called.
-                                                                        // Propagation means bubbling up to parent elements or capturing down to child elements.
-	       function func1(obj) { alert("DIV 1"); obj.stopPropagation(); }
 	       
         0.     preventDefault()
 	       $("a").click(function(event){
@@ -836,6 +829,37 @@ Events
 	       document.getElementById("myBtn").addEventListener("click", function() { myFunction(p1, p2); });
 	       document.getElementById("myDIV").removeEventListener("mousemove", myFunction);   // name of the event to remove,function to remove.
 	       document.addEventListener("click", myFunction);          // attaches an event handler to the document , here myFunction gets called , anywhere user clicks on document.
+	       
+	0.	Event Propagation
+		Event propagation is a way of defining the element order when an event occurs. 
+		Example : If you have a <p> element inside a <div> element, and the user clicks on the <p> element,
+		          which element's "click" event should be handled first?
+		There are two ways of event propagation in the HTML DOM, bubbling and capturing.
+		- In bubbling the inner most element's event is handled first and then the outer.
+		  Example : the <p> element's click event is handled first, then the <div> element's click event.
+
+		- In capturing the outer most element's event is handled first and then the inner.
+		  Example : the <div> element's click event will be handled first, then the <p> element's click event.
+		  
+		With addEventListener() specify propagation type by using boolean "useCapture" as third parameter. true  : Capturing mode , false : Bubbling mode
+		NOTE : Propagation to/from child/parent depends on "useCapture" defined on respective child's PARENT element.
+		Example : Three divs HTML   <div id="div1"><div id="div2"><div id="div3">INNER</div></div></div>
+		document.getElementById("div1").addEventListener("click", function() {
+			alert("You clicked the white element!");
+		});
+		document.getElementById("div2").addEventListener("click", function() {
+  			alert("You clicked the orange element!");
+		});
+		document.getElementById("div3").addEventListener("click", function() {
+  			alert("You clicked the outer element!");
+		}, true);
+	       
+	0.      stopPropagation()
+	        <div onclick="func2()">DIV 2
+	             <div onclick="func1(event)">DIV 1</div>            // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
+	        </div>                                                  // stopPropagation() method prevents propagation of the same event from being called.
+                                                                        // Propagation means bubbling up to parent elements or capturing down to child elements.
+	       function func1(obj) { alert("DIV 1"); obj.stopPropagation(); }
 
         0.     let timeoutVar = setTimeout(func, duration)                         // calls 'func' only once after 'duration' millisec
 	0.     let timeoutVar = setTimeout(function(){ func("First param", "Second param"); }, 2000);        // pass parameters to func
