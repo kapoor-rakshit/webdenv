@@ -75,11 +75,24 @@ Boolean
 
 
 Date 
-	0.	var dt = new Date();                                                          // Date Object    Fri Oct 18 2019 15:08:10 GMT+0530 (India Standard Time)
-	0.      var d = new Date("July 21, 1983 01:15:00");                                   // Date Object    Thu Jul 21 1983 01:15:00 GMT+0530 (India Standard Time)
+	0.	let dt = new Date();                                                          // Current Date Object | Fri Oct 18 2019 15:08:10 GMT+0530 (India Standard Time)
+		let dt = new Date(year, month, day, hours, minutes, seconds, milliseconds);   // 7 numbers (in that order) | January is 0. December is 11.
+		let dt = new Date(year, month, day, hour, minute, second);		      // 6 numbers
+		let dt = new Date(year, month, day, hour, minute);			      // 5 numbers
+		let dt = new Date(year, month, day, hour);                                    // 4 numbers
+		let dt = new Date(year, month, day);                                          // 3 numbers
+		let dt = new Date(year, month);                                               // 2 numbers
+		let dt = new Date(milliseconds);                                              // 1 number, treated as milliseconds
+		let dt = new Date("2020-05-17");  					      // "dateString (YYYY-MM-DD)" as arg
+		let dt = new Date("2020-05");						      // "dateString (YYYY-MM)" as arg
+		let dt = new Date("2020");						      // "dateString (YYYY)" as arg
+		let dt = new Date("2020-05-17T12:00:00");                                     // "dateString (YYYY-MM-DDTHH:MM:SS)" as arg | T - Separator for Date and time
+		let dt = new Date("2020-05-17T12:00:00Z");                                    // "dateString (YYYY-MM-DDTHH:MM:SSZ)" as arg | Z - UTC Time
+		let msec = Date.parse("2020-05-17");                                          // convert valid date string to milliseconds ie difference from January 1, 1970
 	0.      dt.getDay();                                                                  // DAY_OF_WEEK  , (0 [Sunday] to 6)
 	0.      dt.getMonth();                                                                // MONTH        , (0 [January] to 11)
 	0.      dt.getDate();                                                                 // DAY_OF_MONTH , (1 to 31)
+		dt.setDate(dt.getDate() + 15);                                                // If the month has 30 days, 32 as arg will result in second day of next month
 	0.      dt.getFullYear();                                                             // YEAR (four digits for dates between year 1000 and 9999)
 	0.      dt.getHours();                                                                // HOURS        , (0 to 23)
 	0.      dt.getMinutes();                                                              // MINUTES      , (0 to 59)
