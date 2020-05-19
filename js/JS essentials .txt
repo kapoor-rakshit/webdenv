@@ -801,14 +801,16 @@ Events
 	0.	oncontextmenu                                                   // right click event handler
 	0.	oncopy, oncut, onpaste                                          // copy | cut | paste events
 	0.	onselect                                                        // works for <input type="file">, <input type="password">, <input type="text">, and <textarea> when text is selcted in them
-	0.	<body onclick="func(event)"><p>paragraph <b>testing</b></p></body>    // passing EVENT object
+	0.	// passing EVENT object
+		<body onclick="func(event)"><p>paragraph <b>testing</b></p></body>
 		- function func(evt) {
 		  let elem = evt.target;					// Returns element on which the event originally occurred, eg: <p> OR <b> OR <body>
 		  let elem = evt.currentTarget;					// Returns element whose event listener triggered event, eg: <body>
 		}
-	0.	<body onclick="func(this)"><p>paragraph <b>testing</b></p></body>    // passing THIS object
-									        // Returns element whose event listener triggered event, eg: <body>
-	0.	onkeydown="keydown(event)", onkeypress="keypress(event)", onkeyup="keyup(event)"  
+	0.	// passing THIS object
+		<body onclick="func(this)"><p>paragraph <b>testing</b></p></body>
+									        // Same as event.currentTarget, Returns element whose event listener triggered event, eg: <body>
+	0.	onkeydown="keydown(event)", onkeypress="keypress(event)", onkeyup="keyup(event)", oninput="input(event)"  
 	        // "event" provides a context object to event which triggered the function
 		// keyCode  : A number which represents an actual key on the keyboard ( 'w' code is same as 'W' ) (keydown | keyup) OR 
 		              A number which represents an ASCII character ( 'w' code is different from 'W' )     (keypress)
@@ -818,17 +820,17 @@ Events
 	        // keydown or keyup is used to find out if the user is pressing a function key (e.g. "F1", "CAPS LOCK" or "Home")
 		// keypress works only for alphanumeric and not special keys like ALT, CTRL, SHIFT, ESC or To find out if user is pressing a printable key (e.g. "a" or "5")
 		
-                function keydown(event){                                           // first
-			var x = event.which || event.charCode || event.keyCode;
+                function keydown(evt){                                           // first
+			var x = evt.which || evt.charCode || evt.keyCode;
 			console.log("keydown : " + x)
 		}
-		function keypress(event){                                         // second
-			var x = event.which || event.charCode || event.keyCode;
+		function keypress(evt){                                         // second
+			var x = evt.which || evt.charCode || evt.keyCode;
 			console.log("keypress : " + x);  
 			                                                      
 		}
-		function keyup(event){                                            // third
-			var x = event.which || event.charCode || event.keyCode;
+		function keyup(evt){                                            // third
+			var x = evt.which || evt.charCode || evt.keyCode;
 			console.log("keyup : " + x)
 		}
 	
@@ -840,8 +842,8 @@ Events
 		event.screenY
 	       
         0.     preventDefault()
-	       $("a").click(function(event){
-	          event.preventDefault();  });                           // preventDefault() method stops the default action of an element from happening.
+	       $("a").click(function(evt){
+	          evt.preventDefault();  });                             // preventDefault() method stops the default action of an element from happening.
 		  
         0.     addEventListener()                                        // addEventListener() method attaches an event handler to the specified element.
 	       document.getElementById("myBtn").addEventListener("mouseover", myFunction);
@@ -881,7 +883,7 @@ Events
 	             <div onclick="func1(event)">DIV 1</div>            // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
 	        </div>                                                  // stopPropagation() method prevents propagation of the same event from being called.
                                                                         // Propagation means bubbling up to parent elements or capturing down to child elements.
-	       function func1(obj) { alert("DIV 1"); obj.stopPropagation(); }
+	       function func1(evt) { alert("DIV 1"); evt.stopPropagation(); }
 
         0.     let timeoutVar = setTimeout(func, duration)                         // calls 'func' only once after 'duration' millisec
 	0.     let timeoutVar = setTimeout(function(){ func("First param", "Second param"); }, 2000);        // pass parameters to func
