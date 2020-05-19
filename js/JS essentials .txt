@@ -795,11 +795,19 @@ Height/Width of element/screen/window
 
 
 Events
-        0.      onclick, ondblclick, onfocus, onblur, onchange, onmouseover, onmouseout, onmouseenter, onmouseleave, onmousedown, onmousemove, onmouseup
+        0.      onclick, ondblclick, onfocus, onblur, onmouseover, onmouseout, onmouseenter, onmouseleave, onmousedown, onmousemove, onmouseup
+	0.	onchange, oninput						// onchange occurs when element loses focus, after content has changed.
+										// oninput occurs immediately after value of element has changed.
 	0.	oncontextmenu                                                   // right click event handler
 	0.	oncopy, oncut, onpaste                                          // copy | cut | paste events
 	0.	onselect                                                        // works for <input type="file">, <input type="password">, <input type="text">, and <textarea> when text is selcted in them
-	0.	onclick = “func(this)”                                          // "this" provides a context object to element itself
+	0.	<body onclick="func(event)"><p>paragraph <b>testing</b></p></body>    // passing EVENT object
+		- function func(evt) {
+		  let elem = evt.target;					// Returns element on which the event originally occurred, eg: <p> OR <b> OR <body>
+		  let elem = evt.currentTarget;					// Returns element whose event listener triggered event, eg: <body>
+		}
+	0.	<body onclick="func(this)"><p>paragraph <b>testing</b></p></body>    // passing THIS object
+									        // Returns element whose event listener triggered event, eg: <body>
 	0.	onkeydown="keydown(event)", onkeypress="keypress(event)", onkeyup="keyup(event)"  
 	        // "event" provides a context object to event which triggered the function
 		// keyCode  : A number which represents an actual key on the keyboard ( 'w' code is same as 'W' ) (keydown | keyup) OR 
