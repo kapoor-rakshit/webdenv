@@ -901,31 +901,38 @@ Page events
 		- beforeunload     – the user is leaving the page, check if user saved changes and ask whether really want to leave.
 		- unload           - the user almost left, but we still can initiate some operations, such as sending out statistics.
 	       // Example
-	          // 1. NOTE : The DOMContentLoaded event happens on the document object.
-		            When the browser processes an HTML-document and comes across a <script> tag, it needs to execute before continuing building the DOM.
-		            DOMContentLoaded has to wait except for <script> with the async/defer attribute and 
-			    <script> that is generated dynamically with 'document.createElement('script')'
-			    Images and other resources may also still continue loading.
-		  > document.addEventListener("DOMContentLoaded", functionName);
+	           // 1. NOTE : The DOMContentLoaded event happens on the document object.
+		                When the browser processes an HTML-document and comes across a <script> tag, it needs to execute before continuing building the DOM.
+		                DOMContentLoaded has to wait except for <script> with the async/defer attribute and 
+			        <script> that is generated dynamically with 'document.createElement('script')'
+			        Images and other resources may also still continue loading.
+		    > document.addEventListener("DOMContentLoaded", functionName);
 		  
-		  // 2. NOTE : The load event happens on the window object , also on a TAG
-	          > window.onload = function() {
-		     alert('Page loaded');
-		     // image is loaded at this time
-		   };
+		   // 2. NOTE : The load event happens on the window object , also on a TAG
+	           > window.onload = function() {
+		       alert('Page loaded');
+		         // image is loaded at this time
+		     };
+		   > img.onload = () => { console.log('img onload'); };
 		   
-		   > img.onload = () => log('img onload');
-		   
-		   // 3. NOTE : the beforeunload/unload event happens triggers on window object.
-		             a special 'navigator.sendBeacon(url, data)' method for saving the data (mouse clicks, scrolls, viewed page areas, and so on.) on our server.
-		   > window.onbeforeunload = function() {
-  			return "There are unsaved changes. Leave now?";
-		   };
+		   // 3. NOTE : The beforeunload event triggers on window object.
+		   		This is fired when browser is to be closed, tab is to be closed, the page is to be reloaded.
+		                The event handler should call preventDefault() to show confirmation dialog according to specifications.
+				Older browsers may not support this method, so event handler must return a string. This returned string can be empty.
+				Some browsers may not show any confirmation boxes unless the user has interacted with the page. 
+				This is used to prevent unwanted or malicious websites from creating unnecessary pop-ups. 
+				The user may have to interact with the page to see the confirmation message.
+		   > window.addEventListener('beforeunload', function (e) { 
+            		e.preventDefault(); 
+            		e.returnValue = ''; 
+        	     });
 			     
+		   // 4. NOTE : The unload event triggers on window object.
+		   		a special 'navigator.sendBeacon(url, data)' method can be used for saving data (mouse clicks, scrolls, viewed page areas, and so on.) on our server.
 		   > let analyticsData = { /* object with gathered data */ };
-		   window.addEventListener("unload", function() {
+		     window.addEventListener("unload", function() {
   			navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
-	           };
+	             };
 		
 		- Page reload
 		  > document.location.reload(true)  : force the reloaded page to come from the server (instead of cache). 
@@ -947,6 +954,96 @@ Page events
 	0.	readystatechange() event
 	        // readystatechange event that triggers when the state changes
 		> document.addEventListener('readystatechange', () => console.log(document.readyState));
+		
+	
+	
+Blob / File Reader
+	/* REFERENCE : https://javascript.info/blob
+		     : https://javascript.info/file 
+	*/
+	0.	In the browser, there are higher-level objects, described in File API, in particular Blob (Binary Large Object).
+		let blob = new Blob(blobParts, options);        // options define { type: 'image/png' }
+		let url = URL.createObjectURL(blob);            // it takes Blob and returns unique URL for it, in form  blob:<origin>/<uuid>
+								// eg: blob:https://javascript.info/1e67e00e-860d-40a5-89ae-6ab0cbee6273
+		The mapping of URL → Blob is automatically cleared on document unload, so Blob objects are freed then, otherwise use
+		URL.revokeObjectURL(url);                      // removes the reference from internal mapping, and memory to be freed.
+		HTML
+		<!-- download attribute forces browser to download with name of file as of download attr, instead of navigating -->
+		<a download="hello.txt" href='#' id="downloadlink">Download</a>
+		JS
+		document.getElementById("downloadlink").href = makeTextFile(localStorage.getItem("info"));
+		let textFileURL = null;
+		function makeTextFile(dataArg) {
+			let blobData = new Blob([dataArg], {type: 'text/plain'});
+			
+			// If we are replacing a previously generated file we need to
+    			// manually revoke the object URL to avoid memory leaks.
+    			if (textFileURL !== null) {
+      				window.URL.revokeObjectURL(textFileURL);
+    			}
+
+    			textFileURL = window.URL.createObjectURL(blobData);
+
+    			return textFileURL;
+		}
+	
+	0.	FileReader is an object with the sole purpose of reading data from Blob (and hence File too) objects.
+		It delivers the data using events, as reading from disk (uploaded file) may take time.
+		It offers reading methods like  reader.readAsBinaryString | reader.readAsArrayBuffer | reader.readAsText
+		HTML
+		// NOTE : value (ngModel) attr of type=file is read-only
+		<input type="file" (change)="fileChangeFn($event)" [(ngModel)]="filePath">
+		JS
+		fileChangeFn(ev) {
+		  // create fileReader object
+		  let reader = new FileReader();
+		
+		  // For Browsers other than IE.
+		  if (reader.readAsBinaryString) {
+			// wire up file target
+      			let target: DataTransfer = <DataTransfer>(ev.target);
+      			if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+
+      			// call READ method of FileReader()
+      			reader.readAsBinaryString(target.files[0]);
+
+      			// cancel the operation
+      			// reader.abort();
+
+      			// loading started
+      			reader.onloadstart = function() {
+        			console.log(`READER LOADING STARTED`);
+      			};
+
+      			// occurs during reading
+      			reader.onprogress = function() {
+        			console.log(`READING ...`);
+      			};
+			
+			// no errors, reading complete
+      			reader.onload = function() {
+          			let data = reader.result;
+			};
+			
+			// abort() called
+      			reader.onabort = function() {
+        			console.log(`READER ABORTED`);
+      			};
+
+      			// error has occurred
+      			reader.onerror = function() {
+        			console.error(`READER ERROR ==> ${reader.error.message}`);
+      			};
+
+      			// reading finished with either success or failure
+      			reader.onloadend = function() {
+        			console.log(`READER LOADING ENDED`);
+      			};
+		} else {
+      			alert(`Your browser does not support this feature.`);
+    		}
+	      }
+	
 	
 
 Console
