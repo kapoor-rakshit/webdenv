@@ -1043,6 +1043,26 @@ Blob / File Reader
       			alert(`Your browser does not support this feature.`);
     		}
 	      }
+	      
+	      
+	      
+Local Storage / Session Storage
+==================================
+	0.	The localStorage allow to save key/value pairs in a web browser.
+		The localStorage object stores data with no expiration date. 
+		The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
+		
+		The sessionStorage allow to save key/value pairs in a web browser.
+		The sessionStorage object stores data for only one session.
+		The data is deleted when the browser tab is closed.
+		
+		// Methods / Properties (applicable for both localStorage and sessionStorage)
+		> localStorage.setItem("keyname", "value");          // Adds key to storage or update key's value if already exists
+		> let val = localStorage.getItem("keyname");         // value of the specified key name
+		> localStorage.removeItem("keyname");                // Removes that key from the storage
+		> sessionStorage.clear();                            // Empty all localStorage/sessionStorage key out of storage
+		> let len = sessionStorage.length;                   // Number of items stored in browsers localStorage/sessionStorage Object for this particular domain
+		> let keyname = sessionStorage.key(index);           // Name of the key with the specified index.
 	
 	
 
