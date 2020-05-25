@@ -1046,15 +1046,19 @@ Blob / File Reader
 	      
 	      
 	      
-Local Storage / Session Storage
-==================================
+Local Storage / Session Storage / Cookies
+=============================================
 	0.	The localStorage allow to save key/value pairs in a web browser.
 		The localStorage object stores data with no expiration date. 
-		The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
+		The data will not be deleted when browser tab or browser is closed and even OS reboot, and will be available next day, week, or year.
+		The localStorage is bound to origin (protocol/domain/port triplet) on all tabs and windows.
+		That means if we open same origin (protocol/domain/port, the url path can be different) in a different tab or window we can access all localStorage data for it.
 		
 		The sessionStorage allow to save key/value pairs in a web browser.
 		The sessionStorage object stores data for only one session.
-		The data is deleted when the browser tab is closed.
+		The data is deleted when the current browser tab is closed, but survives page refresh.
+		The sessionStorage is bound to origin (protocol/domain/port triplet) only on current browser tab.
+		That means if we open same origin (protocol/domain/port, the url path can be different) in a different tab or window we CANNOT access sessionStorage data for it.
 		
 		// Methods / Properties (applicable for both localStorage and sessionStorage)
 		> localStorage.setItem("keyname", "value");          // Adds key to storage or update key's value if already exists
@@ -1063,7 +1067,33 @@ Local Storage / Session Storage
 		> sessionStorage.clear();                            // Empty all localStorage/sessionStorage key out of storage
 		> let len = sessionStorage.length;                   // Number of items stored in browsers localStorage/sessionStorage Object for this particular domain
 		> let keyname = sessionStorage.key(index);           // Name of the key with the specified index.
-	
+		
+	0.	Cookies are small strings of data that are stored directly in the browser.
+		When a browser requests a web page from a server, cookies belonging to the page are added to the request. 
+		This way the server gets the necessary data to "remember" information about users.
+		NOTE : This will not work if browser has local cookies support turned off.
+		CREATE/UPDATE
+		A write operation to document.cookie adds/updates only cookies mentioned in it, but doesn’t touch other cookies.
+		name=value;     : cookie pair
+		path=/pathVAL;  : cookie will be accessible for pages under this path.
+				  Must be absolute. By default, it’s the current path.
+				  If a cookie is set with path=/admin, it’s visible at pages /admin and /admin/something, but not at /home or /adminpage.
+				  Usually, we should set path to the root: path=/ to make the cookie accessible from all website pages.
+		expires=TIME;   : cookies disappears when browser is closed. Such cookies are called “session cookies”.
+				  To let cookies survive browser close, we can set either expires or max-age option.
+				  The date must be exactly in this format, in GMT timezone. We can use date.toUTCString() for this.
+		max-age=SECS;   : An alternative to expires, specifies the cookie expiration in seconds from the current moment.
+		eg: document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT;"
+		READ
+		The value of `document.cookie` consists of name=value pairs, delimited by  ';'  and each one is a separate cookie.
+		eg: console.log(`COOKIES ==> ${document.cookie}`);          // cookie1=value; cookie2=value; cookie3=value;
+		DELETE
+		You don't have to specify a cookie value when you delete a cookie.
+		Just set the expires parameter to an already passed date OR max-age parameter to 0 or NEGATIVE VALUE.
+		You should define the cookie path to ensure that you delete the right cookie.
+		Some browsers will not let you delete a cookie if you don't specify the path.
+		eg: document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+		
 	
 
 Console
