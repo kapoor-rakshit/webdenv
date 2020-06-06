@@ -20,9 +20,21 @@ CSS3 is backward compatible and supported by major web browsers.
 
 LAYOUTS
 ---------
-TABLE LAYOUT used for designing layout for page using rowspan and colspan.
-DIV LAYOUT also used for designing layout for page using float and position.
-MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap, column-rule
+1. TABLE LAYOUT used for designing layout for page using rowspan, colspan   etc.
+
+2. DIV LAYOUT also used for designing layout for page using float, position, display   etc.
+
+3. MULTI-COLUMN LAYOUT using width, column-width, -webkit-column-count, column-gap, column-rule.
+        example: HTML
+                 <div class="newspaper">TEXT GOES HERE</div>
+                 
+                 CSS
+                 .newspaper {
+                    column-count: 2;
+                    column-gap: 40px;
+                    column-rule: 1px solid lightblue;
+                 }
+
 
 
 LAYOUT ENGINE
