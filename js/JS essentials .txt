@@ -842,8 +842,19 @@ Events
 		event.screenY
 	       
         0.     preventDefault()
+		/* 1. preventDefault() method stops the default action of an element from happening. */
 	       $("a").click(function(evt){
-	          evt.preventDefault();  });                             // preventDefault() method stops the default action of an element from happening.
+	          	evt.preventDefault();  
+		  });                             
+		/* 2. Prevent number from being written to type="text" input */
+		<input type="text" onkeypress="chkFn(event)"/>
+		function chkFn(evt) {
+  			console.log(`${evt.charCode} , ${typeof(evt.charCode)}`);
+  			if(evt.charCode >= 48 && evt.charCode <=57) {
+   				evt.preventDefault();
+  			}
+		}
+		
 		  
         0.     addEventListener()                                        // addEventListener() method attaches an event handler to the specified element.
 	       document.getElementById("myBtn").addEventListener("mouseover", myFunction);
