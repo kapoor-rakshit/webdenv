@@ -34,6 +34,17 @@
                 The pattern attribute works with the input types: text, date, search, url, tel, email, and password. -->
 		<input type="text" name="country_code" pattern="[A-Za-z]*" title="Alphabets only">
 		
+		<!-- Example : Prevent number from being written to type="text" input -->
+		<!-- NOTE : pattern attr will allow input to accept. 
+			    It merely checks either after submit button is clicked or when typing if using angular/react -->
+		<input type="text" onkeypress="chkFn(event)"/>
+		function chkFn(evt) {
+  			console.log(`${evt.charCode} , ${typeof(evt.charCode)}`);
+  			if(evt.charCode >= 48 && evt.charCode <=57) {
+   				evt.preventDefault();
+  			}
+		}
+		
 
 		<!-- Radio -->
 		Gender
@@ -81,7 +92,7 @@
 		<input list="dt">
 		
 
-		<!-- Date -->
+		<!-- Date | min , max -->
 		Date of Birth<br>
 		<input type="date" name="bday" min="1993-01-01" max="2000-12-31" required>
 		
@@ -132,12 +143,12 @@
 		<input type="color" name="rang" required>
 
 		
-		<!-- Number -->
+		<!-- Number | min , max -->
 		B.Tech year<br>
 		<input type="number" name="year" min="1" max="4" style="width: 50;text-align: center;">
 		
 		
-		<!-- Range | Output -->
+		<!-- Range | Output | min , max -->
 		Range<br>
 		<input type="range" name="rng" id = "rngid" min="0" max="10" value="0" onchange="val.value = rng.valueAsNumber">
 		<output for="rngid" name="val">0</output>/10
