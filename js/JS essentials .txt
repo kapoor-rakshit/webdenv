@@ -23,10 +23,16 @@ Array methods
 		   
 		c) var mx = Math.max([1,3,4]);                                                // using array in Math functions , return NaN
 		   var mx = Math.max(...[1,3,4]);                                             // instead , we use spread operator
-	0.      arr.fill("Balle", 2, 4);                                                      // fill array with value at index [start,end) // modifies original array
+	0.      arr.fill("Balle", 2, 4);                                                      // fill array with value at index [start,end)     // modifies original array, plus return modified array
 	0.      arr.filter(func_that_returns_true_false);                                     // just like "filter" in Python
 	0.      arr.forEach(funcName);                                                        // calls function once for each element in order. // does not return
 	0.      arr.map(funcName);                                                            // calls function once for each element in order. // returns new array with results of calling function
+	0.	arr.every(funcName);							      // checks if all elements in array pass test (provided as a function).
+											      // If it finds array element where function returns `false`, every() returns false 
+											         and does not check remaining values , If no `false` occur, every() returns true
+	0.	arr.some(funcName);							      // checks if any element in array pass test (provided as a function).
+											      // If it finds array element where function returns `true` , some() returns true 
+											         and does not check remaining values , Otherwise it returns `false`
 	0.      Array.from("90254085RKTA");                                                   // just like "list()" in Python
 	0.      arr.includes("chk",index_to_start_search);                                    // returns true/false if array contains the element.
 	0.      arr.indexOf("chk", index_to_start_search);                                    // returns position, -1 if not found, -ve value index will search from that position from end till end
