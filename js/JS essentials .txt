@@ -1,4 +1,4 @@
-
+﻿
 Ways of including JS
         0.     INTERNAL JS                                         // <script></script>
 	0.     EXTERNAL JS                                         // <script src="path_to_js_file"></script>
@@ -1169,6 +1169,12 @@ DOM Element
 	0.	elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
 	0.	elem.scrollTop;
 		elem.scrollLeft;					 // Sets or returns px element's content is scrolled vertically/horizontally
+		elem.scrollIntoView();				//  scrolls element's parent container such that element on which scrollIntoView() is called is visible to user
+		element.scrollIntoView(alignToTop); 			//  Boolean parameter , (true = top | false = bottom) of element will be aligned to top/bottom of visible area of scrollable ancestor.
+		element.scrollIntoView(scrollIntoViewOptions); 		//  Object parameter , eg: {behavior: "smooth", block: "end", inline: "nearest"}
+										 behavior - transition animation (auto or smooth , default - auto)
+										 block     - vertical alignment (start, center, end, or nearest , default - start)
+										 inline      - horizontal alignment (start, center, end, or nearest , default - nearest)
 	0.	elem.style.PROP="PROPVAL";                               // just like css({"PROP" : "PROPVAL"}) in jQuery
 	
 	
