@@ -93,6 +93,7 @@ Date
 		let dt = new Date(year, month);                                               // 2 numbers
 		let dt = new Date(milliseconds);                                              // 1 number, treated as milliseconds
 		let dt = new Date("2020-05-17");  					      // "dateString (YYYY-MM-DD)" as arg
+		let dt = new Date("05-17-2020");					      // "dateString (MM/DD/YYYY)" or (MM-DD-YYYY) as arg
 		let dt = new Date("2020-05");						      // "dateString (YYYY-MM)" as arg
 		let dt = new Date("2020");						      // "dateString (YYYY)" as arg
 		let dt = new Date("2020-05-17T12:00:00");                                     // "dateString (YYYY-MM-DDTHH:MM:SS)" as arg | T - Separator for Date and time
@@ -914,6 +915,7 @@ Events
         0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
 	
 Page events
+==============
 	0.	Lifecycle of an HTML page has four important events:
 		- DOMContentLoaded – the browser fully loaded HTML, and the DOM tree is built, 
 		                     but external resources like pictures <img> and stylesheets may be not yet loaded.
@@ -977,7 +979,8 @@ Page events
 		
 	
 	
-Blob / File Reader
+Blob  /  FormData  /  File Reader
+============================
 	/* REFERENCE : https://javascript.info/blob
 		     : https://javascript.info/file 
 	*/
@@ -1006,6 +1009,13 @@ Blob / File Reader
 
     			return textFileURL;
 		}
+
+	0.	FormData can be used to send files to backend server with POST API.
+		It’s encoded and sent out with Content-Type: multipart/form-data
+		Eg:-
+    			const fileDetails = new FormData();
+			let file = new Blob([this.files[0]], {type: 'application/json'});
+    			fileDetails.append('file', file, this.fileName);
 	
 	0.	FileReader is an object with the sole purpose of reading data from Blob (and hence File too) objects.
 		It delivers the data using events, as reading from disk (uploaded file) may take time.
