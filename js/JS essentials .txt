@@ -92,7 +92,7 @@ Date
 		let dt = new Date(year, month, day);                                          // 3 numbers
 		let dt = new Date(year, month);                                               // 2 numbers
 		let dt = new Date(milliseconds);                                              // 1 number, treated as milliseconds
-		let dt = new Date("2020-05-17");  					      // "dateString (YYYY-MM-DD)" as arg
+		let dt = new Date("2020-05-17");  					      // "dateString (YYYY-MM-DD)" or (YYYY/MM/DD) as arg
 		let dt = new Date("05-17-2020");					      // "dateString (MM/DD/YYYY)" or (MM-DD-YYYY) as arg
 		let dt = new Date("2020-05");						      // "dateString (YYYY-MM)" as arg
 		let dt = new Date("2020");						      // "dateString (YYYY)" as arg
