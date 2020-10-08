@@ -59,6 +59,68 @@ Array methods
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
 	
 	
+Shallow Copy | Deep Copy objects in JS
+	REFERENCE : https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
+	0.	Making a shallow copy of an array or object means creating new references to the primitive values inside the object, copying them.
+		That means that changes to the original array will not affect the copied array, 
+		which is what would happen if only the reference to the array had been copied (such as would occur with the assignment operator '=').
+		NOTE : A shallow copy refers to the fact that only one level is copied, and that will work fine for an array or object containing only primitive values.
+		1- Shallow copy using SPREAD OPERATOR (...)
+		2- Shallow copy using SLICE METHOD (.slice())
+		3- Shallow copy using ASSIGN METHOD (Object.assign())
+		   eg: Object.assign(targetVAR, sourceVAR);
+		4- Shallow copy using FROM METHOD (Array.from())
+		   eg: let targetVAR = Array.from(sourceVAR);
+		  
+		Like other shallow copy methods, Array.from will make a shallow clone for arrays containing just values.
+		But for deeply nested arrays that contain other arrays or objects, you need to deep copy, so Array.from won't work.
+		
+	0.	For objects and arrays containing other objects or arrays, copying these objects requires a deep copy. 
+		Otherwise, changes made to the nested references will change the data nested in the original object or array too.
+		1- Deep copy using lodash library ("low dash" i.e. "_")
+		   > npm i lodash
+		   eg: import { clone, cloneDeep } from "lodash";
+		       let shallowCopyWithLodashClone = clone(sourceVAR);           // shallow copy , same as using spread operator
+		       let deepCopyWithLodashCloneDeep = cloneDeep(sourceVAR);      // deep copy
+		       
+		2- Deep copy with Ramda
+		   > npm i ramda
+		   eg: import R from "ramda";
+		       let deepCopyWithRamdaClone = R.clone(sourceVAR);             // deep copy
+		       
+		3- Deep copy with custom function
+		   eg: const deepCopyFunction = (inObject) => {
+                         let outObject, value, key
+
+                         if (typeof inObject !== "object" || inObject === null) {
+                           return inObject // Return the value if inObject is not an object
+                         }
+
+                         // Create an array or object to hold the values
+                         outObject = Array.isArray(inObject) ? [] : {}
+
+                         for (key in inObject) {
+                           value = inObject[key]
+
+                           // Recursively (deep) copy for nested objects, including arrays
+                           outObject[key] = deepCopyFunction(value)
+                         }
+
+                         return outObject;
+                      }  
+		      let deepCopiedArray = deepCopyFunction(sourceVAR);
+		      
+		4- Deep copy with JSON.parse/stringify
+		   // NOT RECOMMENDED as it might make a faulty clone
+		   // NaN, Infinity values will be forced to 'null' | Date will get stringified | Undefined key-value pair will be completely lost
+		   eg: const faultyClone = JSON.parse(JSON.stringify(sampleObject));
+		   
+		5- Deep copy with rfdc library
+		   > npm i rfdc
+		   eg: const clone = require('rfdc')()         // Returns the deep copy function
+		       clone({a: 37, b: {c: 3700}})            // {a: 37, b: {c: 3700}}
+	
+	
 Loops
 	0.	For/In                                           // loops through the PROPERTIES (key) of an object
 		// example
