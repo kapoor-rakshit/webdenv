@@ -60,6 +60,7 @@ Array methods
 	
 	
 Shallow Copy | Deep Copy objects in JS
+=========================================
 	REFERENCE : https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
 	0.	Making a shallow copy of an array or object means creating new references to the primitive values inside the object, copying them.
 		That means that changes to the original array will not affect the copied array, 
@@ -968,6 +969,29 @@ Events
                                                                         // Propagation means bubbling up to parent elements or capturing down to child elements.
 	       function func1(evt) { alert("DIV 1"); evt.stopPropagation(); }
 
+
+setTimeout | setInterval
+==========================
+	NOTE : When a function is passed in setInterval/setTimeout, an internal reference is created to it and saved in the scheduler. 
+	       It prevents the function from being garbage collected, even if there are no other references to it.
+	       For setTimeout  the function stays in memory until the scheduler calls it or clearTimeout() is called.
+	       For setInterval the function stays in memory until clearInterval() is called.
+	       Any setTimeout/setInterval will run only after the current script has finished.
+	       Even a zero delay scheduling with setTimeout(func, 0) (the same as setTimeout(func)) is scheduled only after the current script is complete.
+	       
+	       How setTimeout and setInterval works in execution loop ?
+	       Ans : Javascript is singled-threaded but the browser is not. 
+	             Browser has atleast three threads: Javascript engine thread, UI thread, and timing thread, where timing of setTimeout/setInterval are done by timing thread.
+		     The callback function is not executed before other functions above it in the stack finishes. 
+		     So if there are other time-consuming functions being executed when time up, the callback of setTimeout will not finish in time.
+		     
+	       How does browser insure that after execution of script the "setTimeout" will execute ?
+	       Ans : When "Call Stack" becomes empty i.e script completes it's execution the "Event Loop" will take message from message queue and push it into stack.
+	             The only job of "Event Loop" is when "Call Stack" becomes empty and "Message Queue" has entry in it then dequeue message form "Message Queue" and push into "Call Stack"
+	       CALL STACK <--> MESSAGE QUEUE
+	            ^--         --^
+	               EVENT LOOP
+	       
         0.     let timeoutVar = setTimeout(func, duration)                         // calls 'func' only once after 'duration' millisec
 	0.     let timeoutVar = setTimeout(function(){ func("First param", "Second param"); }, 2000);        // pass parameters to func
 	0.     clearTimeout(timeoutVar);                                  // pass in name of variable defined during setTimeout
@@ -975,6 +999,8 @@ Events
         0.     let intervalVar = setInterval(func, duration)                       // calls 'func' after every 'duration' millisec
 	0.     let intervalVar = setInterval(function(){ func("First param", "Second param"); }, 2000);      // pass parameters to func
         0.     clearInterval(intervalVar)                                // pass in name of variable defined during setInterval
+	       NOTE : It is possible that func's execution turns out to be longer than we expected and takes more than 'delay' ms.
+	              In this case the engine waits for func to complete, then checks the scheduler and if the time is up, runs it again immediately.
 	
 Page events
 ==============
