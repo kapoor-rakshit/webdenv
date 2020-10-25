@@ -211,6 +211,10 @@ Exception Handling
 		
 		
 Misc.
+	0.	Native objects | Host objects
+		Native objects are part of JavaScript language defined by ECMAScript specification, such as String, Math, Object, Function etc.
+		Host objects are provided by runtime environment (browser or NodeJS server), such as window, XMLHTTPRequest etc.
+	
         0.      In regular functions the 'this' keyword represented the object that called the function, which could be the window, the document, an element.
 		With arrow functions the 'this' keyword always represents the object that defined (owns) the arrow function.
 		In a object's method, 'this' refers to the owner object or owner of method.
