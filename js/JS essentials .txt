@@ -213,6 +213,8 @@ Exception Handling
 Misc.
         0.      In regular functions the 'this' keyword represented the object that called the function, which could be the window, the document, an element.
 		With arrow functions the 'this' keyword always represents the object that defined (owns) the arrow function.
+		In a object's method, 'this' refers to the owner object or owner of method.
+		Alone, 'this' refers to the global object. In a browser window the Global object is [object Window].
 		Example
 		0. // Regular Function
 		   hello = function() {
@@ -233,6 +235,16 @@ Misc.
 		   
 		   // A button object calls the function
 		   document.getElementById("btn").addEventListener("click", hello);
+		   
+		0. // Object's Method
+		   var person = {
+		      firstName: "John",
+		      lastName : "Doe",
+		      id       : 5566,
+		      fullName : function() {
+		         return this.firstName + " " + this.lastName;
+		      }
+		   };
 		
         0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
 	0.      var dec = decodeURI(enc);
@@ -543,7 +555,22 @@ Functions
                            language : "",
                            set lang(lang) {
                               this.language = lang.toUpperCase();
-                            }};                                   
+                            }};
+			    
+	0.	// .call()  |  .apply()
+		   They can be used to invoke method with owner object as argument i.e. an object can use a method/props belonging to another object.
+		   The difference between them is .call() method takes arguments separately | .apply() method takes arguments as an array.
+		   var person = {
+		      fullName: function(city, country) {
+		         return this.firstName + " " + this.lastName + "," + city + "," + country;
+		      }
+		   }
+		   var person1 = {
+		      firstName:"John",
+		      lastName: "Doe"
+		   }
+		   let callData = person.fullName.call(person1, "Oslo", "Norway");
+		   let applyData = person.fullName.apply(person1, ["Oslo", "Norway"]);
 			    
 	0.      // ES5
 		// Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
