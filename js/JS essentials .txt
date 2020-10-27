@@ -214,6 +214,11 @@ Misc.
 	0.	Native objects | Host objects
 		Native objects are part of JavaScript language defined by ECMAScript specification, such as String, Math, Object, Function etc.
 		Host objects are provided by runtime environment (browser or NodeJS server), such as window, XMLHTTPRequest etc.
+		
+	0.	Window is JavaScript's root object, also called Global Object in a browser or it is a root of DOM, accessed as window.<PROPERTY>
+		NOTE : Since `window` is a global object, we can reference any <PROPERTY> directly i.e. without using `window.<PROPERTY>`
+		`window.screen`  or just `screen` is a small information object about physical screen dimensions.
+		`window.document` or just `document` is object about visible or rendered DOM.
 	
         0.      In regular functions the 'this' keyword represented the object that called the function, which could be the window, the document, an element.
 		With arrow functions the 'this' keyword always represents the object that defined (owns) the arrow function.
@@ -504,9 +509,13 @@ Functions
 		    
 	0.      var f = function(a=1, b=0) { return a*b; }          // default values passed to function incase not passed on invoke
 	
-	0.      (function () {
+	0.      (function () {                                      // IIFE (Immediately Invoked Function Expression), also called
 	            var x = "Hello!!";                              // anonymous self-invoking function , NOTE : () around and after function
 		})();
+		
+		(function (user) {                                  // IIFE with passed parameter
+	            var x = "Hello!!" + user;
+		})("kapoor-rakshit");
 		
 	0.      const x = (x, y) => { return x * y };               // Arrow Functions in ES6
 	
