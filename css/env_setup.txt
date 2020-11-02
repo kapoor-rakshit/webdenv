@@ -164,6 +164,9 @@ background-color: #0f0 !important;
 padding: 20px 10px 20px 10px !important;                   /* this will make all padding-top, padding-right, padding-bottom, padding-left as !IMPORTANT */
 
 
+/* CSS Units */
+
+
 /* pointer-events property defines whether or not an element reacts to pointer events */
 /* like mouse/touch events – including CSS hover/active states, click/tap events in Javascript, and whether or not cursor is visible. */
 pointer-events: none;
@@ -188,6 +191,7 @@ font-size: 25px;                                           /* medium | xx-small 
 text-align: center;
 align-content: center;
 
+line-height: 2;                                            /*  */
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
                                                            /* four values : top, right, bottom, left */
