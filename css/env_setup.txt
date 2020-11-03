@@ -170,10 +170,10 @@ padding: 20px 10px 20px 10px !important;                   /* this will make all
 cm | mm | in (inches, 1in = 96px = 2.54cm) | px (pixels, 1px = 1/96th of 1in, one device pixel (dot) of display) | pt (points, 1pt = 1/72 of 1in) | pc (picas, 1pc = 12 pt)
 
 /* Relative Lengths : Relative length units specify a length relative to another length property */
-em    - Relative to the font-size of the element (0.5em means 0.5 times the size of the current font, example : <span> font-size which is inside a <div>)
+em    - Relative to the font-size of element (default is 16px) (height: 0.5em means height is 0.5 times font-size of element or font-size of parent)
+rem   - Relative to browsers base font-size  (default is 16px) i.e. defined with CSS selector , html {} or relative to root element.
 ex    - Relative to the x-height of the current font (rarely used).
 ch    - Relative to the width of the "0" (zero) character.
-rem   - Relative to browsers base font-size i.e. defined with CSS selector ,  html {} or relative to root element.
 vw    - Relative to 1% of the width of the viewport.
 vh    - Relative to 1% of the height of the viewport.
 vmin  - Relative to 1% of viewport's* smaller dimension.	
@@ -205,8 +205,10 @@ font-size: 25px;                                           /* medium (default) |
 text-align: center;
 align-content: center;
 
-line-height: 2;                                            /* normal (default) | number (multiplied with current font-size to set line height) | 
-                                                              length (fixed line height in px, pt, cm, etc.) | % (line height in percent of the current font size) */
+line-height: 2;                                            /* normal (default)
+                                                              number (multiplied with current font-size to set line height)
+                                                              length (fixed line height in px, pt, cm, etc.)
+                                                              % (line height in percent of the current font size) */
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
                                                            /* four values : top, right, bottom, left */
