@@ -710,6 +710,42 @@ Map
 	   
 	   myMap1.forEach(functionName);                // provides a function to be executed for each key-val pair
 	   function functionName(value, key) { }        // functionName definition , first param is value, second is key for each pair
+	  
+Set
+	0. let tpStr = "kapoor-rakshit";
+	   let mySet1 = new Set(tpStr);
+
+           let tpArr = ["kapoor", 45, "rakshit", 9025, "kapoor", 9025];
+	   let mySet2 = new Set(tpArr);
+
+	   let mySet3 = new Set();
+	   mySet3.add(9025); mySet3.add(4095); mySet3.add(4095); mySet3.add(4021); mySet3.add(9025);
+
+	   mySet3.size;
+
+	   mySet3.has(val);
+
+	   mySet3.delete(val);
+
+	   mySet3.clear();
+
+	   let getEntriesArry = mySet3.entries();       // [[val, val], [val, val]]
+
+	   let getKeys = mySet3.keys();                 // {val, val}
+
+	   let getValues = mySet3.values();             // {val, val}
+
+	   mySet3.forEach(callbackFn);                  // provides a function to be executed for each key-val pair
+	   function callbackFn(key, values, set) { }    // callbackFn definition , key - val - setObject
+
+	   setA.subSet(setB);                           // returns true if Set A is a subset of Set B
+		                                        // Set A is said to be subset of Set B, if all elements of Set A are present in Set B
+
+	   setA.union(setB);                            // union i.e. all distinct from both sets i.e. setA + setB
+
+	   setA.intersection(setB);                     // intersection i.e. common elements
+
+	   setA.difference(setB);                       // newSet = setA - setB
 	   
 		      
 Export | Import   functions/classes
