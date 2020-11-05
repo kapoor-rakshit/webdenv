@@ -209,13 +209,19 @@ line-height: 2;                                            /* normal (default)
                                                               number (multiplied with current font-size to set line height)
                                                               length (fixed line height in px, pt, cm, etc.)
                                                               % (line height in percent of the current font size) */
+                                                              
+will-change: transform, opacity;                           /* The will-change CSS property hints to browsers how an element is expected to change. 
+                                                              Browsers may set up optimizations before an element is actually changed. 
+                                                              These optimization can increase responsiveness of page by doing potentially expensive work before they required. 
+                                                              Excessive use of will-change will result in excessive memory use and will cause more complex rendering to occur
+                                                              This may lead to worse performance than better. */
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
-                                                           /* four values : top, right, bottom, left */
+                                                           /* negative values NOT allowed *//* four values : top, right, bottom, left */
                                                            /* REFERENCE : https://www.w3schools.com/css/css_padding.asp */
                                                            
 margin: 25px 50px 75px 100px;                              /* create space around elements, outside of any defined borders */
-margin: auto;                                              /* four values : top, right, bottom, left */
+margin: auto;                                              /* negative values allowed *//* four values : top, right, bottom, left */
                                                            /* "auto" will make any block elements (div, p, ul) to centralize if width is set to other than default (100%) */
                                                            /* REFERENCE : https://www.w3schools.com/css/css_margin.asp */
                                                            
