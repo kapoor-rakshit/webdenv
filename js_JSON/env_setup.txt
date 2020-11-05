@@ -70,6 +70,8 @@ READ Javascript Object
 5.  for (x in myObj) {                                    /* use of for loop */
       console.log(myObj[x]);
     }
+6.  obj.hasOwnProperty(key);                              /* true or false if key present/not present */
+    obj[key];                                             /* value or undefined if key present/not present */
 
 
 UPDATE Javascript Object
