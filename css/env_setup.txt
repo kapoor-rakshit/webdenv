@@ -215,6 +215,34 @@ will-change: transform, opacity;                           /* The will-change CS
                                                               These optimization can increase responsiveness of page by doing potentially expensive work before they required. 
                                                               Excessive use of will-change will result in excessive memory use and will cause more complex rendering to occur
                                                               This may lead to worse performance than better. */
+                                                              
+white-space: nowrap;                                       /* The white-space property specifies how white-space inside an element is handled.
+                                                              normal (default) - Sequences of whitespace will collapse into single whitespace. Text will wrap when necessary.
+                                                              nowrap           - Sequences of whitespace will collapse into single whitespace. Text never wrap to next line. 
+                                                                                 The text continues on the same line until a <br> tag is encountered */
+                                                              
+word-break: break-word;                                    /* The word-break property specifies how words should break when reaching the end of a line.
+                                                              normal (default) - Uses default line break rules, overflow may happen.
+                                                              break-all	       - To prevent overflow, word may be broken at any character 
+                                                              break-word	     - To prevent overflow, word is broken at only arbitrary points like <space>, <br> or character if word is too long */
+                                                              
+word-wrap: break-word;                                     /* The word-wrap property allows long words to be able to be broken and wrap onto the next line.
+                                                              normal (default) - Break words only at allowed break points
+                                                              break-word	     - Allows unbreakable words to be broken */                                                         
+div.a {
+  width: 100px; 
+  white-space: nowrap;                                     /* The text-overflow property specifies how overflowed content that is not displayed should be signaled to user. */
+  overflow: hidden;                                        /* white-space: nowrap;  overflow: hidden;  properties are required for text-overflow */
+  text-overflow: ellipsis;                                 /* clip (default) - The text is clipped and not accessible
+}                                                             ellipsis	     - Render an ellipsis ("...") to represent the clipped text */
+div.a:hover {
+  overflow: visible;
+}
+
+writing-mode: vertical-lr;                                 /* The writing-mode property specifies whether lines of text are laid out horizontally or vertically. 
+                                                              horizontal-tb (default) - Let the content flow horizontally from left to right, vertically from top to bottom 
+                                                              vertical-lr	            - Let the content flow vertically from top to bottom, horizontally from left to right
+                                                              vertical-rl	            - Let the content flow vertically from top to bottom, horizontally from right to left */
 
 padding: 25px 50px 75px 100px;                             /* generate space around element's content, inside of any defined borders */
                                                            /* negative values NOT allowed *//* four values : top, right, bottom, left */
