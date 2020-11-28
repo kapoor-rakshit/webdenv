@@ -155,6 +155,13 @@ min-width: 500px;             /* If content is smaller than min-width, the min-w
 max-width: 150px;             /* If content is larger than max-width, it will automatically change the height of the element. */ /* If content is smaller than max-width, the max-width property has no effect ie wraps around content */
 
 
+/* BOX-SIZING */
+* {
+  box-sizing: border-box;     /*             box-sizing: border-box  , allows us to include padding and border in an element's total width and height */
+}                             /* By default, box-sizing: content-box , When we set width/height of element, element often appears bigger than what is set. 
+                                 (because element's border and padding are added to the element's specified width/height). */
+
+
 /* !IMPORTANT property */
 /* Order of preference of CSS is INLINE --> INTERNAL --> EXTERNAL */
 /* apart from this value written at end overrides previous value , eg: margin: auto; margin: 30%;    margin: 30%   will be applied */
