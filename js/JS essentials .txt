@@ -570,7 +570,17 @@ Functions
                               this.language = lang.toUpperCase();
                             }};
 			    
-	0.	// .call()  |  .apply()
+	0.	Object.seal() | Object.freeze()
+		   The Object.seal() method seals an object, preventing new properties from being added or existing from being deleted.
+		   Values of present properties can still be changed.
+		   Eg: Object.seal(obj);
+		   
+		   The Object.freeze() method freezes an object. A frozen object can no longer be changed.
+		   freezing an object prevents new properties from being added to it, existing properties from being removed.
+		   Values of existing properties CANNOT be changed.
+		   Eg: Object.freeze(obj);
+			    
+	0.	.call()  |  .apply()  |  .bind()
 		   They can be used to invoke method with owner object as argument i.e. an object can use a method/props belonging to another object.
 		   The difference between them is .call() method takes arguments separately | .apply() method takes arguments as an array.
 		   var person = {
@@ -582,8 +592,15 @@ Functions
 		      firstName:"John",
 		      lastName: "Doe"
 		   }
+		   Eg:
 		   let callData = person.fullName.call(person1, "Oslo", "Norway");
 		   let applyData = person.fullName.apply(person1, ["Oslo", "Norway"]);
+		   
+		   Unlike the call() and apply() methods, the bind() method doesn’t immediately execute the function. 
+		   It just returns the function.
+		   Eg:
+		   let f = person.fullName.bind(person1, "Oslo", "Norway");
+		   setTimeout(f, 1000);
 			    
 	0.      // ES5
 		// Constructor , a convention to distinguish ordinary function and constructor write FunctionName as Capitalized
