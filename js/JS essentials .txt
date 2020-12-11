@@ -220,8 +220,8 @@ Misc.
 		`window.screen`  or just `screen` is a small information object about physical screen dimensions.
 		`window.document` or just `document` is object about visible or rendered DOM.
 	
-        0.      In regular functions the 'this' keyword represented the object that called the function, which could be the window, the document, an element.
-		With arrow functions the 'this' keyword always represents the object that defined (owns) the arrow function.
+        0.      In regular functions the 'this' keyword represents the object that called the function.
+		With arrow functions the 'this' keyword represents the scope same as scope of it's parent, where arrow function is defined.
 		In a object's method, 'this' refers to the owner object or owner of method.
 		Alone, 'this' refers to the global object. In a browser window the Global object is [object Window].
 		Example
@@ -254,6 +254,26 @@ Misc.
 		         return this.firstName + " " + this.lastName;
 		      }
 		   };
+		   
+		0. // an Example
+		   const a = {
+		   	one : function(){
+				console.log(this);
+			},
+			two : () => {
+				console.log(this);
+			},
+			three: () => {
+				this.two();
+			},
+			four: function() {
+				this.two();
+			}
+		   }
+		   a.one();   // [Object object]
+		   a.two();   // [Object window]
+		   a.three(); // ERROR : this.two is not a function , two() in not defined in window scope and stops program execution
+		   a.four();  // [Object window]
 		
         0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
 	0.      var dec = decodeURI(enc);
