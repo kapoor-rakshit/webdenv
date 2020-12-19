@@ -274,11 +274,13 @@ Misc.
 		   a.two();   // [Object window]
 		   a.three(); // ERROR : this.two is not a function , two() in not defined in window scope and stops program execution
 		   a.four();  // [Object window]
-		
-        0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
-	0.      var dec = decodeURI(enc);
-	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes the following characters: , / ? : @ & = + $ #
-	0.      var uri_dec = decodeURIComponent(uri_enc);
+		   
+	0.      var res = encodeURI("https://w3schools.com/my test.asp?name=ståle&car=saab");            // encodes special characters, except: , / ? : @ & = + $ #
+	        var dec = decodeURI(enc);
+	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes: , / ? : @ & = + $ #
+	        var uri_dec = decodeURIComponent(uri_enc);
+	0.	let enc = btoa(str);                                                                     // btoa() method encodes a string to base-64
+		let dec = atob(enc);                                                                     // atob() method decodes a base-64 encoded string
 	
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
 	
