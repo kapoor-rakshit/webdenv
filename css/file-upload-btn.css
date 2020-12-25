@@ -1,25 +1,25 @@
 <style>
     /* To make changes to existing choose file button's CSS */
     /* WebKit/Blink compatible browsers like Chrome, Opera and Safari (indicated by the -webkit prefix) 
-		   support/recognizes a non-standard pseudo-class ::-webkit-file-upload-button */
-		::file-selector-button {
-			border: 2px solid black;
-		}
-		::-webkit-file-upload-button {
-			border: 2px solid black;
-		}
+       support/recognizes a non-standard pseudo-class ::-webkit-file-upload-button */
+	::file-selector-button {
+		border: 2px solid black;
+	}
+	::-webkit-file-upload-button {
+		border: 2px solid black;
+	}
 
     /* To replace existing choose file button with an image */
-	  .image-upload > input {
-    	display: none;
-	  }
-	  .image-upload img {
-    	cursor: pointer;
-	  }
+	.image-upload > input {
+		display: none;
+	}
+	.image-upload img {
+		cursor: pointer;
+	}
 </style>
 
 <body>
-	<div>Click the upload icon below to upload a file.</div>
+  <div>Click the upload icon below to upload a file.</div>
 
   <div class="image-upload">
     <label for="file-input">
