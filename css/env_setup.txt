@@ -101,7 +101,8 @@ input:out-of-range                           /* works for input elements with mi
 /* pseudo elements (::) , REFERENCE : https://www.w3schools.com/css/css_pseudo_elements.asp */
 /* Pseudo-element names are not case-sensitive */
 /* these can be used without any tag prefix ie applied globally to all tags */
-::placeholder {}                             /* placeholder CSS */
+::placeholder {}                   ::-webkit-placeholder {}              /* placeholder CSS */
+::file-selector-button {}          ::-webkit-file-upload-button {}       /* choose file button CSS */
 p::first-line {}                             /* first line of <p> visible on screen */
 p::first-letter {}                           /* first letter of <p> */
 p::selection {}                              /* portion of an element selected , properties that can be modified are color, background, cursor, outline. */
