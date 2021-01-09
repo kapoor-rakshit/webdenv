@@ -57,8 +57,9 @@ Array methods
 	0.      arr.sort();                                                                   // we can pass comparator function to it.
 	0.	delete arr[index];                                                            // elem at index does not exist in arr (undefined) and donot change indexes of other elements.
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
-	
-	
+	0.	arr.flat(depth);							      // creates new array with all sub-array elements concatenated upto depth
+											         // default depth = 1 | arr.flat(Infinity); | flat() removes empty slots
+		
 Shallow Copy | Deep Copy objects in JS
 =========================================
 	REFERENCE : https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
@@ -1482,6 +1483,7 @@ Console
 	0.	console.time(label);                                     // starts a timer with particular LABEL in console view.
 	0.	console.timeEnd(label);                                  // ends a timer with particular LABEL, and write result in console view.
 	0.      console.log(`${VARIABLE} value`);                        // value of variable using backticks and ${}
+	0.	console.trace("Trace");					 // stack trace of code execution flow at that point. It provides file names, functions, line numbers. 
 	
 	
 DOM Document
