@@ -289,6 +289,15 @@ Misc.
 	
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
 	
+	0.	Logical nullish operator (??)
+		1> x ??= y   OR   x ?? (x = y)  , evaluates (x = y) if x is nullish (null or undefined).
+		2> console.info(`${a ?? b}`);   , prints b if a is nullish else prints a.
+		
+		Optional chaining operator (?.)
+		1> let obj = {"k1": null};
+		   console.info(obj.k1?.k2);    , stops evaluating when reference (k1) is nullish and returns `undefined`
+		   console.info(obj.k1.k2);     , exception thrown : Uncaught TypeError: Cannot read property 'k2' of null
+	
 	0.	[x,y] = [y,x]                                                                            // swap values , similar to as in python
 	0.	function f() { return [9025, 67, 56, 4021]; }                                            // return multiple vals using []
 	        [a,,b] = f();                                       // capture multiple vals using [] | NOTE : a=9025 , b=56 (not 67) | extra vals ignored
