@@ -330,16 +330,21 @@ display: inline-block;                 /* display behavior (type of rendering bo
 /* The parent flex container becomes flexible by setting the display property to flex *//* eg: <div class="flex-container"><div>1</div><div>2</div></div> */
 .flex-container {
   display: flex;
-  flex-direction: row;            /* which direction the container wants to stack the flex items , column | column-reverse | row (default) | row-reverse */
+  flex-direction: row;            /* which direction (main-axis) container wants to stack flex items , column | column-reverse | row (default) | row-reverse */
   flex-wrap: wrap;                /* whether flex items should wrap or not , wrap | nowrap (default) | wrap-reverse */
   flex-flow: row wrap;            /* shorthand property for setting both the flex-direction and flex-wrap properties */
-  justify-content: center;        /* align flex items horizontally (along x-axis) , center | flex-start (default) | flex-end | space-around | space-between */
-  align-items: center;            /* align flex items vertically   (along y-axis) , stretch (default) | center | flex-start | flex-end | baseline */
-  align-content: center;          /* align flex lines (rows containing items)(along y-axis), stretch (default) | space-between | space-around | center | flex-start | flex-end */
+  justify-content: center;        /* align flex items horizontally (along main-axis) , center | flex-start (default) | flex-end | space-around | space-between */
+  align-items: center;            /* align flex items vertically   (along cross-axis) , stretch (default) | center | flex-start | flex-end | baseline */
+  align-content: center;          /* align flex lines (rows containing items)(along cross-axis), stretch (default) | space-between | space-around | center | flex-start | flex-end */
 }
 .flex-container > div {
   background-color: #f1f1f1;
   margin: 10px;
+  order:;
+  flex-grow:;
+  flex-shrink:;
+  flex-basis:;
+  align-self:;
 }
 
 
