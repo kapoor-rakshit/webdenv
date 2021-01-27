@@ -327,7 +327,7 @@ display: inline-block;                 /* display behavior (type of rendering bo
 
 /* CSS Flexbox (Flexible Box) Layout */
 /* The Flexible Box Layout Module, makes it easier to design flexible responsive layout structure without using float or positioning. */
-/* The parent flex container becomes flexible by setting the display property to flex *//* eg: <div class="flex-container"><div>1</div><div>2</div></div> */
+/* Parent flex container becomes flexible by setting display property to flex *//* eg: <div class="flex-container"><div class="item">1</div><div>2</div></div> */
 .flex-container {
   display: flex;
   flex-direction: row;            /* which direction (main-axis) container wants to stack flex items, column(y-axis) | column-reverse | row(default)(x-axis) | row-reverse */
@@ -337,14 +337,15 @@ display: inline-block;                 /* display behavior (type of rendering bo
   align-items: center;            /* align flex items (along cross-axis), stretch (default) | center | flex-start | flex-end | baseline */
   align-content: center;          /* align flex lines (containing items)(along cross-axis), stretch (default) | space-between | space-around | center | flex-start | flex-end */
 }
-.flex-container > div {
+.flex-container > .item {
   background-color: #f1f1f1;
   margin: 10px;
-  order:;
-  flex-grow:;
-  flex-shrink:;
-  flex-basis:;
-  align-self:;
+  order: 0;                       /* sequence of items i.e. HTML code and rendered page can have different sequence of items, (default: 0) */
+  flex-grow: 0;                   /* how much flex item will expand on main-axis relative to rest of flex items, (default: 0) */
+  flex-shrink: 1;                 /* how much flex item will shrink on main-axis relative to rest of flex items, 0 value will not let item shrink, (default: 1) */
+  flex-basis: 200px;              /* specifies the initial length of a flex item */
+  align-self: flex-end;           /* overrides default alignment of that item set by parent container's 'align-items' property */
+  flex: 0 1 200px;                /* shorthand property for the flex-grow, flex-shrink, flex-basis properties */
 }
 
 
