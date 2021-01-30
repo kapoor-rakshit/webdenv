@@ -1509,10 +1509,40 @@ DOM Document
 	0.	document.title;                                          // Sets or returns the title of the document
 	0.	document.write();                                        // Writes HTML expressions or JavaScript code to a document
 	0.	document.writeln();                                      // Same as write(), but adds a newline character after each statement
+	0.	let btn = document.createElement("BUTTON");		 // returns created Element node object || btn.innerHTML = "CLICK ME"; document.body.appendChild(btn);
+	0.	let t = document.createTextNode("Hello World");          // returns created Text node object    || let h = document.createElement("H1"); h.appendChild(t);
 	
 	
 DOM Element
-	0.	elem.appendChild();                                      // Adds a new child node, to an element, as the last child node
+	0.	elem.appendChild(elemNodeObject);                        // Adds new child node to an element as last child node , returns appended child(elemNodeObject)
+									 // NOTE : If the given child is a reference to an existing node in the document, 
+									 // appendChild() moves it from its current position to the new position
+									 // (thus, there is no requirement to remove node before appending it to some other node).
+		elem.removeChild(elemNodeObject);                        // Removes child node from DOM and returns removed node(elemNodeObject), it preserves EventListeners
+		                                           		 // we may reuse removed node later by storing returned object in variable.
+									 // eg1:remove node without specifying its parent=if(node.parentNode){node.parentNode.removeChild(node)} 
+									 // eg2:remove all nodes from element=while(element.firstChild){element.removeChild(element.firstChild)}
+		elem.replaceChild(newChild, oldChild);			 // replaces a child node , returns replaced node i.e. oldChild
+									 // if newChild already exists in DOM, it is removed from current position and then replaces oldChild
+	0.	elem.innerHTML;                                          // Sets/returns content of element, just like html() in jQuery
+		elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
+	0.	elem.parentNode;					 // returns the parent of the specified node in the DOM tree. `document` parentNode is null.
+		elem.firstChild;					 // returns node's first child or null if node has no children. returns #text or #comment nodes as well
+		elem.firstElementChild;					 // returns only first ELEMENT node or null. NOT text and comments
+		elem.lastChild;						 // returns node's last child or null if there are no child. returns #text or #comment nodes as well
+		elem.lastElementChild;					 // returns only last ELEMENT node or null. NOT text and comments
+		elem.childNodes;					 // returns NodeList of child nodes of elem. Child nodes include elements, #text and #comments nodes
+		elem.children;						 // returns NodeList of only child ELEMENTS of elem. NOT text and comments
+		elem.nextSibling;					 // returns node immediately following elem in parent's childNodes list or null if it is last in list.
+		elem.nextElementSibling;				 // returns only ELEMENT node. NOT text and comments
+		elem.previousSibling;					 // returns node immediately preceding elem in parent's childNodes list or null if it is first in list.
+		elem.previousElementSibling;				 // returns only ELEMENT node. NOT text and comments
+		elem.cloneNode(true);                                    // returns duplicate of element(elem) node
+		                         				 // false(default) only node cloned, empty node <elem></elem> | true(deep copy), node and its subtree
+									 // copies all inline event listeners, attributes-values(may cause duplicate element IDs in document). 
+									 // does NOT copy event listeners added using addEventListener() or assigned (node.onclick=someFunction)
+		elem.remove();						 // removes the node object from DOM tree
+		elem.replaceWith(newChild);				 // replaces the node object with newChild
 	0.	elem.blur();                                             // Removes focus from an element
 	0.	elem.focus();                                            // Gives focus to an element
 	0.	elem.click();						 // Simulates a mouse-click on an element
@@ -1526,8 +1556,6 @@ DOM Element
 	0.	elem.getAttribute("attrname");                           // just like attr("attrname") in jQuery
 	0.	elem.setAttribute("attrname", "attrval");                // just like attr({"attrname" : "attrval"}) in jQuery
 	0.	elem.removeAttribute("attrname");			 // removes the specified attribute from an element.
-	0.	elem.innerHTML;                                          // Sets/returns content of element, just like html() in jQuery
-	0.	elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
 	0.	elem.scrollTop;
 		elem.scrollLeft;					 // Sets or returns px element's content is scrolled vertically/horizontally
 		elem.scrollIntoView();					//  scrolls element's parent container such that element on which scrollIntoView() is called is visible to user
