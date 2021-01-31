@@ -1524,6 +1524,10 @@ DOM Element
 									 // eg2:remove all nodes from element=while(element.firstChild){element.removeChild(element.firstChild)}
 		elem.replaceChild(newChild, oldChild);			 // replaces a child node , returns replaced node i.e. oldChild
 									 // if newChild already exists in DOM, it is removed from current position and then replaces oldChild
+		elem.insertBefore(newNode, referenceNode);		 // inserts newNode before referenceNode as child of elem , returns newly added child(newNode)
+									 // if newNode already exists in DOM, it is removed from current position & then insertedBefore refNode
+									 // referenceNode must be Node or null (if null, newNode is inserted at end)
+									 // There's no insertAfter() method but we can do `elem.insertBefore(newNode,referenceNode.nextSibling)`
 	0.	elem.innerHTML;                                          // Sets/returns content of element, just like html() in jQuery
 		elem.innerText;                                          // Sets/returns text content of node and descendants, text() in jQuery
 	0.	elem.parentNode;					 // returns the parent of the specified node in the DOM tree. `document` parentNode is null.
@@ -1543,6 +1547,8 @@ DOM Element
 									 // does NOT copy event listeners added using addEventListener() or assigned (node.onclick=someFunction)
 		elem.remove();						 // removes the node object from DOM tree
 		elem.replaceWith(newChild);				 // replaces the node object with newChild
+		elem.before(newNode);					 // inserts Node objects in children list of this elem's parent, just BEFORE this elem
+		elem.after(newNode);					 // inserts Node objects in children list of this elem's parent, just AFTER this elem
 	0.	elem.blur();                                             // Removes focus from an element
 	0.	elem.focus();                                            // Gives focus to an element
 	0.	elem.click();						 // Simulates a mouse-click on an element
