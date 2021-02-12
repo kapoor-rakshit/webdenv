@@ -353,6 +353,9 @@ visibility: hidden;
 visibility: visible;
 
 opacity: 0.4;
+
+
+width: calc(100vw - 100px);       /* calc() function performs calculation to be used as property value | operators allowed: +, -, *, / */
 }
 
 FONT RULES
