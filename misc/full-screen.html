@@ -1,0 +1,35 @@
+<!-- REFERENCE : https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
+	           : https://stackoverflow.com/questions/7836204/chrome-fullscreen-api
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Full Screen API</title>
+
+	<script type="text/javascript">
+		function fullScreenMode() {
+			if (document.fullscreenEnabled) {
+				if(!document.fullscreenElement) {
+					let elem = document.documentElement;
+					let rfs = elem.requestFullscreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
+
+					rfs.call(elem).catch((err)=> {
+						console.log(`ERROR in launching full screen ==> ${err.message}`);
+					});
+				}
+				else {
+					document.exitFullscreen();
+				}
+  			} else {
+    			console.log('Your browser cannot use fullscreen right now');
+  			}
+		}
+	</script>
+</head>
+<body>
+
+<button type="button" onclick="fullScreenMode()">Toggle full screen</button>
+
+</body>
+</html>
