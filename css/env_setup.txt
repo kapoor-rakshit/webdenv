@@ -189,6 +189,25 @@ vmax  - Relative to 1% of viewport's* larger dimension.
 %     - Relative to the parent element.
 
 
+/* CSS color schemes + keywords */
+1. Color names , example : 'red', 'green', 'blue'       etc..
+2. HEX values  , example : '#f00', '#00ff00', '#00f'    etc..
+   Either Three or Six length string is acceptable.
+   A three length string will be interpreted by copying previous value, example '#58a' will be '#5588aa' | will be rgb(85, 136, 170)
+3. RGBA values , example : rgba(255, 0, 0, 0.3)
+   rgba(red, green, blue, alpha). The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (fully opaque).
+                                  '#25f8ac' is calculated to rgba as rgba(16^0*5 + 16^1*2, 16^0*8 + 16^1*15, 16^0*12 + 16^1*10)
+4. HSLA values , example : hsla(120, 100%, 50%, 0.3)
+   hsla(hue, saturation, lightness, alpha). Hue is a degree on the color wheel (from 0 to 360), 0 (or 360) is red | 120 is green | 240 is blue
+                                            Saturation is a percentage value: 100% is the full color.
+                                            Lightness is also a percentage; 0% is dark (black) and 100% is white.
+5. transparent
+   makes a color transparent. The transparent keyword is equivalent to rgba(0,0,0,0) i.e. opacity or alpha is 0
+   
+6. currentcolor
+   It is like variable that holds current value of `color` property of element. example: body{ color: purple;}  div{ background-color: currentcolor;}
+
+
 /* pointer-events property defines whether or not an element reacts to pointer events */
 /* like mouse/touch events – including CSS hover/active states, click/tap events in Javascript, and whether or not cursor is visible. */
 pointer-events: none;
