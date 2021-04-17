@@ -352,13 +352,23 @@ enum
 	
 	
 JavaScript Hoisting
-	0.	// Hoisting is JavaScript's default behavior of moving DECLARATIONS to the top of the current scope i.e. 
+	0.	// Hoisting is JavaScript's default behavior of moving DECLARATIONS (in memory only not actual code) to the top of the current scope i.e. 
 	           (to the top of the current SCRIPT|GLOBAL SCOPE or the current FUNCTION SCOPE.
 		// a variable can be initialized and used (x = 5) before it has been declared (var x).
 		// JavaScript only hoists DECLARATIONS, not INITIALIZATIONS.
+		// JavaScript functions are hoisted above variables.
 		// To avoid bugs, always declare all variables at the beginning of every scope.
 		   JavaScript in strict mode ("use strict") does not allow variables to be used if they are not declared.
 		// Example
+		0. console.log(g);               // function g(){ }      /* Function definitions are hoisted before variables */
+		   console.log(f);               // function f(){ }
+                   var f = 567;
+                   var g;
+                   console.log(g);               // function g(){ }
+                   console.log(f);               // 567
+                   function f(){ }
+                   function g(){ }
+		
 		0. var x = 5;
 		   console.log(`${x} ${y}`);      // x = 5 , y = undefined
 		   var y = 7;
