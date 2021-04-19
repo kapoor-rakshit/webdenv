@@ -325,6 +325,11 @@ clear: left;                           /* clear the float to left. Means that no
 
                                        /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
 display: inline-block;                 /* display behavior (type of rendering box) , inline | block | flex | grid | inline-block | table | none | initial */
+/* CSS inline | block | inline-block */
+inline:       makes an element behave like a <span>, but does NOT follow width, height, padding, margin properties applied to it.
+block:        makes an element behave like <div>
+inline-block: makes an element behave like a <span>, but does follow width, height, padding, margin properties applied to it
+
 
 /* CSS Grid Layout */
 /* An HTML element becomes a grid container when its display property is set to grid or inline-grid. */
@@ -376,6 +381,19 @@ opacity: 0.4;
 
 width: calc(100vw - 100px);       /* calc() function performs calculation to be used as property value | operators allowed: +, -, *, / */
 }
+
+
+CSS SPECIFICITY
+--------------------
+If there are two or more conflicting CSS rules that point to same element, browser follows some rules to determine which one is most specific and therefore wins out.
+Specificity is a score/rank that determines which style declarations are ultimately applied to an element.
+Four categories which define the specificity level of a selector (start at 0):
+- Inline styles                             : add 1000 for style attribute
+- IDs                                       : add 100 for each ID
+- Classes, attributes and pseudo-classes    : add 10 for each attribute, class or pseudo-class
+- Elements and pseudo-elements              : add 1 for each element name or pseudo-element
+- The universal selector(*) and inherited values have a specificity of 0 
+
 
 FONT RULES
 -----------
