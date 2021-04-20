@@ -37,8 +37,58 @@ I. Codebase : One codebase tracked in revision control, many deploys
 II. Dependencies : Explicitly declare and isolate dependencies
 III. Config : Store config in the environment
 IV. Backing services : Treat backing services as attached resources
+V. Build, release, run : Strictly separate build and run stages
+VI. Processes : Execute app as stateless processes and share-nothing. Any data that needs to persist must be stored in stateful backing service i.e. database.
+VII. Port binding : Export services via port binding
+VIII. Concurrency : Scale out via the process model
+IX. Disposability : Maximize robustness with fast startup and graceful shutdown
+X. Dev/prod parity : Keep development, staging, and production as similar as possible
+XI. Logs : Treat logs as event streams
+XII. Admin processes : Run admin/management tasks as one-off processes
 
 PWA (Progressive Web App)
+
+
+SOLID | DRY principles
+SOLID consists of 5 concepts
+- Single responsibility principle : each of our classes has to be only used for one purpose.
+- Open / closed principles        : open for extension but closed for modification. This means add more functionality without changing existing code.
+- Liskov Substitution principle   : interchange parent and child class without getting incorrect results. child class must implement everything that’s in parent class. 
+- Interface segregation principle : shouldn’t impose implementation of something if it’s not needed. JS doesn’t have interfaces, so this principle doesn’t apply directly
+- Dependency inversion principle  : shouldn’t have to know any implementation details of our dependencies.
+DRY
+Don't Repeat Yourself (DRY)
+reducing repetition of information. 
+The DRY principle is stated as, "Every piece of knowledge or logic must have a single, unambiguous representation within a system." 
+
+
+Encoding | Encryption | RSA | AES
+Encoding : goal is not to keep information secret, but rather to ensure that it’s able to be properly consumed. eg: binary data sent over email, special chars on web page.
+           It can be reversed. It does not require key as only thing required to decode it is algorithm that was used to encode it. eg: ascii, unicode, URL Encoding, base64
+Encryption : The purpose of encryption is to transform data in order to keep it secret from others.
+             The ciphertext, algorithm, and key are all required to return to the plaintext. eg: AES, RSA
+
+RBAC | ABAC | JWT | Access token | Refresh token
+role-based access control (RBAC)      : restricts system access to users using their roles and privileges and permissions.
+attribute-based access control (ABAC) : consider more contextual information to decide whether/not to grant access, eg: private repo, posts checks their visibility attr
+JSON Web Token (JWT) : way for securely transmitting information between parties as a JSON object.
+Access tokens : issued to third-party clients by an authorization server with approval of resource owner. client uses access token to access resources hosted by resource server
+Refresh Tokens : credentials used to obtain access tokens. Refresh tokens are issued to client by authorization server and 
+                 are used to obtain a new access token when the current access token becomes invalid or expires.
+
+CORS | XSS | CSRF
+Cross-Origin Resource Sharing (CORS) : web application using APIs can only request resources from same origin the application was loaded from unless 
+                                       response from other origins includes the right CORS headers.
+Cross-Site Scripting (XSS) : attacks are a type of injection, in which malicious scripts are injected. occur anywhere web application uses input from user 
+                             within the output it generates without validating or encoding it.
+Cross-Site Request Forgery (CSRF) : tricks victim into submitting malicious request. Inherits identity, privileges to perform an undesired function on victim’s behalf. 
+
+
+Accessibility guidelines
+Accessibility as a concept
+ARIA tags
+Screen reading tools
+Create an accessible app
 
 
 Array methods
@@ -629,14 +679,13 @@ Functions
                 add();
 		
 	0.	Types of functions
-		First class
-		First order
-		High order
-		Compound
-		Pure
-		Currying
-		Composing
-		Purifying closure
+		First class : functions are treated like variables can be returned, passed as arg, assigned to variable
+		First order : function that does NOT accept another function as arg and does not return function
+		High order  : function that does accept another function as arg or does return function
+		Unary       : function that accepts a single argument
+		Compound    : functions that are compounded to give result i.e. f()() , f(g())
+		Pure        : function where return value is determined by only input values i.e. calling function with same args N number of times give same result
+		Currying    : function that takes multiple args and then turn it into sequence of functions each with single arg. 
 		
 	0.      var obj = {"first" : "kapoor" ,                     // function() as a value to key in object  /* call function as obj.full("-") , NOTE : use of () in obj.full() (not obj.full) */
                           "second" : "rakshit" ,
