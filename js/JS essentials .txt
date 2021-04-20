@@ -8,6 +8,37 @@ Async/Defer attribute of SCRIPT tag
         0.     <script src="demo_async.js" async></script>         // If async is present: The script is executed asynchronously with the rest of the page (the script will be executed while the page continues the parsing)
 	                                                           // If defer is present: The script is executed when the page has finished parsing
 								   // If neither async or defer is present: The script is fetched and executed immediately, before the browser continues parsing the page
+Minification of HTML | CSS | JS 
+Minification is the process of removing e.g. code comments and formatting, removing unused code, using shorter variable and function names, and so on 
+to create a smaller but perfectly valid code file.
+Minifying JavaScript files can reduce payload sizes and script parse time. 
+The Opportunities section of Lighthouse report lists all unminified JavaScript files, along with potential savings in kibibytes (KiB) when these files are minified
+To minify HTML: https://github.com/kangax/html-minifier
+To minify CSS:  https://github.com/cssnano/cssnano
+To minify JavaScript: https://github.com/mishoo/UglifyJS
+
+JS Profiler
+JavaScript Profiling shows us which function or processes takes most of the time and runtime performance shows how page performs when it’s running.
+Chrome DevTools performance tab can be used which allows CPU throttling i.e. slowing down of the processing speed of the computer, record page loading and interactions.
+Memory tab provides memory issues that affect page performance, including memory leaks, memory bloat, and frequent garbage collections.
+Security Panel in Chrome DevTools to make sure HTTPS is properly implemented on a page.
+
+
+Testcase writing in JS
+Mocha.js is an open-source JavaScript test framework that runs on Node.js and in the browser. 
+There are test frameworks available, including Jest, Jasmine, QUnit, Karma, Cypress etc.
+TDD is a development practice while BDD is a team methodology.
+BDD has test cases in shared language to simplify communication between technical and nontechnical stakeholders, such as developers, QA teams, and business leaders.
+
+
+12FactorApp
+The twelve-factor app is a methodology for building software-as-a-service apps
+I. Codebase : One codebase tracked in revision control, many deploys
+II. Dependencies : Explicitly declare and isolate dependencies
+III. Config : Store config in the environment
+IV. Backing services : Treat backing services as attached resources
+
+PWA (Progressive Web App)
 
 
 Array methods
@@ -596,6 +627,16 @@ Functions
 		})();                                             // self-invoking function only runs once. It sets counter to zero (0)
 		                                                  // and returns a function expression to variable add whuich can be invoked
                 add();
+		
+	0.	Types of functions
+		First class
+		First order
+		High order
+		Compound
+		Pure
+		Currying
+		Composing
+		Purifying closure
 		
 	0.      var obj = {"first" : "kapoor" ,                     // function() as a value to key in object  /* call function as obj.full("-") , NOTE : use of () in obj.full() (not obj.full) */
                           "second" : "rakshit" ,
