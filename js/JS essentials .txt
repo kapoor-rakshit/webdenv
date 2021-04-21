@@ -85,10 +85,39 @@ Cross-Site Request Forgery (CSRF) : tricks victim into submitting malicious requ
 
 
 Accessibility guidelines
-Accessibility as a concept
+Web Content Accessibility Guidelines(WCAG) 2.1
+Three levels of conformance A (lowest), AA (mid range), and AAA (highest)
+Mobile Accessibility , Low Vision , Cognitive
+- Perceivable: Users must be able to perceive it in some way, using one or more of their senses. eg: image alt text, screen reader, resize text, full screen, dark mode
+- Operable: Users must be able to control UI elements (e.g. buttons must be clickable in some way — mouse, keyboard, voice command, etc.).
+- Understandable: The content must be understandable to its users.
+- Robust: The content must be developed using well-adopted web standards that will work across different browsers, now and in the future. eg: lang, name, role, value attributes
+
 ARIA tags
+Accessible Rich Internet Applications (ARIA) is a set of attributes that define ways to make web content and web applications 
+(especially those developed with JavaScript) more accessible to people with disabilities.
+It supplements HTML so that interactions and widgets commonly used in applications can be passed to assistive technologies.
+There are three main components used in ARIA: Roles, States, and Properties.
+- Roles are used to define a type of user interface (UI) element (i.e. role="progressbar")
+- States can change on their own or with user interaction        (i.e. aria-checked and aria-disabled)
+- Properties rarely change once they’re set                      (i.e. aria-labelledby and aria-describedby
+eg: role="progressbar" | aria-valuenow="75" | aria-valuemin="0" | aria-valuemax="100" | aria-label="Close"
+
 Screen reading tools
-Create an accessible app
+- NVDA (Windows)
+- Apple VoiceOver (OS X)
+- ORCA (Linux)
+
+
+Custom elements in JS
+var XFoo = document.registerElement('mega-button', {
+  prototype: Object.create(HTMLButtonElement.prototype),
+  extends: 'button'
+});
+XFoo.addEventListener('click', function(e) {
+  alert('Thanks!');
+});
+document.body.appendChild(new XFoo());
 
 
 Array methods
