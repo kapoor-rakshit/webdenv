@@ -408,9 +408,14 @@ Misc.
 		   console.info(obj.k1?.k2);    , stops evaluating when reference (k1) is nullish and returns `undefined`
 		   console.info(obj.k1.k2);     , exception thrown : Uncaught TypeError: Cannot read property 'k2' of null
 	
-	0.	[x,y] = [y,x]                                                                            // swap values , similar to as in python
-	0.	function f() { return [9025, 67, 56, 4021]; }                                            // return multiple vals using []
-	        [a,,b] = f();                                       // capture multiple vals using [] | NOTE : a=9025 , b=56 (not 67) | extra vals ignored
+	0.	Object destructuring
+		a. [x,y] = [y,x]                                                                            // swap values , similar to as in python
+		   [arr[2], arr[1]] = [arr[1], arr[2]];                                                     // if arr=[1,2,3] , it becomes [1,3,2]
+		b. [a, b, ...rest] = [10, 20, 30, 40, 50];                                                  // a=10 , b=20 , rest=[30, 40, 50]
+		c. function f() { return [9025, 67, 56, 4021]; }                                            // return multiple vals using []
+	           [a,,b] = f();                                             // capture multiple vals using [] | NOTE : a=9025 , b=56 (not 67) | extra vals ignored
+		d. ({k2, k3, ...k1} = {k1: "v1", k11: "v11", k2: 9025, k3: "v3"});                          // NOTE: use of () , same variable names if not rest param
+		                                                                                            // k2=9025 , k3=v3 , k1={k1: "v1", k11: "v11"} 
 	
 	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
@@ -736,7 +741,7 @@ Functions
                               this.language = lang.toUpperCase();
                             }};
 			    
-	0.	Object.seal() | Object.freeze()
+	0.	Object.seal() | Object.freeze() | Object.keys()
 		   The Object.seal() method seals an object, preventing new properties from being added or existing from being deleted.
 		   Values of present properties can still be changed.
 		   Eg: Object.seal(obj);
@@ -745,6 +750,10 @@ Functions
 		   freezing an object prevents new properties from being added to it, existing properties from being removed.
 		   Values of existing properties CANNOT be changed.
 		   Eg: Object.freeze(obj);
+		   
+		   The Object.keys() method returns an array of a given object's own enumerable properties i.e. keys
+		   We can use it for getting length object, which otherwise using `obj.length` returned `undefined`
+		   Eg: let keys = Object.keys(obj); let len_keys = keys.length;
 			    
 	0.	.call()  |  .apply()  |  .bind()
 		   They can be used to invoke method with owner object as argument i.e. an object can use a method/props belonging to another object.
