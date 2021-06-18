@@ -250,6 +250,27 @@ Loops
 		  document.getElementById("demo").innerHTML += i[0] + " " + i[1] + '<br/>';        // map = [[key1, val1], [key2, val2]] 
 		}
 		
+	0.	Generators in ES6
+		A generator is a function that can stop midway and then continue from where it stopped. 
+		In short, a generator appears to be a function but it behaves like an iterator.
+		// example_1
+		function * generatorFunction() {                                   // NOTE: use of * between function keyword and function name  
+			console.log('This will be executed first.');
+  			yield 'Hello';
+  			console.log('I will be printed after the pause');  
+  			yield 'World!';
+		}
+		const generatorObject = generatorFunction();     // NOTE: generator function always returns a generator object.
+		console.log(generatorObject.next().value);       // This will be executed first.       // Hello
+		console.log(generatorObject.next().value);       // I will be printed after the pause  // World!
+		console.log(generatorObject.next().value);       // undefined
+		
+		// example_2
+		function * generatorFunc() {
+  			yield 'a';
+  			return 'b';                             // Generator ends here.
+  			yield 'a';                              // Will never be executed. 
+		}
 	
 
 Boolean
@@ -741,7 +762,7 @@ Functions
                               this.language = lang.toUpperCase();
                             }};
 			    
-	0.	Object.seal() | Object.freeze() | Object.keys()
+	0.	Object.seal() | Object.freeze() | Object.keys() | Object.entries() | Object.create() | Object.is() | Object.defineProperty()
 		   The Object.seal() method seals an object, preventing new properties from being added or existing from being deleted.
 		   Values of present properties can still be changed.
 		   Eg: Object.seal(obj);
@@ -754,6 +775,28 @@ Functions
 		   The Object.keys() method returns an array of a given object's own enumerable properties i.e. keys
 		   We can use it for getting length object, which otherwise using `obj.length` returned `undefined`
 		   Eg: let keys = Object.keys(obj); let len_keys = keys.length;
+		   
+		   The Object.entries() returns an array whose elements are arrays corresponding to string-keyed property [key, value] pairs found directly upon object.
+		   Eg: let ent = Object.entries(object1);   |     ent = [[key1, val1], [key2, val2], [key3, val3]]
+		   
+		   The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+		   
+		   The Object.is() method determines whether two values are the same value.
+		   This is not the same as being equal according to the == operator. 
+		   The == operator applies coercions (if they are not same Type) before testing for equality("" == false is true), but Object.is doesn't coerce either value.
+		   This is also not the same as being equal according to the === operator. 
+		   The only difference between Object.is() and === is in their treatment of signed zeroes(-0, +0) and NaNs.
+		   Eg: let chk = Object.is([1,2], [1,2]);      // false     |    let chk = Object.is("a", "a");      // true
+		   
+		   The Object.defineProperty() defines a new property directly on an object, or 
+		   modifies an existing property on an object, and returns the object.
+		   Eg: 	const object1 = {};
+			Object.defineProperty(object1, 'property1', {
+  				value: 42,
+  				writable: false
+			});
+			object1.property1 = 77;            // throws an error in strict mode
+			console.log(object1.property1);    // expected output: 42
 			    
 	0.	.call()  |  .apply()  |  .bind()
 		   They can be used to invoke method with owner object as argument i.e. an object can use a method/props belonging to another object.
