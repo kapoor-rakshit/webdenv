@@ -1315,6 +1315,11 @@ Events
                                                                         // Propagation means bubbling up to parent elements or capturing down to child elements.
 	       function func1(evt) { alert("DIV 1"); evt.stopPropagation(); }
 	       
+	0.	stopImmediatePropagation()
+		Prevents other listeners of the same event (same type) from being called.
+		If several listeners are attached to the same element for the same event type, they are called in the order in which they were added. 
+		If stopImmediatePropagation() is invoked during one such call, no remaining listeners will be called for same type.
+	       
 	      
 EVENT LOOP model in JS
 ==========================
