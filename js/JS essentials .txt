@@ -154,6 +154,7 @@ Array methods
 	0.      arr.join("separator");                                                        // returns the array as a string with separator specified, else default (comma)
 	0.      var newstr = arr.toString();                                                  //  returns a string with all the array values, separated by commas.
 	0.      arr.length;                                                                   // returns number of elements in an array.
+		arr.length = 2;								      // modifies original arr with only 0,1 elem indices i.e. length of 2
 	0.      arr.pop();                                                                    // removes and return last element
 	0.      arr.push("newelem");                                                          // adds new items to end of array, and returns new length.
 	0.      arr.shift();                                                                  // removes and return first element
@@ -241,6 +242,10 @@ Loops
 		    text += x;                                    // keys   - fname lname age
 		    text += person[x];                            // values - John Doe 25   
 		}
+		
+	0.	`in` keyword					  // check if a key exists in object or not
+		let obj = {'k1': 'v1', 'k2': 'v2'};
+		console.log('k1' in obj);                         // true
 		
 	0.	For/Of                                            // loops through the VALUES of an iterable objects
 		// example                                        // such as Arrays, Strings, Maps, NodeLists, and more
@@ -445,6 +450,7 @@ Misc.
 	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
 	
 	0.      var c = parseFloat("10.33");                                                            // 10.33
+		var c = +"10.33";									// 10.33    , converts string number to number format
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
 		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
@@ -671,6 +677,8 @@ Strings
 	0.      var res = str.trim();
 	0.	var res = String.fromCharCode(65,67);      // returns AC , just like chr() in python  |  NOTE : String object
 	0.	var res = str.charCodeAt(index);           // returns 65 if char at index is A of string str , just like ord() in python
+	0.	var res = str.padStart(maxLenOfRes, "-");  // prefix specified character but only untill length of result is maxLenOfRes, does not change original
+		var res = str.padEnd(maxLenOfRes, "-");    // suffix specified character but only untill length of result is maxLenOfRes, does not change original
 
 
 Form
@@ -1167,10 +1175,11 @@ Math
 	0.	Math.abs();                                         // absolute value
 	0.	Math.ceil();                                        // ceil
 	0.	Math.floor();                                       // floor
+		23.9865 | 0					    // use of bitwise OR operator (|) for Math.floor()   // 23
 	0.      Math.round();                                       // round to nearest integer
 	0.      Math.E;                                             // Euler's Number (approximately 2.718)
 	0.      Math.exp(1);                                        // Return E^x     (Euler's number raised to x (here 1) )
-	0.	Math.pow(a,b);                                      // a^b
+	0.	Math.pow(a,b);                                      // a raised to b    OR use '**' i.e.    a**b
 	0.	Math.sqrt()                                         // square root
 	0.      Math.cbrt();                                        // cube root
 	0.	Math.random();                                      // generate number [0,1)  // No arg passed
