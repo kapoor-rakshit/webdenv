@@ -2,7 +2,10 @@
 
 ::placeholder {                                            /* notice the use of :: selector */
     color: red;
-    opacity: 1; /* Firefox */
+    opacity: 1;
+    visibility: hidden;    /* visibility and color properties will hide placeholder */
+    color: transparent;
+    /* display: none; */   /* This will NOT hide placeholder */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
