@@ -208,9 +208,15 @@ vmax  - Relative to 1% of viewport's* larger dimension.
    It is like variable that holds current value of `color` property of element. example: body{ color: purple;}  div{ background-color: currentcolor;}
 
 
-/* pointer-events property defines whether or not an element reacts to pointer events */
+/* pointer-events (none | auto) property defines whether or not an element reacts to pointer events */
 /* like mouse/touch events – including CSS hover/active states, click/tap events in Javascript, and whether or not cursor is visible. */
+/* It however allows text selection even if set to `none` */
 pointer-events: none;
+
+/* user-select (none | auto) property specifies whether the text of an element can be selected */
+-webkit-user-select: none; /* Safari */
+-ms-user-select: none;     /* IE 10 and IE 11 */
+user-select: none;         /* Standard syntax */
 
 
 background-image: url(img_tree.gif), url(mountain.jpg);    /* if first image not available use second but only one of these used */
@@ -219,6 +225,19 @@ background-size: 100% 100%;                                /* size of images (wi
 background-color: pink;                                    /* bg color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
 background-image: linear-gradient(to top right, rgba(255,0,0,0), rgba(255,0,0,1), rgba(0,255,0,1));                    /* last param of rgba() define opacity */
+
+/* object-fit (fill [default]| contain | cover) property is used to specify how an <img> or <video> should be resized to fit its container */
+/* such as "preserve that aspect ratio"  or  "stretch up and take up as much space as possible" */
+/* 
+  fill : The image does NOT keeps its aspect ratio, will be stretched or squished to fit, but not clipped.
+  contain : The image keeps its aspect ratio, but is resized to fit within the given dimension.
+  cover : The image keeps its aspect ratio and fills the given dimension. The image will be clipped to fit.
+*/
+img {
+  height: 100px;
+  width: 100px;
+  object-fit: fill;
+}
 
 
 color: magenta;                                            /* font color */
