@@ -391,6 +391,9 @@ inline-block: makes an element behave like a <span>, but does follow width, heig
   flex: 0 1 200px;                /* shorthand property for the flex-grow, flex-shrink, flex-basis properties */
 }
 
+/* vertical-align (baseline | sub | super | middle ...) CSS property sets vertical alignment */
+/* Note: vertical-align only applies to display: inline, inline-block and table-cell elements. Can't use it on block-level elements. */
+vertical-align: text-top;
 
 visibility: hidden;
 visibility: visible;
