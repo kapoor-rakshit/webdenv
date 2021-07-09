@@ -400,8 +400,13 @@ visibility: visible;
 
 opacity: 0.4;
 
-
-width: calc(100vw - 100px);       /* calc() function performs calculation to be used as property value | operators allowed: +, -, *, / */
+width: calc(100vw - 100px);                    /* calc() function performs calculation to be used as property value | operators allowed: +, -, *, / */
+width: min(1000px, calc(70% + 100px), 80%);    /* min() of values */
+width: max(45ch, 50%, 80%);                    /* max() of values */
+width: clamp(1.8rem, 2.5vw, 2.8rem);           /* clamp() takes three expressions as parameter, minimum value, preferred value, maximum value. */
+                                               /* If preferred value is less than minimum value, minimum value will be used. */
+                                               /* The preferred value will be used as long as result is between minimum and maximum values. */
+                                               /* If preferred value is greater than maximum value, maximum value will be used */
 }
 
 
