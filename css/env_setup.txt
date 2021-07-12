@@ -224,7 +224,14 @@ background: url(img_tree.gif), url(mountain.jpg);          /* path to multiple i
 background-size: 100% 100%;                                /* size of images (width, height)  */ /* background-size: contain, cover;  for using multiple image background */
 background-color: pink;                                    /* bg color */
 background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, cyan), color-stop(0.50, yellow));  /* gradient */
-background-image: linear-gradient(to top right, rgba(255,0,0,0), rgba(255,0,0,1), rgba(0,255,0,1));                    /* last param of rgba() define opacity */
+background-image: linear-gradient(red, yellow);                                                                        /* default direction is `to bottom` */
+                : linear-gradient(to right top, red 10%, blue);                                                        /* direction and color stop length(s) */
+                : linear-gradient(180deg, red, yellow);                  /* 0deg = "to top" | 90deg = "to right" | 180deg = "to bottom" | 270deg = "to left" */
+                : linear-gradient(to top right, rgba(255,0,0,0), rgba(255,0,0,1), rgba(0,255,0,1));                   /* last param of rgba() define opacity */
+                : repeating-linear-gradient(red, yellow 10%, green 20%);                    /* repeat gradient inside wrapper. NOTE: color stop lengths in % */
+                : radial-gradient(red, yellow, green);                                      /* default, shape is ellipse */
+                : radial-gradient(circle, red, yellow, green);                              /* shape is circle */
+                : repeating-radial-gradient(red, yellow 10%, green 15%);                    /* repeat gradient inside wrapper. NOTE: color stop lengths in % */
 
 /* object-fit (fill [default]| contain | cover) property is used to specify how an <img> or <video> should be resized to fit its container */
 /* such as "preserve that aspect ratio"  or  "stretch up and take up as much space as possible" */
