@@ -1702,7 +1702,8 @@ Console
 DOM Document
 	0.	document.activeElement.tagName;                          // returns the currently focused element in the document.
 	0.	document.documentURI;                                    // returns the location of a document.
-	0.	document.body;                                           // BODY of document as selector
+	0.	document.documentElement;				 // HTML tags's content of document as selector
+	0.	document.body;                                           // BODY tag's content of document as selector
 	0.	document.getElementById("idval")	                 // Returns the element that has the specified ID attribute
  	0.	document.getElementsByClassName("classval");             // Returns NodeList containing all elements with the specified CLASS attribute
 	0.	document.getElementsByName("nameval");                   // Returns NodeList containing all elements with a specified NAME attribute
