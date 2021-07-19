@@ -1328,6 +1328,15 @@ Events
 		Prevents other listeners of the same event (same type) from being called.
 		If several listeners are attached to the same element for the same event type, they are called in the order in which they were added. 
 		If stopImmediatePropagation() is invoked during one such call, no remaining listeners will be called for same type.
+		<span matTooltip="Click to Copy" matTooltipPosition="below" cdkCopyToClipboard="{{slot.name}}">
+			<span matTooltip="Copied to Clipboard" (mouseenter)="mouseHandler($event)" #tooltip="matTooltip" (click)="tooltip.toggle()">
+				{{slot.name}}
+			</span>
+		</span>
+		
+		@HostListener('mouseenter', ['$event']) mouseHandler(evt) {
+			evt.stopImmediatePropagation();
+		}
 	       
 	      
 EVENT LOOP model in JS
