@@ -662,6 +662,7 @@ Regex
 Strings
         0.      var res = str.length                       // length of string
 	0.      var res = str.charAt(index)                // character at the specified index (position)
+	        var res = str[index]
 	0.      var res = str1.concat(str2, str3);         // concatenate multiple strings
 	0.      str.endsWith();                            // Checks whether string ends with specified string/characters
 	0.      str.startsWith();                          // Checks whether string starts with specified string/characters
