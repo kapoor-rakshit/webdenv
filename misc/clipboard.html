@@ -1,0 +1,44 @@
+<!-- REFERENCE : https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/write -->
+<!--
+	A new Blob object is created which takes in the content we want to copy and its type.
+	A new ClipboardItem object is created into which the blob will be placed.
+	Clipboard API's write() method is called, which takes in an array of ClipboardItem object.
+	This method returns a Promise which is resolved when the data has been written to the clipboard or it is rejected otherwise.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Copy to clipboard</title>
+</head>
+<body>
+
+	<p onclick="copyToClipboard(event)">Paragraph 1</p>
+	<p onclick="copyToClipboard(event)">Paragraph 2</p>
+	<p onclick="copyToClipboard(event)">Paragraph 3</p>
+	<p onclick="copyToClipboard(event)">Paragraph 4</p>
+
+	<script type="text/javascript">
+		let copyToClipboard = (evt) => {
+			let data = evt.target.innerText;
+			let type = "text/plain";
+			let blob = new Blob([data], {type});
+			let clipboardObj = [new ClipboardItem({[type]: blob})];
+
+			navigator.clipboard.write(clipboardObj).then(
+				()=> {
+					evt.target.innerText = "copied";
+					setTimeout(()=> {
+						evt.target.innerText = data;
+					},1000);
+				},
+				()=> {
+					console.log("Unable to copy to Clipboard");
+				}
+			);
+		}
+	</script>
+
+</body>
+</html>
