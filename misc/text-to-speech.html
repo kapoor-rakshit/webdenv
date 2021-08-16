@@ -1,0 +1,59 @@
+<!-- REFERENCE : https://responsivevoice.org/api/ -->
+<!-- 
+	 We can also add Page welcome message, Speak on text select, Speak on URL/link hover
+	 by configuring it on our profile dashboard.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TTS test</title>
+</head>
+<body>
+
+	<p>testing text, hello hi namaste. Good to see you all here. Now working towards higher goals.</p>
+	<p>You may check my <a href="https://github.com/kapoor-rakshit" target="_blank">Github profile</a> for a deep dive.</p>
+
+	<button type="button" onclick="speakText()">Speak</button>
+	<button type="button" onclick="stopSpeakText()">Stop</button>
+	<button type="button" onclick="pauseResumeText()">Pause / Resume</button>
+
+	<script type="text/javascript">
+		let text = "This program is designed to give you an understanding of Agile, and implementing this knowledge in your projects \
+		and day-today work. A deeper focus on Scrum, and learning the roles, artefacts and ceremonies, will help in setting up your \
+		projects for success.";
+
+		let voiceType = "Hindi Male";
+
+		let pauseClicked = false;
+
+		let speakText = ()=> {
+			if(responsiveVoice.voiceSupport()) {
+	  			responsiveVoice.speak(text, voiceType);
+			}
+			else {
+				alert("Your browser does not support Text to Speech");
+			}
+		}
+
+		let stopSpeakText = ()=> {
+			responsiveVoice.cancel();
+		}
+
+		let pauseResumeText = ()=> {
+			if(pauseClicked) {
+	  			responsiveVoice.resume();
+	  			pauseClicked = false;
+			}
+			else {
+				responsiveVoice.pause();
+				pauseClicked = true;
+			}
+		}
+	</script>
+
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=IFXAnHKV"></script>
+
+</body>
+</html>

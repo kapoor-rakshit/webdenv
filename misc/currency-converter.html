@@ -1,0 +1,41 @@
+<!-- REFERENCE : https://www.frankfurter.app/docs/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Currency Data</title>
+</head>
+<body>
+
+	<label>USD: <input type="number" name="currency1" oninput="getCurrencyData(event)" min="1"/></label>
+	<br/><br/>
+	<label>INR: <input type="number" name="currency2" oninput="getCurrencyData(event)" min="1"/></label>
+
+	<script type="text/javascript">
+		let getCurrencyData = (evt)=> {
+			let targetInput = evt.target.getAttribute("name");
+			let targetInputVal = evt.target.value;
+			const host = 'api.frankfurter.app';
+			let currencyCode1 = "USD";
+			let currencyCode2 = "INR";
+
+			if(targetInput == "currency1") {
+				fetch(`https://${host}/latest?amount=${targetInputVal}&from=${currencyCode1}&to=${currencyCode2}`)
+  					.then(resp => resp.json())
+  						.then((data) => {
+    						document.querySelector("[name='currency2']").value = data.rates[currencyCode2];
+  						});
+			}
+			else if(targetInput == "currency2") {
+				fetch(`https://${host}/latest?amount=${targetInputVal}&from=${currencyCode2}&to=${currencyCode1}`)
+  					.then(resp => resp.json())
+  						.then((data) => {
+    						document.querySelector("[name='currency1']").value = data.rates[currencyCode1];
+  						});
+			}
+		}
+	</script>
+
+</body>
+</html>
