@@ -74,6 +74,21 @@ The http-equiv attribute can be used to simulate an HTTP response header.
 Below example will refresh document every 30 seconds:
 -->
 <meta http-equiv="refresh" content="30">
+<!--
+A <meta> description element provides a brief summary of a web page. 
+Search engines such as Google often display the meta description in search results, which can influence click-through rates.
+-->
+<meta name="description" content="This is an example of a meta description. This will often show up in search results.">
+<!--
+Open Graph is internet protocol that was created by Facebook to standardize use of metadata within webpage to represent content of page when shared.
+Most social networks by default will try to make their best effort in creating preview of content, which might not go so well.
+og:title       => This is same as your webpage's <title> tag unless you’d like to present it differently.
+og:description => This is same as <meta type=“description”> tag, unless you’d like to present it differently.
+og:image       => A high resolution image that the social networks will use in their feeds.
+-->
+<meta property="og:title" content="Front-end &amp; Developer Blog" />
+<meta property="og:description" content="My blog description" />
+<meta property="og:image" content="PATH_TO_IMAGE" />
 
 
 <!-- 3 -->
