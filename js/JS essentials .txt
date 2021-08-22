@@ -933,12 +933,11 @@ Functions
 Map
 	0. In ES6 or ES2015 , Map object is provided which is a collection of elements where each element is stored as a Key, value pair. 
 	   When we iterate over the map object it returns the key,value pair in the same order as inserted.
-	   // Example
-	   // myMap = [["Ram", "Chennai"], [9025, "Pune"], ["Vinay", "Bangalore"]];
+	   let myArr = [["Ram", "Chennai"], [9025, "Pune"], ["Vinay", "Bangalore"]];
+	   let myMap = new Map(myArr);
+	   
 	   let myMap1 = new Map();
-	   myMap1.set("Ram", "Chennai");                // [key, value]
-	   myMap1.set(9025, "Pune");
-	   myMap1.set("Vinay", "Bangalore");
+	   myMap1.set("Ram", "Chennai");  myMap1.set(9025, "Pune"); myMap1.set("Vinay", "Bangalore");              // [key, value]
 	   
 	   myMap1.size;                                 // size of map
 	   
@@ -950,7 +949,8 @@ Map
 	   
 	   myMap1.clear();                              // Removes all the elements from the Map object
 	   
-	   let mapArr = myMap1.entries();               // Returns an iterable as [[key1, val1] , [key2, val2], .....]
+	   let mapArr = myMap1.entries();               // Returns a map iterator as [[key1, val1] , [key2, val2], .....]
+	   let mapArr = Array.from(myMap1);		// Returns array as          [[key1, val1] , [key2, val2], .....]
 	   
 	   let mapKeyArr = myMap1.keys();               // Returns an iterable for keys
 	   
@@ -977,7 +977,8 @@ Set
 
 	   mySet3.clear();
 
-	   let getEntriesArry = mySet3.entries();       // [[val, val], [val, val]]
+	   let getEntriesArry = mySet3.entries();       // Returns a set iterator as [[val1, val1], [val2, val2]]
+	   let setArr = Array.from(mySet3);		// Returns array as          [val1, val2, val3]
 
 	   let getKeys = mySet3.keys();                 // {val, val}
 
