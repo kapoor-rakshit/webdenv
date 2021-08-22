@@ -146,7 +146,11 @@ Array methods
 	0.	arr.some(funcName);							      // checks if any element in array pass test (provided as a function).
 											      // If it finds array element where function returns `true` , some() returns true 
 											         and does not check remaining values , Otherwise it returns `false`
-	0.      Array.from("90254085RKTA");                                                   // just like "list()" in Python
+	0.      Array.from("90254085RKTA");                                                   // just like "list()" in Python , ["9", "0", "2", "5", "4", "0", .......]
+	0.	Array.of("90254085RKTA");						      // creates new Array instance from variable number of args , ["90254085RKTA"]
+		Array.of(1, 2, 3, "RKSA");						      // [1,2,3,"RKSA"]
+		Array(1, 2, 3, "RKSA");							      // [1,2,3,"RKSA"]
+		Array(7);								      // array of 7 empty slots
 	0.      arr.includes("chk",index_to_start_search);                                    // returns true/false if array contains the element.
 	0.      arr.indexOf("chk", index_to_start_search);                                    // returns position, -1 if not found, -ve value index will search from that position from end till end
 	0.      arr.lastIndexOf("chk", index_to_start_search);                                // returns position starting from end/index till beginning, -ve value index will search from that position from end till beginning
