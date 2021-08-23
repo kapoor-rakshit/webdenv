@@ -1,0 +1,86 @@
+<!-- REFERENCE : http://multiple-select.wenzhixin.net.cn/en/ -->
+<!-- Multiple Select is a jQuery plugin for HTML select tag , rich with features -->
+
+<!-- Download source CSS, JS files from http://multiple-select.wenzhixin.net.cn/docs/en/download   or   use CDN links -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Pretty Select</title>
+
+<!-- Latest compiled and minified CSS -->          <!-- or use CDN link -->
+<link rel="stylesheet" href="multiple-select.min.css">
+<link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->   <!-- or use CDN link -->
+<script src="multiple-select.min.js"></script>
+<script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script>
+
+<!-- jQuery CDN or minified jQuery script -->
+<script src="jquery.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+
+		$('.singleSelect').multipleSelect(
+		{
+			placeholder: "Select your Option:",       // A placeholder value can be defined and will be displayed until you select an item
+			filterPlaceholder: 'Search Here',         // Set the filter placeholder.
+			filter: true,                             // Show a search field to search through options.
+			width: '100%',
+			position: 'bottom',                       // Defines the position of the select dropdown, can only be 'bottom' or 'top'.
+			maxHeight: '160',                         // Define the maximum height property of the dropdown list.
+			animate: 'slide',                         // Define the animate of open or close the dropdown, can be 'fade' and 'slide'.
+			openOnHover: true,                        // Open the select dropdown by hover instead of click.
+			isOpen: true,                             // Open the select dropdown by default  , default is false 
+			single: true,                             // Allows you to select only one option , default is false
+			singleRadio: true                         // Allows you to show the radio input when single is set to true
+		});
+
+		$(".singleSelect").prop("selectedIndex", -1); // Prevent first option from being selected by default
+                                                      // Similarly in JS : document.getElementById("myDropdown").selectedIndex = -1;
+	});
+
+	var selectedOptionsValues = [];
+	function getSelectedValuesOptionsSelectClass(sel){
+
+		var opt;
+		var len = sel.options.length;
+		for (var i = 0; i < len; i++)
+		{
+			opt = sel.options[i];
+
+			if (opt.selected)
+			{
+				selectedOptionsValues.push(" " + opt.value);
+			}
+		}
+		
+		var selectelementsSize = document.getElementsByClassName("optionsSelectClass").length;     /* multipleSelect plugin copies some attrib of select and makes them to div internally also  */
+		var selectelementsSizeHalf = selectelementsSize / 2;                                       /* actual count of select tags is half of what we get from className */
+		
+	}
+</script>
+
+</head>
+<body>
+	<select class="singleSelect optionsSelectClass">
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+</body>
+</html>
+
