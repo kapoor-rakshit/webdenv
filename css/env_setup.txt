@@ -258,6 +258,15 @@ img {
         mask-repeat: no-repeat;
 -webkit-mask-position: center;
         mask-position: 50% 50%;                                        /* left offset , top offset */
+        
+/* Stylize <ul> , <ol> lists */       
+ul {
+  list-style-type: circle;                                             /* circle,disc,square,decimal,decimal-leading-zero,lower-alpha,lower-roman,upper-alpha,upper-roman */
+  list-style-position: outside;                                        /* inside,outside | markers should appear inside or outside(default) content flow */
+  list-style-image: url("sqpurple.gif");                               /* image as marker, if not available then type property will be used for marker */
+  
+  list-style: square inside url("sqpurple.gif");                       /* shorthand property */
+}
 
 
 color: magenta;                                            /* font color */
