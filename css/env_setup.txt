@@ -405,9 +405,10 @@ inline-block: makes an element behave like a <span>, but does follow width, heig
   flex-direction: row;            /* which direction (main-axis) container wants to stack flex items, column(y-axis) | column-reverse | row(default)(x-axis) | row-reverse */
   flex-wrap: wrap;                /* whether flex items should wrap or not, wrap | nowrap (default) | wrap-reverse */
   flex-flow: row wrap;            /* shorthand property for setting both the flex-direction and flex-wrap properties */
-  justify-content: center;        /* align flex items (along main-axis), center | flex-start (default) | flex-end | space-around | space-between */
-  align-items: center;            /* align flex items (along cross-axis), stretch (default) | center | flex-start | flex-end | baseline */
-  align-content: center;          /* align flex lines (containing items)(along cross-axis), stretch (default) | space-between | space-around | center | flex-start | flex-end */
+  justify-content: center;        /* align flex lines (containing items)(along main-axis), center | flex-start(default) | flex-end | space-evenly | space-between */
+  align-content: center;          /* align flex lines (containing items)(along cross-axis), stretch (default) | space-around | center | flex-start | flex-end */
+                                  /* IMP NOTE: align-content has no effect on single line flex containers or ones with flex-wrap: nowrap */
+  align-items: center;            /* align flex items (within flex line)(along cross-axis), stretch (default) | center | flex-start | flex-end | baseline */
 }
 .flex-container > .item {
   background-color: #f1f1f1;
