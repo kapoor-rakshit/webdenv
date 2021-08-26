@@ -170,8 +170,8 @@ Array methods
 	0.      arr.splice(start_adding_index, no_elem_to_remove, "Lemon", "Kiwi");           // adds/removes items to/from an array, and returns the removed item(s) if any.
 	0.      var arr = arr.valueOf();                                                      // return the same array, the default method of the array object.
 	0.      arr.sort();                                                                   // we can pass comparator function to it, if array has object data as values
-											      // ASC order: arr.sort((a, b)=> {return a.price - b.price});
-											      // DSC order: arr.sort((a, b)=> {return b.price - a.price});
+											         // ASC order: arr.sort((a, b)=> {return a.price - b.price});
+											         // DSC order: arr.sort((a, b)=> {return b.price - a.price});
 	0.	delete arr[index];                                                            // elem at index does not exist in arr (undefined) and donot change indexes of other elements.
 	0.      arr.splice(index, 1);                                                         // start at index, remove 1 element, nothing new passed to add.
 	0.	arr.flat(depth);							      // creates new array with all sub-array elements concatenated upto depth
