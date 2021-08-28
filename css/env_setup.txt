@@ -259,6 +259,16 @@ img {
 -webkit-mask-position: center;
         mask-position: 50% 50%;                                        /* left offset , top offset */
         
+        
+/* Center align an image */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
 /* Stylize <ul> , <ol> lists */       
 ul {
   list-style-type: circle;                                             /* circle,disc,square,decimal,decimal-leading-zero,lower-alpha,lower-roman,upper-alpha,upper-roman */
