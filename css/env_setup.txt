@@ -87,7 +87,8 @@ a:hover {}                                   /* mouseover */
 a:active {}                                  /* selected link */
 p:empty {}                                   /* Selects every <p> element that has no children (including text nodes) */
 div:hover + p {}                             /* p tag immediately followed by div tag when div tag is hovered  */
-tag1:nth-child(5) {}                         /* 5th tag1 of each parent , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
+tag1:nth-child(5) {}                         /* if it is tag1 and at 5th position as child of parent , uses 1 based indexing */ /* eg: table tr:nth-child(even) {} */
+tag1:nth-of-type(5) {}                       /* 5th tag1 of parent , irrespective of position as child of parent */ /* eg: 5th tag1 can be 8th child of parent */
 tag1 > tag2:last-child {}                    /* every last tag2 whose PARENT is tag1 */ /* similarly we have      :first-child {} */
 tag1:not(.CLASS) {}                          /* all tag1 except with class CLASS *//* NOTE : donot use "" over selectors (.CLASS here) */
 q:lang(pb) { quotes: "~" "~"; }              /* q tag with attrib lang having val "pb"  , eg: <q lang="pb">A quote in a paragraph</q> */
