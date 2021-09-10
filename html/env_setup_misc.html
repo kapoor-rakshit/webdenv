@@ -70,10 +70,11 @@ The charset attribute specifies the character encoding for the HTML document.
 <meta charset="UTF-8">
 <!--
 The http-equiv attribute provides an HTTP header for the information/value of the content attribute.
-The http-equiv attribute can be used to simulate an HTTP response header.
-Below example will refresh document every 30 seconds:
+first example will refresh document every 30 seconds:
+second example will redirect page to specified URL after 3 secs:
 -->
 <meta http-equiv="refresh" content="30">
+<meta http-equiv="refresh" content="3; URL=https://github.com">
 <!--
 A <meta> description element provides a brief summary of a web page. 
 Search engines such as Google often display the meta description in search results, which can influence click-through rates.
@@ -153,5 +154,27 @@ Eg: In chrome having two buttons inside a <form></form> , both will act as type=
     <button type="submit">Submit</button>
     <button type="button">Cancel</button>
 </form>
-
+    
+    
+<!-- 9 -->
+<!--
+The <base> tag specifies the base URL and target for all relative URLs and image src's in a document.
+The <base> tag must have either an href or a target attribute present, or both.
+There can only be one single <base> element in a document, and it must be inside the <head> element.
+-->
+<head>
+  <base href="https://www.w3schools.com" target="_blank">
+</head>
+<body>
+  <img src="images/stickman.gif" width="24" height="39" alt="Stickman">
+  <a href="tags/tag_base.asp">HTML base Tag</a>
+</body>
+    
+    
+<!-- 10 -->
+<!--
+The loading attribute specifies whether a browser should load an image immediately or 
+to defer loading of off-screen images until, user scrolls near them.
+-->
+<img src="/w3images/ocean.jpg" alt="Ocean" style="width:100%" loading="lazy">
 
