@@ -1,0 +1,60 @@
+<!-- 
+REFERENCE : https://css-tricks.com/how-to-create-a-skip-to-content-link/
+Consider, if we have navigation items that a keyboard user or screen reader must tab through before reaching main content below navigation links.
+That’s the problem. The navigation may be irrelevant for user. Users must be given a direct link to content.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Skip to Content</title>
+
+	<style type="text/css">
+		.skip-link {
+		  background: #319795;
+		  color: #fff;
+		  font-weight: 700;
+		  left: 50%;
+		  padding: 4px;
+		  position: absolute;
+		  transform: translateY(-150%);
+		  transition: transform 0.3s;
+		}
+
+		.skip-link:focus-within {
+		  transform: translateY(0%);
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+  		<div class="skip-link" >
+  			Skip to <a href='#main-content'>content</a> or <a href='#footer-content'>footer</a>
+		</div>
+
+  		<!-- Navigation Links Menu-->
+  		<nav>
+  			<a href="dummy">Nav 1</a>
+  			<a href="dummy">Nav 2</a>
+  			<a href="dummy">Nav 3</a>
+  			<a href="dummy">Nav 4</a>
+  		</nav>
+	</header>
+
+	<main id="main-content">
+  		<!-- Content -->
+  		<a href="dummy">Content 1</a>
+  		<a href="dummy">Content 2</a>
+  		<a href="dummy">Content 3</a>
+	</main>
+
+	<footer id="footer-content">
+		<!-- Content -->
+		<a href="dummy">Footer 1</a>
+		<a href="dummy">Footer 2</a>
+		<a href="dummy">Footer 3</a>
+	</footer>
+
+</body>
+</html>
