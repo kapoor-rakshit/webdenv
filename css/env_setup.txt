@@ -95,6 +95,7 @@ q:lang(pb) { quotes: "~" "~"; }              /* q tag with attrib lang having va
 input:checked {}                             /* for radio buttons and checkboxes of <input> , option:checked of <option> in <select> */
 input:invalid {}                             /* input fields with values not according to their type attribute */
 input[type="text"]:focus {}                  /* input tag with type attrib value as text and are focused */
+form:focus-within {}                         /* apply CSS to form, if any child elem of it gets focused */
 .tab div:target {}                           /* target element div (eg: div with id ID1 when <a href="#ID1"> clicked) inside class tab */
 input:out-of-range                           /* works for input elements with min and/or max attributes! */
 
