@@ -104,10 +104,20 @@ There are three main components used in ARIA: Roles, States, and Properties.
 - Properties rarely change once they’re set                      (i.e. aria-labelledby and aria-describedby
 eg: role="progressbar" | aria-valuenow="75" | aria-valuemin="0" | aria-valuemax="100" | aria-label="Close"
 
+LANDMARKS
+HTML5 elements such as main, nav, aside, footer, header, form, section
+act as landmarks, or special regions on the page to which screen readers and other assistive technologies can jump.
+REFERENCE: https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/HTML5.html
+
 Screen reading tools
 - JAWS , NVDA (Windows)
 - Apple VoiceOver (OS X)
 - ORCA (Linux)
+
+Accessibility check
+- Microsoft's Accessibility Insights extension
+- Deque's axe DevTools extension
+- Accessibility DOM in inspector window of browser
 
 
 Custom elements in JS
