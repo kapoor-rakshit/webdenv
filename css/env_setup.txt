@@ -98,7 +98,9 @@ input[type="text"]:focus {}                  /* input tag with type attrib value
 form:focus-within {}                         /* apply CSS to form, if any child elem of it gets focused */
 .tab div:target {}                           /* target element div (eg: div with id ID1 when <a href="#ID1"> clicked) inside class tab */
 input:out-of-range                           /* works for input elements with min and/or max attributes! */
-
+:root {}                                     /* root element of document i.e. html in case of HTML
+                                                identical to selector html, except specificity is higher 
+                                                :root can be useful for declaring global CSS variables */
 
 /* pseudo elements (::) , REFERENCE : https://www.w3schools.com/css/css_pseudo_elements.asp */
 /* Pseudo-element names are not case-sensitive */
@@ -122,6 +124,27 @@ p::after {                                   /* Insert content at end of <p> , j
 }                                 /* content property can have values "TEXT", url(URL_IMAGE), " "attr(ATTRIBUTE_NAME)" " */
                                   /* REFERENCE : https://www.w3schools.com/cssref/pr_gen_content.asp */
                                   
+CSS VARIABLES
+---------------
+- A custom property name / variable begins with a double hyphen (--)
+- NOTE: Selector given to the ruleset defines the scope that custom property can be used in.
+        A common best practice is to define custom properties on the :root pseudo-class, so that it can be applied globally across your HTML document
+        Custom properties do inherit. This means that if no value is set for a custom property on a given element, the value of its parent is used
+- Custom property names are case sensitive i.e. --my-color will be treated as a separate custom property to --My-color
+- Use the custom property value by specifying custom property name inside the var() function
+- Using the second arg of var() function, we can define fallback value
+- element.style.getPropertyValue("--my-var");              // JS : get variable from inline style
+  getComputedStyle(element).getPropertyValue("--my-var");  // JS : get variable from wherever
+  element.style.setProperty("--my-var", jsVar + 4);        // JS : set variable on inline style
+eg:  :root {
+       --main-bg-color: brown;
+     }
+     .one {
+       background-color: var(--main-bg-color);
+       color: var(--my-var, red);
+       text-decoration: var(--my-var, var(--decor-var, none));
+     }
+                                  
                                   
 /* SASS : Syntactically Awesome Style Sheets */
 /* It is a CSS preprocessor tool which makes CSS cross browser compatible. */ /* other tools are LESS , STYLUS */
@@ -130,7 +153,6 @@ p::after {                                   /* Insert content at end of <p> , j
 
 /* SCSS : Sassy CSS */
 /* every valid CSS3 stylesheet is valid SCSS as well. SCSS files use the extension .scss */
-
 
 
 DECLARATIONS
