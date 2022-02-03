@@ -1663,8 +1663,11 @@ Local Storage / Session Storage / Cookies
 		The sessionStorage is bound to origin (protocol/domain/port triplet) only on current browser tab.
 		That means if we open same origin (protocol/domain/port, the url path can be different) in a different tab or window we CANNOT access sessionStorage data for it.
 		
-		NOTE : We can make use of sessionStorage values on other tab, if new tab is opened with   rel="opener"   attribute of anchor tag
-		       <a href="" target="_blank" rel="opener">NEW TAB LINK</a>
+		NOTE : We can make use of sessionStorage values on other tab
+		       a) if new tab is opened with   rel="opener"   attribute of anchor tag
+		          <a href="" target="_blank" rel="opener">NEW TAB LINK</a>
+		       b) if we use   window.open()  , as it has default behavior of having access back to the originating window
+		          window.open('/private/content/D03001194', '_blank');
 		
 		// Methods / Properties (applicable for both localStorage and sessionStorage)
 		> localStorage.setItem("keyname", "value");          // Adds key to storage or update key's value if already exists
