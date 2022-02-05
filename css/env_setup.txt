@@ -101,6 +101,10 @@ input:out-of-range                           /* works for input elements with mi
 :root {}                                     /* root element of document i.e. html in case of HTML
                                                 identical to selector html, except specificity is higher 
                                                 :root can be useful for declaring global CSS variables */
+:is {}                                       /* writing large selectors in a more compact form */
+                                             /* NOTE: :is() does not select pseudo-elements , INVALID Eg: SELECTOR:is(::before, ::after) {} */
+                                             /* Eg: div + :is(.c1, .c2)  ==>  div + .c1 , div + .c2 {} */
+                                             /* Eg: :is(p ,.test) ~ .c1  ==>  p ~ .c1 , .test ~ .c1 {} */
 
 /* pseudo elements (::) , REFERENCE : https://www.w3schools.com/css/css_pseudo_elements.asp */
 /* Pseudo-element names are not case-sensitive */
