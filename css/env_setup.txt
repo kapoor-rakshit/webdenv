@@ -409,6 +409,8 @@ z-index: -1;                                               /* z-index property s
 float: left;                           /* float property specifies how an element should float. ( left | right | none(default) ) */
 clear: left;                           /* clear the float to left. Means that no floating elements allowed on left side (left | right | both) */
 
+accent-color: #74992e;                 /* accent color for user-interface controls: <input type="checkbox">,<input type="radio">,<input type="range">,<progress> */
+
                                        /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
 display: inline-block;                 /* display behavior (type of rendering box) , inline | block | flex | grid | inline-block | table | none | initial */
 /* CSS inline | block | inline-block */
