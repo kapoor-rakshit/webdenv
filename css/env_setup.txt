@@ -315,8 +315,9 @@ font-weight: bold;
 font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
 text-transform: capitalize;                                /* none | capitalize | uppercase | lowercase | initial */
 font-size: 25px;                                           /* medium (default) | xx-small | x-small | small | large | x-large | xx-large | smaller | larger | length (px, cm) */
+font-variant: small-caps;                                  /* normal(default) | small-caps(converts to uppercase but smaller font size than original uppercase */
+font-variant-numeric: slashed-zero;                        /* provides distinction between O and 0 */
 text-align: center;
-align-content: center;
 
 line-height: 2;                                            /* normal (default)
                                                               number (multiplied with current font-size to set line height)
