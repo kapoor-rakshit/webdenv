@@ -437,6 +437,19 @@ Misc.
 	        var dec = decodeURI(enc);
 	0.      var res = encodeURIComponent("https://w3schools.com/my test.asp?name=ståle&car=saab");   // encodes special characters. In addition, it encodes: , / ? : @ & = + $ #
 	        var uri_dec = decodeURIComponent(uri_enc);
+	0.	let url = new URL('https://javascript.info/profile/admin');				 // a URL object
+			  url.searchParams.append('q1', 'qParam_1');					 	// appends query param
+			  url.searchParams.set('q2', 'qParam_2');					 	// replace key if already exists, else appends key
+			  url.searchParams.get('q1');							 	// get parameter by key
+			  for(let qparam of url.searchParams) {							// iterate over qparams
+			    [key,val] = qparam;										// object destructuring
+			    console.log(`${key} is ${val}`);
+			  }
+			  url.searchParams.delete('q1');						 	// remove parameter by key
+			  url.protocol									 	// "https:"
+			  url.host									 	// "javascript.info"
+			  url.pathname									 	// "/profile/admin"
+			  url.href									 	// url.toString() , complete url
 	0.	let enc = btoa(str);                                                                     // btoa() method encodes a string to base-64
 		let dec = atob(enc);                                                                     // atob() method decodes a base-64 encoded string
 	
