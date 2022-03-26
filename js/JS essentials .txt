@@ -710,8 +710,7 @@ Strings
 	0.	var res = str.charCodeAt(index);           // returns 65 if char at index is A of string str , just like ord() in python
 	0.	var res = str.padStart(maxLenOfRes, "-");  // prefix specified character but only untill length of result is maxLenOfRes, does not change original
 		var res = str.padEnd(maxLenOfRes, "-");    // suffix specified character but only untill length of result is maxLenOfRes, does not change original
-
-
+		
 Form
 	0.	document.<NAME_ATTRIB_OF_FORM>.<NAME_ATTRIB_OF_WIDGET>.value;                       // set or get value.
 	        document.forms.namedItem("<ID_ATTRIB_OF_FORM>").<NAME_ATTRIB_OF_WIDGET>.value;
@@ -721,9 +720,6 @@ Form
 	                                                            // when it return false - form will not submit and will not redirect too
 								       It means Do nothing. Return the control flow. Stops submission of form
 								    // when it return true - form will submit and will redirect as  mentioned in action
-
-
-
 Functions
 	0.	var f = function(a, b) { return a*b; }              // anonymous function stored in variable f | args passed without var keyword before them
                     f (45, 5);                                      // invoke function stored in variable f
@@ -955,7 +951,36 @@ Functions
 		      mycar = new Car("Baleno");
 		      mycar.setCarName = "Swift";
 		      mycar.getCarName;
-		      
+
+Prototype / Proto
+	0. Example:
+	   let sentence = "Hello I'm Ashwani";
+	   let words = sentence.split(" ");
+	   Q: Where does this ‘split’ come from?
+	   Ans: ‘split’ is defined on the sentence's prototype object, which comes from String.
+	        The prototype is a reference to another object.
+		It gets used whenever JavaScript can’t find property it is looking for on current object.
+	   Q: What is Object Prototypes?
+	   Ans: All JavaScript objects have a prototype, which is an object that it inherits properties from.
+	        We can check all inbuilt methods available in prototype object by using ‘__proto__’  property inside browser console.
+	   Q: What is Prototype Chain?
+	   Ans: An object's prototype can have its own prototype, and that prototype can have its own prototype;
+	        this prototype chain continues until a prototype points to null, which is the end of the chain.
+	0. Prototypal Inheritance
+	   let person1 = {
+    		name : "Rocky",
+    		age : 25,
+	   };
+	   let person2 = {
+    		name : "Charles",
+	   };
+	   person2.__proto__ = person1;
+	   console.log( person2.name + " " + person2.age );     // output: Charles  25
+	   Note: When we assigned ‘person2’ object to proto of ‘person1’ object,
+	   	 this ‘person2’ object started inheriting properties from ‘person1’ object.
+	   	 As there is no ‘age’ property is not present in person2 object but it's present in its prototype object,
+	   	 that's why age will get inherited and printed.
+	   
 Map
 	0. In ES6 or ES2015 , Map object is provided which is a collection of elements where each element is stored as a Key, value pair. 
 	   When we iterate over the map object it returns the key,value pair in the same order as inserted.
