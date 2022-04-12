@@ -1,0 +1,3 @@
+Navigate to below URL on browser tab.
+It will act as a notepad.
+>  data:text/html,<html contenteditable>
