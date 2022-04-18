@@ -1781,6 +1781,15 @@ DOM Document
 	0.	let t = document.createTextNode("Hello World");          // returns created Text node object    || let h = document.createElement("H1"); h.appendChild(t);
 	
 	
+Virtual DOM (DocumentFragment)
+	0.	const fragment = document.createDocumentFragment();      // DocumentFragment interface represents minimal document object that has no parent.
+		for (let i=0;i<1000;i+=1) {				    The key difference is that documentFragment isn't part of active document tree 
+		  var pElem = document.createElement('p');		    structure. Changes made to fragment don't affect document or incur any performance
+		  fragment.appendChild(pElem);				    impact when changes are made.
+		}
+		document.body.appendChild(fragment);
+	
+	
 DOM Element
 	0.	elem.appendChild(elemNodeObject);                        // Adds new child node to an element as last child node , returns appended child(elemNodeObject)
 									 // NOTE : If the given child is a reference to an existing node in the document, 
