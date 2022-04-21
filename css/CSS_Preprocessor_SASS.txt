@@ -141,6 +141,8 @@ You can even pass in values to make your mixin more flexible. A good use of a mi
 Use the @mixin directive and give it a name "transform" here. The variable $property inside the parentheses acts as parameter to MIXIN.
 Use it as a CSS declaration starting with @include followed by the name of the mixin.
 eg:
+#1 : definite CSS property
+==============================
 @mixin transform($property) {
   -webkit-transform: $property;
   -ms-transform: $property;
@@ -156,6 +158,24 @@ eg:
   transform: rotate(30deg);
 }
 
+#2 : CSS decalartions content
+===============================
+@mixin media-medium {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+.box {
+    @include media-medium {
+        border: 1px solid yellow;
+    }
+}
+--------------- compiles to -----------------------
+.box {
+    @media (min-width: 992px) {
+        border: 1px solid yellow;
+    }
+}
 
 
 /* INHERITANCE */
