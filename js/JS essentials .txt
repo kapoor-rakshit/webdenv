@@ -805,6 +805,8 @@ Functions
 		   The Object.freeze() method freezes an object. A frozen object can no longer be changed.
 		   freezing an object prevents new properties from being added to it, existing properties from being removed.
 		   Values of existing properties CANNOT be changed.
+		   NOTE: This is a shallow freeze only i.e. direct props will not change but if value of prop is object, its props can change.
+		         TypeScript offers `as const` feature that allows for deep freezing objects.
 		   Eg: Object.freeze(obj);
 		   
 		   The Object.keys() method returns an array of a given object's own enumerable properties i.e. keys
