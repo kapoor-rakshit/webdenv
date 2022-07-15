@@ -480,12 +480,15 @@ Misc.
 	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
 	
 	0.      var c = parseFloat("10.33");                                                            // 10.33
-		var c = +"10.33";									// 10.33    , converts string number to number format
+		var c = +"10.33";									// 10.33 , converts string number to number format
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
-		var j = parseInt("20", 16);                                                             // 32 (hexadecimal , second arg 16 passed)
+		var j = parseInt("1f9", 16);                                                            // 505 (hexadecimal , second arg 16 passed)
+		var j = parseInt("1fn9", 16);								// 31 , evaluates upto expression valid(upto 1f valid hex)
+		var j = parseInt("123nitj98")								// 123
 		
 	0.      String(x)  ==  x.toString();                                                            // typecast to string
+		(89076).toString(16);									// 15bf4 , convert to hex(16)
 	
 	0.      if (typeof y === "undefined") {                  // typeof , "undefined"|"string"|"number"|"boolean"|"object"|"function"
 	          txt = "y is undefined";                        // NaN is           "number"
