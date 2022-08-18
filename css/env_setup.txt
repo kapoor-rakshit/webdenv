@@ -412,6 +412,13 @@ clear: left;                           /* clear the float to left. Means that no
 
 accent-color: #74992e;                 /* accent color for user-interface controls: <input type="checkbox">,<input type="radio">,<input type="range">,<progress> */
 
+.container {
+  scroll-snap-type: y proximity;       /* y | x ; mandatory(either snap point immediately) | proximity(either snap point when near) */
+}
+.item {
+  scroll-snap-align: start;            /* items start|end point align with container */
+}
+
                                        /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
 display: inline-block;                 /* display behavior (type of rendering box) , inline | block | flex | grid | inline-block | table | none | initial */
 /* CSS inline | block | inline-block */
