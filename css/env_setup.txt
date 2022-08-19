@@ -412,20 +412,19 @@ clear: left;                           /* clear the float to left. Means that no
 
 accent-color: #74992e;                 /* accent color for user-interface controls: <input type="checkbox">,<input type="radio">,<input type="range">,<progress> */
 
+/* scroll-snap-type | scroll-snap-align ,to have animation effect for snapping points of scroll items */
+Eg:
 .container {
-  scroll-snap-type: y proximity;       /* y | x ; mandatory(either snap point immediately) | proximity(either snap point when near) */
+  scroll-snap-type: y proximity;       /* y | x ; mandatory(either snap point immediately) | proximity(either snap point only when near) */
 }
 .item {
   scroll-snap-align: start;            /* items start|end point align with container */
 }
 
-                                       /* REFERENCE : https://www.w3schools.com/cssref/pr_class_display.asp */
-display: inline-block;                 /* display behavior (type of rendering box) , inline | block | flex | grid | inline-block | table | none | initial */
-/* CSS inline | block | inline-block */
+/* Display behavior (type of rendering box) , inline | block | flex | grid | inline-block | table | none | initial */
 inline:       makes an element behave like a <span>, but does NOT follow width, height, padding, margin properties applied to it.
 block:        makes an element behave like <div>
 inline-block: makes an element behave like a <span>, but does follow width, height, padding, margin properties applied to it
-
 
 /* CSS Grid Layout */
 /* An HTML element becomes a grid container when its display property is set to grid or inline-grid. */
@@ -443,7 +442,6 @@ inline-block: makes an element behave like a <span>, but does follow width, heig
   grid-row-start: 1;                         /* similar to colspan but merge row wise , start at row line number 1 */
   grid-row-end: 3;                           /* end at row line number 3 */ /* NOTE : It is row line number not row number */
 }
-
 
 /* CSS Flexbox (Flexible Box) Layout */
 /* The Flexible Box Layout Module, makes it easier to design flexible responsive layout structure without using float or positioning. */
