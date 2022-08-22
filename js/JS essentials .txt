@@ -1366,7 +1366,7 @@ Events
 	       document.addEventListener("click", myFunction);          // attaches an event handler to the document , here myFunction gets called , anywhere user clicks on document.
 	       
 	0.	/* Multiple handlers for same event in HTML */
-		<div class="container" onclick="f1(event)" onclick="f2(event)">      // only f1() is called i.e. first event handler written in HTML
+		<div class="container" onclick="f1(event)" onclick="f2(event)">      // only f1() called i.e. first event handler when same event written in HTML
 		
 	0.	/* NOTE: onchange event is called before onblur event */
 		<input type="text" onblur="f1(event)" onchange="f2(event)"/>
