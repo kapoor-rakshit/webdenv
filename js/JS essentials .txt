@@ -169,9 +169,11 @@ Array methods
 	0.      arr.join("separator");                                                        // returns the array as a string with separator specified, else default (comma)
 	0.      var newstr = arr.toString();                                                  //  returns a string with all the array values, separated by commas.
 	0.      arr.length;                                                                   // returns number of elements in an array.
-		arr.length = 2;								      // modifies original arr with only 0,1 elem indices i.e. length of 2
+		arr.length = 2;								      // modify arr to have only given elems i.e. length of 2
+		arr.length = 101;							      // modify arr to have 101 elems, empty slots added i.e. 'undefined'
+		arr[101] = 9025;							      // modify arr for 101 index value 9025, in between empty slots added
+	0.      arr.push("elem1", "elem2");                                                   // adds new items to end of array, and returns new length.
 	0.      arr.pop();                                                                    // removes and return last element
-	0.      arr.push("newelem");                                                          // adds new items to end of array, and returns new length.
 	0.      arr.shift();                                                                  // removes and return first element
 	0.      arr.unshift("val0", "val1");                                                  // adds new items to beginning of array, and returns new length.
 	0.      arr.reduce(myFunc, initialVal);                                               // similar to "reduce" in Python // myfunc(accumVar, curVar) {return accumVar * curvar} , accumVar contains previous result or initialVal as applicable.
@@ -531,7 +533,7 @@ JavaScript Hoisting
 	           (to the top of the current SCRIPT|GLOBAL SCOPE or the current FUNCTION SCOPE.
 		// a variable can be initialized and used (x = 5) before it has been declared (var x).
 		// JavaScript only hoists DECLARATIONS, not INITIALIZATIONS.
-		// JavaScript functions are hoisted above variables.
+		// JavaScript functions are hoisted below variables i.e. if same name of func and variable then func defn will be used
 		// To avoid bugs, always declare all variables at the beginning of every scope.
 		   JavaScript in strict mode ("use strict") does not allow variables to be used if they are not declared.
 		// Example
@@ -768,8 +770,18 @@ Functions
 	             var counter = 0;
 		     return function () {counter += 1; return counter}   
 		})();                                             // self-invoking function only runs once. It sets counter to zero (0)
-		                                                  // and returns a function expression to variable add whuich can be invoked
-                add();
+		add();                                            // and returns a function expression to variable add whuich can be invoked
+		
+	0.	function foo() {
+    			console.log(`1 func`);
+		}
+		function foo() {
+    			console.log(`2 func`);
+		}
+		function foo() {
+    			console.log(`3 func`);
+		}
+		foo();                                            // '3 func' ; when same function name, last defn overrides previous definitions
 		
 	0.	Types of functions
 		First class : functions are treated like variables can be returned, passed as arg, assigned to variable
@@ -1344,7 +1356,6 @@ Events
    				evt.preventDefault();
   			}
 		}
-		
 		  
         0.     addEventListener()                                        // addEventListener() method attaches an event handler to the specified element.
 	       document.getElementById("myBtn").addEventListener("mouseover", myFunction);
@@ -1353,6 +1364,12 @@ Events
 	       document.getElementById("myBtn").addEventListener("click", function() { myFunction(p1, p2); });
 	       document.getElementById("myDIV").removeEventListener("mousemove", myFunction);   // name of the event to remove,function to remove.
 	       document.addEventListener("click", myFunction);          // attaches an event handler to the document , here myFunction gets called , anywhere user clicks on document.
+	       
+	0.	/* Multiple handlers for same event in HTML */
+		<div class="container" onclick="f1(event)" onclick="f2(event)">      // only f1() is called i.e. first event handler written in HTML
+		
+	0.	/* NOTE: onchange event is called before onblur event */
+		<input type="text" onblur="f1(event)" onchange="f2(event)"/>
 	       
 	0.	Event Propagation
 		Event propagation is a way of defining the element order when an event occurs. 
