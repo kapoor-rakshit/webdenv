@@ -1404,15 +1404,15 @@ Events
 	       
 	0.      stopPropagation()
 	        <div onclick="func2()">DIV 2
-	             <div onclick="func1(event)">DIV 1</div>            // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
-	        </div>                                                  // stopPropagation() method prevents propagation of the same event from being called.
-                                                                        // Propagation means bubbling up to parent elements or capturing down to child elements.
-	       function func1(evt) { alert("DIV 1"); evt.stopPropagation(); }
+	             <div onclick="func1(event)">DIV 1</div>                   // Because DIV 1 is inside Div 2, both DIVs get clicked when you click on DIV 1.
+	        </div>                                                         // stopPropagation() prevents propagation of same event to parent.
+									       // Propagation means bubbling up to parent elems or capturing down to child elems.
+		function func1(evt) { alert("DIV 1"); evt.stopPropagation(); } // However, all listeners of that event attached to elem itself are called.
 	       
 	0.	stopImmediatePropagation()
-		Prevents other listeners of the same event (same type) from being called.
+		Prevents event to propagate to parent + Prevents other listeners of the same event (same type) from being called on elem itself too.
 		If several listeners are attached to the same element for the same event type, they are called in the order in which they were added. 
-		If stopImmediatePropagation() is invoked during one such call, no remaining listeners will be called for same type.
+		If stopImmediatePropagation() is invoked during one such call, no further remaining listeners will be called for same type.
 		<span matTooltip="Click to Copy" matTooltipPosition="below" cdkCopyToClipboard="{{slot.name}}">
 			<span matTooltip="Copied to Clipboard" (mouseenter)="mouseHandler($event)" #tooltip="matTooltip" (click)="tooltip.toggle()">
 				{{slot.name}}
