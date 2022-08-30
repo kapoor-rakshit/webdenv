@@ -457,13 +457,14 @@ Misc.
 	
 	0.      var b = eval("2 + 2");                                                                   // evaluates expression or executes JS statements.
 	
-	0.	Logical nullish operator (??)
+	0.	Logical nullish coalescing operator (??)
 		1> x ??= y   OR   x ?? (x = y)  , evaluates (x = y) if x is nullish (null or undefined).
 		2> console.info(`${a ?? b}`);   , prints b if a is nullish else prints a.
+		3> const b = false ?? 42;       , b=false (as   false, 0, ''   are not nullish)
 		
 		Optional chaining operator (?.)
 		1> let obj = {"k1": null};
-		   console.info(obj.k1?.k2);    , stops evaluating when reference (k1) is nullish and returns `undefined`
+		   console.info(obj.k1?.k2);    , stops evaluating when reference (k1) is nullish (null or undefined) and returns `undefined`
 		   console.info(obj.k1.k2);     , exception thrown : Uncaught TypeError: Cannot read property 'k2' of null
 	
 	0.	Object destructuring
