@@ -495,9 +495,13 @@ Misc.
 		var j = parseInt("1f9", 16);                                                            // 505 (hexadecimal , second arg 16 passed)
 		var j = parseInt("1fn9", 16);								// 31 , evaluates upto expression valid(upto 1f valid hex)
 		var j = parseInt("123nitj98")								// 123
+		var j = parseInt("ZX1f", 8);                                                            // NaN
 		
 	0.      String(x)  ==  x.toString();                                                            // typecast to string
 		(89076).toString(16);									// 15bf4 , convert to hex(16)
+		(234.4568).toExponential(3);      							// 2.345e+2, exponential string, after decimal 3 reqd
+		(13.67890).toFixed(2);            							// 13.68, number to string, keeping specified decimals
+		(13.67890).toPrecision(5);        							// 13.679, number to specified length string
 	
 	0.      if (typeof y === "undefined") {                  // typeof , "undefined"|"string"|"number"|"boolean"|"object"|"function"
 	          txt = "y is undefined";                        // NaN is           "number"
@@ -680,9 +684,6 @@ Number
 	0.      Number.MIN_VALUE;
 	0.      Number.NEGATIVE_INFINITY;
 	0.      Number.POSITIVE_INFINITY;
-	0.      var n = num.toExponential(3);      // number into an exponential notation 23.4568  -->  2.346e+1 coz after decimal 3 reqd
-	0.      var n = num.toFixed(2);            // Convert number into string, keeping specified decimals or 0 if reqd after decimal
-	0.      var n = num.toPrecision(5);        // Format a number to a specified length   13.67890  -->  13.679
 	0.	Number.isNaN(NaN)                  // true (here) only on "NaN" arg else false ('NaN' as string is also false)
 	                                           // This is different from global isNaN() function converts the tested value to a Number, then tests it.
 						   
