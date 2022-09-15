@@ -1,4 +1,3 @@
-﻿
 Ways of including JS
         0.     INTERNAL JS                                         // <script></script>
 	0.     EXTERNAL JS                                         // <script src="path_to_js_file"></script>
@@ -61,6 +60,22 @@ Don't Repeat Yourself (DRY)
 reducing repetition of information. 
 The DRY principle is stated as, "Every piece of knowledge or logic must have a single, unambiguous representation within a system." 
 
+
+Design Patterns
+REFERENCE: https://www.freecodecamp.org/news/javascript-design-patterns-explained/
+1. Creational — Addresses mechanisms related to creating objects
+	Singleton Pattern: It consists of object that can't be copied/modified.
+			   It's often useful when we want to have some immutable single point of truth for our application.
+			   Eg: using  Object.freeze(Config)  an obj can be made immutable.
+	Factory Method Pattern: It provides an interface for creating objects that can be modified after creation.
+				Logic for creating our objects is centralized in a single place, simplifying and better organizing our code.
+				Eg: Alien.prototype.fly = () => console.log("Good");
+	Abstract Factory Pattern: It's useful in situations where we need to create objects that share only some properties and methods.
+				  It adds abstraction layer over factory method pattern, but still interact with a single factory function or class
+				  i.e. Concrete factory is the one that returns the end object.
+				  Eg: const vehicleFactory = { createVehicle: function (type) {
+				  					switch (type) {
+										case "car": return new Car(); }}}
 
 Encoding | Encryption | RSA | AES
 Encoding : goal is not to keep information secret, but rather to ensure that it’s able to be properly consumed. eg: binary data sent over email, special chars on web page.
