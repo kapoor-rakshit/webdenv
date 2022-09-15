@@ -73,9 +73,25 @@ REFERENCE: https://www.freecodecamp.org/news/javascript-design-patterns-explaine
 	Abstract Factory Pattern: It's useful in situations where we need to create objects that share only some properties and methods.
 				  It adds abstraction layer over factory method pattern, but still interact with a single factory function or class
 				  i.e. Concrete factory is the one that returns the end object.
-				  Eg: const vehicleFactory = { createVehicle: function (type) {
-				  					switch (type) {
-										case "car": return new Car(); }}}
+				  Eg: const vehicleFactory = { createVehicle: function (type) { switch (type) { case "car": return new Car(); }}}
+	Prototype Pattern: Create an object using another object as a blueprint, inheriting its properties and methods.
+			   It is similar to prototypal inheritance.
+2. Structural — Addresses relationship between entities, how to assemble objects and classes into larger structures.
+	Adapter Pattern: Allows two objects with incompatible interfaces to interact with each other.
+			 Eg: Application API returns XML, sends that information to another API to process that information.
+			     But the processing API expects JSON. Can't send the information as is without adapting, since both interfaces are incompatible.
+	Decorator Pattern: Attach new behaviors to objects by placing them inside wrapper objects that contain the behaviors.
+			   Place an object within another so it can access certain features.
+			   Eg: REACT and it's HOC (higher order comps)
+	Facade Pattern: Simplified interface to library/framework/any complex set of classes.
+			Providing abstractions that hide away complexity from developer.
+			Eg: JavaScript's map, sort, reduce and filter
+3. Behavioral — Addresses how objects communicate and interact with each other.
+	Chain of Responsibility Pattern: Passes requests along chain of handlers.
+					 Each handler decides either to process the request or to pass it to the next handler in the chain.
+	Iterator Pattern: Used to traverse elements of a collection.
+			  Eg: JavaScript's for, forEach, for...of, for...in, map, reduce, filter
+	Observer Pattern: Observer pattern define subscription mechanism to notify multiple objects about events that happen to object they’re observing.
 
 Encoding | Encryption | RSA | AES
 Encoding : goal is not to keep information secret, but rather to ensure that it’s able to be properly consumed. eg: binary data sent over email, special chars on web page.
@@ -162,6 +178,7 @@ Array methods
 		   
 		d) let data = {"name": "kapoor", "gender": "m"};			      // if object already has that key, it will be overwritten else new key added
 		   data = {...data, "country": "india", "gender": "male"};		      // eg: data = {"name": "kapoor", "gender": "male", "country": "india"};
+		   data = {"country": "india", "gender": "male", ...data};		      // eg: data = {"country": "india", "gender": "m", "name": "kapoor"};
 	0.      arr.fill("Balle", 2, 4);                                                      // fill array with value at index [start,end)     // modifies original array, plus return modified array
 	0.      arr.filter(func_that_returns_true_false);                                     // just like "filter" in Python
 	0.      arr.forEach(funcName);                                                        // calls function once for each element in order. // does not return
