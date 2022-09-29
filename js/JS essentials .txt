@@ -151,6 +151,35 @@ Accessibility check
 - Accessibility DOM in inspector window of browser
 
 
+LIGHTHOUSE WEB VITALS
+- Performance
+	First Contentful Paint: FCP marks time at which first text or image is painted
+	Largest Contentful Paint: LCP marks time at which largest text or image is painted
+	Time to Interactive: TTI is amount of time it takes for page to become fully interactive
+	Total Blocking Time: TBT is sum of all time periods between FCP and TTI
+	Cumulative Layout Shift: CLS measures movement of visible elements within the viewport, eg: text/button suddenly moves down when image above it is loaded
+	Speed Index: SI shows how quickly contents of a page are visibly populated
+- Accessibility
+	[aria-*] attributes match their roles
+	[aria-*] attributes have valid values
+	Image elements have [alt] attributes
+	<html> element has a [lang] attribute
+	Document has a <title> element
+	List items (<li>) are contained within <ul> or <ol> parent elements
+- Best Practices
+	Uses HTTPS
+	Page has the HTML doctype i.e. <!DOCTYPE html>
+	Properly defines charset i.e. <meta> tag
+- SEO
+	Links have descriptive text
+	Image elements have [alt] attributes
+	Document has a <title> element
+- PWA
+	Configured for a custom splash screen
+	Sets a theme color for the address bar
+	Content is sized correctly for the viewport
+	Provides a valid apple-touch-icon
+
 Custom elements in JS
 var XFoo = document.registerElement('mega-button', {
   prototype: Object.create(HTMLButtonElement.prototype),
@@ -1877,7 +1906,7 @@ Shadow DOM
 	this shadow DOM tree starts with a shadow root, underneath which we can attach any element, in the same way as the normal DOM.
 	0. const shadowRoot = elementRef.attachShadow({mode: 'open'});	 // attach shadow DOM tree to specified element, return reference to its ShadowRoot.	
 	   const para = document.createElement('P');			 // we can't attach shadow root to every elem, for security reasons. Eg: <a> tag
-	   shadow.appendChild(para);					 // open: elements of shadow root accessible from outside root. Eg: elementRef.shadowRoot;
+	   shadowRoot.appendChild(para);			         // open: elements of shadow root accessible from outside root. Eg: elementRef.shadowRoot;
 	   								 // closed: denies access. Eg: elementRef.shadowRoot; | it returns null
 		
 DOM Element
