@@ -1846,6 +1846,7 @@ DOM Document
 	0.	document.activeElement.tagName;                          // returns the currently focused element in the document.
 	0.	document.documentURI;                                    // returns the location of a document.
 	0.	document.documentElement;				 // HTML tags's content of document as selector
+	0.	document.head;                                           // HEAD tag's content of document as selector
 	0.	document.body;                                           // BODY tag's content of document as selector
 	0.	document.getElementById("idval")	                 // Returns the element that has the specified ID attribute
  	0.	document.getElementsByClassName("classval");             // Returns NodeList containing all elements with the specified CLASS attribute
@@ -1868,8 +1869,17 @@ Virtual DOM (DocumentFragment)
 		  fragment.appendChild(pElem);				    impact when changes are made.
 		}
 		document.body.appendChild(fragment);
-	
-	
+
+Shadow DOM
+	Encapsulation allows to keep markup structure, style, and behavior hidden and separate from other code on the page,
+	so that different parts do not clash, and the code can be kept nice and clean.
+	Shadow DOM allows hidden DOM trees to be attached to elements in the regular DOM tree,
+	this shadow DOM tree starts with a shadow root, underneath which we can attach any element, in the same way as the normal DOM.
+	0. const shadowRoot = elementRef.attachShadow({mode: 'open'});	 // attach shadow DOM tree to specified element, return reference to its ShadowRoot.	
+	   const para = document.createElement('P');			 // we can't attach shadow root to every elem, for security reasons. Eg: <a> tag
+	   shadow.appendChild(para);					 // open: elements of shadow root accessible from outside root. Eg: elementRef.shadowRoot;
+	   								 // closed: denies access. Eg: elementRef.shadowRoot; | it returns null
+		
 DOM Element
 	0.	elem.appendChild(elemNodeObject);                        // Adds new child node to an element as last child node , returns appended child(elemNodeObject)
 									 // NOTE : If the given child is a reference to an existing node in the document, 
@@ -1930,4 +1940,3 @@ DOM Element
 	0.	elem.style.PROP="PROPVAL";                               // just like css({"PROP" : "PROPVAL"}) in jQuery
 	
 	
-￼
