@@ -565,10 +565,10 @@ Misc.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
 	       
 	0.      isNaN("9025");                                                                          // converts arg to a Number, then tests it.  "9025" and 9025 both give false as ther are Number   // this is different from Number.isNaN();
-	0.      Number(true)                                                                            // converts arg to number. If value cannot be converted to legal number, NaN is returned.
+	0.      Number(true)                                                                            // converts arg to number.If cannot be converted to number, NaN is returned.
+		var c = +"10.33";									// 10.33, + prefix, same as Number()
 	
 	0.      var c = parseFloat("10.33");                                                            // 10.33
-		var c = +"10.33";									// 10.33 , converts string number to number format
 	0.      var c = parseInt("10.33");                                                              // 10
 	        var h = parseInt("10", 8);                                                              // 8 (octal , second arg 8 passed)
 		var j = parseInt("1f9", 16);                                                            // 505 (hexadecimal , second arg 16 passed)
