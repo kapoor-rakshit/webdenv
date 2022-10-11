@@ -14,9 +14,20 @@ Three ways of including CSS:
 2. EXTERNAL CSS        <link href="path_to_css_file" rel="stylesheet" type="text/css" />
 3. INTERNAL CSS        <style></style>
 
+CSS is Render Blocking
+REFERENCE: https://web.dev/critical-rendering-path-render-blocking-css/
+By default, CSS is render blocking resource, which means that browser won't render DOM until CSSOM (CSS Object Model) is constructed.
+Media types and Media queries allow to mark some CSS resources as non-render blocking.
+Only if media query/type conditions match, browser blocks rendering until style sheet is downloaded and processed.
+Although, browser downloads all CSS resources, regardless of blocking or non-blocking behavior, albeit with lower priority for non-blocking resources.
+Eg:
+<link href="style.css" rel="stylesheet" />                                  // render blocking | no media query/type
+<link href="style.css" rel="stylesheet" media="all" />                      // render blocking | media="all" (default)
+<link href="portrait.css" rel="stylesheet" media="orientation:portrait" />  // non-blocking for landscape | Depend on orientation of device while page is loading
+<link href="print.css" rel="stylesheet" media="print" />                    // non-blocking for media types (screen, speech) other than print
+<link href="other.css" rel="stylesheet" media="(min-width: 40em)" />        // non-blocking for width less than 40em
 
 CSS3 is backward compatible and supported by major web browsers.
-
 
 LAYOUTS
 ---------
