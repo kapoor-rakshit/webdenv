@@ -599,25 +599,6 @@ Misc.
 	0.	document.getElementById("myDropdown").selectedIndex = -1;    // prevents first value of <select>'s <option> to be selected 
 	
 	
-	
-enum
-	0.	// Enums allow us to define a set of named constants. TypeScript provides both numeric and string-based enums.
-		// 1
-		export enum Direction {
-		   Up = 1,                            // if not specified any value, it will be 0
-		   Down,                              // values for each key increments (if numeric) by 1 from previous value,  down = 2
-		   Left,                              // left = 3
-		   Right,                             // right = 4
-		}
-		
-		// 2
-		export enum EmployeesActionTypes {
-		   SHOW_COMPANY_NAME = 'SHOW_COMPANY_NAME',
-		   ADD = 'ADD',
-		   DELETE = 'DELETE'
-		}
-	
-	
 JavaScript Hoisting
 	0.	// Hoisting is JavaScript's default behavior of moving DECLARATIONS (in memory only not actual code) to the top of the current scope i.e. 
 	           (to the top of the current SCRIPT|GLOBAL SCOPE or the current FUNCTION SCOPE.
