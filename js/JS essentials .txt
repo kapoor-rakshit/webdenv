@@ -226,6 +226,7 @@ Array methods
 	0.      arr.includes("chk",index_to_start_search);                                    // returns true/false if array contains the element.
 	0.      arr.indexOf("chk", index_to_start_search);                                    // returns position, -1 if not found, -ve value index will search from that position from end till end
 	0.      arr.lastIndexOf("chk", index_to_start_search);                                // returns position starting from end/index till beginning, -ve value index will search from that position from end till beginning
+	0.	arr.find((item) => { return item > 90; });				      // returns first element that pass test, else returns undefined.
 	0.      Array.isArray(arr);                                                           // returns true/false if object is array
 	0.      arr.join("separator");                                                        // returns the array as a string with separator specified, else default (comma)
 	0.      var newstr = arr.toString();                                                  //  returns a string with all the array values, separated by commas.
@@ -268,6 +269,7 @@ Array methods
 											      // if data type is number for prop to sort on, then we may use hack:
 											         // ASC order: arr.sort((a, b)=> {return a.price - b.price});
 											         // DSC order: arr.sort((a, b)=> {return b.price - a.price});
+	0.	let x = [1,2,3] + [4,5,6];						     // a string  '1,2,34,5,6'
 		
 Shallow Copy | Deep Copy objects in JS
 =========================================
@@ -616,6 +618,12 @@ JavaScript Hoisting
                    console.log(f);               // 567
                    function f(){ }
                    function g(){ }
+		   
+		0. console.log(this.a);		// function a(){ }
+		   var a = 10;
+		   function a() {}
+		   a();				// a is not a function
+		   console.log(this.a);		// 10
 		
 		0. var x = 5;
 		   console.log(`${x} ${y}`);      // x = 5 , y = undefined
@@ -1261,8 +1269,8 @@ Promises
 				      
 	0.	Promise.all
 		// Promise.all() method is actually a promise that takes an array of promises(an iterable) as an input. 
-		   It returns a single Promise that resolves when all of the promises passed as an iterable, which have resolved or when the iterable contains no promises. 
-		   In simple way, if any of the passed-in promises reject, the Promise.all() method asynchronously rejects the value of the promise , whether or not the other promises have resolved.
+		   It returns a single Promise that resolves when all of promises fulfills with an array of fulfillment values. 
+		   It rejects when any of passed-in promises reject, with this first rejection reason, whether other promises have resolved or not.
 		   // Example
 		   let promises = [];
 		   for (let i=0; i<empids.length; i++) {
@@ -1270,6 +1278,13 @@ Promises
 		   }
 		   Promise.all(promises).then((names) => { console.log(names) })
 		                        .catch((error) => { console.log(error) });
+					
+	0.	Promise.any
+		// It returns a single Promise that fulfills when any of the input's promises fulfills, with this first fulfillment value, whether other promises have resolved or not.
+		   It rejects when all of the input's promises reject, with an AggregateError containing an array of rejection reasons.
+		   // Example
+		   Promise.any(promises).then((value) => console.log(value))
+		   			.catch((error) => { console.log(error) });
 					
 	0.	Promise.race
 	        // returns the first promise that is settled. A settled promise can either be resolved or rejected.
