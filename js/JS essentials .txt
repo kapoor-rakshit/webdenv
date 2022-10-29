@@ -622,7 +622,7 @@ JavaScript Hoisting
 		0. console.log(this.a);		// function a(){ }
 		   var a = 10;
 		   function a() {}
-		   a();				// a is not a function
+		   a();				// ERROR: `a is not a function`
 		   console.log(this.a);		// 10
 		
 		0. var x = 5;
