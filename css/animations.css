@@ -35,8 +35,8 @@ div#hoverchange{
     animation-fill-mode: forwards;
       /* retain effect of anim. none (defalt), Animation will not apply any styles to the element before or after it is executing
 	                        forwards, retain the style values that is set by the last keyframe (depends on animation-direction and animation-iteration-count)
-	                        backwards, get the style values that is set by the first keyframe (depends on animation-direction), and retain this during the animation-delay period
-	                        both, follow the rules for both forwards and backwards, extending the animation properties in both directions */
+	                        backwards, get style values that is set by the first keyframe (depends on animation-direction), and retain this during the animation-delay period
+	                        both, get values set by first keyframe before animation starts, and retain values from last keyframe when animation ends */
     animation-play-state: paused;       /* specifies whether the animation is    paused | running | initial */
 }
 
