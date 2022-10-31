@@ -1,4 +1,3 @@
-
 /* REFERENCE : https://sass-lang.com/install */
 /*           : https://sass-lang.com/guide */
 
@@ -6,7 +5,6 @@
 CSS are getting larger, more complex, and harder to maintain. This is where a preprocessor can help.
 SASS tool lets you use features that don't exist in CSS yet like variables, nesting, mixins, inheritance and other nifty goodies that make writing CSS fun again.
 SASS tool will take your preprocessed .SASS/.SCSS file and save it as a normal .CSS file that you can use in your website.
-
 
 
 /* INSTALLATION */
@@ -19,18 +17,15 @@ If you use Node.js, you can also install Sass using npm by running
 Once installed run > "sass --version" or > "sass --help" to be sure it installed correctly.
 
 
-
 /* TOOL SYNTAX on TERMINAL */
 eg: > "sass input.scss output.css" from your terminal would take a single Scss file, input.scss, and compile that file to output.css.
-
 The --watch flag tells Sass to watch your source files for changes, and re-compile CSS each time you save your Sass/Scss.
 You can watch and output to directories by using folder paths as your input and output, and separating them with a colon.
 Sass would watch all files in the app/sass folder for changes, and compile CSS to the public/stylesheets folder.
     > "sass --watch input.scss output.css"
     > "sass --watch app/sass:public/stylesheets"
     
-    
-   
+       
 /* .SASS/.SCSS syntax */ 
 /* VARIABLES */
 Sass uses the $ symbol to make something a variable.
@@ -229,6 +224,18 @@ eg:
 
 .warning {
   border-color: yellow;
+}
+
+
+/* @if, @else if, @else */
+@mixin triangle($size, $color, $direction) {
+  @if $direction == up { }
+  @else if $direction == right { }
+  @else if $direction == down { }
+  @else { }
+}
+.next {
+  @include triangle(5px, black, right);
 }
 
 
