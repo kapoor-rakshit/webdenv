@@ -227,15 +227,19 @@ eg:
 }
 
 
-/* @if, @else if, @else */
-@mixin triangle($size, $color, $direction) {
+
+/* DEFAULT VALUEs */
+/* IF, ELSE IF, ELSE */
+@mixin triangle($size: 1px, $color: #000, $direction: none) {
   @if $direction == up { }
   @else if $direction == right { }
   @else if $direction == down { }
   @else { }
 }
 .next {
-  @include triangle(5px, black, right);
+  @include triangle(5px, black, right);     /* pass values in order */
+  @include triangle(5px);                   /* one value only, used by first arg, others use default */
+  @include triangle($color: steelblue);     /* override value for particular arg(s), others use default */
 }
 
 
