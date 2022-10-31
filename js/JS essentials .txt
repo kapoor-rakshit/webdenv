@@ -47,7 +47,6 @@ XII. Admin processes : Run admin/management tasks as one-off processes
 
 PWA (Progressive Web App)
 
-
 SOLID | DRY principles
 SOLID consists of 5 concepts
 - Single responsibility principle : each of our classes has to be only used for one purpose.
@@ -58,7 +57,14 @@ SOLID consists of 5 concepts
 DRY
 Don't Repeat Yourself (DRY)
 reducing repetition of information. 
-The DRY principle is stated as, "Every piece of knowledge or logic must have a single, unambiguous representation within a system." 
+The DRY principle is stated as, "Every piece of knowledge or logic must have a single, unambiguous representation within a system."
+
+
+TREE SHAKING
+Tree shaking is a term commonly used in the JavaScript context for dead-code elimination.
+"sideEffects" package.json property is used to denote which files in your project are "pure" and not be unintentionally dropped in production mode.
+Eg: "sideEffects": false
+    "sideEffects": ["./src/some-side-effectful-file.js", "*.css"]
 
 
 Design Patterns
@@ -512,6 +518,19 @@ Misc.
 		   a.two();   // [Object window]
 		   a.three(); // ERROR : this.two is not a function , two() in not defined in window scope and stops program execution
 		   a.four();  // [Object window]
+		   
+		0. var myObject = {
+		    foo: "bar",
+		    func: function() {
+			var self = this;
+			console.log("outer func:" + this.foo);
+			console.log("outer func:" + self.foo);
+			(function() {
+			    console.log("inner func:" +  this.foo);
+			    console.log("inner func:" +  self.foo);
+			})();
+		    }}
+        	    myObject.func();		       // "bar", "bar", undefined, "bar"
 		   
 		0. // setTimeout()/setInterval()
 		   setTimeout(myMethod, 1000);         // prints "[object Window]" after 1 second for `this` inside myMethod callback
