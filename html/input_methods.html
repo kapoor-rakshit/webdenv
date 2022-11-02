@@ -143,10 +143,14 @@
 
 		
 		<!-- Number | min , max , step -->
-		<!-- NOTE IMPORTANT: Decimal values are not allowed by default in type=number input.
-		                     To allow decimal values use `step` attr and define value for required decimal places.
-				     Eg: step="0.01" means upto two decimal places
+		<!-- NOTE: Decimal values are not allowed by default in type=number input.
+		           To allow decimal values use `step` attr and define value for required decimal places.
+			   Eg: step="0.01" means upto two decimal places, "0.1" means upto one decimal place
  		-->
+		<!-- NOTE: In JS, .value for type=number returns 'string' value, which requires typecast `Number()` or `+` or `parseInt()` or `parseFloat()`
+			   To avoid typecast, in JS use .valueAsNumber
+			   Eg: document.querySelector("#age").valueAsNumber;
+		-->
 		B.Tech year<br>
 		<input type="number" name="year" min="1" max="4" step="0.001"/>
 		
