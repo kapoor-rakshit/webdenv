@@ -336,7 +336,7 @@ ul {
 
 color: magenta;                                            /* font color */
 text-shadow: 3px 8px 3px red;                              /* horizontl width, vertical width, blurred, color */
-text-decoration: underline overline wavy red;              /* underline, overline, line-through | solid, wavy, dotted, dashed, double | color */
+text-decoration: underline overline 1px wavy red;          /* underline, overline, line-through | solid, wavy, dotted, dashed, double | color */
 font-style: italic;
 font-weight: bold;                                         /* normal|bold|100 to 900, 400 is normal and 700 is bold */
 font-family: "Times New Roman", Times, serif;              /* follows fallback mechanism , comma separated */
