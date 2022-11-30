@@ -1658,8 +1658,8 @@ CHECK 'scrollAnimations.html' FILE FOR EXAMPLE OF INTERSECTION OBSERVER.
 Page events
 ==============
 	0.	Lifecycle of an HTML page has four important events:
-		- DOMContentLoaded – the browser fully loaded HTML, and the DOM tree is built, 
-		                     but external resources like pictures <img> and stylesheets may be not yet loaded.
+		- DOMContentLoaded – DOM tree is built,all deferred scripts(<script src="" defer>) have downloaded/executed.
+		                     but external resources like pictures <img>,stylesheets,async script(<script src="" async>) may be not yet loaded.
 		- load             – not only HTML is loaded, but also all the external resources: images, styles etc.
 		- beforeunload     – the user is leaving the page, check if user saved changes and ask whether really want to leave.
 		- unload           - the user almost left, but we still can initiate some operations, such as sending out statistics.
