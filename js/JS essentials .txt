@@ -406,10 +406,12 @@ Date
 		let dt = new Date("2020-05-17T12:00:00Z");                                    // "dateString (YYYY-MM-DDTHH:MM:SSZ)" as arg | Z - UTC Time
 		let msec = Date.parse("2020-05-17");                                          // convert valid date string to milliseconds ie difference from January 1, 1970
 	0.      dt.getDay();                                                                  // DAY_OF_WEEK  , (0 [Sunday] to 6)
-	0.      dt.getMonth();                                                                // MONTH        , (0 [January] to 11)
 	0.      dt.getDate();                                                                 // DAY_OF_MONTH , (1 to 31)
 		dt.setDate(dt.getDate() + 15);                                                // If the month has 30 days, 32 as arg will result in second day of next month
+	0.      dt.getMonth();                                                                // MONTH        , (0 [January] to 11)
+		dt.setMonth(dt.getMonth() + 28);
 	0.      dt.getFullYear();                                                             // YEAR (four digits for dates between year 1000 and 9999)
+		dt.setFullYear(dt.getFullYear() + 28);
 	0.      dt.getHours();                                                                // HOURS        , (0 to 23)
 	0.      dt.getMinutes();                                                              // MINUTES      , (0 to 59)
 	0.      dt.getSeconds();                                                              // SECONDS      , (0 to 59)
@@ -418,6 +420,7 @@ Date
 	0.      dt.toTimeString();                                                            // time portion of a Date object to a string. eg: 16:06:10 GMT+0530 (India Standard Time)
 	0.      dt.toLocaleTimeString();                                                      // time portion of a Date object as a string, using locale conventions. eg: 4:01:43 PM
 	0.      dt.getTime();                                                                 // milliseconds between midnight of January 1, 1970 and the specified date object.
+		dt.setTime(dt.getTime() + (add_days*24*60*60*1000));
 	0.      var n = Date.now();                                                           // milliseconds between midnight of January 1, 1970 and the specified date object.
 	0.      dt.getUTCDay();                                                               // UTC DAY_OF_WEEK  (0 [Sunday] to 6)
 	0.      dt.getUTCMonth();                                                             // UTC MONTH        (0 [January] to 11)
@@ -785,9 +788,9 @@ Regex
 	0.      // test() method tests for a match in a string, returns true if it finds a match, otherwise it returns false.
 	           var patt = /Hello/g;          var result = patt.test(str);
 	0.      var res = str.match(/ain/g);                      // returns the matches, as an Array object  or  null
-	0.      var res = str.replace(/blue/g, "red");            // values are replaced
 	0.      var n = str.search(/blue/i);                      // returns the position of the pattern
-	
+	0.      var res = str.replace(/blue/g, "red");            // values are replaced. NOTE: It does NOT change original string.
+		var res = str.replace(/blue|house|car/gi, (x) => {return x.toUpperCase();});    // A func that accepts matched param from str
 	
 Strings
         0.      var res = str.length                       // length of string
@@ -1860,7 +1863,8 @@ Local Storage / Session Storage / Cookies
 				  To let cookies survive browser close, we can set either expires or max-age option.
 				  The date must be exactly in this format, in GMT timezone. We can use date.toUTCString() for this.
 		max-age=SECS;   : An alternative to expires, specifies the cookie expiration in seconds from the current moment.
-		eg: document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT;"
+		eg: document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT;"    // set COOKIE_1
+		    document.cookie = "gender=M; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT;"     // set COOKIE_2
 		READ
 		The value of `document.cookie` consists of name=value pairs, delimited by  ';'  and each one is a separate cookie.
 		eg: console.log(`COOKIES ==> ${document.cookie}`);          // cookie1=value; cookie2=value; cookie3=value;
