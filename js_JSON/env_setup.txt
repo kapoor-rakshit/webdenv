@@ -5,8 +5,6 @@ JSON : JavaScript Object Notation.
 JSON is a syntax for storing and exchanging data.
 JSON is TEXT.
 
-
-
 When exchanging data between a browser and a server, the data can only be TEXT.
 JSON is TEXT, and we can convert any JavaScript object into JSON, and send JSON to the server.
 We can also convert any JSON (TEXT) received from the server into JavaScript objects.
@@ -17,6 +15,21 @@ If you have data stored in a JavaScript object, you can convert the object into 
 /* 1 */
 var myObj = {name: "John", age: 31, city: "New York"};
 var myJSON = JSON.stringify(myObj);
+Ex1
+IMPORTANT: JSON.stringify() skips `undefined` key-val pair in JS object({}).
+           However, it is converted to null in an ARRAY and NOT skipped.
+           `null`, `NaN`, `Infinity` are converted to null in either case.
+let obj = {k1: '', 
+           k2: 9025, 
+           k3: false, 
+           k4: [], 
+           k44: [null, undefined, NaN, Infinity],       // [null,null,null,null]
+           k5: null, 
+           k6: undefined,                               // skipped
+           k7: NaN,                                     // converted to null
+           k8: Infinity};                               // converted to null
+JSON.stringify(obj) = '{"k1":"","k2":9025,"k3":false,"k4":[],"k44":[null,null,null,null],"k5":null,"k7":null,"k8":null}'
+
 
 Receiving Data
 ----------------
@@ -25,7 +38,6 @@ If you receive data in JSON format, you can convert it into a JavaScript object 
 var myJSON = '{"name":"John", "age":31, "city":"New York"}';
 var myObj = JSON.parse(myJSON);
 console.log(myObj.city);
-
 
 
 SYNTAX
