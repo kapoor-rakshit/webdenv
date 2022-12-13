@@ -62,12 +62,19 @@ The DRY principle is stated as, "Every piece of knowledge or logic must have a s
 
 TREE SHAKING
 Tree shaking is a term commonly used in the JavaScript context for dead-code elimination.
-"sideEffects" package.json property is used to denote which files in your project are "pure" and not be unintentionally dropped in production mode.
+We use module bundlers (e.g., Webpack or Rollup) for this purpose.
+"dead code", means an unused export.
+Eg: dist/bundle.js
+/* unused harmony export <UNUSED-EXPORT> */
+/* harmony export (immutable) */ __webpack_exports__['a'] = <USED-EXPORT>; 
+NOTE: A comment /* unused harmony export <UNUSED-EXPORT> */ is added. However, code definition for that <UNUSED-EXPORT> is still included in bundle.
+To remove this code definition for <UNUSED-EXPORT>, use "sideEffects": false
+"sideEffects" package.json property is used to denote which files in your project are "pure" and not be unintentionally dropped in production mode like polyfills.
 Eg: "sideEffects": false
     "sideEffects": ["./src/some-side-effectful-file.js", "*.css"]
 
 
-Design Patterns
+DESIGN PATTERNS
 REFERENCE: https://www.freecodecamp.org/news/javascript-design-patterns-explained/
 1. Creational — Addresses mechanisms related to creating objects
 	Singleton Pattern: It consists of object that can't be copied/modified.
@@ -956,6 +963,7 @@ Functions
 			    
 	0.	.call()  |  .apply()  |  .bind()
 		   They can be used to invoke method with owner object as argument i.e. an object can use a method/props belonging to another object.
+		   IMPORTANT: This allows for taking control over behavior of `this`.
 		   The difference between them is .call() method takes arguments separately | .apply() method takes arguments as an array.
 		   var person = {
 		      fullName: function(city, country) {
