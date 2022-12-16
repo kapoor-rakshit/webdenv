@@ -473,8 +473,15 @@ Misc.
 		`window.screen`  or just `screen` is a small information object about physical screen dimensions.
 		`window.document` or just `document` is object about visible or rendered DOM.
 	
-        0.      In regular functions the 'this' keyword represents the object that called the function.
-		With arrow functions the 'this' keyword represents the scope same as scope of it's parent, where arrow function is defined.
+        0.      In regular functions the 'this' keyword represents how function is invoked.
+			- simple invocation  , f();                      , INSTANCE OF WINDOW/GLOBAL
+			- method invocation  , obj.f();                  , INSTANCE OF OBJECT
+			- .call|.apply|.bind , f.call(OWNER);            , INSTANCE OF OWNER OBJECT/FUNCTION
+			- new keyword        , function f() {}; new f(); , INSTANCE OF FUNCTION
+		With arrow functions the 'this' keyword doesn't define its own execution context.
+			No matter how or where being called, `this` value inside of an arrow function always equals `this` value from outer/parent function.
+			In other words, the arrow function resolves this lexically where it is defined.
+			Invocation of arrow function using .call|.apply|.bind does NOT change behavior.
 		In a object's method, 'this' refers to the owner object or owner of method.
 		Alone, 'this' refers to the global object. In a browser window the Global object is [object Window].
 		In setTimeout()/setInterval() callback func 'this' keyword refers to window (or global) object.
@@ -491,13 +498,27 @@ Misc.
 		   
 		0. // Arrow Function
 		   hello = () => {
-		            document.getElementById("demo").innerHTML += this;       // window object twice, because window object is  "owner" of function.
-			   }
+		            document.getElementById("demo").innerHTML += this;}       // window object twice, because window object is  "owner" of function.
 		   // The window object calls the function
 		   window.addEventListener("load", hello);
 		   
 		   // A button object calls the function
 		   document.getElementById("btn").addEventListener("click", hello);
+		   
+		0. const obj = {
+  		     method_1(items) {
+    			console.log(this);		// Object , called by obj
+    			function method_2() {
+        		  console.log(this);		// Window , called simply
+        		  callback();
+			}
+			const callback = () => {
+			  console.log(this);		// Object , arrow func defined inside obj
+			}
+			method_2();
+		     }
+		   };
+		   obj.method_1();
 		   
 		0. // Object's Method
 		   var person = {
@@ -540,7 +561,7 @@ Misc.
 			    console.log("inner func:" +  self.foo);
 			})();
 		    }}
-        	    myObject.func();		       // "bar", "bar", undefined, "bar"
+        	    myObject.func();		       // "bar"(object), "bar"(object), undefined(window), "bar"(object)
 		   
 		0. // setTimeout()/setInterval()
 		   setTimeout(myMethod, 1000);         // prints "[object Window]" after 1 second for `this` inside myMethod callback
