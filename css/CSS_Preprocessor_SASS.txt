@@ -276,3 +276,14 @@ aside[role="complementary"] {
 }
 
 
+@IMPORTs
+================
+Prepending module paths with a ~ tells webpack to search through `node_modules`.
+NOTE: Prepend it with only ~ , because ~/ resolves to the HOME DIRECTORY
+Using ~ is deprecated and can be removed from code as loader will first try to resolve @import as a relative path.
+If it cannot be resolved, then loader will try to resolve @import inside `node_modules`.
+Eg:
+@import '~bootstrap/scss/mixins';
+@import '~@spartacus/styles/scss/cxbase/mixins';
+@import '~@spartacus/styles/scss/components/product/search/searchbox';
+
