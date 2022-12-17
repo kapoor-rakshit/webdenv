@@ -480,33 +480,31 @@ Misc.
 			- new keyword        , function f() {}; new f(); , INSTANCE OF FUNCTION
 		With arrow functions the 'this' keyword doesn't define its own execution context.
 			No matter how or where being called, `this` value inside of an arrow function always equals `this` value from outer/parent function.
-			In other words, the arrow function resolves this lexically where it is defined.
+			In other words, the arrow function resolves this lexically where func is defined.
 			Invocation of arrow function using .call|.apply|.bind does NOT change behavior.
-		In a object's method, 'this' refers to the owner object or owner of method.
+		In a object, 'this' refers to value from outer/parent function.
+			The object resolves `this` lexically where object is defined.
 		Alone, 'this' refers to the global object. In a browser window the Global object is [object Window].
 		In setTimeout()/setInterval() callback func 'this' keyword refers to window (or global) object.
 		Example
 		0. // Regular Function
 		   hello = function() {
-		             document.getElementById("demo").innerHTML += this;      // two different objects (window and button)
-			   }
+		             document.getElementById("demo").innerHTML += this;}      // two different objects (window and button)
 	           // The window object calls the function
-		   window.addEventListener("load", hello);
-		   
+		   	window.addEventListener("load", hello);
 		   // A button object calls the function
-		   document.getElementById("btn").addEventListener("click", hello);
+		   	document.getElementById("btn").addEventListener("click", hello);
 		   
-		0. // Arrow Function
+		   // Arrow Function
 		   hello = () => {
 		            document.getElementById("demo").innerHTML += this;}       // window object twice, because window object is  "owner" of function.
 		   // The window object calls the function
-		   window.addEventListener("load", hello);
-		   
+		   	window.addEventListener("load", hello);
 		   // A button object calls the function
-		   document.getElementById("btn").addEventListener("click", hello);
+		   	document.getElementById("btn").addEventListener("click", hello);
 		   
 		0. const obj = {
-  		     method_1(items) {
+  		     method_1: function() {
     			console.log(this);		// Object , called by obj
     			function method_2() {
         		  console.log(this);		// Window , called simply
@@ -519,6 +517,24 @@ Misc.
 		     }
 		   };
 		   obj.method_1();
+		   
+		0. let obj = {
+    		     a: this,				// Window , obj defined in window scope
+    		     b: () => {
+        		console.info(this);		// Window , arrow func defined in obj
+        		let bb = {
+            		   bbk: this
+        		}
+        		console.info(bb.bbk);		// Window , obj defined in arrow func
+    		     },
+    		     c: function() {
+        		console.info(this);		// Object , called by obj
+        		let cc = {
+            		   cck: this
+        		}
+        		console.info(cc.cck);		// Object , obj defined in regular func
+    		     }
+		   }
 		   
 		0. // Object's Method
 		   var person = {
