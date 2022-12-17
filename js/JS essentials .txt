@@ -411,7 +411,8 @@ Date
 		let dt = new Date("2020");						      // "dateString (YYYY)" as arg
 		let dt = new Date("2020-05-17T12:00:00");                                     // "dateString (YYYY-MM-DDTHH:MM:SS)" as arg | T - Separator for Date and time
 		let dt = new Date("2020-05-17T12:00:00Z");                                    // "dateString (YYYY-MM-DDTHH:MM:SSZ)" as arg | Z - UTC Time
-		let msec = Date.parse("2020-05-17");                                          // convert valid date string to milliseconds ie difference from January 1, 1970
+		let dt = new Date("Fri, 18 Oct 2019 10:38:48 GMT");			      // UTC string as arg , used in document.cookie
+		let dt = new Date("2022-12-17T16:38:50.788Z");				      // ISO-8601 string as arg , used in JSON
 	0.      dt.getDay();                                                                  // DAY_OF_WEEK  , (0 [Sunday] to 6)
 	0.      dt.getDate();                                                                 // DAY_OF_MONTH , (1 to 31)
 		dt.setDate(dt.getDate() + 15);                                                // If the month has 30 days, 32 as arg will result in second day of next month
@@ -423,12 +424,10 @@ Date
 	0.      dt.getMinutes();                                                              // MINUTES      , (0 to 59)
 	0.      dt.getSeconds();                                                              // SECONDS      , (0 to 59)
 	0.      dt.getMilliseconds();                                                         // MILLISECONDS , (0 to 999)
-	0.      dt.toDateString();                                                            // date (not the time) of Date object into readable string. eg: Fri Oct 18 2019
-	0.      dt.toTimeString();                                                            // time portion of a Date object to a string. eg: 16:06:10 GMT+0530 (India Standard Time)
-	0.      dt.toLocaleTimeString();                                                      // time portion of a Date object as a string, using locale conventions. eg: 4:01:43 PM
 	0.      dt.getTime();                                                                 // milliseconds between midnight of January 1, 1970 and the specified date object.
 		dt.setTime(dt.getTime() + (add_days*24*60*60*1000));
 	0.      var n = Date.now();                                                           // milliseconds between midnight of January 1, 1970 and the specified date object.
+	0.	let msec = Date.parse("2020-05-17");                                          // date string to milliseconds ie difference from January 1, 1970
 	0.      dt.getUTCDay();                                                               // UTC DAY_OF_WEEK  (0 [Sunday] to 6)
 	0.      dt.getUTCMonth();                                                             // UTC MONTH        (0 [January] to 11)
 	0.      dt.getUTCDate();                                                              // UTC DAY_OF_MONTH (1 to 31)
@@ -437,7 +436,12 @@ Date
 	0.      dt.getUTCMinutes();                                                           // UTC MINUTES
 	0.      dt.getUTCSeconds();                                                           // UTC SECONDS
 	0.      dt.getUTCMilliseconds();                                                      // UTC MILLISECONDS
+	0.      dt.toDateString();                                                            // date (not the time) of Date object into readable string. eg: Fri Oct 18 2019
+	0.      dt.toTimeString();                                                            // time portion of a Date object to a string. eg: 16:06:10 GMT+0530 (India Standard Time)
+	0.      dt.toLocaleTimeString();                                                      // time portion of a Date object as a string, using locale conventions. eg: 4:01:43 PM
 	0.      dt.toUTCString();                                                             // date object to a string, according to universal time. eg: Fri, 18 Oct 2019 10:38:48 GMT
+	0.	dt.toISOString();							      // ISO-8601, eg: 2022-12-17T16:38:50.788Z
+		dt.toJSON();								      // JSON or ISO-8601, eg: 1975-08-19T23:15:30.000Z
 	
 
 Exception Handling
