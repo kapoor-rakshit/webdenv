@@ -4,8 +4,6 @@
    initial-scale=1 sets the initial zoom level when the page is first loaded by the browser.
    
    
-   
-   
 2. CDN links required for bootstrap.css , jQuery , popper.js , bootstrap.js   (JS CDNs must be included in order)
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -14,10 +12,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
    
-   
-   
 3. Bootstrap Spacing and Grid
    Bootstrap Grid
+   -------------------
    Bootstrap's grid system is built with flexbox and allows up to 12 columns across the page.
    Make sure that the sum adds up to 12 or fewer (it is not required that you use all 12 available columns).
         .col-    (extra small devices - screen width less than 576px)
@@ -25,6 +22,7 @@
         .col-md- (medium devices - screen width equal to or greater than 768px)
         .col-lg- (large devices - screen width equal to or greater than 992px)
         .col-xl- (xlarge devices - screen width equal to or greater than 1200px)
+	.col-xxl-(extra extra large - screen width equal to or greater than 1400px)
    NOTE : Each class scales up, so if you wish to set the same widths for sm and md, you only need to specify sm.
         <!-- first star (*) represents responsiveness: sm, md, lg or xl, while second star represents number, which should add up to 12  -->
         <div class="row">
@@ -41,6 +39,7 @@
         </div>
         
    Bootstrap Spacing
+   -----------------------
    The classes are named using the format {property}{sides}-{size} for xs and 
                                           {property}{sides}-{breakpoint}-{size} for sm, md, lg, and xl.
    where property is:
@@ -72,4 +71,14 @@
    </div>
    
    
+   SCSS MIXINs
+   ----------------------
+   - `@media (min-width: 0) { ... }`
+   	@include media-breakpoint-up(md) { ... }
+   - `@media (max-width: 0) { ... }`
+   	@include media-breakpoint-down(lg) { ... }
+   - `@media (min-width: 768px) and (max-width: 991.98px) { ... }`
+   	@include media-breakpoint-only(md) { ... }
+   - `@media (min-width: 768px) and (max-width: 1199.98px) { ... }`
+   	@include media-breakpoint-between(md, xl) { ... }
    
