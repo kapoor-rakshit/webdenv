@@ -59,13 +59,15 @@ MISC
 eg: <div>
      <h2>My name is Donald</h2>
      <span>
+      FIRST
       <p>I live in Duckburg.</p>
      </span>
+     <span>SECOND<span>
    </div>
 1. element1 element2   -->  select element2 INSIDE element1                     -->  here <p> is inside <span>, <h2>, <div>
 2. element1 > element2  --> select element2 whose PARENT is element1            -->  here <p> parent is only <span>
-3. element1 + element2  --> select element2 PLACED IMMEDIATELY AFTER element1 (not inside) -->  here <span> placed immediately after <h2>
-4. element1 ~ element2  --> select element2 PRECEDED BY (not necessarily immediately preceded) element1 -->  here <span> preceded by <h2>
+3. element1 + element2  --> select element2 which is ELEMENT2 AND FIRST AND IMMEDIATE AFTER element1 -->  here FIRST <span> placed immediately after <h2>
+4. element1 ~ element2  --> select element2 which is ELEMENT2 AFTER element1 (ALL and NOT IMMEDIATE) -->  here FIRST,SECOND <span> come after <h2>
 
 
 BEM (Block, Element, Modifier) methodology
