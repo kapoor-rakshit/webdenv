@@ -68,6 +68,7 @@ eg: <div>
 2. element1 > element2  --> select element2 whose PARENT is element1            -->  here <p> parent is only <span>
 3. element1 + element2  --> select element2 which is ELEMENT2 AND FIRST AND IMMEDIATE AFTER element1 -->  here FIRST <span> placed immediately after <h2>
 4. element1 ~ element2  --> select element2 which is ELEMENT2 AFTER element1 (ALL and NOT IMMEDIATE) -->  here FIRST,SECOND <span> come after <h2>
+5. element1 > element2 + element3  --> combnation of all
 
 
 BEM (Block, Element, Modifier) methodology
