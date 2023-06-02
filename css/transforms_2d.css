@@ -1,72 +1,34 @@
 p#translate {                                 /* p with id = "translate" */
-                                /* The translate() method moves an element from its current position. */
-    width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
+                                /* The translate() method moves an element from its current position on x-axis,y-axis */
     /*
     -ms-transform: translate(50px,100px); /* IE 9 */
     /*-webkit-transform: translate(50px,100px); /* Safari */
-    
     transform: translate(50px,100px); /* Standard syntax */
+    transform: translate(50px);       /* effects ONLY x-axis */
 }
 div#rotate {
 	        /* The rotate() method rotates an element clockwise (+ve) or counter-clockwise (-ve) according to a given degree. */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: rotate(-50deg);
 }
 div#scale {
 	                      /* The scale() method increases or decreases the size of an element (width and height) times */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: scale(1,5);
+    transform: scale(2);      /* effects BOTH width and height */
 }
 div#skewx {              /* The skewX() method skews an element along the X-axis by the given angle. */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: skewX(50deg);
 }
 div#skewy {            /* The skewY() method skews an element along the Y-axis by the given angle. */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: skewY(50deg);
 }
 div#skew {           /* The skew() method skews an element along the X and Y-axis by the given angles. */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: skew(10deg, 30deg);
+    transform: skew(10deg);         /* effects ONLY X-axis */
 }
 div#multi {                          /* example of using multiple transforms */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: skew(10deg, 30deg) scale(1,5) rotate(-50deg);
 }
 div.matrix {       /* The matrix() method combines all the 2D transform methods into one. */ /* On class = "matrix" */
                    /* The parameters are as follow: matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY()) */
-	width: fit-content;
-    height: fit-content;
-    background-color: yellow;
-    border: 1px solid black;
-
     transform: matrix(1, 0.5, 0.2, 1, 300, 300);
 }
