@@ -250,3 +250,50 @@ Bookmarks or Internal linking in a web page, using ID and HREF attributes.
 -->
 <h2 id="C4">Chapter 4</h2>
 <a href="#C4">Jump to Chapter 4</a>
+
+
+<!-- 17 -->
+<!--
+RESOURCE HINTS
+Resource hints get their name because they are not mandatory instructions.
+They provide the information about what you'd like to happen, but it's ultimately up to the browser to decide whether to execute them.
+The "as" attribute helps the browser set the right headers, and determine whether the resource is already in the cache.
+Example values for this attribute include: document, script, style, font, image, and others.
+Some types of resources, such as fonts, are loaded in "anonymous mode". For those you must set `crossorigin` attribute.
+A. rel="preload"
+    Preload lets you tell browser about critical resources you want to load early before they are discovered naturally.
+    This is especially useful for resources that are not easily discovered, like 
+    fonts(@font-face), background-image(url: '') in stylesheets, resources loaded from script(CSS added via JS).
+    The preload resource hint helps browser to discover a resource faster and thus load it before document loads it and affects priority.
+    Preload is a mandatory fetch and not a hint.
+B. rel="preconnect"
+    Before browser can request resource from server, it must establish a connection. Establishing a secure connection involves three steps:
+        Look up the domain name and resolve it to an IP address.
+        Set up a connection to the server.
+        Encrypt the connection for security.
+    In each of these steps the browser sends a piece of data to a server, and the server sends back a response.
+    That journey, from origin to destination and back, is called a round trip.
+    Depending on network conditions, a single round trip might take a significant amount of time.
+    Adding rel=preconnect to a <link> informs browser that your page intends to establish a connection to another domain,
+    and that you'd like the process to start as soon as possible.
+    Resources will load more quickly because setup process has already been completed by the time the browser requests them.
+    Preconnecting is only effective for CROSS-ORIGIN i.e. when you know an origin but not necessarily exact URL of resource that will be needed.
+C. rel="prefetch"
+    If you have insight into how users move through your website and which pages they will likely visit next,
+    you can improve load times of future navigations by downloading the resources for those pages ahead of time.
+    Only prefetch resources when you are confident that users will need them.
+D. fetchpriority="high"
+    Fetch Priority is a markup-based signal that developers can use to indicate the relative priority of a particular resource.
+    Fetch Priority can also complement preload. Take a Largest Contentful Paint image, which, when preloaded, will still get a low priority,
+    If it is pushed back by other early low-priority resources, using Fetch Priority can help how soon the image gets loaded.
+    Preload allows the browser to discover the resource early, but it will still fetch it with the default priority.
+    Conversely, Fetch Priority does not aid discoverability, but does allow you to increase or decrease the fetch priority.
+    fetchpriority attribute accepts "high", "low", "auto"(let browser decide appropriate priority)
+-->
+<link rel="preload" as="script" href="critical.js" crossorigin>
+<link rel="preconnect" href="https://example.com">
+<link rel="prefetch" href="/articles/" as="document">
+<img src="/images/in_viewport_but_not_important.svg" fetchpriority="low">   <!-- NOT a high priority for this above-the-fold image -->
+<link rel="preload" href="/js/script.js" as="script" fetchpriority="low">   <!-- initiate an early fetch for resource, but also deprioritize it -->
+<script src="JS" async fetchpriority="high"></script>                       <!-- async but important JS -->
+<script src="JS" fetchpriority="low"></script>                              <!-- blocking but unimportant JS -->
