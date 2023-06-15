@@ -876,6 +876,9 @@ Functions
                     f (45, 5);                                      // invoke function stored in variable f
 		    
 	0.      var f = function(a=1, b=0) { return a*b; }          // default values passed to function incase not passed on invoke
+
+	0.	var f = function(a, b) {console.log(a,b);}	    // OUTPUT: 43, 90  i.e. value is NOT b=43,a=90 as in invoke
+		f(b=43, a=90);
 	
 	0.	function f(a,b,c,a) {				    // duplicate named parameter
 			console.log(`${a} ==> ${b} ==> ${c}`);
