@@ -206,6 +206,8 @@ document.body.appendChild(new XFoo());
 
 Array methods
         0.      var arr = ["Saab", " Volvo", "BMW"];
+	0.	var elem = arr[ind];							      // -ve(NEGATIVE) index returns `undefined`
+		var elem = arr.at(ind);							      // -ve(NEGATIVE) index returns elem from last, similar to length-1
 	0.      document.getElementById("#pid").innerHTML = arr;                              // returns comma separated values eg : Saab, Volvo,BMW
 	0.      var arr4 = arr1.concat(arr2,arr3);                                            // just like "extend" in Python , new array returned with values of all.
 	0.	a) var arr4 = [...arr1, ...arr2, ...arr3];                                    // similar to concat , use of ... (spread operator) 
@@ -460,6 +462,7 @@ Exception Handling
 		  }
 		  else {
 		   document.getElementById("demo").innerHTML = errobj.name + " " + errobj.message;       // name/message of builtin obj
+		   throw new Error("New error message", { cause: errobj });
 		  }
 		}
 		finally {
@@ -842,8 +845,9 @@ Regex
 	
 Strings
         0.      var res = str.length                       // length of string
-	0.      var res = str.charAt(index)                // character at the specified index (position)
-	        var res = str[index]
+	0.      var res = str.charAt(index)                // character at the specified index (position) , -ve(NEGATIVE) index returns ''(empty)
+	        var res = str[index]			   // -ve(NEGATIVE) index returns `undefined`
+		var res = str.at(index)			   // -ve(NEGATIVE) index returns elem from last , simlar to length-1
 	0.      var res = str1.concat(str2, str3);         // concatenate multiple strings
 	0.      str.endsWith();                            // Checks whether string ends with specified string/characters
 	0.      str.startsWith();                          // Checks whether string starts with specified string/characters
