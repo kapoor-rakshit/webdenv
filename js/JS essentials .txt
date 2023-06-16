@@ -1963,6 +1963,8 @@ DOM Document
 	0.	document.getElementsByName("nameval");                   // Returns NodeList containing all elements with a specified NAME attribute
 	0.	document.getElementsByTagName("tagval");                 // Returns NodeList containing all elements with the specified tag name
 	0.	document.hasFocus();                                     // Returns Boolean value indicating whether the document has focus
+		document.visibilityState;				 // Returns "visible" | "hidden"
+		document.addEventListener("visibilitychange", () => {})  // fires when visibilityState changes. REFER misc/document-visibility-change.js
 	0.	document.querySelector("#IDVAL");                        // Returns first element that matches specified CSS selector(s) in document
 	0.	document.querySelectorAll("#IDVAL");                     // Returns NodeList containing all elements that matches specified CSS selector(s) in document
 	0.	document.title;                                          // Sets or returns the title of the document
