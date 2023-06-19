@@ -297,3 +297,19 @@ D. fetchpriority="high"
 <link rel="preload" href="/js/script.js" as="script" fetchpriority="low">   <!-- initiate an early fetch for resource, but also deprioritize it -->
 <script src="JS" async fetchpriority="high"></script>                       <!-- async but important JS -->
 <script src="JS" fetchpriority="low"></script>                              <!-- blocking but unimportant JS -->
+
+
+<!-- 18 -->
+<!--
+To allow cross-origin access, the <script> tag needs to have crossorigin attribute, plus remote server must provide special headers.
+There are three levels of cross-origin access:
+    No crossorigin attribute – access prohibited.
+    crossorigin="anonymous" – access allowed if server responds with header `Access-Control-Allow-Origin`: *  OR  our origin.
+        Browser does NOT send authorization information and cookies to remote server.
+        i.e. no cookies sent AND one server-side header needed.
+    crossorigin="use-credentials" – access allowed if server sends back header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials`: true.
+        Browser sends authorization information and cookies to remote server.
+        i.e. sends cookies too AND two server-side headers needed.
+-->
+<script crossorigin="anonymous" src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
+    
