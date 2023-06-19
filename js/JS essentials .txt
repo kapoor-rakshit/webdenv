@@ -1720,6 +1720,7 @@ Page events
 		- DOMContentLoaded – DOM tree is built,all deferred scripts(<script src="" defer>) have downloaded/executed.
 		                     but external resources like pictures <img>,stylesheets,async script(<script src="" async>) may be not yet loaded.
 		- load             – not only HTML is loaded, but also all the external resources: images, styles etc.
+		  onerror	   - to handle error while loading of resources.
 		- beforeunload     – the user is leaving the page, check if user saved changes and ask whether really want to leave.
 		- unload           - the user almost left, but we still can initiate some operations, such as sending out statistics.
 	       // Example
@@ -1731,11 +1732,21 @@ Page events
 		    > document.addEventListener("DOMContentLoaded", functionName);
 		  
 		   // 2. NOTE : The load event happens on the window object , also on a TAG
-	           > window.onload = function() {
+		   // REFER: https://javascript.info/onload-onerror
+		   // To track loading of external resources – scripts, iframes, images etc. There are two events for it:
+		   // `onload` – successful load   |   `onerror` – an error occurred
+	           1> window.onload = function() {
 		       alert('Page loaded');
 		         // image is loaded at this time
-		     };
-		   > img.onload = () => { console.log('img onload'); };
+		      };
+		   2> img.onload = () => { console.log('img onload'); };
+		   3> let s = document.createElement('script');
+		      if(s) {
+			s.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js";
+			document.head.appendChild(s);
+			s.onload = function() {};
+			s.onerror = function() {};
+		      }
 		   
 		   // 3. NOTE : The beforeunload event triggers on window object.
 		   		This is fired when browser is to be closed, tab is to be closed, the page is to be reloaded.
