@@ -1735,18 +1735,24 @@ Page events
 		   // REFER: https://javascript.info/onload-onerror
 		   // To track loading of external resources – scripts, iframes, images etc. There are two events for it:
 		   // `onload` – successful load   |   `onerror` – an error occurred
-	           1> window.onload = function() {
+	           A> window.onload = function() {
 		       alert('Page loaded');
 		         // image is loaded at this time
 		      };
-		   2> img.onload = () => { console.log('img onload'); };
-		   3> let s = document.createElement('script');
+		   B> img.onload = () => { console.log('img onload'); };
+		   C> let s = document.createElement('script');
 		      if(s) {
 			s.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js";
 			document.head.appendChild(s);
 			s.onload = function() {};
 			s.onerror = function() {};
 		      }
+		   // To track script errors, one can use `window.onerror` global handler.
+		   // `s.onload`|`s.onerror` track only if resource loaded successfully or not, but not if it has programming errors in it.
+		   // We can see real errors, triggered by our users.
+		   // But if a script comes from another origin, then there’s not much information about errors in it, because of CORS.
+		   // Thus,<script> tag needs to have `crossorigin` attribute, plus remote server must provide special headers. (REFER: env_setup.txt in html)
+		   D> window.onerror = function() {}
 		   
 		   // 3. NOTE : The beforeunload event triggers on window object.
 		   		This is fired when browser is to be closed, tab is to be closed, the page is to be reloaded.
