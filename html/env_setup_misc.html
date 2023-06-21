@@ -189,10 +189,17 @@ There can only be one single <base> element in a document, and it must be inside
     
 <!-- 10 -->
 <!--
-The loading attribute specifies whether a browser should load an image immediately or 
+The loading attribute specifies whether a browser should load resource immediately or 
 to defer loading of off-screen images until, user scrolls near them.
+loading attribute supports: "lazy"(defer resource), "eager"(immediate , default), "auto"(browser decides eager/lazy)
 -->
-<img src="/w3images/ocean.jpg" alt="Ocean" style="width:100%" loading="lazy">
+<!-- a. -->
+<img src="/w3images/ocean.jpg" alt="Ocean" style="width:100%" loading="lazy"/>
+<iframe src="https://example.com" width="600" height="400" loading="lazy"></iframe>
+<!-- b.
+If you need better control on distance thresholds or you want to provide a consistent lazy-loading experience across browsers,
+you can use the lazysizes library. NOTE: lazysizes uses the Intersection Observer API to detect when an element becomes visible.
+-->
     
     
 <!-- 11 -->
