@@ -441,6 +441,8 @@ Date
 	0.      dt.toDateString();                                                            // date (not the time) of Date object into readable string. eg: Fri Oct 18 2019
 	0.      dt.toTimeString();                                                            // time portion of a Date object to a string. eg: 16:06:10 GMT+0530 (India Standard Time)
 	0.      dt.toLocaleTimeString();                                                      // time portion of a Date object as a string, using locale conventions. eg: 4:01:43 PM
+	0.	dt.toLocaleString('en-us', { weekday: 'short' });			      // 'Mon', 'Tue', 'Wed' etc..
+		dt.toLocaleString('en-us', { month: 'long' });				      // 'June', 'July', 'August' etc..
 	0.      dt.toUTCString();                                                             // date object to a string, according to universal time. eg: Fri, 18 Oct 2019 10:38:48 GMT
 	0.	dt.toISOString();							      // ISO-8601, eg: 2022-12-17T16:38:50.788Z
 		dt.toJSON();								      // JSON or ISO-8601, eg: 1975-08-19T23:15:30.000Z
