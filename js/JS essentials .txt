@@ -1306,13 +1306,11 @@ Promises
 		     - resolve(respValue) — if the job finished successfully, with result `respValue`.
 		     - reject(error)      — if an error occurred, `error` is the error object.
 		     The executor should call only one resolve or one reject. Any state change is final. All further calls of resolve or reject are ignored.
-		  		   
 		   A Promise is always in one of the following states:
 		      fulfilled : Action related to the promise succeeded.
 		      rejected  : Action related to the promise failed.
 		      pending   : Promise is still pending i.e not fulfilled or rejected yet.
-		      settled   : Promise has fulfilled or rejected
-		      
+		      settled   : Promise has fulfilled or rejected      
 		   A Promise object serves as link between executor (“producing code”) and consuming functions ("subscribers"), which will receive result or error.
 		   Consuming functions can be registered (subscribed) using methods .then(), .catch() and .finally().
 		   .then((respData)=> {}, (err)=> {})  : The first argument of .then is a function that runs when the promise is resolved, and receives result.
@@ -1320,7 +1318,9 @@ Promises
 		   .catch((err)=> {}) : can be used for handling the errors(if any). It takes only one function.
 		   .finally(()=> {})  : always runs when the promise is settled: be it resolve or reject. It's handler function has no arguments.
 		   NOTE : if both i.e., error handler of .then() and error handler of promise .catch() are implemented , error handler of .then() will be called.
-		   
+			  i.e. control goes to the next closest error handler.
+			  If we have programming error like function not found, still it is a rejected promise, and control jumps to nearest error handler (.catch() or catch block)
+			  If a .then() and .catch() are after .catch() , it will execute .then() if no reject/error from .catch() , else move to other .catch()
 		// Example
 		function getEmployeeName(id) {
 		   return new Promise((resolve, reject) => {
