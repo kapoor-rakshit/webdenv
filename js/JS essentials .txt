@@ -1294,6 +1294,7 @@ Export | Import   functions/classes
 
 
 XMLHttpRequest
+REFERENCE: https://javascript.info/xmlhttprequest
 AJAX : Asynchronous JavaScript And XML. It exchanges data with web server. It updates a web page without reloading the page.
 For security reasons, modern browsers do not allow access across domains i.e. CORS, However to achieve CORS:
 	The browser sends OPTIONS preflight request with an `Origin` HTTP request header having value of parent page url.
@@ -1309,25 +1310,36 @@ In modern web-development XMLHttpRequest is still used rather than fetch():
 	We need something that fetch can’t do yet, e.g. to track upload progress.
 The onreadystatechange event is triggered four times (1-4), one time for each change in the readyState.
 	0: request not initialized | 1: server connection established | 2: request received | 3: processing request | 4: request finished and response is ready
+Once the header is set, it’s set. Additional calls add information to the header, do NOT overwrite it
+	xhr.setRequestHeader('X-Auth', '123');
+	xhr.setRequestHeader('X-Auth', '456');		 // the header will be	X-Auth: 123, 456
 Eg:
 let xhr = new XMLHttpRequest();
-xhr.open('POST', URL-STRING, true);                       // METHOD, URL, isASYNC
-xhr.send(JSON.stringify(bodyData));
+let URL-STRING = new URL('https://HOSTNAME/PATH');
+URL-STRING.searchParams.set('qParam', 'VAL');		 // add queryParams to URL
+xhr.open('POST', URL-STRING, true);                      // METHOD, URL, isASYNC(default=true)
+xhr.responseType = 'json';				 // get the response as "text"(default)string | blob | document | JSON(parsed automatically)
+xhr.setRequestHeader('HEADER-KEY', HEADER-VAL);		 // set request header
+xhr.send(JSON.stringify(bodyData));			 // sends request over network, bodyData is required for POST,PUT,PATCH requests
 xhr.onload = function() {
   if (xhr.status != 200) {                               // analyze HTTP status of the response, onload is invoked even if HTTP status is like 400 or 500
     alert(`Error ${xhr.status}: ${xhr.statusText}`);     // e.g. 404: Not Found
-  } else { }  						 // response is the server response
+  } else {
+    console.log(xhr.response);				 // server success response
+    xhr.getResponseHeader('HEADER-KEY');		 // response header with given KEY
+  }
 };
 xhr.onprogress = function(evt) {			 // onprogress: triggers periodically and reports how much has been downloaded.
   if (evt.lengthComputable) {				    // lengthComputable: true if server sent Content-Length header response
     alert(`Received ${evt.loaded} of ${evt.total} bytes`);  // loaded: how many bytes downloaded | total(if lengthComputable): total number of bytes
   } else {
-    alert(`Received ${evt.loaded} bytes`);                  // no Content-Length received in header response
+    alert(`Received ${evt.loaded} bytes`);
   }
 };
-xhr.onerror = function() {
+xhr.onerror = function() {				// error handler
   alert("Request failed");
 };
+xhr.abort();						// terminate the request
 
 
 Fetch
