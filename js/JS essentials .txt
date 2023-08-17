@@ -1294,10 +1294,40 @@ Export | Import   functions/classes
 
 
 XMLHttpRequest
-It allows to make HTTP requests in JavaScript. In modern web-development XMLHttpRequest is used rather than fetch():
-Historical reasons: we need to support existing scripts with XMLHttpRequest.
-We need to support old browsers, and don’t want polyfills (e.g. to keep scripts tiny).
-We need something that fetch can’t do yet, e.g. to track upload progress.
+AJAX : Asynchronous JavaScript And XML. It exchanges data with web server. It updates a web page without reloading the page.
+For security reasons, modern browsers do not allow access across domains i.e. CORS, However to achieve CORS:
+	The browser sends OPTIONS preflight request with an `Origin` HTTP request header having value of parent page url.
+	Eg: When page from http://www.example.com attempts to access user's data in service.example.com,
+	    request header would be sent to service.example.com as Origin: http://www.example.com
+	    The server at service.example.com may respond with An Access-Control-Allow-Origin (ACAO) header response,
+	    indicating which origin sites are allowed as  Access-Control-Allow-Origin: http://www.example.com
+	    An error occurs if the server does not allow the CORS request.
+	    An Access-Control-Allow-Origin (ACAO) header response with a wildcard that allows all domains is  Access-Control-Allow-Origin: *
+In modern web-development XMLHttpRequest is still used rather than fetch():
+	Historical reason is that we need to support existing scripts with XMLHttpRequest.
+	We need to support old browsers, and don’t want polyfills (e.g. to keep scripts tiny).
+	We need something that fetch can’t do yet, e.g. to track upload progress.
+The onreadystatechange event is triggered four times (1-4), one time for each change in the readyState.
+	0: request not initialized | 1: server connection established | 2: request received | 3: processing request | 4: request finished and response is ready
+Eg:
+let xhr = new XMLHttpRequest();
+xhr.open('POST', URL-STRING, true);                       // METHOD, URL, isASYNC
+xhr.send(JSON.stringify(bodyData));
+xhr.onload = function() {
+  if (xhr.status != 200) {                               // analyze HTTP status of the response, onload is invoked even if HTTP status is like 400 or 500
+    alert(`Error ${xhr.status}: ${xhr.statusText}`);     // e.g. 404: Not Found
+  } else { }  						 // response is the server response
+};
+xhr.onprogress = function(evt) {			 // onprogress: triggers periodically and reports how much has been downloaded.
+  if (evt.lengthComputable) {				    // lengthComputable: true if server sent Content-Length header response
+    alert(`Received ${evt.loaded} of ${evt.total} bytes`);  // loaded: how many bytes downloaded | total(if lengthComputable): total number of bytes
+  } else {
+    alert(`Received ${evt.loaded} bytes`);                  // no Content-Length received in header response
+  }
+};
+xhr.onerror = function() {
+  alert("Request failed");
+};
 
 
 Fetch
@@ -1309,7 +1339,7 @@ To read response body in various formats use:`response.text()` | `response.json(
 NOTE: We can choose only one body-reading method i.e. If used response.text(), then response.json() won’t work after it, as body content already been processed.
 Eg:
 const queryParams = new URLSearchParams({ testKey: true, newKey: 'ok'});
-fetch(`URL-STRING?${queryParams}`, {                                     // NOTE: use of   ` ` and ?   for having qParams
+fetch(`URL-STRING?${queryParams}`, {                                     // NOTE: use of   ` ` and ?   for having queryParams
    method: 'POST',
    body: JSON.stringify(bodyData),
    headers: {
@@ -1761,27 +1791,27 @@ Page events
 		    > document.addEventListener("DOMContentLoaded", functionName);
 		  
 		   // 2. NOTE : The load event happens on the window object , also on a TAG
-		   // REFER: https://javascript.info/onload-onerror
-		   // To track loading of external resources – scripts, iframes, images etc. There are two events for it:
-		   // `onload` – successful load   |   `onerror` – an error occurred
-	           A> window.onload = function() {
-		       alert('Page loaded');
-		         // image is loaded at this time
-		      };
-		   B> img.onload = () => { console.log('img onload'); };
-		   C> let s = document.createElement('script');
-		      if(s) {
-			s.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js";
-			document.head.appendChild(s);
-			s.onload = function() {};
-			s.onerror = function() {};
-		      }
-		   // To track script errors, one can use `window.onerror` global handler.
-		   // `s.onload`|`s.onerror` track only if resource loaded successfully or not, but not if it has programming errors in it.
-		   // We can see real errors, triggered by our users.
-		   // But if a script comes from another origin, then there’s not much information about errors in it, because of CORS.
-		   // Thus,<script> tag needs to have `crossorigin` attribute, plus remote server must provide special headers. (REFER: env_setup.txt in html)
-		   D> window.onerror = function() {}
+		   	// REFER: https://javascript.info/onload-onerror
+		   	// To track loading of external resources – scripts, iframes, images etc. There are two events for it:
+		   	// `onload` – successful load   |   `onerror` – an error occurred
+	           	A> window.onload = function() {
+		       		alert('Page loaded');
+		         	// image is loaded at this time
+		      	   };
+		   	B> img.onload = () => { console.log('img onload'); };
+		   	C> let s = document.createElement('script');
+		      	   if(s) {
+				s.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js";
+				document.head.appendChild(s);
+				s.onload = function() {};
+				s.onerror = function() {};
+		      	   }
+		   	   // To track script errors, one can use `window.onerror` global handler.
+		   	   // `s.onload`|`s.onerror` track only if resource loaded successfully or not, but not if it has programming errors in it.
+		   	   // We can see real errors, triggered by our users.
+		   	   // But if a script comes from another origin, then there’s not much information about errors in it, because of CORS.
+		   	   // Thus,<script> tag needs to have `crossorigin` attribute, plus remote server must provide special headers. (REFER: env_setup.txt in html)
+		   	D> window.onerror = function() {}
 		   
 		   // 3. NOTE : The beforeunload event triggers on window object.
 		   		This is fired when browser is to be closed, tab is to be closed, the page is to be reloaded.
