@@ -137,8 +137,8 @@ input:out-of-range                           /* works for input elements with mi
                                              /* Eg: div + :is(.c1, .c2){} ==>  div + .c1 , div + .c2 {} */
                                              /* Eg: :is(p ,.test) ~ .c1{} ==>  p ~ .c1 , .test ~ .c1 {} */
 :has() {}                                    /* select element that contain element matching selector passed */
-                                             /* Eg: elem1:has(elem2, elem3)     ==> elem1 that has either elem2 OR elem3 */
-                                             /* Eg: elem1:has(elem2):has(elem3) ==> elem1 that has both elem2 AND elem3 */
+                                             /* Eg: elem1:has(elem2, elem3)     ==> elem1 that has either elem2 OR elem3 (as descendant)inside it */
+                                             /* Eg: elem1:has(elem2):has(elem3) ==> elem1 that has both elem2 AND elem3 (as descendant)inside it */
 
 /* pseudo elements (::) , REFERENCE : https://www.w3schools.com/css/css_pseudo_elements.asp */
 /* Pseudo-element names are not case-sensitive */
