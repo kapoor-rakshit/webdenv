@@ -1,6 +1,4 @@
-
 <!-- REFERENCE : https://www.w3schools.com/html/html5_geolocation.asp -->
-
 <!-- The Geolocation object allows the user to provide their location to web applications. 
      For privacy reasons, the user is asked for permission to report location information.
 
@@ -14,7 +12,6 @@
 	 watchPosition() - Returns current position of user and continues to return updated position as user moves (like GPS in a car).
 	 clearWatch()    - Stops the watchPosition() method.
 -->
-
 <!--
 	The Maps Static API returns an image (either GIF, PNG or JPEG) in response to request via a URL.
 	A Maps Static API image is embedded within an <img> tag's src attribute.
@@ -31,59 +28,81 @@
 		    Each marker descriptor must contain one or more locations defining where to place the marker on the map as latitude/longitude
 		    	eg: 62.107733,-145.541936
 -->
+<p class="result"></p>
+<div id="mapholder"></div>
+<script type="text/javascript">
+  function getLocation() {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      res.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Location prac</title>
-</head>
-<body>
-	<p class="result"></p>
+  function showPosition(position) {
+    // A. ADD STATIC MAP WITH CURRENT LOCATION
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&key=YOUR_API_KEY";
+    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
 
-	<div id="mapholder"></div>
+    // B. GET ADDRESS DETAILS OF CURRENT LOCATION
+    const latlng = { lat: position.coords.latitude, lng: position.coords.longitude };
+    getGeoCode(latlng);
+  }
 
-	<script type="text/javascript">
+  function getGeoCode(latlng: any) {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: latlng })
+      .then((data: any) => {
+        getAdressFromGoogleResponse(data);
+      })
+      .catch((e: any) => {
+        console.log('Geocoder failed due to: ' + e);
+      });
+  }
 
-		window.onload = getLocation();
+  function getAdressFromGoogleResponse(data: any) {
+    const postCodeSubrubObj = { suburb: '', postCode: '', state: '' };
+    let postalCodeFound = false;
+    let subrubFound = false;
+    let stateFound = false;
+    for (const resultItem of data.results) {
+      const addressArr = resultItem.address_components;
+      for (const address of addressArr) {
+        if (address.types.includes('locality')) {
+          subrubFound = true;
+          postCodeSubrubObj.suburb = address.long_name;
+        } else if (address.types.includes('postal_code')) {
+          postalCodeFound = true;
+          postCodeSubrubObj.postCode = address.long_name;
+        } else if (address.types.includes('administrative_area_level_1')) {
+          stateFound = true;
+          postCodeSubrubObj.state = address.long_name;
+        }
+      }
+      if (postalCodeFound && subrubFound && stateFound) {
+        break;
+      }
+    }
 
-		var res = document.getElementsByClassName("result")[0];
+    console.log(data);
+    console.log(postCodeSubrubObj);
+  }
 
-		function getLocation() {
-			if(navigator.geolocation){
-				navigator.geolocation.getCurrentPosition(showPosition, showError);
-			}else{
-				res.innerHTML = "Geolocation is not supported by this browser.";
-			}
-		}
-
-		function showPosition(position){
-			res.innerHTML = "Latitude: " + position.coords.latitude + 
-			"<br>Longitude: " + position.coords.longitude;
-
-			var latlon = position.coords.latitude + "," + position.coords.longitude;
-
-			var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&key=YOUR_API_KEY";
-
-			document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-		}
-
-		function showError(err) {
-			switch(err.code) {
-    			case err.PERMISSION_DENIED:
-      				res.innerHTML = "User denied the request for Geolocation."
-      				break;
-    			case err.POSITION_UNAVAILABLE:
-      				res.innerHTML = "Location information is unavailable."
-      				break;
-    			case err.TIMEOUT:
-      				res.innerHTML = "The request to get user location timed out."
-      				break;
-    			case err.UNKNOWN_ERROR:
-      				res.innerHTML = "An unknown error occurred."
-      				break;
-      			}
-		}
-	</script>
-
-</body>
-</html>
+  function showError(err) {
+    switch(err.code) {
+      case err.PERMISSION_DENIED:
+        res.innerHTML = "User denied the request for Geolocation."
+      	break;
+      case err.POSITION_UNAVAILABLE:
+      	res.innerHTML = "Location information is unavailable."
+      	break;
+      case err.TIMEOUT:
+      	res.innerHTML = "The request to get user location timed out."
+      	break;
+      default:
+      	res.innerHTML = "An unknown error occurred."
+      	break;
+    }
+  }
+</script>
