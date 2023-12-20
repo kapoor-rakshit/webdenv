@@ -46,6 +46,7 @@
     document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
 
     // B. GET ADDRESS DETAILS OF CURRENT LOCATION
+    // NOTE: MAKE SURE TO ADD GOOLE MAPS SCRIPT TO <head> i.e.   https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap
     const latlng = { lat: position.coords.latitude, lng: position.coords.longitude };
     getGeoCode(latlng);
   }
