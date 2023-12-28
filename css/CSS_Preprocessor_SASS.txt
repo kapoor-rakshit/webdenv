@@ -30,7 +30,8 @@ Sass would watch all files in the app/sass folder for changes, and compile CSS t
 /* VARIABLES */
 Sass uses the $ symbol to make something a variable.
 Variables are used to store information that you want to reuse throughout your stylesheet like colors, font stacks, or any CSS value.
-eg:
+"STRING #{$VARIABLE}" allows string interpolation i.e. to embed value of variable within a string, similar to template literals in JS `STRING ${VARIABLE}`
+A.
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 body {
@@ -42,7 +43,15 @@ body {
   font: 100% Helvetica, sans-serif;
   color: #333;
 }
-
+B.
+$font-family: 'FONT-NAME';
+@font-face {
+  font-family: 'SOME TEXT #{$font-family}', sans-serif;
+}
+-------------- compiles to -----------------
+@font-face {
+  font-family: 'SOME TEXT FONT-NAME', sans-serif;
+}
 
 
 /* NESTING */
@@ -96,7 +105,6 @@ nav a {
 }
 
 
-
 /* PARTIALS + MODULES */
 Partials contain little snippets of CSS that you can include in other Sass files. 
 A partial is a Sass file named with a leading underscore. You might name it something like _partial.scss. 
@@ -127,7 +135,6 @@ body {
   background-color: #333;
   color: white;
 }
-
 
 
 /* MIXINS */
@@ -227,7 +234,6 @@ eg:
 }
 
 
-
 /* DEFAULT VALUEs */
 /* IF, ELSE IF, ELSE */
 @mixin triangle($size: 1px, $color: #000, $direction: none) {
@@ -241,7 +247,6 @@ eg:
   @include triangle(5px);                   /* one value only, used by first arg, others use default */
   @include triangle($color: steelblue);     /* override value for particular arg(s), others use default */
 }
-
 
 
 /* OPERATORS */
