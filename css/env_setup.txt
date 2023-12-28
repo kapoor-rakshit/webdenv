@@ -543,11 +543,15 @@ FONT RULES
 
 @font-face{                                                /* Use customised font using Font Rule */
  font-family: myFont;
- src: url('path to font file downloaded ttf or woff file');
+ src: url('path1 to font file downloaded ttf or woff file');
+}
+@font-face{
+ font-family: myFont;
+ src: url('path2 to font file downloaded ttf or woff file');
 }
 h1{
  font-family: myFont;                                     /* Apply font rule */
-}
+}                                                         /* In case of multiple font-face with same name, only last one gets applied (i.e. path2) */
 
 
 MEDIA RULES
