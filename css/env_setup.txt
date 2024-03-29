@@ -540,8 +540,41 @@ FONT RULES
 -----------
 .woff  (web open font format)
 .ttf   (true type font)
-
-@font-face{                                                /* Use customised font using Font Rule */
+Egs:
+// 1.
+@font-face {
+  font-family: myFont;
+  src: url(sansation_light.woff);
+  font-weight: 900;                    /* No impact on element of having font-weight value here, it will pick `sansation_light.woff` font */
+}
+div {
+  font-family: myFont;
+}
+// 2.
+@font-face {
+  font-family: myFirstFont;
+  src: url(sansation_bold.woff);
+}
+div {
+  font-family: myFirstFont;
+  font-weight: 200;                    /* No impact on element of having font-weight value here, it will pick `sansation_bold.woff` font */
+}
+// 3.
+@font-face {
+  font-family: myFirstFont;
+  src: url(sansation_light.woff);      /* Default font-weight: 400 , if descriptor is missing */
+}
+@font-face {
+  font-family: myFirstFont;
+  src: url(sansation_bold.woff);
+  font-weight: 700;
+}
+div {                              /* Since both @font-face have different font-weight values, it follows fallback mechanism where closest value is picked */
+  font-family: myFirstFont;   /* value in 400 and 500 (incl) check match upto 500, if not check less than value (DESC ORDER), if not check above 500 (ASC ORDER) */
+  font-weight: 600;           /* value less than 400 check match less than value (DESC ORDER) , if not check more than value (ASC ORDER) */
+}                             /* value more than 500 check match more than value (ASC ORDER) , if not check less than value (DESC ORDER) */
+// 4.
+@font-face{
  font-family: myFont;
  src: url('path1 to font file downloaded ttf or woff file');
 }
@@ -551,8 +584,17 @@ FONT RULES
 }
 h1{
  font-family: myFont;                                     /* Apply font rule */
-}                                                         /* In case of multiple font-face with same name, only last one gets applied (i.e. path2) */
-
+}                         /* In case of multiple font-face with same name and same descriptors (font-weight etc.), only last one gets applied (i.e. path2) */
+// 5.
+Variable Fonts
+Variable fonts can support a range of weights with more or less fine granularity,
+and this can give designer a much closer degree of control over the chosen weight.
+For variable fonts, the "wght" variation is used to implement varying `font-weights` range, similarly "slnt" for `slant` variations.
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+  font-weight: 100 900;
+}
 
 MEDIA RULES
 ------------
