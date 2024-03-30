@@ -569,7 +569,7 @@ div {
   src: url(sansation_bold.woff);
   font-weight: 700;
 }
-div {                              /* Since both @font-face have different font-weight values, it follows fallback mechanism where closest value is picked */
+div {                         /* Since both @font-face have different font-weight values, following fallback mechanism, one with `font-weight: 700` is picked */
   font-family: myFirstFont;   /* value in 400 and 500 (incl) check match upto 500, if not check less than value (DESC ORDER), if not check above 500 (ASC ORDER) */
   font-weight: 600;           /* value less than 400 check match less than value (DESC ORDER) , if not check more than value (ASC ORDER) */
 }                             /* value more than 500 check match more than value (ASC ORDER) , if not check less than value (DESC ORDER) */
