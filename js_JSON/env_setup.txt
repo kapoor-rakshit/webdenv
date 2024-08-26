@@ -51,8 +51,10 @@ In JSON, both KEY and STRING data type VALUES must be written with DOUBLE quotes
 In JavaScript, key not necessary to be in quotes but STRING data type values with double or single quotes
 1.  obj = { name : 'John', age : 31, "working" : true, student : null };
 2.  obj["newKey"] = ["newval1", "balle"];                                             /* new key-val pair can be added to existing */
-       var newKey = "nayi_key";
-       obj[newKey] = ["newval1", "balle"];                                            /* using var instead of hardcoded string */
+    var newKey = "nayi_key";                                                          /* using variable key instead of hardcoded string */
+    obj[newKey] = ["newval1", "balle"];                                               
+    VAR = "VARIABLE_KEY";                                                             /* computed property names, using [] for variable key */ 
+    obj = { [VAR]: "value" };
 3.  obj.newKey = ["newval1", "balle"];                                                /* using . notation */
 4.  var obj = {"first" : "kapoor" ,                                                   /* function() as a value to key */
               "second" : "rakshit" ,
