@@ -193,7 +193,9 @@ LIGHTHOUSE WEB VITALS
 	Content is sized correctly for the viewport
 	Provides a valid apple-touch-icon
 
-Custom elements in JS
+
+CUSTOM ELEMENTS in JS
+--------------------------
 var XFoo = document.registerElement('mega-button', {
   prototype: Object.create(HTMLButtonElement.prototype),
   extends: 'button'
@@ -202,6 +204,22 @@ XFoo.addEventListener('click', function(e) {
   alert('Thanks!');
 });
 document.body.appendChild(new XFoo());
+
+CUSTOM EVENTS in JS
+--------------------------
+REFERENCE: https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
+We can create and dispatch custom DOM events.
+Such events are commonly called SYNTHETIC EVENTS, as opposed to events fired by browser itself.
+To add more data to event object, CustomEvent() interface exists and detail property can be used to pass custom data.
+Eg:
+1.
+const customEvent = new Event("EVENT_NAME");
+elem.addEventListener("EVENT_NAME", (e) => { }, false);
+elem.dispatchEvent(customEvent);
+2.
+const customEvent = new CustomEvent("EVENT_NAME", { detail: DATA });
+elem.addEventListener("EVENT_NAME", (e) => { console.log(e.detail); }, false);
+elem.dispatchEvent(customEvent);
 
 
 Array methods
