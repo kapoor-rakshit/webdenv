@@ -655,6 +655,8 @@ Misc.
 			  k3=9025,					    // k3=9025(default value, as k3 is 'not present' or 'undefined')
 			  k4=4095,                                          // k4=null(default value NOT used if src value is 'null')
 			  k5: k55='YQG'} = obj;			    	    // k5(error,not defined) | k55=YQG(pick key k5 from src,if not/undefined, use default)
+		
+		f. let {a, b} = undefined;				    // Uncaught TypeError: Cannot destructure property 'a' of 'undefined'
 	
 	0.      Infinity when a number exceeds the upper limit of the floating point numbers, which is 1.797693134862315E+308.
 	       -Infinity when a number exceeds the lower limit of the floating point numbers, which is -1.797693134862316E+308.
