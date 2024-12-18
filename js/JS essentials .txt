@@ -1676,12 +1676,26 @@ Events
 		}
 	       
 	      
-EVENT LOOP model in JS
-==========================
+EVENT LOOP model in JS + JS Engine
+=======================================
 REFERENCE : https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop
+          : https://www.freecodecamp.org/news/how-javascript-works-behind-the-scenes/
                 CALL STACK <--> MESSAGE QUEUE
 	            ^--         --^
 	               EVENT LOOP
+- JS Engine
+The JavaScript engine is simply a computer program that interprets JavaScript code. The engine is responsible for executing the code.
+Every major browser has a JavaScript engine that executes JavaScript code.
+	a. V8 by Google. V8 powers Google Chrome and Node.js.
+	b. SpiderMonkey developed by Mozilla for Firefox.
+	c. JavaScriptCore which powers the Safari browser.
+When a code snippet passes into the engine, the code is initially parsed, that is read.
+The code is subsequently parsed to a data structure called the ABSTRACT SYNTAX TREE (AST). 
+The resulting tree is then used to create machine codes (0's and 1's).
+In order to optimize the performance of web applications, JavaScript combines both compilation and interpretation.
+This is called Just-in-Time compilation. This method compiles the entire code into machine code all at once and executes it.
+but here the machine code isn’t written into a binary file. The code is also executed right away after compilation
+
 - Heap
 Objects are allocated in a heap which is just a name to denote a large (mostly unstructured) region of memory.
 
@@ -1693,6 +1707,22 @@ Each message has an associated function which gets called in order to handle the
 - The message is removed from the queue and its corresponding function is called.
   As always, calling a function creates a new stack frame for that function's use.
   The processing of functions continues until the stack is once again empty. Then, event loop will process next message in queue (if there is one).
+Inside the task queue, the tasks are broadly classified into two categories, namely:
+a. micro-tasks
+----------------------
+Micro-tasks are often scheduled for things that are required to be completed immediately after the execution of the current SCRIPT.
+On completion of one MACRO-task, the event loop moves on to the MICRO-task queue.
+The event loop does not move to the next task outside of the MICRO-task queue until all the tasks inside the MICRO-task queue are completed.
+This implies that the MICRO-task queue has a higher priority.
+Once all the tasks inside the MICRO-task queue are finished, only then does the event loop shifts back to the MACRO-task queue.
+Eg:  process.nextTick, Promises, queueMicrotask, MutationObserver
+b. macro-tasks
+-----------------------
+Macro tasks include parsing HTML, generating DOM, executing main thread JavaScript code, and 
+other events such as page loading, input, network events, timer events, etc. 
+Eg: setTimeout, setInterval, setImmediate, requestAnimationFrame, I/O, UI Rendering
+
+MACRO-TASK(SCRIPT) -> MICRO-TASK(process.nextTick, Promises, queueMicrotask, MutationObserver) -> MACRO-TASK(setTimeout, setInterval etc..)
 
 - Stack
 Function calls form a stack of frames.
@@ -1702,6 +1732,11 @@ When second function returns, top frame element is popped out of the stack (leav
 - Event Loop
 It waits synchronously for a message to arrive (if one is not already available and waiting to be handled).
 "Event Loop" looks for when "Call Stack" becomes empty and "Message Queue" has entry in it then dequeue message from "Message Queue" and push into "Call Stack".
+
+- Web APIs
+Web APIs are functionalities that are provided to the engine but are not part of the JavaScript language.
+They are accessible to the engine through the browser and help access data or enhance browser functionality.
+Examples are the Document Object Model (DOM) and Fetch APIs.
 
 
 setTimeout | setInterval
