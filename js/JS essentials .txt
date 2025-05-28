@@ -1595,11 +1595,15 @@ Events
 		}
 	
 	0.	event.clientX                                           // horizontal/vertical coordinate (according to client area) of mouse pointer in pixels
-		event.clientY                                              // client area is the current window.
+		event.clientY                                              // client area is VIEWPORT. Even if we scroll page, VIEWPORT always starts at [0,0]
 	0.	event.pageX                                             // horizontal/vertical coordinate (according to document) of mouse pointer in pixels
-		event.pageY                                                // document is the web page.
+		event.pageY                                                // document is web page. When we scroll page, it will start at [NON-ZERO, NON-ZERO]
 	0.	event.screenX                                           // horizontal/vertical coordinate (according to users computer screen) of mouse pointer in pixels
-		event.screenY
+		event.screenY						   // This is global screen coordinates of user machine.
+
+	0.	const targetElement = event.currentTarget;
+		const rect = targetElement.getBoundingClientRect();	  // Return size of element and its edges position relative to VIEWPORT
+		rect.top, rect.right, rect.bottom, rect.left, rect.x, rect.y, rect.width, rect.height
 	       
         0.     preventDefault()
 		/* 1. preventDefault() method stops the default action of an element from happening. */
