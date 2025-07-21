@@ -281,6 +281,16 @@ aside[role="complementary"] {
 }
 
 
+/* FUNCTIONS */
+@function calculateRem($size) {
+  $remSize: calc($size / 16px);
+  @return $remSize * 1rem;
+}
+.text {
+  font-size: calculateRem(14px);
+}
+
+
 @IMPORTs
 ================
 Prepending module paths with a ~ tells webpack to search through `node_modules`.
@@ -291,4 +301,3 @@ Eg:
 @import '~bootstrap/scss/mixins';
 @import '~@spartacus/styles/scss/cxbase/mixins';
 @import '~@spartacus/styles/scss/components/product/search/searchbox';
-
