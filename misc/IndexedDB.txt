@@ -1,0 +1,80 @@
+REFERENCE: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+- IndexedDB is a way for you to persistently store data inside a user's browser.
+- IndexedDB follows a same-origin policy i.e. access stored data within a domain, but cannot access data across different domains.
+
+A. database
+Repository of information, typically comprising one or more object stores. Each database must have the following:
+- Name
+The name can be any string value (including an empty string).
+- Current Version
+When a database is first created, its version is the integer 1 if not specified otherwise.
+Each database can have only one version at any given time.
+
+B. object store
+The mechanism by which data is stored in the database.
+The object store persistently holds records, which are key-value pairs.
+Records within an object store are sorted according to the keys in an ascending order.
+Every object store must have a name that is unique within its database.
+
+C. key and value
+- key generator
+-----------------------
+mechanism for producing new keys in an ordered sequence. 
+If an object store does not have a key generator, then the application must provide keys for records being stored. 
+Generators are not shared between stores. This is more a browser implementation detail, because in web development, 
+you don't really create or access key generators.
+- key path
+-----------------------
+Defines where the browser should extract the key from in the object store or index. 
+A valid key path can include one of the following: an empty string, a JavaScript identifier, or multiple JavaScript identifiers 
+separated by periods or an array containing any of those. It cannot include spaces.
+- key
+-----------------------
+data value by which stored values are organized and retrieved in the object store. 
+The object store can derive the key from one of three sources: a key generator, a key path, or an explicitly specified value.
+The key must be of a data type that has a number that is greater than the one before it. 
+Each record in an object store must have a key that is unique within the same store, 
+so you cannot have multiple records with the same key in a given object store.
+A key can be one of the following types: string, date, float, a binary blob, and array. 
+For arrays, the key can range from an empty value to infinity. And you can include an array within an array.
+Alternatively, you can also look up records in an object store using the index.
+- in-line key
+-----------------------
+key that is stored as part of the stored value. 
+It is found using a key path. An in-line key can be generated using a generator. 
+After the key has been generated, it can then be stored in the value using the key path or it can also be used as a key.
+- out-of-line key
+-----------------------
+key that is stored separately from the value being stored.
+- value
+-----------------------
+Each record has a value, which could include anything that can be expressed in JavaScript, 
+including boolean, number, string, date, object, array, regexp, undefined, and null.
+When an object or array is stored, the properties and values in that object or array can also be anything that is a valid value.
+Blobs and files can be stored.
+
+
+1. OPEN A DATABASE
+const request = window.indexedDB.open("MyTestDatabase", 3);
+
+2. ERROR and SUCCESS HANDLERS
+When you create a new database or increase the version number of an existing database (by specifying a higher version number than you did previously),
+the onupgradeneeded event will be triggered
+let db;
+request.onerror = (event) => {
+  console.error("Why didn't you allow my web app to use IndexedDB?!");
+};
+request.onsuccess = (event) => {
+  db = event.target.result;
+};
+request.onupgradeneeded = (event) => {
+  const db = event.target.result;
+  // Create an objectStore for this database
+  const objectStore = db.createObjectStore("name", { keyPath: "myKey" });
+};
+db.onerror = (event) => {
+  // Generic error handler for all errors targeted at this database requests!
+  console.error(`Database error: ${event.target.error?.message}`);
+};
+
+
