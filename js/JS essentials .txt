@@ -1,5 +1,5 @@
 Ways of including JS
-        0.     INTERNAL JS                                         // <script></script>
+    0.     INTERNAL JS                                         // <script></script>
 	0.     EXTERNAL JS                                         // <script src="path_to_js_file"></script>
 	
 	
@@ -360,8 +360,12 @@ Shallow Copy | Deep Copy objects in JS
 		   // NOT RECOMMENDED as it might make a faulty clone
 		   // NaN, Infinity values will be forced to 'null' | Date will get stringified | Undefined key-value pair will be completely lost
 		   eg: const faultyClone = JSON.parse(JSON.stringify(sampleObject));
+
+		5- Deep copy with structuredClone()
+		   const OBJ1 = { KEY: ["muscaria", "virosa"] };
+		   const OBJ2 = structuredClone(OBJ1);
 		   
-		5- Deep copy with rfdc library
+		6- Deep copy with rfdc library
 		   > npm i rfdc
 		   eg: const clone = require('rfdc')()         // Returns the deep copy function
 		       clone({a: 37, b: {c: 3700}})            // {a: 37, b: {c: 3700}}
